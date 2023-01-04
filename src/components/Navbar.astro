@@ -1,0 +1,33 @@
+---
+const item = [
+  {
+    title: "Home",
+    path: "/",
+  },
+
+  {
+    title: "Blog",
+    path: "/",
+  },
+  {
+    title: "About",
+    path: "/about",
+  },
+];
+---
+
+<div>
+  <div>Bunlaikun</div>
+
+  <div>
+    <ui>
+      {
+        item.map((item) => (
+          <li>
+            <a href={item.path}>{item.title}</a>
+          </li>
+        ))
+      }
+    </ui>
+  </div>
+</div>

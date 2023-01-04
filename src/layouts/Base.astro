@@ -2,8 +2,9 @@
 interface Props {
   title: string;
 }
-
 const { title } = Astro.props;
+
+import Navbar from "@components/Navbar.astro";
 ---
 
 <!DOCTYPE html>
@@ -11,9 +12,37 @@ const { title } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      @font-face {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("/fonts/Inter-Regular.woff") format("woff");
+      }
+      @font-face {
+        font-family: "Inter";
+        font-style: italic;
+        font-weight: 400;
+        font-display: swap;
+        src: url("/fonts/Inter-Italic.woff") format("woff");
+      }
+      @font-face {
+        font-family: "Inter";
+        font-style: bold;
+        font-weight: 700;
+        font-display: swap;
+        src: url("/fonts/Inter-Bold.woff2") format("woff2");
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        margin: 0;
+      }
+    </style>
     <title>{title}</title>
   </head>
   <body>
+    <Navbar />
     <slot />
   </body>
 </html>
