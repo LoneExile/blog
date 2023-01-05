@@ -1,8 +1,8 @@
 ---
 layout: "../../layouts/BlogPost.astro"
-title: "My first blog post"
-date: 2023-01-05
-draft: true
+title: "Hello-me"
+date: 2023-01-04
+draft: false
 ---
 
 Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim

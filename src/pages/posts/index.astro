@@ -17,6 +17,10 @@ posts = posts.sort((a: post, b: post): number => {
     return 0;
   }
 });
+
+if (import.meta.env.PROD) {
+  posts = posts.filter((post: post) => !post.frontmatter.draft);
+}
 ---
 
 <Base title="Blog">
@@ -25,6 +29,9 @@ posts = posts.sort((a: post, b: post): number => {
     {
       posts.map((post) => (
         <div class="py-4 border-b first:border-t">
+          {post.frontmatter.draft && (
+            <span class="bg-red-700 text-white inline-block px-2">[Draft]</span>
+          )}
           <a class="text-blue-700 hover:underline" href={post.url}>
             {post.frontmatter.title}
           </a>
