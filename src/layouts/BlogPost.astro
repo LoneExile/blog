@@ -1,5 +1,5 @@
 ---
-import fs from "node:fs/promises";
+import fs from "node:fs";
 import type { MarkdownLayoutProps } from "astro";
 import type { BlogPostFrontmatter } from "@types";
 import Base from "./Base.astro";
@@ -12,12 +12,34 @@ const { title, date, draft } = Astro.props.frontmatter;
 const { url } = Astro.props;
 const slug = url?.split("/").pop();
 
-let imageExists = true;
-try {
-  await fs.stat(new URL(`../../public/images/${slug}.jpg`, import.meta.url));
-} catch {
-  imageExists = false;
-}
+const imageFormat = [
+  "jpg",
+  "jpeg",
+  "png",
+  "webp",
+  "avif",
+  "tiff",
+  "tif",
+  "gif",
+  "svg",
+];
+
+const imagePath = (filename: string) => {
+  if (import.meta.env.PROD) {
+    return new URL(`./images/${filename}`, import.meta.url);
+  } else {
+    return new URL(`../../public/images/${filename}`, import.meta.url);
+  }
+};
+
+const foundImageFormat = imageFormat.find((format) => {
+  try {
+    fs.accessSync(imagePath(`${slug}.${format}`));
+    return true;
+  } catch {
+    return false;
+  }
+});
 ---
 
 <Base title="Blog post">
@@ -35,9 +57,9 @@ try {
   </div>
 
   {
-    imageExists && (
+    foundImageFormat !== undefined && (
       <Picture
-        src={`/images/${slug}.jpg`}
+        src={`/images/${slug}.${foundImageFormat}`}
         class="mb-8"
         widths={[400, 600, 1024]}
         sizes="(max-width: 400px) 400px, (max-width: 600px) 600px, 1024px"
