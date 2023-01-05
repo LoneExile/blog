@@ -1,0 +1,19 @@
+---
+import Base from "@layouts/Base.astro";
+const post = await Astro.glob("./*.{md,astro}");
+---
+
+<Base title="Blog">
+  <h1 class="mb-8 text-6xl">Blog</h1>
+  <div>
+    {
+      post.map((post) => (
+        <div class="py-4 border-b first:border-t">
+          <a class="text-blue-700 hover:underline" href={post.url}>
+            {post.frontmatter.title}
+          </a>
+        </div>
+      ))
+    }
+  </div>
+</Base>
