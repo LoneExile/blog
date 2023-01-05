@@ -9,11 +9,11 @@
       "@layouts/*": [
         "src/layouts/*"
       ],
-      "@types/*": [
-        "src/Types/"
+      "@types": [
+        "src/types"
       ],
-      "@utils/*": [
-        "src/utils/"
+      "@utils": [
+        "src/utils"
       ]
     }
   }
