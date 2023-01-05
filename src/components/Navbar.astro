@@ -16,16 +16,18 @@ const item = [
 ];
 ---
 
-<div>
-  <div>Bunlaikun</div>
+<div class="flex bg-black text-white items-center">
+  <div class="font-bold text-lg ml-4">Bunlaikun</div>
 
-  <div>
-    <ui>
+  <div class="ml-auto">
+    <ui class="flex">
       {
         item.map((item) => (
-          <li>
-            <a href={item.path}>{item.title}</a>
-          </li>
+          <ul>
+            <a class="p-4 block hover:bg-gray-700" href={item.path}>
+              {item.title}
+            </a>
+          </ul>
         ))
       }
     </ui>

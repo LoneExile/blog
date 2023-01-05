@@ -34,15 +34,11 @@ import Navbar from "@components/Navbar.astro";
         font-display: swap;
         src: url("/fonts/Inter-Bold.woff2") format("woff2");
       }
-      body {
-        font-family: "Inter", sans-serif;
-        margin: 0;
-      }
     </style>
     <title>{title}</title>
   </head>
   <body>
     <Navbar />
-    <slot />
+    <div class="max-w-5xl mx-auto mt-16"><slot /></div>
   </body>
 </html>
