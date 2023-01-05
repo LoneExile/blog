@@ -2,19 +2,11 @@
 import type { MarkdownLayoutProps } from "astro";
 import type { BlogPostFrontmatter } from "@types";
 import Base from "./Base.astro";
+import { formattedDate } from "@utils";
 
 type Props = MarkdownLayoutProps<BlogPostFrontmatter>;
 
 const { title, date } = Astro.props.frontmatter;
-
-const formattedDate = (date: string): string => {
-  const dateObj = new Date(date);
-  return dateObj.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-};
 ---
 
 <Base title="Blog post">

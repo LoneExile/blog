@@ -1,6 +1,7 @@
 ---
 import Base from "@layouts/Base.astro";
 import type { BlogPostFrontmatter } from "@types";
+import { formattedDate } from "@utils";
 
 const posts = await Astro.glob<BlogPostFrontmatter>("./*.md");
 ---
@@ -14,6 +15,7 @@ const posts = await Astro.glob<BlogPostFrontmatter>("./*.md");
           <a class="text-blue-700 hover:underline" href={post.url}>
             {post.frontmatter.title}
           </a>
+          <p>{formattedDate(post.frontmatter.date)}</p>
         </div>
       ))
     }
