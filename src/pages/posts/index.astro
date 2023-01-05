@@ -1,9 +1,22 @@
 ---
 import Base from "@layouts/Base.astro";
 import type { BlogPostFrontmatter } from "@types";
+import type { MarkdownInstance } from "astro";
 import { formattedDate } from "@utils";
 
-const posts = await Astro.glob<BlogPostFrontmatter>("./*.md");
+let posts = await Astro.glob<BlogPostFrontmatter>("./*.md");
+
+type post = MarkdownInstance<BlogPostFrontmatter>;
+
+posts = posts.sort((a: post, b: post): number => {
+  if (a.frontmatter.date > b.frontmatter.date) {
+    return -1;
+  } else if (a.frontmatter.date < b.frontmatter.date) {
+    return 1;
+  } else {
+    return 0;
+  }
+});
 ---
 
 <Base title="Blog">
