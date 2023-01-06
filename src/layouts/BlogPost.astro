@@ -8,7 +8,7 @@ import { Picture } from "@astrojs/image/components";
 
 type Props = MarkdownLayoutProps<BlogPostFrontmatter>;
 
-const { title, date, draft } = Astro.props.frontmatter;
+const { title, date, draft, tags } = Astro.props.frontmatter;
 const { url } = Astro.props;
 const slug = url?.split("/").pop();
 
@@ -49,6 +49,21 @@ const foundImageFormat = imageFormat.find((format) => {
         <span class="bg-red-700 text-white inline-block px-2 mb-4">
           [Draft]
         </span>
+      )
+    }
+
+    {
+      tags && (
+        <div class="mb-4">
+          {tags.map((tag) => (
+            <a
+              href={`/posts/tag/${tag.toLowerCase()}`}
+              class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+            >
+              #{tag}
+            </a>
+          ))}
+        </div>
       )
     }
 

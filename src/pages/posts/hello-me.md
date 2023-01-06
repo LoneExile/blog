@@ -2,6 +2,7 @@
 layout: "../../layouts/BlogPost.astro"
 title: "Hello-me"
 date: 2023-01-04
+tags: ["hello", "me"]
 draft: false
 ---
 

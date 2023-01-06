@@ -2,6 +2,7 @@
 layout: "../../layouts/BlogPost.astro"
 title: "My first blog post"
 date: 2023-01-05
+tags: ["me"]
 draft: true
 ---
 
