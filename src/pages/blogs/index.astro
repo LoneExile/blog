@@ -1,0 +1,12 @@
+---
+import Base from "@layouts/Base.astro";
+import type { BlogPostFrontmatter } from "@types";
+import BlogList from "@components/BlogList.astro";
+
+let posts = await Astro.glob<BlogPostFrontmatter>("./*.md");
+---
+
+<Base title="Blog">
+  <h1 class="mb-8 text-6xl">Blog</h1>
+  <BlogList posts={posts} />
+</Base>
