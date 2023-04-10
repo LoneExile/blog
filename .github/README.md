@@ -8,3 +8,7 @@ This is a personal website built with Astro Starter Kit (Minimal).
 - [tailwind](https://docs.astro.build/en/guides/integrations-guide/tailwind/)
 - [image](https://docs.astro.build/en/guides/integrations-guide/image/)
 - [sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/)
+
+## Todo
+
+- [ ] add [ESLint](https://docs.astro.build/en/editor-setup/#eslint)

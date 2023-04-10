@@ -1,0 +1,30 @@
+jobs:
+  deploy:
+    environment: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Commit
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+      - name: Install pnpm
+        run: npm i --location=global pnpm
+      - name: Install dependencies
+        run: pnpm install
+      - env:
+          LOCALE_CI: en
+        name: Build
+        run: pnpm build
+
+name: build test
+on:
+  # Trigger the workflow every time you push to the `main` branch
+  push:
+    branches: [ main ]
+  # Allows you to run this workflow manually from the Actions tab on GitHub.
+  workflow_dispatch:
+
