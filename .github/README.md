@@ -8,7 +8,10 @@ This is a personal website built with Astro Starter Kit (Minimal).
 
 - [markdown](https://docs.astro.build/en/guides/markdown-content/)
 - [tailwind](https://docs.astro.build/en/guides/integrations-guide/tailwind/)
+  - [typography](https://github.com/tailwindlabs/tailwindcss-typography)
+  - [daisyui](https://github.com/saadeghi/daisyui)
 - [image](https://docs.astro.build/en/guides/integrations-guide/image/)
+  - [sharp](https://github.com/lovell/sharp)
 - [sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/)
 
 ### Font

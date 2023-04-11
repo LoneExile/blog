@@ -5,7 +5,7 @@ import { formattedDate } from "@utils";
 import type { BlogPostFrontmatter } from "@types";
 
 import type { MarkdownLayoutProps } from "astro";
-import { Image, Picture } from "@astrojs/image/components";
+import { Picture } from "@astrojs/image/components";
 
 type Props = MarkdownLayoutProps<BlogPostFrontmatter>;
 const { title, date, draft, tags } = Astro.props.frontmatter;
