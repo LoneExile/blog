@@ -40,4 +40,21 @@ All commands are run from the root of the project, from a terminal:
 - [ ] add comments functionality ([giscus](https://github.com/giscus/giscus) ,
       [utterances](https://github.com/utterance/utterances) or
       [remark42](https://github.com/umputun/remark42))
-- [ ] better UI (dark mode, etc.)
+- [ ] better UI
+  - [x] add [daisyui](https://github.com/saadeghi/daisyui)
+  - [x] add [typography](https://github.com/tailwindlabs/tailwindcss-typography)
+        to blog posts
+  - [ ] add dark mode
+  - [x] navbar
+  - [ ] footer
+  - [ ] about page
+  - [ ] blog page
+- [ ] search functionality
+- [ ] tags and categories
+- [ ] add
+      [Astro prefetch](https://docs.astro.build/en/guides/integrations-guide/prefetch/)
+- [ ] add [Astro RSS](https://docs.astro.build/en/guides/rss/)
+- [ ] add [Dockerfile](https://docs.astro.build/en/recipes/docker/)
+- [ ] add [external-links](https://docs.astro.build/en/recipes/external-links/)
+- [ ] add [i18n](https://docs.astro.build/en/recipes/i18n/)
+- [ ] add site logo

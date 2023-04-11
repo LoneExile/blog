@@ -7,7 +7,7 @@ import Navbar from "@components/Navbar.astro";
 ---
 
 <!DOCTYPE html>
-<html lang="en" data-theme="luxury">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -37,9 +37,10 @@ import Navbar from "@components/Navbar.astro";
     <title>{title}</title>
   </head>
   <body>
-    <Navbar />
-    <div class="max-w-5xl mx-auto mt-16">
-      <slot />
-    </div>
+    <Navbar>
+      <div class="max-w-5xl mt-16 mx-auto min-w-[75%]">
+        <slot />
+      </div>
+    </Navbar>
   </body>
 </html>
