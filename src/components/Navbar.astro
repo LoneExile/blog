@@ -1,4 +1,7 @@
 ---
+import Hamburger from "@icons/hamburger.astro";
+import Logo from "@icons/logo.astro";
+
 type NavItem = {
   title: string;
   path: string;
@@ -25,24 +28,14 @@ const items: NavItem[] = [
   <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
   <div class="drawer-content flex flex-col">
     <!-- Navbar -->
-    <div class="w-full navbar bg-base-300">
+    <div class="w-full navbar bg-neutral">
       <div class="flex-none lg:hidden">
         <label for="my-drawer-3" class="btn btn-square btn-ghost">
-          <!-- hamburger menu -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            class="inline-block w-6 h-6 stroke-current"
-            ><path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"></path></svg
-          >
+          <Hamburger size="inline-block w-6 h-6" color="stroke-current" />
         </label>
       </div>
-      <div class="flex-1 px-2 mx-2">VoidBox</div>
+      <Logo color="stroke-base-content" size="w-10 h-10" />
+      <div id="siteName" class="flex-1 px-2 mx-2">VoidBox</div>
       <div class="flex-none hidden lg:block">
         <ul class="menu menu-horizontal">
           <!-- Navbar menu content here -->
@@ -61,7 +54,7 @@ const items: NavItem[] = [
   </div>
   <div class="drawer-side">
     <label for="my-drawer-3" class="drawer-overlay"></label>
-    <ul class="menu p-4 w-80 bg-base-100">
+    <ul class="menu p-4 w-80 bg-neutral-focus">
       <!-- Sidebar content here -->
       {
         items.map((item) => (
@@ -73,3 +66,17 @@ const items: NavItem[] = [
     </ul>
   </div>
 </div>
+
+<!-- TODO: Add a way to hide the logo when the hamburger menu is open -->
+<script>
+  const hamburgerIcon = document.querySelector("#hamburgerIcon") as HTMLElement;
+  const logoIcon = document.querySelector("#logoIcon") as HTMLElement;
+
+  if (hamburgerIcon) {
+    if (hamburgerIcon.clientHeight > 0) {
+      logoIcon.classList.add("hidden");
+    } else {
+      logoIcon.classList.remove("hidden");
+    }
+  }
+</script>

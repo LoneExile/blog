@@ -35,8 +35,8 @@ All commands are run from the root of the project, from a terminal:
 
 - [ ] add [ESLint](https://docs.astro.build/en/editor-setup/#eslint) to the
       project and set up a ci job to run it
-- [ ] figure out a way to import from [joplin](https://joplinapp.org/) notes
-      into this site
+- [ ] figure out a way to import from [joplin](https://joplinapp.org/) or
+      [obsidian](https://obsidian.md/)) notes into this site
 - [ ] add comments functionality ([giscus](https://github.com/giscus/giscus) ,
       [utterances](https://github.com/utterance/utterances) or
       [remark42](https://github.com/umputun/remark42))
@@ -46,7 +46,7 @@ All commands are run from the root of the project, from a terminal:
         to blog posts
   - [ ] add dark mode
   - [x] navbar
-  - [ ] footer
+  - [x] footer
   - [ ] about page
   - [ ] blog page
 - [ ] search functionality
@@ -57,4 +57,4 @@ All commands are run from the root of the project, from a terminal:
 - [ ] add [Dockerfile](https://docs.astro.build/en/recipes/docker/)
 - [ ] add [external-links](https://docs.astro.build/en/recipes/external-links/)
 - [ ] add [i18n](https://docs.astro.build/en/recipes/i18n/)
-- [ ] add site logo
+- [x] add site logo
