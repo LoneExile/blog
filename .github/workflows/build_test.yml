@@ -1,5 +1,5 @@
 jobs:
-  deploy:
+  build:
     environment: deploy
     runs-on: ubuntu-latest
     steps:
