@@ -1,16 +1,17 @@
 ---
-import type { BlogPostFrontmatter } from "@types";
 import Base from "@layouts/Base.astro";
 import BlogList from "@components/BlogList.astro";
 
+import { getCollection } from "astro:content";
+
 export async function getStaticPaths() {
-  const posts = await Astro.glob<BlogPostFrontmatter>("../*.md");
+  const posts = await getCollection("blogs");
 
   let tags: string[] = [];
 
   posts.forEach((post) => {
-    if (post.frontmatter.tags) {
-      tags = [...tags, ...post.frontmatter.tags];
+    if (post.data.tags) {
+      tags = [...tags, ...post.data.tags];
     }
   });
 
@@ -23,11 +24,10 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 
-let posts = await Astro.glob<BlogPostFrontmatter>("../*.md");
-
+let posts = await getCollection("blogs");
 posts = posts.filter((post) => {
   let hasTag = false;
-  post.frontmatter.tags?.forEach((postTag) => {
+  post.data.tags?.forEach((postTag) => {
     if (postTag.toLowerCase() === tag) {
       hasTag = true;
     }

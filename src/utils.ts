@@ -7,4 +7,13 @@ const formattedDate = (date: string): string => {
   })
 }
 
-export {formattedDate}
+import type {CollectionEntry} from 'astro:content'
+const getBlogNoDrafts = (post: CollectionEntry<'blogs'>) => {
+  if (import.meta.env.PROD) {
+    return post.data.draft !== true
+  } else {
+    return post
+  }
+}
+
+export {formattedDate, getBlogNoDrafts}

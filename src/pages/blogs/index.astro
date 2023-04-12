@@ -1,9 +1,16 @@
 ---
 import Base from "@layouts/Base.astro";
-import type { BlogPostFrontmatter } from "@types";
 import BlogList from "@components/BlogList.astro";
 
-let posts = await Astro.glob<BlogPostFrontmatter>("./*.md");
+import { getCollection } from "astro:content";
+// TODO: #001 move this to utils?
+const posts = await getCollection("blogs", ({ data }) => {
+  if (import.meta.env.PROD) {
+    return data.draft !== true;
+  } else {
+    return true;
+  }
+});
 ---
 
 <Base title="Blog">

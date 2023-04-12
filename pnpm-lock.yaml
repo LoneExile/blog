@@ -2,17 +2,17 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@astrojs/image':
-    specifier: ^0.16.5
-    version: 0.16.5(astro@2.2.1)(sharp@0.32.0)
+    specifier: ^0.16.6
+    version: 0.16.6(astro@2.2.2)(sharp@0.32.0)
   '@astrojs/sitemap':
     specifier: ^1.2.2
     version: 1.2.2
   '@astrojs/tailwind':
     specifier: ^3.1.1
-    version: 3.1.1(astro@2.2.1)(tailwindcss@3.3.1)
+    version: 3.1.1(astro@2.2.2)(tailwindcss@3.3.1)
   astro:
-    specifier: ^2.2.1
-    version: 2.2.1(@types/node@18.15.11)(sharp@0.32.0)
+    specifier: ^2.2.2
+    version: 2.2.2(@types/node@18.15.11)(sharp@0.32.0)
   daisyui:
     specifier: ^2.51.5
     version: 2.51.5(autoprefixer@10.4.14)(postcss@8.4.21)
@@ -53,17 +53,17 @@ packages:
     resolution: {integrity: sha512-xV/3r+Hrfpr4ECfJjRjeaMkJvU73KiOADowHjhkqidfNPVAWPzbqw1KePXuMK1TjzMvoAVE7E163oqfH3lDwSw==}
     dev: false
 
-  /@astrojs/image@0.16.5(astro@2.2.1)(sharp@0.32.0):
-    resolution: {integrity: sha512-pps2fXTcPqUJOaATgrXT2eQwYJeW2fmd+QuQLqBiiIQHaECNugHCt/MwBi9skn+195VcFtYM3eCTjvmRrx4fPQ==}
+  /@astrojs/image@0.16.6(astro@2.2.2)(sharp@0.32.0):
+    resolution: {integrity: sha512-/MJ0aByhuNAT7VeMwXVjS0e5IH8MxsYeEnymOJ0/1VBmZFmcbtb1nUeLE0uO3EV3kNYGRJtwGyald8YJ9ncW4A==}
     peerDependencies:
-      astro: ^2.2.0
+      astro: ^2.2.2
       sharp: '>=0.31.0'
     peerDependenciesMeta:
       sharp:
         optional: true
     dependencies:
       '@altano/tiny-async-pool': 1.0.2
-      astro: 2.2.1(@types/node@18.15.11)(sharp@0.32.0)
+      astro: 2.2.2(@types/node@18.15.11)(sharp@0.32.0)
       http-cache-semantics: 4.1.1
       image-size: 1.0.2
       kleur: 4.1.5
@@ -90,13 +90,13 @@ packages:
       vscode-uri: 3.0.7
     dev: false
 
-  /@astrojs/markdown-remark@2.1.3(astro@2.2.1):
+  /@astrojs/markdown-remark@2.1.3(astro@2.2.2):
     resolution: {integrity: sha512-Di8Qbit9p7L7eqKklAJmiW9nVD+XMsNHpaNzCLduWjOonDu9fVgEzdjeDrTVCDtgrvkfhpAekuNXrp5+w4F91g==}
     peerDependencies:
       astro: ^2.2.0
     dependencies:
       '@astrojs/prism': 2.1.1
-      astro: 2.2.1(@types/node@18.15.11)(sharp@0.32.0)
+      astro: 2.2.2(@types/node@18.15.11)(sharp@0.32.0)
       github-slugger: 1.5.0
       import-meta-resolve: 2.2.2
       rehype-raw: 6.1.1
@@ -127,14 +127,14 @@ packages:
       zod: 3.21.4
     dev: false
 
-  /@astrojs/tailwind@3.1.1(astro@2.2.1)(tailwindcss@3.3.1):
+  /@astrojs/tailwind@3.1.1(astro@2.2.2)(tailwindcss@3.3.1):
     resolution: {integrity: sha512-Wx/ZtVnmtfqHWGVzvUEYZm8rufVKVgDIef0q6fzwUxoT1EpTTwBkTbpnzooogewMLOh2eTscasGe3Ih2HC1wVA==}
     peerDependencies:
       astro: ^2.1.3
       tailwindcss: ^3.0.24
     dependencies:
       '@proload/core': 0.3.3
-      astro: 2.2.1(@types/node@18.15.11)(sharp@0.32.0)
+      astro: 2.2.2(@types/node@18.15.11)(sharp@0.32.0)
       autoprefixer: 10.4.14(postcss@8.4.21)
       postcss: 8.4.21
       postcss-load-config: 4.0.1(postcss@8.4.21)
@@ -863,8 +863,8 @@ packages:
     resolution: {integrity: sha512-I1jXZMjAgCMmxT4qxXfPXa6SthSoE8h6gkSI9BGGNv8mP8G/v0blc+qFnZu6K42vTOiuME596QaLO0TP3Lk0xg==}
     dev: false
 
-  /astro@2.2.1(@types/node@18.15.11)(sharp@0.32.0):
-    resolution: {integrity: sha512-yYPRzh3su38bi3VBCKmYAUBkQSaFQMKFsu8JAVDzFRoGLbskJ/6JkDX2abSB9/iRug8GAKaH/FWxXOTzIsSQ7Q==}
+  /astro@2.2.2(@types/node@18.15.11)(sharp@0.32.0):
+    resolution: {integrity: sha512-RmV/UiOW3losWRbR8CeFDFDtjBOdFdBTEccXF9sT/ZxLz7T9SglevtOHgKwTSRPgUM9c0LteFDFcHDY3OYBgDg==}
     engines: {node: '>=16.12.0', npm: '>=6.14.0'}
     hasBin: true
     peerDependencies:
@@ -875,7 +875,7 @@ packages:
     dependencies:
       '@astrojs/compiler': 1.3.1
       '@astrojs/language-server': 0.28.3
-      '@astrojs/markdown-remark': 2.1.3(astro@2.2.1)
+      '@astrojs/markdown-remark': 2.1.3(astro@2.2.2)
       '@astrojs/telemetry': 2.1.0
       '@astrojs/webapi': 2.1.0
       '@babel/core': 7.21.4
@@ -1016,7 +1016,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001477
-      electron-to-chromium: 1.4.356
+      electron-to-chromium: 1.4.359
       node-releases: 2.0.10
       update-browserslist-db: 1.0.10(browserslist@4.21.5)
     dev: false
@@ -1319,8 +1319,8 @@ packages:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
     dev: false
 
-  /electron-to-chromium@1.4.356:
-    resolution: {integrity: sha512-nEftV1dRX3omlxAj42FwqRZT0i4xd2dIg39sog/CnCJeCcL1TRd2Uh0i9Oebgv8Ou0vzTPw++xc+Z20jzS2B6A==}
+  /electron-to-chromium@1.4.359:
+    resolution: {integrity: sha512-OoVcngKCIuNXtZnsYoqlCvr0Cf3NIPzDIgwUfI9bdTFjXCrr79lI0kwQstLPZ7WhCezLlGksZk/BFAzoXC7GDw==}
     dev: false
 
   /emmet@2.4.2:

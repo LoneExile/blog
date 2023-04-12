@@ -2,14 +2,9 @@
 import fs from "node:fs";
 import Base from "./Base.astro";
 import { formattedDate } from "@utils";
-import type { BlogPostFrontmatter } from "@types";
-
-import type { MarkdownLayoutProps } from "astro";
 import { Picture } from "@astrojs/image/components";
 
-type Props = MarkdownLayoutProps<BlogPostFrontmatter>;
-const { title, date, draft, tags } = Astro.props.frontmatter;
-const { url } = Astro.props;
+const { title, date, draft, tags, url } = Astro.props;
 
 const slug = url?.split("/").pop();
 const imageFormat = [
@@ -46,7 +41,7 @@ const foundImageFormat = imageFormat.find((format) => {
   <div class="mb-8">
     {
       draft && (
-        <span class="bg-red-700 text-white inline-block px-2 mb-4">
+        <span class="bg-error-content text-primary inline-block px-2 mb-4">
           [Draft]
         </span>
       )
@@ -55,10 +50,10 @@ const foundImageFormat = imageFormat.find((format) => {
     {
       tags && (
         <div class="mb-4">
-          {tags.map((tag) => (
+          {tags.map((tag: string) => (
             <a
               href={`/blogs/tag/${tag.toLowerCase()}`}
-              class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+              class="inline-block bg-primary-focus rounded-full px-3 py-1 text-sm font-semibold text-primary-content mr-2 mb-2"
             >
               #{tag}
             </a>
