@@ -9,7 +9,8 @@ module.exports = {
     },
   },
   daisyui: {
-    themes: ['luxury', 'cupcake'],
+    // TODO: #003 fix colors
+    themes: ['luxury' /* , 'cupcake' */],
   },
   plugins: [require('@tailwindcss/typography'), require('daisyui')],
 }
