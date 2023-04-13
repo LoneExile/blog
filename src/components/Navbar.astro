@@ -34,8 +34,10 @@ const items: NavItem[] = [
           <Hamburger size="inline-block w-6 h-6" color="stroke-current" />
         </label>
       </div>
-      <Logo color="stroke-base-content" size="w-10 h-10" />
-      <div id="siteName" class="flex-1 px-2 mx-2">VoidBox</div>
+      <div class="flex-1">
+        <Logo color="stroke-base-content" size="w-10 h-10" />
+        <div id="siteName" class="hidden lg:block px-2 mx-2">VoidBox</div>
+      </div>
       <div class="flex-none hidden lg:block">
         <ul class="menu menu-horizontal">
           <!-- Navbar menu content here -->
@@ -66,17 +68,3 @@ const items: NavItem[] = [
     </ul>
   </div>
 </div>
-
-<!-- TODO: #002 Add a way to hide the logo when the hamburger menu is open -->
-<script>
-  const hamburgerIcon = document.querySelector("#hamburgerIcon") as HTMLElement;
-  const logoIcon = document.querySelector("#logoIcon") as HTMLElement;
-
-  if (hamburgerIcon) {
-    if (hamburgerIcon.clientHeight > 0) {
-      logoIcon.classList.add("hidden");
-    } else {
-      logoIcon.classList.remove("hidden");
-    }
-  }
-</script>
