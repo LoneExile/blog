@@ -45,8 +45,9 @@ All commands are run from the root of the project, from a terminal:
 
 - [ ] add [ESLint](https://docs.astro.build/en/editor-setup/#eslint) to the
       project and set up a ci job to run it
-- [ ] figure out a way to import from [joplin](https://joplinapp.org/) or
-      [obsidian](https://obsidian.md/)) notes into this site
+- [ ] Storage - figure out a way to import from [joplin](https://joplinapp.org/)
+      or [obsidian](https://obsidian.md/)) notes into this site
+      [read](https://github.com/LoneExile/blog#Storage)
 - [ ] add comments functionality ([giscus](https://github.com/giscus/giscus) ,
       [utterances](https://github.com/utterance/utterances) or
       [remark42](https://github.com/umputun/remark42))
@@ -71,3 +72,27 @@ All commands are run from the root of the project, from a terminal:
 - [ ] add [external-links](https://docs.astro.build/en/recipes/external-links/)
 - [ ] add [i18n](https://docs.astro.build/en/recipes/i18n/)
 - [x] add site logo
+- [ ] prep SBCs environment for hosting
+
+## Notes and thoughts
+
+### Storage
+
+Initially, I wanted to host a markdown file on GitHub along with the source
+code. Since Astro is server-side rendered (SSR), it can fetch the markdown file
+at build time. However, I realized it might be better to host the markdown file
+on a cloud storage service. I considered the following options:
+
+| Name                                                | Description                                                        |
+| --------------------------------------------------- | ------------------------------------------------------------------ |
+| [Garage](https://garagehq.deuxfleurs.fr/)           | A self-hosted personal cloud storage solution.                     |
+| [SFTPGo](https://github.com/drakkan/sftpgo)         | Fully featured and highly configurable SFTP server implementation. |
+| [SeaweedFS](https://github.com/seaweedfs/seaweedfs) | A distributed storage system for blobs, objects, files, and data.  |
+| [MinIO](https://github.com/minio/minio)             | High-performance, AWS S3-compatible object storage server.         |
+| [CouchDB](https://github.com/apache/couchdb)        | A document-oriented NoSQL database, sometimes used as storage.     |
+
+I plan to self-host this project as I already have 2 Single Board Computers
+(SBCs). First, I need to learn how to use
+[Ansible](https://github.com/ansible/ansible), which will help me set up the
+system in the future. Additionally, I'd like to configure the SBCs into a
+cluster for better performance and reliability.
