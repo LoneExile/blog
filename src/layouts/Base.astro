@@ -44,12 +44,10 @@ import Navbar from "@components/Navbar.astro";
     </style>
     <title>{title}</title>
   </head>
-  <body>
+  <body class="overflow-hidden">
     <Navbar>
-      <div class="max-w-5xl mt-16 mx-auto min-w-[75%]">
-        <slot />
-      </div>
+      <slot />
+      <Footer />
     </Navbar>
-    <Footer />
   </body>
 </html>

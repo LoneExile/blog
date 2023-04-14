@@ -96,3 +96,10 @@ I plan to self-host this project as I already have 2 Single Board Computers
 [Ansible](https://github.com/ansible/ansible), which will help me set up the
 system in the future. Additionally, I'd like to configure the SBCs into a
 cluster for better performance and reliability.
+
+## Resources and references
+
+- [Astro hybrid-rendering](https://astro.build/blog/hybrid-rendering/)
+- [server-endpoints-api-routes](https://docs.astro.build/en/core-concepts/endpoints/#server-endpoints-api-routes)
+
+<!-- https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet -->

@@ -3,10 +3,13 @@ import Github from "@icons/github.astro";
 import Logo from "@icons/logo.astro";
 ---
 
-<footer class="footer items-center p-4 bg-neutral text-neutral-content">
+<footer class="footer items-center p-4 bg-neutral text-neutral-content mt-auto">
   <div class="items-center grid-flow-col">
     <Logo color="stroke-base-content" size="w-10 h-10" />
-    <p>Copyright © <span id="copyright"></span> - All right reserved</p>
+    <p>
+      © <span id="year"></span>
+      <span class="font-bold">Apinant U-suwantim</span> - All right reserved
+    </p>
   </div>
   <div class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
     <Github color="fill-current" size="w-6 h-6 cursor-pointer" />
@@ -16,11 +19,11 @@ import Logo from "@icons/logo.astro";
 <script>
   const date = new Date();
   const year = date.getFullYear();
-  const copyrightElement = document.querySelector("#copyright");
+  const copyrightElement = document.querySelector("#year");
   if (copyrightElement) {
     copyrightElement.innerHTML = year.toString();
   } else {
-    console.error('Element with ID "copyright" not found.');
+    console.error('Element with ID "year" not found.');
   }
 
   const github = document.querySelector("#github");

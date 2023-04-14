@@ -3,5 +3,33 @@ import Base from "@layouts/Base.astro";
 ---
 
 <Base title="Welcome">
-	<h1 class="text-4xl mb-4">Welcome to VoidBox!</h1>
+	<div
+		class="hero min-h-screen"
+		style="background-image: url(/images/dragon.jpg);"
+	>
+		<div class="hero-overlay bg-opacity-60"></div>
+		<div class="hero-content text-center text-neutral-content italic">
+			<div class="max-w-md">
+				<p class="mb-5 bg-opacity-5 backdrop-blur-md p-5 rounded-sm">
+					<span class="text-xl font-bold">Welcome to VoidBox,</span><br />
+					A creative space where passion for coding meets the art of storytelling.
+					Here, you'll delve into a programmer's mind, exploring innovative ideas,
+					imparting knowledge, and igniting inspiration. Join the journey to transform
+					the void into a realm of limitless potential.
+				</p>
+				<button id="go-to-blog" class="btn btn-square btn-outline w-auto">
+					<span class="ml-2 mr-2">Let's dive in!</span>
+				</button>
+			</div>
+		</div>
+	</div>
 </Base>
+
+<script>
+	const goToBlog = document.getElementById("go-to-blog");
+	if (goToBlog) {
+		goToBlog.addEventListener("click", () => {
+			window.location.href = "/blogs";
+		});
+	}
+</script>
