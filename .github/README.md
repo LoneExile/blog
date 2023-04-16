@@ -4,8 +4,8 @@ This is a personal website built with Astro Starter Kit (Minimal).
 
 > At first, when I started this project, I didn't think it would be this complex
 > or require so many integrations. I guess I've been working on the frontend
-> side in my comfort zone for too long without trying anything new. This
-> experience has been fun and enjoyable, reminding me of why I wanted to be a
+> side in my comfort zone for too long , as my workplace hasn't allowed me to try anything new.
+> This experience has been fun and enjoyable, reminding me of why I wanted to be a
 > developer in the first place. It has reignited my passion for life, and I
 > can't wait to see the finished site.
 
