@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import fs from "node:fs";
 import Base from "./Base.astro";
 import { formattedDate } from "@utils";
@@ -27,6 +29,7 @@ const imagePath = (filename: string) => {
   }
 };
 
+// TODO: This isn't working on build
 const foundImageFormat = imageFormat.find((format) => {
   try {
     fs.accessSync(imagePath(`${slug}.${format}`));
@@ -34,6 +37,7 @@ const foundImageFormat = imageFormat.find((format) => {
   } catch {
     return false;
   }
+  // return fs.existsSync(imagePath(`${slug}.${format}`));
 });
 ---
 

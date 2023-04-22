@@ -2,7 +2,7 @@
 title: "My first blog post"
 date: 2023-01-05
 tags: ["me", "you"]
-draft: true
+draft: false
 ---
 
 # h1 Heading 8-)

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@astrojs/image": "^0.16.6",
+    "@astrojs/node": "^5.1.1",
     "@astrojs/sitemap": "^1.2.2",
     "@astrojs/tailwind": "^3.1.1",
     "astro": "^2.3.0",
@@ -20,6 +21,6 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",
-    "@types/node": "^18.15.11"
+    "@types/node": "^18.15.13"
   }
 }
