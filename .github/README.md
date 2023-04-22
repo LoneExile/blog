@@ -4,10 +4,10 @@ This is a personal website built with Astro Starter Kit (Minimal).
 
 > At first, when I started this project, I didn't think it would be this complex
 > or require so many integrations. I guess I've been working on the frontend
-> side in my comfort zone for too long , as my workplace hasn't allowed me to try anything new.
-> This experience has been fun and enjoyable, reminding me of why I wanted to be a
-> developer in the first place. It has reignited my passion for life, and I
-> can't wait to see the finished site.
+> side in my comfort zone for too long , as my workplace hasn't allowed me to
+> try anything new. This experience has been fun and enjoyable, reminding me of
+> why I wanted to be a developer in the first place. It has reignited my passion
+> for life, and I can't wait to see the finished site.
 
 ## Integration
 
@@ -23,6 +23,7 @@ This is a personal website built with Astro Starter Kit (Minimal).
 | [Sharp](https://github.com/lovell/sharp)                                      | High-performance Node.js image processing library.                             |
 | [Sitemap👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/sitemap/)   | Helps search engines crawl your site more efficiently by generating a sitemap. |
 | [Zod](https://github.com/colinhacks/zod)                                      | TypeScript-first schema validation with static type inference.                 |
+| [Adapter(Node)](https://docs.astro.build/en/guides/integrations-guide/node/)  | Allows Astro to deploy your SSR site to Node Targets.                          |
 
 ### Font
 
@@ -68,7 +69,7 @@ All commands are run from the root of the project, from a terminal:
 - [ ] add
       [Astro prefetch](https://docs.astro.build/en/guides/integrations-guide/prefetch/)
 - [ ] add [Astro RSS](https://docs.astro.build/en/guides/rss/)
-- [ ] add [Dockerfile](https://docs.astro.build/en/recipes/docker/)
+- [x] add [Dockerfile](https://docs.astro.build/en/recipes/docker/)
 - [ ] add [external-links](https://docs.astro.build/en/recipes/external-links/)
 - [ ] add [i18n](https://docs.astro.build/en/recipes/i18n/)
 - [x] add site logo
