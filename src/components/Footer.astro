@@ -11,9 +11,9 @@ import Logo from "@icons/logo.astro";
       <span class="font-bold">VoidBox</span> - All right reserved
     </p>
   </div>
-  <div class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+  <a class="grid-flow-col gap-4 md:place-self-center md:justify-self-end" href={'https://github.com/LoneExile/blog'} target="_blank">
     <Github color="fill-current" size="w-6 h-6 cursor-pointer" />
-  </div>
+  </a>
 </footer>
 
 <script>
@@ -22,14 +22,5 @@ import Logo from "@icons/logo.astro";
   const copyrightElement = document.querySelector("#year");
   if (copyrightElement) {
     copyrightElement.innerHTML = year.toString();
-  } else {
-    console.error('Element with ID "year" not found.');
-  }
-
-  const github = document.querySelector("#github");
-  if (github) {
-    github.addEventListener("click", () => {
-      window.open("https://github.com/LoneExile/blog", "_blank");
-    });
   }
 </script>

@@ -9,11 +9,6 @@ type NavItem = {
 
 const items: NavItem[] = [
   {
-    title: "Home",
-    path: "/",
-  },
-
-  {
     title: "Blog",
     path: "/blogs",
   },
@@ -34,10 +29,10 @@ const items: NavItem[] = [
           <Hamburger size="inline-block w-6 h-6" color="stroke-current" />
         </label>
       </div>
-      <div class="flex-1">
+      <a class="flex-1" href={`/`}>
         <Logo color="stroke-base-content" size="w-10 h-10" />
         <div id="siteName" class="hidden lg:block px-2 mx-2">VoidBox</div>
-      </div>
+      </a>
       <div class="flex-none hidden lg:block">
         <ul class="menu menu-horizontal">
           <!-- Navbar menu content here -->
