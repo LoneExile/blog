@@ -98,6 +98,38 @@ I plan to self-host this project as I already have 2 Single Board Computers
 system in the future. Additionally, I'd like to configure the SBCs into a
 cluster for better performance and reliability.
 
+After learning the basics of Ansible, I am now able to set up my Single Board
+Computers (SBCs). However, I cannot create a high availability (HA) cluster at
+this time because it requires at least three master nodes to be considered HA.
+This is something I may consider in the future.
+
+As for storage, I initially wanted to choose CouchDB due to its built-in REST
+API. However, I realized that it's an older technology, and I prefer to try out
+bleeding-edge solutions. Therefore, I have decided to go with MinIO. It has
+comprehensive documentation, is S3-compatible, and is written in Go. I've always
+been interested in learning Go, so this choice aligns well with my interests.
+
+However, MinIO doesn't have built-in real-time synchronization capabilities
+between two clients like CouchDB does. As a result, I need to implement
+real-time synchronization functionality in my application. To achieve this, I
+will use a combination of MinIO and a custom backend that listens for changes in
+MinIO storage and communicates those changes to connected clients. Fortunately,
+MinIO has an
+[event notifications](https://min.io/docs/minio/kubernetes/upstream/administration/monitoring/bucket-notifications.html)
+feature that allows me to receive events whenever an object is created, updated,
+or deleted, which will greatly aid in implementing the synchronization
+functionality.
+
+You might wonder why I need real-time synchronization for a static site
+generator (SSG) website. The truth is, it's not just for my site but also for my
+note-taking app that I use. I have been using [Obsidian](https://obsidian.md/)
+along with [rclone](https://rclone.org/) to synchronize my notes. However,
+rclone doesn't have real-time sync functionality. My goal is to implement
+real-time synchronization not only for my website but also for other
+applications and use cases I might encounter in the future.
+
+> Message queue
+
 ## Resources and references
 
 - [Astro hybrid-rendering](https://astro.build/blog/hybrid-rendering/)
