@@ -1,5 +1,5 @@
 ---
-title: "My first blog post"
+title: "Test Markdown Component"
 date: 2023-01-05
 tags: ["me", "you"]
 draft: false
