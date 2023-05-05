@@ -1,9 +1,14 @@
-version: "3.9"
+version: '3.9'
 
 services:
   astro_app:
-    build: .
+    # build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        CACHEBUST: ${TIMESTAMP}
     image: voidbox-image
     container_name: voidbox-container
     ports:
-      - "3000:3000"
+      - '3000:3000'
