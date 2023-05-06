@@ -61,10 +61,10 @@ All commands are run from the root of the project, from a terminal:
   - [x] footer
   - [ ] about page
   - [ ] blog page
-- [ ] search functionality
-      ([instantsearch](https://github.com/algolia/instantsearch),
-      [autocomplete](https://github.com/algolia/autocomplete),
-      [orama](https://github.com/oramasearch/orama) or none of these)
+  - [ ] search functionality
+        ([instantsearch](https://github.com/algolia/instantsearch),
+        [autocomplete](https://github.com/algolia/autocomplete),
+        [orama](https://github.com/oramasearch/orama) or none of these)
 - [ ] tags and categories
 - [ ] add
       [Astro prefetch](https://docs.astro.build/en/guides/integrations-guide/prefetch/)
@@ -75,7 +75,7 @@ All commands are run from the root of the project, from a terminal:
 - [x] add site logo
 - [ ] prep SBCs environment for hosting
 
-## Notes and thoughts
+## Challenges and Considerations Journal
 
 ### Storage
 
@@ -103,6 +103,8 @@ Computers (SBCs). However, I cannot create a high availability (HA) cluster at
 this time because it requires at least three master nodes to be considered HA.
 This is something I may consider in the future.
 
+Here is my [VoidSync](https://github.com/LoneExile/VoidSync) backend project
+
 As for storage, I initially wanted to choose CouchDB due to its built-in REST
 API. However, I realized that it's an older technology, and I prefer to try out
 bleeding-edge solutions. Therefore, I have decided to go with MinIO. It has
@@ -128,7 +130,45 @@ rclone doesn't have real-time sync functionality. My goal is to implement
 real-time synchronization not only for my website but also for other
 applications and use cases I might encounter in the future.
 
-> Message queue
+### Minio and Synchronization feature
+
+#### Basic Synchronization
+
+Before leveraging the notifications and message queue feature and other good
+stuff, I'll implement a basic synchronization method. The options include
+timestamp, file size, and checksum:
+
+- **Timestamp**: Unreliable because it changes when copying a file to another
+  location, which can lead to infinite loops.
+- **File size**: Unreliable because the size may remain the same after editing a
+  file.
+- **Checksum**: Reliable but time-consuming to calculate.
+
+Considering these factors, I've chosen a combination of timestamp and
+checksum([MD5](https://en.wikipedia.org/wiki/MD5)) supported by MinIO. It should
+be efficient since we're dealing with markdown and image files(right?!). This
+approach achieves basic data synchronization but doesn't detect file additions
+or deletions. That's when our trusty database sidekick comes into play.
+
+##### Database
+
+I've considered various database options and narrowed it down to those that I'm
+most interested in trying out:
+
+| Name                                                   | Description                                                                                  |
+| ------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| [Pocketbase](https://github.com/pocketbase/pocketbase) | A lightweight, serverless, and self-hosted real-time database built for web and mobile apps. |
+| [Cockroach](https://github.com/cockroachdb/cockroach)  | A cloud-native, distributed SQL database designed for scalability and resilience.            |
+| [Surrealdb](https://github.com/surrealdb/surrealdb)    | A real-time, scalable, and distributed NoSQL database built for the modern web.              |
+
+For this project, I've decided to use
+[Surrealdb](https://github.com/surrealdb/surrealdb). Although I don't have a
+specific reason for choosing it, it is the most bleeding-edge option, and I am a
+bleeding-edge kind of guy. I also believe that switching databases later on
+shouldn't be too difficult(I guess). So, let's dive into the unknown and see how
+it goes!
+
+... Rest API, Websocket, Notifications, and more to come!
 
 ## Resources and references
 
