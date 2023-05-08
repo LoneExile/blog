@@ -1,4 +1,4 @@
-# My personal website
+# My personal website (WIP)
 
 This is a personal website built with Astro Starter Kit (Minimal).
 
