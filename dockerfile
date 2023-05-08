@@ -3,15 +3,18 @@ FROM node:18.15.0
 WORKDIR /blog
 
 RUN apt-get update && \
-  apt-get install -y git
+  apt-get install -y git curl unzip
 
 COPY package*.json ./
 COPY pnpm-lock.yaml ./
+COPY entrypoint.sh /entrypoint.sh
 
 RUN npm i -g pnpm
 RUN pnpm i
 
 COPY . .
+
+ENTRYPOINT ["/entrypoint.sh"]
 
 RUN pnpm run build
 
