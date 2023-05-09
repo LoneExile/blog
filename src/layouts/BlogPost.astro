@@ -1,44 +1,12 @@
 ---
 export const prerender = true;
 
-import fs from "node:fs";
 import Base from "./Base.astro";
 import { formattedDate } from "@utils";
-import { Picture } from "@astrojs/image/components";
 
-const { title, date, draft, tags, url } = Astro.props;
+const { date, draft, tags, url } = Astro.props;
 
 const slug = url?.split("/").pop();
-const imageFormat = [
-  "jpg",
-  "jpeg",
-  "png",
-  "webp",
-  "avif",
-  "tiff",
-  "tif",
-  "gif",
-  "svg",
-];
-
-const imagePath = (filename: string) => {
-  if (import.meta.env.PROD) {
-    return new URL(`./images/${filename}`, import.meta.url);
-  } else {
-    return new URL(`../../public/images/${filename}`, import.meta.url);
-  }
-};
-
-// TODO: This isn't working on build
-const foundImageFormat = imageFormat.find((format) => {
-  try {
-    fs.accessSync(imagePath(`${slug}.${format}`));
-    return true;
-  } catch {
-    return false;
-  }
-  // return fs.existsSync(imagePath(`${slug}.${format}`));
-});
 ---
 
 <Base title="Blog post">
@@ -67,22 +35,8 @@ const foundImageFormat = imageFormat.find((format) => {
         )
       }
 
-      <h1 class="text-3xl mb-2">{title}</h1>
       <p>{formattedDate(date)}</p>
     </div>
-
-    {
-      foundImageFormat !== undefined && (
-        <Picture
-          src={`/images/${slug}.${foundImageFormat}`}
-          class="mb-8"
-          widths={[400, 600, 1024]}
-          sizes="(max-width: 400px) 400px, (max-width: 600px) 600px, 1024px"
-          aspectRatio={5 / 3}
-          alt={title}
-        />
-      )
-    }
 
     <div class="prose">
       <slot />

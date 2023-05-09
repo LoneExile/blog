@@ -18,18 +18,16 @@ import Base from "@layouts/Base.astro";
 					the void into a realm of limitless potential.
 				</p>
 				<button id="go-to-blog" class="btn btn-square btn-outline w-auto">
-					<span class="ml-2 mr-2">Let's dive in!</span>
+					<a
+						aria-label="Go to blog"
+						class="ml-2 mr-2"
+						href={"blogs"}
+						target="_self"
+					>
+						Let's dive in!</a
+					>
 				</button>
 			</div>
 		</div>
 	</div>
 </Base>
-
-<script>
-	const goToBlog = document.getElementById("go-to-blog");
-	if (goToBlog) {
-		goToBlog.addEventListener("click", () => {
-			window.location.href = "/blogs";
-		});
-	}
-</script>

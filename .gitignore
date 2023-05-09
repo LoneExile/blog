@@ -21,3 +21,6 @@ pnpm-debug.log*
 .DS_Store
 
 .astro
+
+src/content/blogs/*
+public/images/blogs/*
