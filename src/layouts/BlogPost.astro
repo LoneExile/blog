@@ -4,9 +4,7 @@ export const prerender = true;
 import Base from "./Base.astro";
 import { formattedDate } from "@utils";
 
-const { date, draft, tags, url } = Astro.props;
-
-const slug = url?.split("/").pop();
+const { created, draft, tags } = Astro.props;
 ---
 
 <Base title="Blog post">
@@ -35,7 +33,7 @@ const slug = url?.split("/").pop();
         )
       }
 
-      <p>{formattedDate(date)}</p>
+      <p>{formattedDate(created)}</p>
     </div>
 
     <div class="prose">

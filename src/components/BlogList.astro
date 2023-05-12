@@ -8,9 +8,9 @@ interface Props {
 let { posts } = Astro.props;
 
 posts = posts.sort((a, b) => {
-  if (a.data.date > b.data.date) {
+  if (a.data.created > b.data.created) {
     return -1;
-  } else if (a.data.date < b.data.date) {
+  } else if (a.data.created < b.data.created) {
     return 1;
   } else {
     return 0;
@@ -34,7 +34,7 @@ if (import.meta.env.PROD) {
         <a class="text-info hover:underline" href={`/blogs/${post.slug}`}>
           {post.data.title}
         </a>
-        <p>{formattedDate(post.data.date.toString())}</p>
+        <p>{formattedDate(post.data.created.toString())}</p>
       </div>
     ))
   }
