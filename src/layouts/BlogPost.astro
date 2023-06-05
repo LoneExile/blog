@@ -4,7 +4,7 @@ export const prerender = true;
 import Base from "./Base.astro";
 import { formattedDate } from "@utils";
 
-const { created, draft, tags } = Astro.props;
+const { created, draft, tags, title } = Astro.props;
 ---
 
 <Base title="Blog post">
@@ -33,7 +33,8 @@ const { created, draft, tags } = Astro.props;
         )
       }
 
-      <p>{formattedDate(created)}</p>
+      <h1 class="text-4xl mb-2">{title}</h1>
+      <p class="text-sm mb-2">{formattedDate(created)}</p>
     </div>
 
     <div class="prose">

@@ -7,21 +7,32 @@ RUN apt-get update && \
 
 COPY package*.json ./
 COPY pnpm-lock.yaml ./
-COPY entrypoint.sh /entrypoint.sh
+
+# Install Go
+RUN git clone --depth 1 https://github.com/udhos/update-golang \
+  && cd update-golang \
+  && ./update-golang.sh \
+  && cd .. \
+  && rm -rf update-golang
 
 RUN npm i -g pnpm
 RUN pnpm i
 
-COPY . .
+ENV PATH="/usr/local/go/bin:${PATH}"
+RUN go install github.com/LoneExile/obsidian-convertor@v0.1.3
+
+ENV PATH="/root/go/bin:${PATH}"
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-RUN pnpm run build
+COPY entrypoint.sh /entrypoint.sh
+COPY . .
+
+# RUN pnpm run build
 
 ENV HOST=0.0.0.0
-ENV PORT=3000
+ENV PORT=3001
 
-EXPOSE 3000
+EXPOSE 3001
 
-CMD ["node", "./dist/server/entry.mjs"]
-
+# CMD ["node", "./dist/server/entry.mjs"]
