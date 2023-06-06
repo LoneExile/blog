@@ -3,7 +3,7 @@ FROM node:18.15.0
 WORKDIR /blog
 
 RUN apt-get update && \
-  apt-get install -y git curl unzip
+  apt-get install -y git curl unzip libvips-dev
 
 COPY package*.json ./
 COPY pnpm-lock.yaml ./
@@ -19,7 +19,7 @@ RUN npm i -g pnpm
 RUN pnpm i
 
 ENV PATH="/usr/local/go/bin:${PATH}"
-RUN go install github.com/LoneExile/obsidian-convertor@v0.1.3
+RUN go install github.com/LoneExile/obsidian-convertor@v0.1.5
 
 ENV PATH="/root/go/bin:${PATH}"
 

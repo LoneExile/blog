@@ -10,7 +10,7 @@ curl -X POST -H "Content-Type: application/json" \
 
 unzip -o objects.zip -d /blog/tmp/
 
-obsidian-convertor convert '/blog/tmp/SecondBrain/ Blog' '/blog/tmp/SecondBrain/ Assets/ image' /blog/src/content/blogs/ /blog/public/images/blogs/ /images/blogs/
+obsidian-convertor convert '/blog/tmp/SecondBrain/ Blog' '/blog/tmp/SecondBrain/ Assets/ image' /blog/src/content/blogs/ /blog/public/images/blogs/ /images/blogs/ --format webp --quality 60
 
 rm objects.zip
 

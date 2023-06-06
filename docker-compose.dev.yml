@@ -5,6 +5,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: 2G
+    #       cpus: '2'
     container_name: voidbox
     ports:
       - '3001:3001'
