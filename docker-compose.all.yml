@@ -1,0 +1,61 @@
+version: '3.9'
+
+services:
+  voidbox:
+    image: loneexile/blog:latest
+    container_name: voidbox
+    ports:
+      - '3001:3001'
+    networks:
+      - voidbox_network
+    depends_on:
+      - voidsync
+
+  note_app:
+    image: loneexile/note_app:latest
+    container_name: note_app
+    ports:
+      - '3000:3000'
+    networks:
+      - voidbox_network
+    depends_on:
+      - voidsync
+
+  voidsync:
+    image: loneexile/voidsync:latest
+    container_name: voidsync
+    ports:
+      - '8080:8080'
+    env_file:
+      - .env
+    depends_on:
+      - minio
+      - surrealdb
+    networks:
+      - voidbox_network
+
+  minio:
+    image: quay.io/minio/minio:latest
+    container_name: minio
+    ports:
+      - '9090:9090'
+    env_file:
+      - .env
+    volumes:
+      - ${HOME}/voidsync/minio:/data
+    command: server /data --console-address ":9090"
+    networks:
+      - voidbox_network
+
+  surrealdb:
+    image: surrealdb/surrealdb:latest
+    container_name: surrealdb
+    volumes:
+      - ${HOME}/voidsync/surrealdb:/mydata
+    command: start --log trace --user root --pass root file:/mydata/mydatabase.db
+    networks:
+      - voidbox_network
+
+networks:
+  voidbox_network:
+    name: voidbox_network
