@@ -16,6 +16,8 @@ services:
     container_name: note_app
     ports:
       - '3000:3000'
+    env_file:
+      - .env
     networks:
       - voidbox_network
     depends_on:
