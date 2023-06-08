@@ -1,33 +1,35 @@
 ---
 import Base from "@layouts/Base.astro";
+// import CartButton from "@components/CartButton";
 ---
 
 <Base title="VoidBox">
-	<div
-		class="hero min-h-screen"
-		style="background-image: url(/images/dragon.webp);"
-	>
-		<div class="hero-overlay bg-opacity-60"></div>
-		<div class="hero-content text-center text-neutral-content italic">
-			<div class="max-w-md">
-				<p class="mb-5 bg-opacity-5 backdrop-blur-md p-5 rounded-sm">
-					<span class="text-xl font-bold">Welcome to VoidBox,</span><br />
-					A creative space where passion for coding meets the art of storytelling.
-					Here, you'll delve into a programmer's mind, exploring innovative ideas,
-					imparting knowledge, and igniting inspiration. Join the journey to transform
-					the void into a realm of limitless potential.
-				</p>
-				<button id="go-to-blog" class="btn btn-square btn-outline w-auto">
-					<a
-						aria-label="Go to blog"
-						class="ml-2 mr-2"
-						href={"blogs"}
-						target="_self"
-					>
-						Let's dive in!</a
-					>
-				</button>
-			</div>
-		</div>
-	</div>
+  <div
+    class="hero min-h-screen"
+    style="background-image: url(/images/dragon.webp);"
+  >
+    <div class="hero-overlay bg-opacity-60"></div>
+    <div class="hero-content text-center text-neutral-content italic">
+      <div class="max-w-md">
+        <p class="mb-5 bg-opacity-5 backdrop-blur-md p-5 rounded-sm">
+          <span class="text-xl font-bold">Welcome to VoidBox,</span><br />
+          A creative space where passion for coding meets the art of storytelling.
+          Here, you'll delve into a programmer's mind, exploring innovative ideas,
+          imparting knowledge, and igniting inspiration. Join the journey to transform
+          the void into a realm of limitless potential.
+        </p>
+        <button id="go-to-blog" class="btn btn-square btn-outline w-auto">
+          <a
+            aria-label="Go to blog"
+            class="ml-2 mr-2"
+            href={"blogs"}
+            target="_self"
+          >
+            Let's dive in!</a
+          >
+        </button>
+        <!-- <CartButton client:load /> -->
+      </div>
+    </div>
+  </div>
 </Base>
