@@ -5,12 +5,12 @@ export const theme = persistentAtom<string>('theme', 'dark')
 
 export type SettingsValue = {
   sidebar: 'show' | 'hide'
-  theme: 'dark' | 'light'
+  theme: 'night' | 'wireframe'
 }
 
 export const settings = persistentMap<SettingsValue>('settings:', {
   sidebar: 'show',
-  theme: 'dark',
+  theme: 'night',
 })
 
 const formattedDate = (date: string): string => {

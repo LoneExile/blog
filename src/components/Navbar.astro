@@ -1,6 +1,7 @@
 ---
 import Hamburger from "@icons/hamburger.astro";
 import Logo from "@icons/logo.astro";
+import ThemeSwitcher from "@components/ThemeSwitcher";
 
 type NavItem = {
   title: string;
@@ -19,45 +20,36 @@ const items: NavItem[] = [
 ];
 ---
 
-<div class="drawer">
-  <input
-    id="my-drawer-3"
-    type="checkbox"
-    class="drawer-toggle"
-    aria-label="Toggle navigation menu"
-  />
-  <div class="drawer-content flex flex-col">
-    <!-- Navbar -->
-    <div class="w-full navbar bg-neutral">
-      <div class="flex-none lg:hidden">
-        <label for="my-drawer-3" class="btn btn-square btn-ghost">
-          <Hamburger size="inline-block w-6 h-6" color="stroke-current" />
-        </label>
-      </div>
-      <a class="flex-1" href={`/`}>
-        <Logo color="stroke-base-content" size="w-10 h-10" />
-        <div id="siteName" class="hidden lg:block px-2 mx-2">VoidBox</div>
-      </a>
-      <div class="flex-none hidden lg:block">
-        <ul class="menu menu-horizontal">
-          <!-- Navbar menu content here -->
-          {
-            items.map((item) => (
-              <li>
-                <a href={item.path}>{item.title}</a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+<div class="navbar bg-base-100">
+  <div class="navbar-start">
+    <div class="dropdown">
+      <label tabindex="0" class="btn btn-ghost lg:hidden">
+        <Hamburger size="inline-block w-6 h-6" color="stroke-current" />
+      </label>
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+      >
+        {
+          items.map((item) => (
+            <li>
+              <a href={item.path}>{item.title}</a>
+            </li>
+          ))
+        }
+      </ul>
     </div>
-    <!-- Page content here -->
-    <slot />
+    <a class="flex flex-1" href={`/`}>
+      <Logo color="stroke-base-content" size="w-10 h-10" />
+      <div id="siteName" class="hidden lg:block px-2 mx-2 pt-2">VoidBox</div>
+    </a>
   </div>
-  <div class="drawer-side">
-    <label for="my-drawer-3" class="drawer-overlay"></label>
-    <ul class="menu p-4 w-80 bg-neutral-focus">
-      <!-- Sidebar content here -->
+  <div class="navbar-end">
+    <label class="swap swap-rotate">
+      <input type="checkbox" />
+      <ThemeSwitcher client:load />
+    </label>
+    <ul class="menu menu-horizontal px-1 hidden lg:flex">
       {
         items.map((item) => (
           <li>
