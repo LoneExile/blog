@@ -7,7 +7,7 @@ updated: 2023-05-13 15:42
 tags: ["me", "you"]
 category: ["tech", "life"]
 draft: true
-slug: "2023-05-13-Blog-journal-test-test"
+slug: "2023-05-13-Blog-journal"
 author: "Apinant U-suwantim"
 ---
 

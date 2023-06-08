@@ -9,8 +9,7 @@ module.exports = {
     },
   },
   daisyui: {
-    // TODO: #003 fix colors
-    themes: ['luxury' /* , 'cupcake' */],
+    themes: ['night', 'wireframe'],
   },
   plugins: [require('@tailwindcss/typography'), require('daisyui')],
 }
