@@ -1,15 +1,15 @@
 import {persistentMap, persistentAtom} from '@nanostores/persistent'
 
 export const isCartOpen = persistentAtom<string>('isCartOpen', 'false')
-export const theme = persistentAtom<string>('theme', 'dark')
+// export const theme = persistentAtom<string>('theme', 'dark')
 
 export type SettingsValue = {
-  sidebar: 'show' | 'hide'
-  theme: 'night' | 'wireframe'
+  // sidebar: 'show' | 'hide'
+  theme: 'night' | 'winter'
 }
 
 export const settings = persistentMap<SettingsValue>('settings:', {
-  sidebar: 'show',
+  // sidebar: 'show',
   theme: 'night',
 })
 

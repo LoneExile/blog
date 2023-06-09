@@ -9,6 +9,7 @@ export default function Moon(props: Props) {
   return (
     <svg
       class={size + ' ' + color}
+      id="dark-mode"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
     >
