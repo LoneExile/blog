@@ -46,11 +46,9 @@ import Navbar from "@components/Navbar.astro";
   </style>
   <title>{title}</title>
 
-  <body>
+  <body class="bg-base-200">
     <Navbar />
-    <div class="min-h-screen">
-      <slot />
-    </div>
+    <slot />
     <Footer />
   </body>
 </html>

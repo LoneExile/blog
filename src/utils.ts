@@ -5,7 +5,7 @@ export const isCartOpen = persistentAtom<string>('isCartOpen', 'false')
 
 export type SettingsValue = {
   // sidebar: 'show' | 'hide'
-  theme: 'night' | 'winter'
+  theme: 'night' | 'wireframe'
 }
 
 export const settings = persistentMap<SettingsValue>('settings:', {

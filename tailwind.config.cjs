@@ -9,7 +9,7 @@ module.exports = {
     },
   },
   daisyui: {
-    themes: ['night', 'winter'],
+    themes: ['night', 'wireframe'],
   },
   plugins: [require('@tailwindcss/typography'), require('daisyui')],
 }

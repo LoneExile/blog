@@ -1,5 +1,5 @@
 ---
-import Base from "@layouts/Base.astro";
+import Content from "@layouts/Content.astro";
 import BlogList from "@components/BlogList.astro";
 
 import { getCollection } from "astro:content";
@@ -13,9 +13,7 @@ const posts = await getCollection("blogs", ({ data }) => {
 });
 ---
 
-<Base title="Blog">
-  <div class="max-w-5xl mt-16 mx-auto min-w-[75%]">
+<Content title="Blog">
     <h1 class="mb-8 text-6xl">Blog</h1>
     <BlogList posts={posts} />
-  </div>
-</Base>
+</Content>

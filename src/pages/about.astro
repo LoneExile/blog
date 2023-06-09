@@ -1,9 +1,72 @@
 ---
-import Base from "@layouts/Base.astro";
+import Github from "@icons/github.astro";
+import Content from "@layouts/Content.astro";
+
+const profilePic = "public/images/profile.webp";
 ---
 
-<Base title="about">
-  <div class="max-w-5xl mt-16 mx-auto min-w-[75%]">
-    <h1 class="text-4xl mb-4">About</h1>
+<Content title="About">
+  <h1 class="text-4xl mb-4">About me</h1>
+
+  <div
+    class="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto my-32 lg:my-0"
+  >
+    <div
+      id="profile"
+      class="w-full lg:w-3/5 rounded-lg shadow-2xl bg-base-100 opacity-95 mx-6 lg:mx-0 text-neutral-content"
+    >
+      <div class="p-4 md:p-12 text-center lg:text-left">
+        <div
+          class="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center"
+          style={`background-image: url('${profilePic}')`}
+        >
+        </div>
+
+        <h1 class="text-3xl font-bold pt-8 lg:pt-0">
+          Apinant U-suwantim (Moo)
+        </h1>
+        <div
+          class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-primary opacity-25"
+        >
+        </div>
+        <p
+          class="pt-4 font-bold flex items-center justify-center lg:justify-start"
+        >
+          Software Engineer
+        </p>
+        <p
+          class="pt-2 text-xs lg:text-sm flex items-center justify-center lg:justify-start"
+        >
+          Nonthaburi, Thailand
+        </p>
+        <p class="pt-8 text-sm">
+          Hello, I'm Moo I'm an enthusiastic developer and programmer based in
+          Thailand, with a growing interest in languages and tools like Go, Lua,
+          Astro, and all things DevOps. Currently, I am dedicating my time to
+          building a blog website to share my thoughts and the knowledge I've
+          accumulated.
+        </p>
+
+        <div
+          class="mt-6 pb-16 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center justify-between"
+        >
+          <a
+            class="link"
+            href="https://github.com/LoneExile"
+            data-tippy-content="@LoneExile"
+            target="_blank"
+            aria-label="GitHub Profile"
+          >
+            <Github color="fill-current" size="w-6 h-6 cursor-pointer" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-2/5">
+      <img
+        src={profilePic}
+        class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block"
+      />
+    </div>
   </div>
-</Base>
+</Content>

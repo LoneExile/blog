@@ -6,9 +6,10 @@ import Moon from '@icons/moon'
 type Theme = Extract<SettingsValue['theme'], SettingsValue['theme']>
 
 const setTheme = (val: SettingsValue) => {
-  let theme: Theme = val.theme === 'night' ? 'winter' : 'night'
+  let theme: Theme = val.theme === 'night' ? 'wireframe' : 'night'
   settings.setKey('theme', theme)
 }
+const size = 'w-5 h-5'
 
 export default function ThemeSwitcher() {
   const $settings = useStore(settings)
@@ -19,8 +20,8 @@ export default function ThemeSwitcher() {
         onClick={() => setTheme($settings)}
         aria-label="theme switcher"
       />
-      <Sun color="swap-on mt-auto fill-current" size="w-8 h-8" />
-      <Moon color="swap-off mt-auto fill-current" size="w-8 h-8" />
+      <Sun color="swap-on mt-auto fill-current" size={size} />
+      <Moon color="swap-off mt-auto fill-current" size={size} />
     </label>
   )
 }

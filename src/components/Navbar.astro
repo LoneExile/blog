@@ -24,11 +24,11 @@ const items: NavItem[] = [
   <div class="navbar-start">
     <div class="dropdown">
       <label tabindex="0" class="btn btn-ghost lg:hidden">
-        <Hamburger size="inline-block w-6 h-6" color="stroke-current" />
+        <Hamburger size="inline-block w-6 h-6" color="" />
       </label>
       <ul
         tabindex="0"
-        class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+        class="menu menu-sm dropdown-content mt-3 p-2 shadow rounded-box w-52"
       >
         {
           items.map((item) => (
@@ -45,10 +45,6 @@ const items: NavItem[] = [
     </a>
   </div>
   <div class="navbar-end">
-    <label class="swap swap-rotate">
-      <input type="checkbox" />
-      <ThemeSwitcher client:only />
-    </label>
     <ul class="menu menu-horizontal px-1 hidden lg:flex">
       {
         items.map((item) => (
@@ -58,5 +54,9 @@ const items: NavItem[] = [
         ))
       }
     </ul>
+    <label class="swap swap-rotate mx-2">
+      <input type="checkbox" />
+      <ThemeSwitcher client:only />
+    </label>
   </div>
 </div>
