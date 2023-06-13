@@ -6,10 +6,14 @@ import Moon from '@icons/moon'
 type Theme = Extract<SettingsValue['theme'], SettingsValue['theme']>
 
 const setTheme = (val: SettingsValue) => {
-  let theme: Theme = val.theme === 'night' ? 'wireframe' : 'night'
+  let theme: Theme = val.theme === 'night' ? 'lemonade' : 'night'
   settings.setKey('theme', theme)
 }
 const size = 'w-5 h-5'
+
+settings.subscribe((settings) => {
+  document.body.dataset.theme = settings.theme
+})
 
 export default function ThemeSwitcher() {
   const $settings = useStore(settings)

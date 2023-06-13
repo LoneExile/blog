@@ -52,10 +52,3 @@ import Navbar from "@components/Navbar.astro";
     <Footer />
   </body>
 </html>
-
-<script>
-  import { settings } from "@utils";
-  settings.subscribe((settings) => {
-    document.body.dataset.theme = settings.theme;
-  });
-</script>

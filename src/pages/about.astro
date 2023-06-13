@@ -1,23 +1,73 @@
 ---
 import Github from "@icons/github.astro";
+import Logo from "@icons/logo.astro";
 import Content from "@layouts/Content.astro";
 
 const profilePic = "/images/profile.webp";
 ---
 
 <Content title="About">
-  <h1 class="text-6xl">About me</h1>
+  <h1 class="text-6xl mb-8">About</h1>
 
   <div
-    class="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto my-32 lg:my-0"
+    class="max-w-4xl flex items-start h-auto flex-wrap mx-auto lg:my-0 pb-[5%]"
   >
     <div
       id="profile"
-      class="w-full lg:w-3/5 rounded-lg shadow-2xl bg-base-100 opacity-95 mx-6 lg:mx-0 text-neutral-content"
+      class="flex w-full lg:w-5/5 rounded-lg shadow-2xl bg-base-100 opacity-95 mx-6 lg:mx-0"
+    >
+      <div class="p-2 pb-4 text-center lg:text-left">
+        <Logo
+          color="stroke-base-content block lg:hidden mx-auto"
+          size="w-20 h-20"
+        />
+        <h1
+          class="block lg:hidden text-3xl font-bold my-auto lg:pt-0 items-center justify-center text-center"
+        >
+          What is this !?
+        </h1>
+
+        <div class="flex">
+          <div class="m-1 hidden lg:block">
+            <Logo color="stroke-base-content p-1 my-auto" size="w-20 h-20" />
+          </div>
+          <h1
+            class="hidden lg:block text-3xl font-bold ml-[5%] my-auto lg:pt-0 items-center justify-center text-center"
+          >
+            What is this !?
+          </h1>
+        </div>
+        <div class="w-5/5 mx-[5%] pt-3 border-b-2 border-primary opacity-25">
+        </div>
+        <div class="pt-4 text-sm px-[5%]">
+          <p class="mb-2">
+            <span class="font-bold italic text-xl">Voidbox</span>
+
+            born from the struggle of retaining and accessing my learning and
+            coding experiences, Voidbox serves as my digital archive. Here, I
+            share my journey through the bleeding-edge of technology, capturing
+            and transforming fleeting knowledge into accessible wisdom. May
+            Voidbox guide you in your coding journey, much like a compass in the
+            vast ocean of technology.
+          </p>
+
+          <p class="mb-2 font-bold">
+            Dive in, enjoy, and I hope you find it as useful as I do.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="max-w-4xl flex items-start h-auto flex-wrap mx-auto lg:my-0 pb-[5%]"
+  >
+    <div
+      id="profile"
+      class="flex w-full lg:w-5/5 rounded-lg shadow-2xl bg-base-100 opacity-95 mx-6 lg:mx-0"
     >
       <div class="p-4 md:p-12 text-center lg:text-left">
         <div
-          class="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center"
+          class="block lg:hidden rounded-full shadow-xl mx-auto -mt-4 h-48 w-48 bg-cover bg-center"
           style={`background-image: url('${profilePic}')`}
         >
         </div>
@@ -35,11 +85,11 @@ const profilePic = "/images/profile.webp";
           Software Engineer
         </p>
         <p
-          class="pt-2 text-xs lg:text-sm flex items-center justify-center lg:justify-start"
+          class="text-xs lg:text-sm flex items-center justify-center lg:justify-start"
         >
           Nonthaburi, Thailand
         </p>
-        <p class="pt-8 text-sm">
+        <p class="pt-4 text-sm">
           Hello, I'm Moo I'm an enthusiastic developer and programmer based in
           Thailand, with a growing interest in languages and tools like Go, Lua,
           Astro, and all things DevOps. Currently, I am dedicating my time to
@@ -48,7 +98,7 @@ const profilePic = "/images/profile.webp";
         </p>
 
         <div
-          class="mt-6 pb-16 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center justify-between"
+          class="mt-6 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center justify-between"
         >
           <a
             class="link"
@@ -61,12 +111,12 @@ const profilePic = "/images/profile.webp";
           </a>
         </div>
       </div>
-    </div>
-    <div class="w-full lg:w-2/5">
-      <img
-        src={profilePic}
-        class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block"
-      />
+      <div class="w-full m-1 hidden lg:block">
+        <img
+          src={profilePic}
+          class="rounded-none lg:rounded-full shadow-2xl ring-2 ring-primary p-1"
+        />
+      </div>
     </div>
   </div>
 </Content>

@@ -3,15 +3,26 @@ import Github from "@icons/github.astro";
 import Logo from "@icons/logo.astro";
 ---
 
-<footer
-  class="footer items-center p-4 bg-base-100 text-neutral-content mt-auto"
->
+<footer class="footer items-center p-4 bg-base-100 mt-auto">
   <div class="items-center grid-flow-col">
     <Logo color="stroke-base-content" size="w-10 h-10" />
     <p>
       © <span id="year"></span>
       <span class="font-bold">VoidBox</span> - All right reserved
     </p>
+
+    <a
+      aria-label="Code source of this blog"
+      class="grid-flow-col gap-4 md:place-self-center md:justify-self-end"
+      href={"https://github.com/LoneExile/blog"}
+      target="_blank"
+    >
+      <div class="w-full block lg:hidden">
+        <div class="flex pl-4 mt-auto">
+          <Github color="fill-current mt-auto" size="w-6 h-6 cursor-pointer" />
+        </div>
+      </div>
+    </a>
   </div>
   <a
     aria-label="Code source of this blog"
@@ -19,8 +30,12 @@ import Logo from "@icons/logo.astro";
     href={"https://github.com/LoneExile/blog"}
     target="_blank"
   >
-    <span class="mt-auto">source code</span>
-    <Github color="fill-current" size="w-6 h-6 cursor-pointer" />
+    <div class="w-full hidden lg:block">
+      <div class="flex">
+        <span class="px-4 mt-auto">source code</span>
+        <Github color="fill-current mt-auto" size="w-6 h-6 cursor-pointer" />
+      </div>
+    </div>
   </a>
 </footer>
 

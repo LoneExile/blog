@@ -25,13 +25,13 @@ if (import.meta.env.PROD) {
 <div>
   {
     posts.map((post) => (
-      <div class="py-4 border-b first:border-t">
+      <div class="py-4 border-b first:border-t border-primary">
         {post.data.draft && (
           <span class="bg-error-content text-primary inline-block px-2">
             [Draft]
           </span>
         )}
-        <a class="text-info hover:underline" href={`/blogs/${post.slug}`}>
+        <a class="italic hover:underline" href={`/blogs/${post.slug}`}>
           {post.data.title}
         </a>
         <p>{formattedDate(post.data.created.toString())}</p>
