@@ -2,6 +2,17 @@
 
 This is a personal website built with Astro Starter Kit (Minimal).
 
+The emphasis of this site is on **simplicity**, with optimizations for
+**performance**, **accessibility**, and **SEO**. These optimizations are based
+on the standards set by
+[unlighthouse](https://github.com/harlan-zw/unlighthouse),
+[web.dev](https://web.dev/measure/), and [gtmetrix](https://gtmetrix.com/)
+audits.
+
+While the site may not look visually appealing at the moment, improvements are
+being made over time. There are many features I plan to add, but my primary aim
+is to keep the site simple and focused on content.
+
 > At first, when I started this project, I didn't think it would be this complex
 > or require so many integrations. I guess I've been working on the frontend
 > side in my comfort zone for too long , as my workplace hasn't allowed me to
@@ -13,17 +24,18 @@ This is a personal website built with Astro Starter Kit (Minimal).
 
 ### Astro & tools used by far
 
-| Name                                                                          | Description                                                                    |
-| ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| [Markdown🧑‍🚀](https://docs.astro.build/en/guides/markdown-content/)            | Commonly used for authoring text-heavy content.                                |
-| [Tailwind👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/tailwind/) | Utility classes for styling instead of writing CSS.                            |
-| [Typography](https://github.com/tailwindlabs/tailwindcss-typography)          | Provides beautiful typographic defaults for HTML.                              |
-| [DaisyUI](https://github.com/saadeghi/daisyui)                                | A Tailwind CSS component library.                                              |
-| [Image👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/image/)       | An Astro integration for easy image optimization.                              |
-| [Sharp](https://github.com/lovell/sharp)                                      | High-performance Node.js image processing library.                             |
-| [Sitemap👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/sitemap/)   | Helps search engines crawl your site more efficiently by generating a sitemap. |
-| [Zod](https://github.com/colinhacks/zod)                                      | TypeScript-first schema validation with static type inference.                 |
-| [Adapter(Node)](https://docs.astro.build/en/guides/integrations-guide/node/)  | Allows Astro to deploy your SSR site to Node Targets.                          |
+| Name                                                                           | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| [Markdown🧑‍🚀](https://docs.astro.build/en/guides/markdown-content/)             | Commonly used for authoring text-heavy content.                                |
+| [Tailwind👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/tailwind/)  | Utility classes for styling instead of writing CSS.                            |
+| [Typography](https://github.com/tailwindlabs/tailwindcss-typography)           | Provides beautiful typographic defaults for HTML.                              |
+| [DaisyUI](https://github.com/saadeghi/daisyui)                                 | A Tailwind CSS component library.                                              |
+| [Image👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/image/)        | An Astro integration for easy image optimization.                              |
+| [Sharp](https://github.com/lovell/sharp)                                       | High-performance Node.js image processing library.                             |
+| [Sitemap👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/sitemap/)    | Helps search engines crawl your site more efficiently by generating a sitemap. |
+| [Zod](https://github.com/colinhacks/zod)                                       | TypeScript-first schema validation with static type inference.                 |
+| [Adapter(Node)👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/node/) | Allows Astro to deploy your SSR site to Node Targets.                          |
+| [Nanostores👨‍🚀](https://docs.astro.build/en/core-concepts/sharing-state/)       | A tiny (313 bytes) State manager.                                              |
 
 ### Font
 
@@ -36,7 +48,7 @@ All commands are run from the root of the project, from a terminal:
 | Command                | Action                                           |
 | :--------------------- | :----------------------------------------------- |
 | `npm install`          | Installs dependencies                            |
-| `npm run dev`          | Starts local dev server at `localhost:3001`      |
+| `npm run dev`          | Starts local dev server at `localhost:3000`      |
 | `npm run build`        | Build your production site to `./dist/`          |
 | `npm run preview`      | Preview your build locally, before deploying     |
 | `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
@@ -49,9 +61,14 @@ All commands are run from the root of the project, from a terminal:
 - [ ] Storage - figure out a way to import from [joplin](https://joplinapp.org/)
       or [obsidian](https://obsidian.md/)) notes into this site
       [read](https://github.com/LoneExile/blog#Storage)
-- [x] add comments functionality ([giscus](https://github.com/giscus/giscus) ,
+- [ ] add comments functionality ([giscus](https://github.com/giscus/giscus) ,
       [utterances](https://github.com/utterance/utterances) or
       [remark42](https://github.com/umputun/remark42))
+  - [x] basic comments functionality
+  - [x] login with GitHub, Google, Twitter, etc.
+  - [ ] configure mail server to send notifications
+        ([docker-mailserver](https://github.com/docker-mailserver/docker-mailserver)
+        or [Amazon SES](https://aws.amazon.com/ses/))
 - [ ] better UI
   - [x] add [daisyui](https://github.com/saadeghi/daisyui)
   - [x] add [typography](https://github.com/tailwindlabs/tailwindcss-typography)
@@ -77,7 +94,12 @@ All commands are run from the root of the project, from a terminal:
 
 ## Challenges and Considerations Journal
 
-### Storage
+### Frontend
+
+... Astro, Tailwind, DaisyUI, Typography, Image, Sharp, Sitemap, Zod,
+Adapter(Node), Nanostores
+
+### Backend
 
 Initially, I wanted to host a markdown file on GitHub along with the source
 code. Since Astro is server-side rendered (SSR), it can fetch the markdown file
@@ -168,7 +190,35 @@ bleeding-edge kind of guy. I also believe that switching databases later on
 shouldn't be too difficult(I guess). So, let's dive into the unknown and see how
 it goes!
 
-... Rest API, Websocket, Notifications, and more to come!
+##### Rest API
+
+The framework I've chosen to use is [Gin](https://github.com/gin-gonic/gin).
+Initially, I was planning to use the native net/http, but I decided to make
+things easier for myself. Gin offers many features that I need, such as routing,
+middleware, and more.
+
+While working on my rest API, I found myself writing a lot of server-side code
+for uploading/downloading, when this should have been done on the client side.
+This led to me having to rewrite a significant amount of code, which became
+quite messy.
+
+Another challenge I faced was that standard API clients like
+[Postman](https://www.postman.com/) or
+[Insomnia](https://github.com/Kong/insomnia) couldn't send multipart/form-data
+requests with the directory structure I was uploading. It's possible that
+there's a way to do this, but I wasn't able to figure it out. Consequently, I
+had to write a custom client to test my API.
+
+I found that [httpie](https://httpie.io/) could perform this task based on this
+[documentation](https://httpie.io/docs/cli/file-upload-forms), but I knew I
+would need to write my note-taking app site anyway. Therefore, I created a new
+repository [note](https://github.com/LoneExile/note), utilizing
+[webkitdirectory](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory)
+with this
+[workaround](https://github.com/facebook/react/issues/3468#issuecomment-1031366038)
+for TypeScript.
+
+... Websocket, Notifications, and more to come!
 
 ## Resources and references
 
