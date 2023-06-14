@@ -6,7 +6,7 @@ import Moon from '@icons/moon'
 type Theme = Extract<SettingsValue['theme'], SettingsValue['theme']>
 
 const setTheme = (val: SettingsValue) => {
-  let theme: Theme = val.theme === 'night' ? 'lemonade' : 'night'
+  let theme: Theme = val.theme === 'dark' ? 'light' : 'dark'
   settings.setKey('theme', theme)
 }
 const size = 'w-5 h-5'

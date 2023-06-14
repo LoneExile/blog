@@ -5,12 +5,12 @@ export const isCartOpen = persistentAtom<string>('isCartOpen', 'false')
 
 export type SettingsValue = {
   // sidebar: 'show' | 'hide'
-  theme: 'night' | 'lemonade'
+  theme: 'dark' | 'light'
 }
 
 export const settings = persistentMap<SettingsValue>('settings:', {
   // sidebar: 'show',
-  theme: 'night',
+  theme: 'dark',
 })
 
 const formattedDate = (date: string): string => {

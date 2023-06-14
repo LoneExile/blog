@@ -11,8 +11,8 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        night: {
-          // ...require("daisyui/src/theming/themes")["[data-theme=night]"],
+        dark: {
+          ...require('daisyui/src/theming/themes')['[data-theme=night]'],
           primary: '#3abff8',
           secondary: '#828df8',
           accent: '#f471b5',
@@ -24,7 +24,7 @@ module.exports = {
           error: '#fb6f84',
           fontFamily: 'Chalkboard',
         },
-        lemonade: {
+        light: {
           ...require('daisyui/src/theming/themes')['[data-theme=lemonade]'],
           fontFamily: 'Chalkboard',
         },
