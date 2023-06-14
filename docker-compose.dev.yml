@@ -11,10 +11,32 @@ services:
     #       memory: 2G
     #       cpus: '2'
     container_name: voidbox
+    restart: always
     ports:
       - '3001:3001'
+    env_file:
+      - .env
     networks:
       - voidbox_network
+
+  remark:
+    image: umputun/remark42:latest
+    container_name: 'remark42'
+    hostname: 'remark42'
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: '10m'
+        max-file: '5'
+    # uncomment to expose directly (no proxy)
+    ports:
+      - '8080:8080'
+      # - '443:8443'
+    env_file:
+      - .env
+    volumes:
+      - ./var:/srv/var
 
 networks:
   voidbox_network:

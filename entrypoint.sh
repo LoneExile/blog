@@ -6,7 +6,7 @@ rm -rf /blog/tmp/*
 curl -X POST -H "Content-Type: application/json" \
     --data '{"remotePath": "/", "removeIcon": true}' \
     -o objects.zip \
-    "http://voidsync:8080/download-all"
+    "http://voidsync:8090/download-all"
 
 unzip -o objects.zip -d /blog/tmp/
 

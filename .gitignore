@@ -24,3 +24,4 @@ pnpm-debug.log*
 
 # src/content/blogs/*
 public/images/blogs/*
+var/

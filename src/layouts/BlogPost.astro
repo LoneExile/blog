@@ -2,7 +2,8 @@
 export const prerender = true;
 
 import Content from "@layouts/Content.astro";
-import { formattedDate } from "@utils";
+import { Comments } from "@components/Comment";
+import { formattedDate } from "@utils/utils";
 
 const { created, draft, tags, title } = Astro.props;
 ---
@@ -39,4 +40,5 @@ const { created, draft, tags, title } = Astro.props;
   <div class="prose pb-[10%]">
     <slot />
   </div>
+  <Comments client:visible />
 </Content>

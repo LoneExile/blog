@@ -1,5 +1,5 @@
 import {useStore} from '@nanostores/preact'
-import {settings, SettingsValue} from '@utils'
+import {settings, SettingsValue} from '@utils/utils'
 import Sun from '@icons/sun'
 import Moon from '@icons/moon'
 

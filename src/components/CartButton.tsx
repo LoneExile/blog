@@ -1,5 +1,5 @@
 import {useStore} from '@nanostores/preact'
-import {isCartOpen, settings} from '@utils'
+import {isCartOpen, settings} from '@utils/utils'
 
 const setCartOpen = (val: string, set: string) => {
   let x = val === 'true' ? false : true
