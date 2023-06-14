@@ -49,18 +49,18 @@ All commands are run from the root of the project, from a terminal:
 - [ ] Storage - figure out a way to import from [joplin](https://joplinapp.org/)
       or [obsidian](https://obsidian.md/)) notes into this site
       [read](https://github.com/LoneExile/blog#Storage)
-- [ ] add comments functionality ([giscus](https://github.com/giscus/giscus) ,
+- [x] add comments functionality ([giscus](https://github.com/giscus/giscus) ,
       [utterances](https://github.com/utterance/utterances) or
       [remark42](https://github.com/umputun/remark42))
 - [ ] better UI
   - [x] add [daisyui](https://github.com/saadeghi/daisyui)
   - [x] add [typography](https://github.com/tailwindlabs/tailwindcss-typography)
         to blog posts
-  - [ ] add dark mode
+  - [x] add dark mode
   - [x] navbar
   - [x] footer
-  - [ ] about page
-  - [ ] blog page
+  - [x] about page
+  - [x] blog page
   - [ ] search functionality
         ([instantsearch](https://github.com/algolia/instantsearch),
         [autocomplete](https://github.com/algolia/autocomplete),
@@ -73,7 +73,7 @@ All commands are run from the root of the project, from a terminal:
 - [ ] add [external-links](https://docs.astro.build/en/recipes/external-links/)
 - [ ] add [i18n](https://docs.astro.build/en/recipes/i18n/)
 - [x] add site logo
-- [ ] prep SBCs environment for hosting
+- [ ] ~~prep SBCs environment for hosting~~
 
 ## Challenges and Considerations Journal
 
