@@ -39,7 +39,7 @@ const items: NavItem[] = [
         }
       </ul>
     </div>
-    <a class="flex flex-1" href={`/`}>
+    <a class="flex flex-1" href={`/`} aria-label="VoidBox">
       <Logo color="stroke-base-content" size="w-10 h-10" />
       <div id="siteName" class="hidden lg:block px-2 mx-2 pt-2">VoidBox</div>
     </a>
@@ -56,7 +56,7 @@ const items: NavItem[] = [
     </ul>
     <label class="swap swap-rotate mx-2">
       <input type="checkbox" />
-      <ThemeSwitcher client:only />
+      <ThemeSwitcher client:only="preact" />
     </label>
   </div>
 </div>

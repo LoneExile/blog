@@ -19,11 +19,7 @@ export default function ThemeSwitcher() {
   const $settings = useStore(settings)
   return (
     <label class="swap swap-rotate" aria-label="theme switcher">
-      <input
-        type="checkbox"
-        onClick={() => setTheme($settings)}
-        aria-label="theme switcher"
-      />
+      <input type="checkbox" onClick={() => setTheme($settings)} />
       <Sun color="swap-on mt-auto fill-current" size={size} />
       <Moon color="swap-off mt-auto fill-current" size={size} />
     </label>
