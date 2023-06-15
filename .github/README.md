@@ -69,13 +69,14 @@ All commands are run from the root of the project, from a terminal:
   - [ ] configure mail server to send notifications
         ([docker-mailserver](https://github.com/docker-mailserver/docker-mailserver)
         or [Amazon SES](https://aws.amazon.com/ses/))
-- [ ] better UI
+- [ ] UI
   - [x] add [daisyui](https://github.com/saadeghi/daisyui)
   - [x] add [typography](https://github.com/tailwindlabs/tailwindcss-typography)
         to blog posts
   - [x] add dark mode
   - [x] navbar
   - [x] footer
+  - [x] home page
   - [x] about page
   - [x] blog page
   - [ ] search functionality
@@ -227,7 +228,7 @@ for TypeScript.
 
 ### Related projects
 
-- [VoidSync](httphttps://github.com/LoneExile/VoidSync) backend project
+- [VoidSync](https://github.com/LoneExile/VoidSync) backend project
 - [note](https://github.com/LoneExile/note) frontend for note-taking app
 - [obsidian-convertor](https://github.com/LoneExile/obsidian-convertor) bridge
   between Obsidian and this project
