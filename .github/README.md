@@ -225,4 +225,13 @@ for TypeScript.
 - [Astro hybrid-rendering](https://astro.build/blog/hybrid-rendering/)
 - [server-endpoints-api-routes](https://docs.astro.build/en/core-concepts/endpoints/#server-endpoints-api-routes)
 
+### Related projects
+
+- [VoidSync](httphttps://github.com/LoneExile/VoidSync) backend project
+- [note](https://github.com/LoneExile/note) frontend for note-taking app
+- [obsidian-convertor](https://github.com/LoneExile/obsidian-convertor) bridge
+  between Obsidian and this project
+- [Obsidian-config](https://github.com/LoneExile/Obsidian-config) my Obsidian
+  config
+
 <!-- https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet -->
