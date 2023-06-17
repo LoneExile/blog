@@ -1,5 +1,5 @@
 import {useStore} from '@nanostores/preact'
-import {settings, SettingsValue} from '@utils/utils'
+import {settings, SettingsValue} from '@utils/store'
 import Sun from '@icons/sun'
 import Moon from '@icons/moon'
 
@@ -8,12 +8,10 @@ type Theme = Extract<SettingsValue['theme'], SettingsValue['theme']>
 const setTheme = (val: SettingsValue) => {
   let theme: Theme = val.theme === 'dark' ? 'light' : 'dark'
   settings.setKey('theme', theme)
+  document.body.dataset.theme = theme
 }
-const size = 'w-5 h-5'
 
-settings.subscribe((settings) => {
-  document.body.dataset.theme = settings.theme
-})
+const size = 'w-5 h-5'
 
 export default function ThemeSwitcher() {
   const $settings = useStore(settings)

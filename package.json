@@ -21,7 +21,7 @@
     "@nanostores/preact": "^0.5.0",
     "astro": "^2.6.4",
     "astro-compress": "^1.1.47",
-    "nanostores": "^0.9.1",
+    "nanostores": "^0.9.2",
     "preact": "^10.15.1",
     "sharp": "0.31.3",
     "tailwindcss": "^3.3.2"
@@ -29,6 +29,6 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",
     "@types/node": "^18.16.18",
-    "daisyui": "^3.1.0"
+    "daisyui": "^3.1.1"
   }
 }

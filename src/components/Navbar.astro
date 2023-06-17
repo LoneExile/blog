@@ -1,6 +1,7 @@
 ---
 import Hamburger from "@icons/hamburger.astro";
 import Logo from "@icons/logo.astro";
+import Setting from "@icons/setting.astro";
 import ThemeSwitcher from "@components/ThemeSwitcher";
 
 type NavItem = {
@@ -54,9 +55,21 @@ const items: NavItem[] = [
         ))
       }
     </ul>
-    <label class="swap swap-rotate mx-2">
-      <input type="checkbox" />
-      <ThemeSwitcher client:only="preact" />
-    </label>
+    <div class="dropdown dropdown-end">
+      <label tabindex={0} class="btn btn-ghost rounded-btn">
+        <Setting color="stroke-base-content" size="w-6 h-6" />
+      </label>
+      <ul
+        tabindex={0}
+        class="menu dropdown-content shadow bg-base-200 rounded-box mt-2"
+      >
+        <li>
+          <label class="swap swap-rotate">
+            <input type="checkbox" />
+            <ThemeSwitcher client:visible />
+          </label>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

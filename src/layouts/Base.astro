@@ -56,3 +56,10 @@ import Navbar from "@components/Navbar.astro";
     <Footer />
   </body>
 </html>
+
+<script>
+  const theme = localStorage.getItem("settings:theme");
+  if (theme) {
+    document.body.dataset.theme = theme;
+  }
+</script>

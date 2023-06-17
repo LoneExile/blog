@@ -1,6 +1,6 @@
 import {useEffect} from 'preact/hooks'
 import {useStore} from '@nanostores/preact'
-import {settings, SettingsValue} from '@utils/utils'
+import {settings, SettingsValue} from '@utils/store'
 
 type Theme = Extract<SettingsValue['theme'], SettingsValue['theme']>
 
