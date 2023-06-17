@@ -63,13 +63,18 @@ const items: NavItem[] = [
         tabindex={0}
         class="menu dropdown-content shadow bg-base-200 rounded-box mt-2"
       >
-        <li>
-          <label class="swap swap-rotate">
-            <input type="checkbox" />
-            <ThemeSwitcher client:visible />
-          </label>
-        </li>
+        <ThemeSwitcher client:visible />
       </ul>
     </div>
   </div>
 </div>
+
+<script>
+  // HACK: lazy load toggle theme button
+  document.addEventListener("click", function () {
+    document?.querySelector(".swap")?.classList.remove("hidden");
+  });
+
+  const html = document.querySelector(".swap");
+  html?.classList.add("hidden");
+</script>
