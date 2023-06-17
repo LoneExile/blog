@@ -55,7 +55,7 @@ const items: NavItem[] = [
         ))
       }
     </ul>
-    <div class="dropdown dropdown-end">
+    <div class="dropdown dropdown-end" id="setting-menu">
       <label tabindex={0} class="btn btn-ghost rounded-btn">
         <Setting color="stroke-base-content" size="w-6 h-6" />
       </label>
@@ -71,10 +71,12 @@ const items: NavItem[] = [
 
 <script>
   // HACK: lazy load toggle theme button
-  document.addEventListener("click", function () {
-    document?.querySelector(".swap")?.classList.remove("hidden");
-  });
 
-  const html = document.querySelector(".swap");
-  html?.classList.add("hidden");
+  document.querySelector(".swap")?.classList.add("hidden");
+
+  document
+    .querySelector("#setting-menu")
+    ?.addEventListener("click", function () {
+      document?.querySelector(".swap")?.classList.remove("hidden");
+    });
 </script>
