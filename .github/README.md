@@ -86,6 +86,7 @@ All commands are run from the root of the project, from a terminal:
 - [ ] tags and categories
 - [ ] add
       [Astro prefetch](https://docs.astro.build/en/guides/integrations-guide/prefetch/)
+      ( tried it, but it didn't seem to work. will try again later)
 - [ ] add [Astro RSS](https://docs.astro.build/en/guides/rss/)
 - [x] add [Dockerfile](https://docs.astro.build/en/recipes/docker/)
 - [ ] add [external-links](https://docs.astro.build/en/recipes/external-links/)
