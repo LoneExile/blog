@@ -37,9 +37,9 @@ is to keep the site simple and focused on content.
 | [Adapter(Node)👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/node/) | Allows Astro to deploy your SSR site to Node Targets.                          |
 | [Nanostores👨‍🚀](https://docs.astro.build/en/core-concepts/sharing-state/)       | A tiny (313 bytes) State manager.                                              |
 
-### Font
+<!-- ### Font -->
 
-- [inter](https://github.com/rsms/inter)
+<!-- - [inter](https://github.com/rsms/inter) -->
 
 ## Commands
 
