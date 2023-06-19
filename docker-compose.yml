@@ -6,6 +6,7 @@ services:
     container_name: voidbox
     ports:
       - '3001:3001'
+    restart: always
     networks:
       - voidbox_network
 
