@@ -37,6 +37,8 @@ services:
       - .env
     volumes:
       - ./var:/srv/var
+    networks:
+      - voidbox_network
 
 networks:
   voidbox_network:

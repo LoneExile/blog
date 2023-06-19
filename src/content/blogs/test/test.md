@@ -1,5 +1,5 @@
 ---
-title: "Blog journal"
+title: "Testing Content"
 description: ""
 thumbnail:
 created: 2023-05-13 13:07
@@ -7,7 +7,7 @@ updated: 2023-05-13 15:42
 tags: ["me", "you"]
 category: ["tech", "life"]
 draft: false
-slug: "2023-05-13-Blog-journal-test"
+slug: "2023-05-13-Testing Content"
 author: "Apinant U-suwantim"
 ---
 
