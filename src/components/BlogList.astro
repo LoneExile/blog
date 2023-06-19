@@ -31,7 +31,10 @@ if (import.meta.env.PROD) {
             [Draft]
           </span>
         )}
-        <a class="italic hover:underline" href={`/blogs/${post.slug}`}>
+        <a
+          class="hover:italic hover:underline font-bold"
+          href={`/blogs/${post.slug}`}
+        >
           {post.data.title}
         </a>
         <p>{formattedDate(post.data.created.toString())}</p>
