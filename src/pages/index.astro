@@ -1,9 +1,10 @@
 ---
 import Base from "@layouts/Base.astro";
+import { description } from "@utils/enum";
 ---
 
 <!-- style="background-image: url(/images/dragon.webp);" -->
-<Base title="VoidBox">
+<Base title="VoidBox" description={description}>
   <div
     class="hero min-h-screen"
     style="background-image: url(/images/dragon.avif);"

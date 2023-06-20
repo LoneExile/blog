@@ -1,6 +1,7 @@
 ---
 import Content from "@layouts/Content.astro";
 import BlogList from "@components/BlogList.astro";
+import { description } from "@utils/enum";
 
 import { getCollection } from "astro:content";
 // TODO: #001 move this to utils?
@@ -13,7 +14,7 @@ const posts = await getCollection("blogs", ({ data }) => {
 });
 ---
 
-<Content title="Blog">
-    <h1 class="mb-8 text-6xl">Blog</h1>
-    <BlogList posts={posts} />
+<Content title="Blog" description={description}>
+  <h1 class="mb-8 text-6xl">Blog</h1>
+  <BlogList posts={posts} />
 </Content>

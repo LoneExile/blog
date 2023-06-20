@@ -4,11 +4,12 @@ export const prerender = true;
 import Github from "@icons/github.astro";
 import Logo from "@icons/logo.astro";
 import Content from "@layouts/Content.astro";
+import { description } from "@utils/enum";
 
 const profilePic = "/images/profile.webp";
 ---
 
-<Content title="About">
+<Content title="About" description={description}>
   <h1 class="text-6xl mb-8">About</h1>
 
   <div

@@ -5,7 +5,7 @@ import Content from "@layouts/Content.astro";
 import { Comments } from "@components/Comment";
 import { formattedDate } from "@utils/utils";
 
-const { created, draft, tags, title } = Astro.props;
+const { created, draft, tags, title, description } = Astro.props;
 ---
 
 <!-- TODO: 
@@ -13,7 +13,7 @@ const { created, draft, tags, title } = Astro.props;
 - https://docs.astro.build/en/guides/markdown-content/ 
 - add color to header
 -->
-<Content title="Blog post">
+<Content title="Blog post" description={description}>
   <div class="mb-8">
     {
       draft && (

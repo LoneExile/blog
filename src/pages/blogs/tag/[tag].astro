@@ -1,6 +1,7 @@
 ---
 import Content from "@layouts/Content.astro";
 import BlogList from "@components/BlogList.astro";
+import { description } from "@utils/enum";
 
 import { getCollection } from "astro:content";
 
@@ -36,7 +37,7 @@ posts = posts.filter((post) => {
 });
 ---
 
-<Content title={`${tag} Blog Post`}>
+<Content title={`${tag} Blog Post`} description={description}>
   <h1 class="mb-8 text-6xl">Blog</h1>
   <p class="mb-8 text-2xl">Tag: {tag}</p>
   <BlogList posts={posts} />

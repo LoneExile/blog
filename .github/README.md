@@ -88,6 +88,7 @@ All commands are run from the root of the project, from a terminal:
     - [x] add comments
     - [ ] add share buttons
     - [ ] add related posts
+    - [ ] read/view count
 - [ ] search functionality
       ([instantsearch](https://github.com/algolia/instantsearch),
       [autocomplete](https://github.com/algolia/autocomplete),
