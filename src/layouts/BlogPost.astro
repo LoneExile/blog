@@ -5,7 +5,7 @@ import Content from "@layouts/Content.astro";
 import { Comments } from "@components/Comment";
 import { formattedDate } from "@utils/utils";
 
-const { created, draft, tags, title, description } = Astro.props;
+const { created, updated, draft, tags, title, description } = Astro.props;
 ---
 
 <!-- TODO: 
@@ -39,7 +39,15 @@ const { created, draft, tags, title, description } = Astro.props;
     }
 
     <h1 class="text-4xl mb-2">{title}</h1>
-    <p class="text-sm mb-2">{formattedDate(created)}</p>
+    <p class="text-sm mb-2">
+      <span>
+        Posted {formattedDate(created)}
+      </span>
+      <span>•</span>
+      <span>
+        Updated {formattedDate(updated)}
+      </span>
+    </p>
   </div>
 
   <div class="prose pb-[10%]">
