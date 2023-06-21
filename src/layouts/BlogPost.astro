@@ -11,8 +11,10 @@ const { created, updated, draft, tags, title, description } = Astro.props;
 <!-- TODO: 
 - https://docs.astro.build/en/guides/markdown-content/ 
 - add color to header
+- click to zoom images
+- add width to images
 -->
-<Content title="Blog post" description={description}>
+<Content title={title} description={description}>
   <div>
     <div class="mb-8">
       {
