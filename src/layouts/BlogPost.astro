@@ -9,49 +9,47 @@ const { created, updated, draft, tags, title, description } = Astro.props;
 ---
 
 <!-- TODO: 
-- pass description to the `Content`, use in meta tag for SEO 
 - https://docs.astro.build/en/guides/markdown-content/ 
 - add color to header
 -->
 <Content title="Blog post" description={description}>
-  <div class="mb-8">
-    {
-      draft && (
-        <span class="bg-error-content text-primary inline-block px-2 mb-4">
-          [Draft]
+  <div>
+    <div class="mb-8">
+      {
+        draft && (
+          <span class="bg-error-content text-primary inline-block px-2 mb-4">
+            [Draft]
+          </span>
+        )
+      }
+      {
+        tags && (
+          <div class="mb-4">
+            {tags.map((tag: string) => (
+              <a
+                href={`/blogs/tag/${tag.toLowerCase()}`}
+                class="inline-block bg-primary-focus rounded-full px-3 py-1 text-sm font-semibold text-primary-content mr-2 mb-2"
+              >
+                #{tag}
+              </a>
+            ))}
+          </div>
+        )
+      }
+      <h1 class="text-4xl mb-2">{title}</h1>
+      <p class="text-sm mb-2">
+        <span>
+          Posted {formattedDate(created)}
         </span>
-      )
-    }
-
-    {
-      tags && (
-        <div class="mb-4">
-          {tags.map((tag: string) => (
-            <a
-              href={`/blogs/tag/${tag.toLowerCase()}`}
-              class="inline-block bg-primary-focus rounded-full px-3 py-1 text-sm font-semibold text-primary-content mr-2 mb-2"
-            >
-              #{tag}
-            </a>
-          ))}
-        </div>
-      )
-    }
-
-    <h1 class="text-4xl mb-2">{title}</h1>
-    <p class="text-sm mb-2">
-      <span>
-        Posted {formattedDate(created)}
-      </span>
-      <span>•</span>
-      <span>
-        Updated {formattedDate(updated)}
-      </span>
-    </p>
+        <span>•</span>
+        <span>
+          Updated {formattedDate(updated)}
+        </span>
+      </p>
+    </div>
+    <div class="prose pb-[10%]">
+      <slot />
+    </div>
+    <Comments client:visible />
   </div>
-
-  <div class="prose pb-[10%]">
-    <slot />
-  </div>
-  <Comments client:visible />
 </Content>
