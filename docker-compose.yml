@@ -10,6 +10,25 @@ services:
     networks:
       - voidbox_network
 
+  remark:
+    image: umputun/remark42:latest
+    container_name: 'remark42'
+    hostname: 'remark42'
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: '10m'
+        max-file: '5'
+    ports:
+      - '8080:8080'
+    env_file:
+      - .env
+    volumes:
+      - ./var:/srv/var
+    networks:
+      - voidbox_network
+
 networks:
   voidbox_network:
     external: true
