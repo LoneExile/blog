@@ -10,12 +10,14 @@ export async function get(context) {
     title: 'VoidBox Blog',
     description: description,
     site: context.site,
-    items: posts.map((post) => ({
-      title: post.data.title,
-      pubDate: post.data.created,
-      description: post.data.description,
-      link: `/blog/${post.slug}/`,
-    })),
+    items: posts
+      .filter((post) => !post.data.draft)
+      .map((post) => ({
+        title: post.data.title,
+        pubDate: post.data.created,
+        description: post.data.description,
+        link: `/blog/${post.slug}/`,
+      })),
     stylesheet: '/rss/styles.xsl',
   })
 }

@@ -5,9 +5,6 @@ WORKDIR /blog
 RUN apt-get update && \
   apt-get install -y git curl unzip libvips-dev
 
-COPY package*.json ./
-COPY pnpm-lock.yaml ./
-
 # Install Go
 RUN git clone --depth 1 https://github.com/udhos/update-golang \
   && cd update-golang \
@@ -15,13 +12,14 @@ RUN git clone --depth 1 https://github.com/udhos/update-golang \
   && cd .. \
   && rm -rf update-golang
 
-RUN npm i -g pnpm
-RUN pnpm i
-
 ENV PATH="/usr/local/go/bin:${PATH}"
 RUN go install github.com/LoneExile/obsidian-convertor@v0.1.5
-
 ENV PATH="/root/go/bin:${PATH}"
+
+COPY package*.json ./
+COPY pnpm-lock.yaml ./
+RUN npm i -g pnpm
+RUN pnpm i
 
 ENTRYPOINT ["/entrypoint.sh"]
 
