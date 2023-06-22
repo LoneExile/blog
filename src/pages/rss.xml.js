@@ -16,7 +16,7 @@ export async function get(context) {
         title: post.data.title,
         pubDate: post.data.created,
         description: post.data.description,
-        link: `/blog/${post.slug}/`,
+        link: `/blogs/${post.slug}/`,
       })),
     stylesheet: '/rss/styles.xsl',
   })
