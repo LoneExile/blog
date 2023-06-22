@@ -36,6 +36,8 @@ is to keep the site simple and focused on content.
 | [Zod](https://github.com/colinhacks/zod)                                       | TypeScript-first schema validation with static type inference.                 |
 | [Adapter(Node)👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/node/) | Allows Astro to deploy your SSR site to Node Targets.                          |
 | [Nanostores👨‍🚀](https://docs.astro.build/en/core-concepts/sharing-state/)       | A tiny (313 bytes) State manager.                                              |
+| [Remark42](https://github.com/umputun/remark42)                                | A self-hosted, lightweight, and simple (yet functional) comment engine.        |
+| [Amazon SES](https://aws.amazon.com/ses/)                                      | A cloud-based email sending service.                                           |
 
 <!-- ### Font -->
 
@@ -102,7 +104,8 @@ All commands are run from the root of the project, from a terminal:
 - [x] add [Astro RSS](https://docs.astro.build/en/guides/rss/)
 - [x] add [Dockerfile](https://docs.astro.build/en/recipes/docker/)
 - [ ] add [external-links](https://docs.astro.build/en/recipes/external-links/)
-- [ ] add [i18n](https://docs.astro.build/en/recipes/i18n/)
+- [ ] add [i18n](https://docs.astro.build/en/recipes/i18n/) ( i18n is not a
+      first-class concern for Astro, wait 3.0 I guess)
 - [x] add site logo
 - [ ] ~~prep SBCs environment for hosting~~
 
