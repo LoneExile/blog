@@ -99,7 +99,7 @@ All commands are run from the root of the project, from a terminal:
 - [ ] add
       [Astro prefetch](https://docs.astro.build/en/guides/integrations-guide/prefetch/)
       ( tried it, but it didn't seem to work. will try again later)
-- [ ] add [Astro RSS](https://docs.astro.build/en/guides/rss/)
+- [x] add [Astro RSS](https://docs.astro.build/en/guides/rss/)
 - [x] add [Dockerfile](https://docs.astro.build/en/recipes/docker/)
 - [ ] add [external-links](https://docs.astro.build/en/recipes/external-links/)
 - [ ] add [i18n](https://docs.astro.build/en/recipes/i18n/)
