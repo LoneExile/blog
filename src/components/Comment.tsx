@@ -69,8 +69,12 @@ export function Comments() {
     }
   }, [])
 
+  // NOTE:
   // components: ["counter", "embed"],
   // <span class="remark42__counter"></span>
+
+  // TODO: Can I add loading component before Remark42 is loaded?
+
   return (
     <>
       <div class="pb-[5%]">

@@ -6,6 +6,15 @@ import { Comments } from "@components/Comment";
 import { formattedDate } from "@utils/utils";
 
 const { created, updated, draft, tags, title, description } = Astro.props;
+
+const proseImg =
+  "prose-img:rounded-xl prose-img:w-[90%] prose-img:h-[90%] prose-img:mx-auto";
+
+const proseHeadings = "prose-headings:text-primary-content";
+
+const proseA = "hover:prose-a:text-info";
+
+const prose = `prose md:prose-lg lg:prose-xl pb-[10%] ${proseImg} ${proseHeadings} ${proseA}`;
 ---
 
 <!-- TODO: 
@@ -38,7 +47,9 @@ const { created, updated, draft, tags, title, description } = Astro.props;
           </div>
         )
       }
-      <h1 class="text-4xl mb-2">{title}</h1>
+      <h1 class="lg:text-5xl md:text-4xl sm:text-3xl text-xl font-bold mb-4">
+        {title}
+      </h1>
       <p class="text-sm mb-2">
         <span>
           Posted {formattedDate(created)}
@@ -49,7 +60,7 @@ const { created, updated, draft, tags, title, description } = Astro.props;
         </span>
       </p>
     </div>
-    <div class="prose pb-[10%]">
+    <div class={prose}>
       <slot />
     </div>
     <Comments client:visible />

@@ -111,7 +111,7 @@ All commands are run from the root of the project, from a terminal:
 
 ## Challenges and Considerations Journal
 
-Read on my blog
+...Read on my blog
 [Here](https://voidbox.io/blogs/2023-05-13-Creating-a-Blog-A-Developer's-Journal/)
 
 ## Resources and references
