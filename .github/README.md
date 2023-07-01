@@ -24,20 +24,22 @@ is to keep the site simple and focused on content.
 
 ### Astro & tools used by far
 
-| Name                                                                           | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| [Markdown🧑‍🚀](https://docs.astro.build/en/guides/markdown-content/)             | Commonly used for authoring text-heavy content.                                |
-| [Tailwind👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/tailwind/)  | Utility classes for styling instead of writing CSS.                            |
-| [Typography](https://github.com/tailwindlabs/tailwindcss-typography)           | Provides beautiful typographic defaults for HTML.                              |
-| [DaisyUI](https://github.com/saadeghi/daisyui)                                 | A Tailwind CSS component library.                                              |
-| [Image👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/image/)        | An Astro integration for easy image optimization.                              |
-| [Sharp](https://github.com/lovell/sharp)                                       | High-performance Node.js image processing library.                             |
-| [Sitemap👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/sitemap/)    | Helps search engines crawl your site more efficiently by generating a sitemap. |
-| [Zod](https://github.com/colinhacks/zod)                                       | TypeScript-first schema validation with static type inference.                 |
-| [Adapter(Node)👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/node/) | Allows Astro to deploy your SSR site to Node Targets.                          |
-| [Nanostores👨‍🚀](https://docs.astro.build/en/core-concepts/sharing-state/)       | A tiny (313 bytes) State manager.                                              |
-| [Remark42](https://github.com/umputun/remark42)                                | A self-hosted, lightweight, and simple (yet functional) comment engine.        |
-| [Amazon SES](https://aws.amazon.com/ses/)                                      | A cloud-based email sending service.                                           |
+| Name                                                                           | Description                                                                                                                                             |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Markdown🧑‍🚀](https://docs.astro.build/en/guides/markdown-content/)             | Commonly used for authoring text-heavy content.                                                                                                         |
+| [Tailwind👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/tailwind/)  | Utility classes for styling instead of writing CSS.                                                                                                     |
+| [Typography](https://github.com/tailwindlabs/tailwindcss-typography)           | Provides beautiful typographic defaults for HTML.                                                                                                       |
+| [DaisyUI](https://github.com/saadeghi/daisyui)                                 | A Tailwind CSS component library.                                                                                                                       |
+| [Image👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/image/)        | An Astro integration for easy image optimization.                                                                                                       |
+| [Sharp](https://github.com/lovell/sharp)                                       | High-performance Node.js image processing library.                                                                                                      |
+| [Sitemap👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/sitemap/)    | Helps search engines crawl your site more efficiently by generating a sitemap.                                                                          |
+| [Zod](https://github.com/colinhacks/zod)                                       | TypeScript-first schema validation with static type inference.                                                                                          |
+| [Adapter(Node)👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/node/) | Allows Astro to deploy your SSR site to Node Targets.                                                                                                   |
+| [Nanostores👨‍🚀](https://docs.astro.build/en/core-concepts/sharing-state/)       | A tiny (313 bytes) State manager.                                                                                                                       |
+| [Remark42](https://github.com/umputun/remark42)                                | A self-hosted, lightweight, and simple (yet functional) comment engine.                                                                                 |
+| [Amazon SES](https://aws.amazon.com/ses/)                                      | A cloud-based email sending service.                                                                                                                    |
+| [Partytown](https://partytown.builder.io/)                                     | A lazy-loaded library to help relocate resource intensive scripts into a [web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) |
+| [Mermaid](https://github.com/mermaid-js/mermaid)                               | Generate diagrams from markdown-like text.                                                                                                              |
 
 <!-- ### Font -->
 
@@ -101,6 +103,9 @@ All commands are run from the root of the project, from a terminal:
 - [ ] add
       [Astro prefetch](https://docs.astro.build/en/guides/integrations-guide/prefetch/)
       ( tried it, but it didn't seem to work. will try again later)
+- [x] add
+      [Partytown](https://docs.astro.build/en/guides/integrations-guide/partytown/)
+  - [x] [Mermaid](https://github.com/mermaid-js/mermaid) generation of diagrams
 - [x] add [Astro RSS](https://docs.astro.build/en/guides/rss/)
 - [x] add [Dockerfile](https://docs.astro.build/en/recipes/docker/)
 - [ ] add [external-links](https://docs.astro.build/en/recipes/external-links/)

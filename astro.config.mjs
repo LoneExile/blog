@@ -4,8 +4,10 @@ import image from '@astrojs/image'
 import sitemap from '@astrojs/sitemap'
 import node from '@astrojs/node'
 import preact from '@astrojs/preact'
-
+import {mermaid} from './src/plugins/mermaid'
 import compress from 'astro-compress'
+
+import partytown from '@astrojs/partytown'
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,10 +20,16 @@ export default defineConfig({
     }),
     sitemap(),
     preact(),
-    compress({img: false}),
+    compress({
+      img: false,
+    }),
+    partytown(),
   ],
   output: 'server',
   adapter: node({
     mode: 'standalone',
   }),
+  markdown: {
+    remarkPlugins: [mermaid],
+  },
 })
