@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@astrojs/image':
-    specifier: ^0.16.9
-    version: 0.16.9(astro@2.6.6)(sharp@0.31.3)
+    specifier: ^0.17.0
+    version: 0.17.0(astro@2.6.6)(sharp@0.31.3)
   '@astrojs/node':
     specifier: ^5.2.0
     version: 5.2.0(astro@2.6.6)
@@ -81,10 +81,10 @@ packages:
     resolution: {integrity: sha512-iIGKu/uzB8sJ5VveQf0eHrVPPFEcrvSlp4qShYMOuY2aMmK2RVXQlX9dUjtmBQ+NAokfIOb7fwCutvH+p13l+g==}
     dev: false
 
-  /@astrojs/image@0.16.9(astro@2.6.6)(sharp@0.31.3):
-    resolution: {integrity: sha512-8RfGGd1MAIQ6xCHgmu+xXBKWE14gvWYcIv61PxWlToEBgMUbmFdN5ICBQ1bea24rx6o5WvsvRjfOnkjPpf2eew==}
+  /@astrojs/image@0.17.0(astro@2.6.6)(sharp@0.31.3):
+    resolution: {integrity: sha512-YSolAMFtABhmgLH5BCeGX5e7QKApgSI1XcxO+HLqHFayQKVQ9r6fwslodTjzQkqxgcWEcQKF4nFR4Sq3hAq6YQ==}
     peerDependencies:
-      astro: ^2.5.0
+      astro: ^2.6.0
       sharp: '>=0.31.0'
     peerDependenciesMeta:
       sharp:
