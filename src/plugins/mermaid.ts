@@ -11,8 +11,13 @@ export const mermaid: RemarkPlugin<[]> = () => (tree) => {
     node.value = dedent`
       <pre
         class="mermaid"
-        data-theme="light"
-        style="overflow: auto; max-width: 100%; background: none; background-color: #d2e9e5;">
+        style="
+        overflow: auto;
+        max-width: 100%;
+        background: none;
+        background-color: #BDD1CE;
+        width: 100%;
+      ">
         ${node.value}
       </pre>
     `
