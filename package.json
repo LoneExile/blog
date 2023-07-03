@@ -12,7 +12,7 @@
     "desktop": "pnpm dlx unlighthouse --site localhost:3000 --desktop --no-cache"
   },
   "dependencies": {
-    "@astrojs/image": "^0.16.9",
+    "@astrojs/image": "^0.17.1",
     "@astrojs/node": "^5.3.0",
     "@astrojs/partytown": "^1.2.3",
     "@astrojs/preact": "^2.2.1",
