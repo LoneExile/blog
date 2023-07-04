@@ -23,3 +23,31 @@ export const mermaid: RemarkPlugin<[]> = () => (tree) => {
     `
   })
 }
+
+// TODO: compile mermaid.js myself, can't use initialize()
+//       because script run on service worker
+//       if I want to customize theme
+
+// https://github.com/BuilderIO/partytown/blob/main/tests/integrations/mermaid/index.html
+/*
+      <script src="https://unpkg.com/mermaid@10.2.4/dist/mermaid.min.js">
+      </script>
+
+      <script src="/scripts/mermaid.js">
+      </script>
+
+      <script>
+      mermaid.initialize({ 
+      startOnLoad: true,
+      'theme': 'base',
+      'themeVariables': {
+        'primaryColor': '#BB2528',
+        'primaryTextColor': '#fff',
+        'primaryBorderColor': '#7C0000',
+        'lineColor': '#F8B229',
+        'secondaryColor': '#006100',
+        'tertiaryColor': '#fff'
+        },
+      });
+      </script>
+*/
