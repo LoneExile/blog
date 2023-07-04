@@ -21,6 +21,8 @@ export default defineConfig({
     sitemap(),
     preact(),
     compress({
+      // 51.49 KB (1.83% reduction) not worth it
+      exclude: ['mermaid.js'],
       img: false,
     }),
     partytown(),
