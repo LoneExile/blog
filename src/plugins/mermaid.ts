@@ -15,7 +15,7 @@ export const mermaid: RemarkPlugin<[]> = () => (tree) => {
         overflow: auto;
         max-width: 100%;
         background: none;
-        background-color: #BDD1CE;
+        background-color: #24292f;
         width: 100%;
       ">
         ${node.value}
@@ -24,9 +24,7 @@ export const mermaid: RemarkPlugin<[]> = () => (tree) => {
   })
 }
 
-// TODO: compile mermaid.js myself, can't use initialize()
-//       because script run on service worker
-//       if I want to customize theme
+// TODO: add initialize to the end of script because it's run on service worker
 
 // https://github.com/BuilderIO/partytown/blob/main/tests/integrations/mermaid/index.html
 /*

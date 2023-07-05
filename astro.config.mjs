@@ -22,7 +22,7 @@ export default defineConfig({
     preact(),
     compress({
       // 51.49 KB (1.83% reduction) not worth it
-      exclude: ['mermaid.js'],
+      exclude: ['mermaid.init.js'],
       img: false,
     }),
     partytown(),

@@ -1628,3 +1628,17 @@ Licensed under The MIT License (http://opensource.org/licenses/MIT)
     text-align: center;
   }
 `}},Symbol.toStringTag,{value:"Module"}));return P2});
+
+mermaid.initialize({ 
+startOnLoad: true,
+'theme': 'base',
+'themeVariables': {
+  'primaryColor': '#BB2528',
+  'primaryTextColor': '#fff',
+  'primaryBorderColor': '#7C0000',
+  'lineColor': '#F8B229',
+  'secondaryColor': '#006100',
+  'tertiaryColor': '#fff'
+  },
+});
+
