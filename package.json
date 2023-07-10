@@ -34,6 +34,6 @@
     "@types/node": "^18.16.19",
     "daisyui": "^3.2.1",
     "ts-dedent": "^2.2.0",
-    "unist-util-visit": "^4.1.2"
+    "unist-util-visit": "^5.0.0"
   }
 }
