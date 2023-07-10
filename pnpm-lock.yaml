@@ -16,7 +16,7 @@ dependencies:
     version: 1.2.3
   '@astrojs/preact':
     specifier: ^2.2.1
-    version: 2.2.1(preact@10.15.1)
+    version: 2.2.1(preact@10.16.0)
   '@astrojs/rss':
     specifier: ^2.4.3
     version: 2.4.3
@@ -31,7 +31,7 @@ dependencies:
     version: 0.9.0(nanostores@0.9.3)
   '@nanostores/preact':
     specifier: ^0.5.0
-    version: 0.5.0(nanostores@0.9.3)(preact@10.15.1)
+    version: 0.5.0(nanostores@0.9.3)(preact@10.16.0)
   astro:
     specifier: ^2.8.0
     version: 2.8.0(@types/node@18.16.19)(sharp@0.32.1)
@@ -42,8 +42,8 @@ dependencies:
     specifier: ^0.9.3
     version: 0.9.3
   preact:
-    specifier: ^10.15.1
-    version: 10.15.1
+    specifier: ^10.16.0
+    version: 10.16.0
   sharp:
     specifier: 0.32.1
     version: 0.32.1
@@ -173,7 +173,7 @@ packages:
       mrmime: 1.0.1
     dev: false
 
-  /@astrojs/preact@2.2.1(preact@10.15.1):
+  /@astrojs/preact@2.2.1(preact@10.16.0):
     resolution: {integrity: sha512-lObgrX/qfK2sEnGDWoyQ8KojFJ54FIKB4TeywWmgj4ZTg0yLnvvOz6ReyPQ8VfR/1MU+vWs22jE4cuZJ/vPnOA==}
     engines: {node: '>=16.12.0'}
     peerDependencies:
@@ -181,10 +181,10 @@ packages:
     dependencies:
       '@babel/core': 7.22.6
       '@babel/plugin-transform-react-jsx': 7.22.5(@babel/core@7.22.6)
-      '@preact/signals': 1.1.4(preact@10.15.1)
+      '@preact/signals': 1.1.4(preact@10.16.0)
       babel-plugin-module-resolver: 5.0.0
-      preact: 10.15.1
-      preact-render-to-string: 5.2.6(preact@10.15.1)
+      preact: 10.16.0
+      preact-render-to-string: 5.2.6(preact@10.16.0)
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -688,7 +688,7 @@ packages:
       nanostores: 0.9.3
     dev: false
 
-  /@nanostores/preact@0.5.0(nanostores@0.9.3)(preact@10.15.1):
+  /@nanostores/preact@0.5.0(nanostores@0.9.3)(preact@10.16.0):
     resolution: {integrity: sha512-Zq5DEAY+kIfwJ1NPd43D1mpsbISuiD6N/SuTHrt/8jUoifLwXaReaZMAnvkvbIGOgcB1Hy++A9jZix2taNNYxQ==}
     engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     peerDependencies:
@@ -696,7 +696,7 @@ packages:
       preact: '>=10.0.0'
     dependencies:
       nanostores: 0.9.3
-      preact: 10.15.1
+      preact: 10.16.0
     dev: false
 
   /@nicolo-ribaudo/semver-v6@6.3.3:
@@ -736,13 +736,13 @@ packages:
     resolution: {integrity: sha512-DL+3kDssZ3UOMz9HufwSYE/gK0+TnT1jzegfF5rstgyPrnyfjz4BHAoxmzQA6Mkp4UlKe8qjsgl3v5a/obzNig==}
     dev: false
 
-  /@preact/signals@1.1.4(preact@10.15.1):
+  /@preact/signals@1.1.4(preact@10.16.0):
     resolution: {integrity: sha512-4s0U8yHfy6OzBjTx8lgG0JZGFq1y+ye7xLmaaI8SXyJ5p+jAtMKW40Mg3GDLISM5WyKnqbfrQ4SOmbq1VTBtTw==}
     peerDependencies:
       preact: 10.x
     dependencies:
       '@preact/signals-core': 1.3.1
-      preact: 10.15.1
+      preact: 10.16.0
     dev: false
 
   /@tailwindcss/typography@0.5.9(tailwindcss@3.3.2):
@@ -2974,17 +2974,17 @@ packages:
       picocolors: 1.0.0
       source-map-js: 1.0.2
 
-  /preact-render-to-string@5.2.6(preact@10.15.1):
+  /preact-render-to-string@5.2.6(preact@10.16.0):
     resolution: {integrity: sha512-JyhErpYOvBV1hEPwIxc/fHWXPfnEGdRKxc8gFdAZ7XV4tlzyzG847XAyEZqoDnynP88akM4eaHcSOzNcLWFguw==}
     peerDependencies:
       preact: '>=10'
     dependencies:
-      preact: 10.15.1
+      preact: 10.16.0
       pretty-format: 3.8.0
     dev: false
 
-  /preact@10.15.1:
-    resolution: {integrity: sha512-qs2ansoQEwzNiV5eAcRT1p1EC/dmEzaATVDJNiB3g2sRDWdA7b7MurXdJjB2+/WQktGWZwxvDrnuRFbWuIr64g==}
+  /preact@10.16.0:
+    resolution: {integrity: sha512-XTSj3dJ4roKIC93pald6rWuB2qQJO9gO2iLLyTe87MrjQN+HklueLsmskbywEWqCHlclgz3/M4YLL2iBr9UmMA==}
     dev: false
 
   /prebuild-install@7.1.1:
