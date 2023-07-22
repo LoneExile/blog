@@ -13,7 +13,7 @@ RUN git clone --depth 1 https://github.com/udhos/update-golang \
   && rm -rf update-golang
 
 ENV PATH="/usr/local/go/bin:${PATH}"
-RUN go install github.com/LoneExile/obsidian-convertor@v0.1.5
+RUN go install github.com/LoneExile/obsidian-convertor@v0.1.6
 ENV PATH="/root/go/bin:${PATH}"
 
 COPY package*.json ./
