@@ -36,7 +36,13 @@ const { Content } = await entry.render();
   description={entry.data.description}
   url={entry.slug}
 >
-  <script type="text/partytown" src="/scripts/mermaid.init.js"></script>
+  {
+    entry.data.diagram ? (
+      <script type="text/partytown" src="/scripts/mermaid.init.js" />
+    ) : (
+      {}
+    )
+  }
   <Content />
 </BlogPost>
 <!-- src="https://unpkg.com/mermaid@10.2.4/dist/mermaid.min.js" -->

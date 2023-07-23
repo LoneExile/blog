@@ -1629,7 +1629,7 @@ Licensed under The MIT License (http://opensource.org/licenses/MIT)
   }
 `}},Symbol.toStringTag,{value:"Module"}));return P2});
 
-mermaid.initialize({ 
+mermaid.initialize({
 startOnLoad: true,
 'theme': 'base',
 'themeVariables': {
@@ -1641,4 +1641,3 @@ startOnLoad: true,
   'tertiaryColor': '#fff'
   },
 });
-

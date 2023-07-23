@@ -10,6 +10,7 @@ const blogCollection = defineCollection({
     updated: z.string(),
     draft: z.boolean(),
     author: z.string(),
+    diagram: z.boolean().optional(),
   }),
 })
 
