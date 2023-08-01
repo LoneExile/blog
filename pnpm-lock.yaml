@@ -7,7 +7,7 @@ settings:
 dependencies:
   '@astrojs/image':
     specifier: ^0.17.2
-    version: 0.17.2(astro@2.9.6)(sharp@0.32.3)
+    version: 0.17.2(astro@2.9.6)(sharp@0.32.4)
   '@astrojs/node':
     specifier: ^5.3.0
     version: 5.3.0(astro@2.9.6)
@@ -34,7 +34,7 @@ dependencies:
     version: 0.5.0(nanostores@0.9.3)(preact@10.16.0)
   astro:
     specifier: ^2.9.6
-    version: 2.9.6(@types/node@20.4.5)(sharp@0.32.3)
+    version: 2.9.6(@types/node@20.4.5)(sharp@0.32.4)
   astro-compress:
     specifier: ^1.1.50
     version: 1.1.50
@@ -45,8 +45,8 @@ dependencies:
     specifier: ^10.16.0
     version: 10.16.0
   sharp:
-    specifier: 0.32.3
-    version: 0.32.3
+    specifier: 0.32.4
+    version: 0.32.4
   tailwindcss:
     specifier: ^3.3.3
     version: 3.3.3
@@ -91,7 +91,7 @@ packages:
   /@astrojs/compiler@1.7.0:
     resolution: {integrity: sha512-+wXur+Nr2WyeGmccBetjUOE1P7Aut8oGzDI+wFhJ31L3Fb8/dsUCRdeVzNTFzkMI7BH5DXy+yUnDz4vudQE5JQ==}
 
-  /@astrojs/image@0.17.2(astro@2.9.6)(sharp@0.32.3):
+  /@astrojs/image@0.17.2(astro@2.9.6)(sharp@0.32.4):
     resolution: {integrity: sha512-hw5vGBlyPwyt9E4ux7eej7dJrcSlTAaMYKYd8OWIJVsFSbV75sXNi+5lwbpNjDLGVIS6Baa4nzayjN5Gxo73MQ==}
     peerDependencies:
       astro: ^2.7.3
@@ -101,13 +101,13 @@ packages:
         optional: true
     dependencies:
       '@altano/tiny-async-pool': 1.0.2
-      astro: 2.9.6(@types/node@20.4.5)(sharp@0.32.3)
+      astro: 2.9.6(@types/node@20.4.5)(sharp@0.32.4)
       http-cache-semantics: 4.1.1
       image-size: 1.0.2
       kleur: 4.1.5
       magic-string: 0.27.0
       mime: 3.0.0
-      sharp: 0.32.3
+      sharp: 0.32.4
     dev: false
 
   /@astrojs/internal-helpers@0.1.1:
@@ -137,7 +137,7 @@ packages:
       astro: ^2.5.0
     dependencies:
       '@astrojs/prism': 2.1.2
-      astro: 2.9.6(@types/node@20.4.5)(sharp@0.32.3)
+      astro: 2.9.6(@types/node@20.4.5)(sharp@0.32.4)
       github-slugger: 1.5.0
       import-meta-resolve: 2.2.2
       rehype-raw: 6.1.1
@@ -159,7 +159,7 @@ packages:
       astro: ^2.7.0
     dependencies:
       '@astrojs/webapi': 2.2.0
-      astro: 2.9.6(@types/node@20.4.5)(sharp@0.32.3)
+      astro: 2.9.6(@types/node@20.4.5)(sharp@0.32.4)
       send: 0.18.0
       server-destroy: 1.0.1
     transitivePeerDependencies:
@@ -215,7 +215,7 @@ packages:
       astro: ^2.6.5
       tailwindcss: ^3.0.24
     dependencies:
-      astro: 2.9.6(@types/node@20.4.5)(sharp@0.32.3)
+      astro: 2.9.6(@types/node@20.4.5)(sharp@0.32.4)
       autoprefixer: 10.4.14(postcss@8.4.27)
       postcss: 8.4.27
       postcss-load-config: 4.0.1(postcss@8.4.27)
@@ -1111,7 +1111,7 @@ packages:
       terser: 5.19.2
     dev: false
 
-  /astro@2.9.6(@types/node@20.4.5)(sharp@0.32.3):
+  /astro@2.9.6(@types/node@20.4.5)(sharp@0.32.4):
     resolution: {integrity: sha512-yvbZQ6YOWYLejyQ4nAcgZLDYQ34enQJ5/LWlXKtUzXzpsUHB75vJMj+XmEq5Q2eVlZOlQrp0lU+nhSRGaOsOUQ==}
     engines: {node: '>=16.12.0', npm: '>=6.14.0'}
     hasBin: true
@@ -1167,7 +1167,7 @@ packages:
       rehype: 12.0.1
       semver: 7.5.4
       server-destroy: 1.0.1
-      sharp: 0.32.3
+      sharp: 0.32.4
       shiki: 0.14.3
       string-width: 5.1.2
       strip-ansi: 7.1.0
@@ -3511,20 +3511,6 @@ packages:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
     dev: false
 
-  /sharp@0.32.3:
-    resolution: {integrity: sha512-i1gFPiNqyqxC4ouVvCKj5G8WfPIMeeSxpKcMrjic6NY4e8zktW7bIdqHPc3FCG+pNKU/XCEabKA57hhvZi8UmQ==}
-    engines: {node: '>=14.15.0'}
-    requiresBuild: true
-    dependencies:
-      color: 4.2.3
-      detect-libc: 2.0.2
-      node-addon-api: 6.1.0
-      prebuild-install: 7.1.1
-      semver: 7.5.4
-      simple-get: 4.0.1
-      tar-fs: 3.0.4
-      tunnel-agent: 0.6.0
-
   /sharp@0.32.4:
     resolution: {integrity: sha512-exUnZewqVZC6UXqXuQ8fyJJv0M968feBi04jb9GcUHrWtkRoAKnbJt8IfwT4NJs7FskArbJ14JAFGVuooszoGg==}
     engines: {node: '>=14.15.0'}
@@ -3538,7 +3524,6 @@ packages:
       simple-get: 4.0.1
       tar-fs: 3.0.4
       tunnel-agent: 0.6.0
-    dev: false
 
   /shebang-command@2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}
