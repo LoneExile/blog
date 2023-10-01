@@ -7,7 +7,7 @@ settings:
 dependencies:
   '@astrojs/image':
     specifier: ^0.17.3
-    version: 0.17.3(astro@2.10.15)(sharp@0.32.3)
+    version: 0.17.3(astro@2.10.15)(sharp@0.32.6)
   '@astrojs/node':
     specifier: ^5.3.6
     version: 5.3.6(astro@2.10.15)
@@ -34,7 +34,7 @@ dependencies:
     version: 0.5.0(nanostores@0.9.3)(preact@10.18.0)
   astro:
     specifier: ^2.10.15
-    version: 2.10.15(@types/node@20.8.0)(sharp@0.32.3)
+    version: 2.10.15(@types/node@20.8.0)(sharp@0.32.6)
   astro-compress:
     specifier: ^2.0.15
     version: 2.0.15
@@ -45,8 +45,8 @@ dependencies:
     specifier: ^10.18.0
     version: 10.18.0
   sharp:
-    specifier: 0.32.3
-    version: 0.32.3
+    specifier: 0.32.6
+    version: 0.32.6
   tailwindcss:
     specifier: ^3.3.3
     version: 3.3.3
@@ -91,7 +91,7 @@ packages:
   /@astrojs/compiler@1.8.2:
     resolution: {integrity: sha512-o/ObKgtMzl8SlpIdzaxFnt7SATKPxu4oIP/1NL+HDJRzxfJcAkOTAb/ZKMRyULbz4q+1t2/DAebs2Z1QairkZw==}
 
-  /@astrojs/image@0.17.3(astro@2.10.15)(sharp@0.32.3):
+  /@astrojs/image@0.17.3(astro@2.10.15)(sharp@0.32.6):
     resolution: {integrity: sha512-5xF4d4dmyjSdEeA0E2M8YS5Usf0SxPHUp4w/xAsbArQP27p6BcA+952Ay8+UJfRdT+9dUGGvRafDtjEZOkefxQ==}
     deprecated: '@astrojs/image is deprecated in favor of astro:assets. Please see the migration guide for more information: https://docs.astro.build/en/guides/upgrade-to/v3/\#removed-astrojsimage'
     peerDependencies:
@@ -102,13 +102,13 @@ packages:
         optional: true
     dependencies:
       '@altano/tiny-async-pool': 1.0.2
-      astro: 2.10.15(@types/node@20.8.0)(sharp@0.32.3)
+      astro: 2.10.15(@types/node@20.8.0)(sharp@0.32.6)
       http-cache-semantics: 4.1.1
       image-size: 1.0.2
       kleur: 4.1.5
       magic-string: 0.30.4
       mime: 3.0.0
-      sharp: 0.32.3
+      sharp: 0.32.6
     dev: false
 
   /@astrojs/internal-helpers@0.1.2:
@@ -138,7 +138,7 @@ packages:
       astro: ^2.5.0
     dependencies:
       '@astrojs/prism': 2.1.2
-      astro: 2.10.15(@types/node@20.8.0)(sharp@0.32.3)
+      astro: 2.10.15(@types/node@20.8.0)(sharp@0.32.6)
       github-slugger: 1.5.0
       import-meta-resolve: 2.2.2
       rehype-raw: 6.1.1
@@ -160,7 +160,7 @@ packages:
       astro: ^2.10.13
     dependencies:
       '@astrojs/webapi': 2.2.0
-      astro: 2.10.15(@types/node@20.8.0)(sharp@0.32.3)
+      astro: 2.10.15(@types/node@20.8.0)(sharp@0.32.6)
       send: 0.18.0
       server-destroy: 1.0.1
     transitivePeerDependencies:
@@ -216,7 +216,7 @@ packages:
       astro: ^2.6.5
       tailwindcss: ^3.0.24
     dependencies:
-      astro: 2.10.15(@types/node@20.8.0)(sharp@0.32.3)
+      astro: 2.10.15(@types/node@20.8.0)(sharp@0.32.6)
       autoprefixer: 10.4.16(postcss@8.4.31)
       postcss: 8.4.31
       postcss-load-config: 4.0.1(postcss@8.4.31)
@@ -1111,7 +1111,7 @@ packages:
       terser: 5.19.3
     dev: false
 
-  /astro@2.10.15(@types/node@20.8.0)(sharp@0.32.3):
+  /astro@2.10.15(@types/node@20.8.0)(sharp@0.32.6):
     resolution: {integrity: sha512-7jgkCZexxOX541g2kKHGOcDDUVKYc+sGi87GtLOkbWwTsKqEIp9GU0o7DpKe1rhItm9VVEiHz4uxvMh3wGmJdA==}
     engines: {node: '>=16.12.0', npm: '>=6.14.0'}
     hasBin: true
@@ -1167,7 +1167,7 @@ packages:
       rehype: 12.0.1
       semver: 7.5.4
       server-destroy: 1.0.1
-      sharp: 0.32.3
+      sharp: 0.32.6
       shiki: 0.14.4
       string-width: 5.1.2
       strip-ansi: 7.1.0
@@ -3507,20 +3507,6 @@ packages:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
     dev: false
 
-  /sharp@0.32.3:
-    resolution: {integrity: sha512-i1gFPiNqyqxC4ouVvCKj5G8WfPIMeeSxpKcMrjic6NY4e8zktW7bIdqHPc3FCG+pNKU/XCEabKA57hhvZi8UmQ==}
-    engines: {node: '>=14.15.0'}
-    requiresBuild: true
-    dependencies:
-      color: 4.2.3
-      detect-libc: 2.0.2
-      node-addon-api: 6.1.0
-      prebuild-install: 7.1.1
-      semver: 7.5.4
-      simple-get: 4.0.1
-      tar-fs: 3.0.4
-      tunnel-agent: 0.6.0
-
   /sharp@0.32.5:
     resolution: {integrity: sha512-0dap3iysgDkNaPOaOL4X/0akdu0ma62GcdC2NBQ+93eqpePdDdr2/LM0sFdDSMmN7yS+odyZtPsb7tx/cYBKnQ==}
     engines: {node: '>=14.15.0'}
@@ -3535,6 +3521,20 @@ packages:
       tar-fs: 3.0.4
       tunnel-agent: 0.6.0
     dev: false
+
+  /sharp@0.32.6:
+    resolution: {integrity: sha512-KyLTWwgcR9Oe4d9HwCwNM2l7+J0dUQwn/yf7S0EnTtb0eVS4RxO0eUSvxPtzT4F3SY+C4K6fqdv/DO27sJ/v/w==}
+    engines: {node: '>=14.15.0'}
+    requiresBuild: true
+    dependencies:
+      color: 4.2.3
+      detect-libc: 2.0.2
+      node-addon-api: 6.1.0
+      prebuild-install: 7.1.1
+      semver: 7.5.4
+      simple-get: 4.0.1
+      tar-fs: 3.0.4
+      tunnel-agent: 0.6.0
 
   /shebang-command@2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}

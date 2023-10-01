@@ -25,7 +25,7 @@
     "astro-compress": "^2.0.15",
     "nanostores": "^0.9.3",
     "preact": "^10.18.0",
-    "sharp": "0.32.3",
+    "sharp": "0.32.6",
     "tailwindcss": "^3.3.3"
   },
   "devDependencies": {
