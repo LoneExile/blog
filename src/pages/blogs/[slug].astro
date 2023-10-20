@@ -2,7 +2,7 @@
 export const prerender = true;
 
 import BlogPost from "@layouts/BlogPost.astro";
-import { CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection } from "astro:content";
 
 export async function getStaticPaths() {
   // TODO: #001 move this to utils?
@@ -40,7 +40,7 @@ const { Content } = await entry.render();
     entry.data.diagram ? (
       <script type="text/partytown" src="/scripts/mermaid.init.js" />
     ) : (
-      {}
+      ""
     )
   }
   <Content />
