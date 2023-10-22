@@ -21,6 +21,9 @@ author: "Apinant U-suwantim"
 
 ###### h6 Heading
 
+<!-- ![dragon](/images/blogs/dragon.webp) -->
+![dragon](../../../assets/test/dragon.webp)
+
 ## Horizontal Rules
 
 ---
