@@ -1,19 +1,19 @@
-import {useStore} from '@nanostores/preact'
-import {settings, SettingsValue} from '@utils/store'
-import Sun from '@icons/sun'
-import Moon from '@icons/moon'
+import { useStore } from "@nanostores/preact";
+import { settings, type SettingsValue } from "@utils/store";
+import Sun from "@icons/sun";
+import Moon from "@icons/moon";
 
 export default function ThemeSwitcher() {
-  type Theme = Extract<SettingsValue['theme'], SettingsValue['theme']>
+  type Theme = Extract<SettingsValue["theme"], SettingsValue["theme"]>;
 
-  const size = 'w-5 h-5'
-  const $settings = useStore(settings)
+  const size = "w-5 h-5";
+  const $settings = useStore(settings);
 
   const setTheme = (val: SettingsValue) => {
-    let theme: Theme = val.theme === 'dark' ? 'light' : 'dark'
-    settings.setKey('theme', theme)
-    document.body.dataset.theme = theme
-  }
+    let theme: Theme = val.theme === "dark" ? "light" : "dark";
+    settings.setKey("theme", theme);
+    document.body.dataset.theme = theme;
+  };
 
   return (
     <>
@@ -23,5 +23,5 @@ export default function ThemeSwitcher() {
         <Moon color="swap-off mt-auto fill-current" size={size} />
       </label>
     </>
-  )
+  );
 }

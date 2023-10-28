@@ -4,9 +4,10 @@ export const prerender = true;
 import Github from "@icons/github.astro";
 import Logo from "@icons/logo.astro";
 import Content from "@layouts/Content.astro";
+import Profile from "@assets/test/profile.webp";
 import { description } from "@utils/enum";
 
-const profilePic = "/images/profile.webp";
+const profilePic = Profile.src;
 ---
 
 <Content title="About" description={description}>
@@ -44,12 +45,11 @@ const profilePic = "/images/profile.webp";
             <p class="mb-2">
               <span class="font-bold italic text-xl">Voidbox</span>
 
-              born from the struggle of retaining and accessing my learning and
-              coding experiences, Voidbox serves as my digital archive. Here, I
-              share my journey through the bleeding-edge of technology,
-              capturing and transforming fleeting knowledge into accessible
-              wisdom. May Voidbox guide you in your coding journey, much like a
-              compass in the vast ocean of technology.
+               born from the struggle of retaining and accessing my learning and
+              coding experiences, Voidbox serves as my digital archive. Here, I share
+              my journey through the bleeding-edge of technology, capturing and transforming
+              fleeting knowledge into accessible wisdom. May Voidbox guide you in
+              your coding journey, much like a compass in the vast ocean of technology.
             </p>
 
             <p class="mb-2 font-bold">
@@ -91,9 +91,10 @@ const profilePic = "/images/profile.webp";
           <p class="pt-4 text-sm">
             👋 Hello, I'm Moo I'm an enthusiastic developer and programmer based
             in Thailand, with a growing interest in languages and tools like
-            Rust, Go, Lua, Astro, and all things DevOps. Presently, I am focused
-            on my day job while dedicating my spare time to building a blog
-            website to share my thoughts and the knowledge I've accumulated.
+            Rust, Go, Lua, Astro, Cloud-related and many more along the way..
+            Presently, I am focused on my day job while dedicating my spare time
+            to building a blog website to share my thoughts and the knowledge
+            I've accumulated.
           </p>
 
           <div

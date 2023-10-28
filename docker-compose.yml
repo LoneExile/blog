@@ -1,15 +1,13 @@
 version: '3.9'
-
 services:
   voidbox:
     image: loneexile/blog:latest
     container_name: voidbox
     ports:
-      - '3001:3001'
+      - '4321:4321'
     restart: always
     networks:
       - voidbox_network
-
   remark:
     image: umputun/remark42:latest
     container_name: 'remark42'
@@ -28,7 +26,6 @@ services:
       - ./var:/srv/var
     networks:
       - voidbox_network
-
 networks:
   voidbox_network:
     external: true
