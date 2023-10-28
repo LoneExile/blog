@@ -19,11 +19,11 @@ export default defineConfig({
     tailwind(),
     sitemap(),
     preact(),
-    compress({
-      // 51.49 KB (1.83% reduction) not worth it
-      exclude: ["mermaid.init.js"],
-      img: false,
-    }),
+    // compress({
+    //   // 51.49 KB (1.83% reduction) not worth it
+    //   exclude: ["mermaid.init.js"],
+    //   img: false,
+    // }),
     partytown(),
   ],
   output: "server",

@@ -22,8 +22,6 @@ services:
     container_name: 'remark42'
     hostname: 'remark42'
     restart: always
-    # id -u, id -g
-    user: '1000:1000'
     logging:
       driver: json-file
       options:
