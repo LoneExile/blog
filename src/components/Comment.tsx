@@ -1,6 +1,6 @@
-import {useEffect} from 'preact/hooks'
-import {useStore} from '@nanostores/preact'
-import {settings, SettingsValue} from '@utils/store'
+import { useEffect } from 'preact/hooks'
+import { useStore } from '@nanostores/preact'
+import { settings, type SettingsValue } from '@utils/store'
 
 type Theme = Extract<SettingsValue['theme'], SettingsValue['theme']>
 
@@ -27,7 +27,7 @@ export function Comments() {
       return
     }
 
-    const {document} = window
+    const { document } = window
 
     const insertScript = (
       id: string,

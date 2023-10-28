@@ -1,5 +1,4 @@
 version: '3.9'
-
 services:
   voidbox:
     build:
@@ -13,17 +12,18 @@ services:
     container_name: voidbox
     restart: always
     ports:
-      - '3001:3001'
+      - '4321:4321'
     env_file:
       - .env
     networks:
       - voidbox_network
-
   remark:
     image: umputun/remark42:latest
     container_name: 'remark42'
     hostname: 'remark42'
     restart: always
+    # id -u, id -g
+    user: '1000:1000'
     logging:
       driver: json-file
       options:
@@ -39,7 +39,7 @@ services:
       - ./var:/srv/var
     networks:
       - voidbox_network
-
 networks:
   voidbox_network:
-    external: true
+
+# external: true
