@@ -117,24 +117,24 @@ var foo = function (bar) {
 console.log(foo(5));
 ```
 
-## Mermaid
+<!-- ## Mermaid -->
 
-```mermaid
-quadrantChart
-    title Reach and engagement of campaigns
-    x-axis Low Reach --> High Reach
-    y-axis Low Engagement --> High Engagement
-    quadrant-1 We should expand
-    quadrant-2 Need to promote
-    quadrant-3 Re-evaluate
-    quadrant-4 May be improved
-    Campaign A: [0.3, 0.6]
-    Campaign B: [0.45, 0.23]
-    Campaign C: [0.57, 0.69]
-    Campaign D: [0.78, 0.34]
-    Campaign E: [0.40, 0.34]
-    Campaign F: [0.35, 0.78]
-```
+<!-- ```mermaid -->
+<!-- quadrantChart -->
+<!--     title Reach and engagement of campaigns -->
+<!--     x-axis Low Reach --> High Reach -->
+<!--     y-axis Low Engagement --> High Engagement -->
+<!--     quadrant-1 We should expand -->
+<!--     quadrant-2 Need to promote -->
+<!--     quadrant-3 Re-evaluate -->
+<!--     quadrant-4 May be improved -->
+<!--     Campaign A: [0.3, 0.6] -->
+<!--     Campaign B: [0.45, 0.23] -->
+<!--     Campaign C: [0.57, 0.69] -->
+<!--     Campaign D: [0.78, 0.34] -->
+<!--     Campaign E: [0.40, 0.34] -->
+<!--     Campaign F: [0.35, 0.78] -->
+<!-- ``` -->
 
 ## Tables
 
@@ -205,25 +205,25 @@ Duplicated footnote reference[^second].
 
 [^second]: Footnote text.
 
-### Definition lists
+<!-- ### Definition lists -->
 
-Term 1
+<!-- Term 1 -->
 
-: Definition 1 with lazy continuation.
+<!-- : Definition 1 with lazy continuation. -->
 
-Term 2 with _inline markup_
+<!-- Term 2 with _inline markup_ -->
 
-: Definition 2
+<!-- : Definition 2 -->
 
-        { some code, part of Definition 2 }
+<!--         { some code, part of Definition 2 } -->
 
-    Third paragraph of definition 2.
+<!--     Third paragraph of definition 2. -->
 
-_Compact style:_
+<!-- _Compact style:_ -->
 
-Term 1 ~ Definition 1
+<!-- Term 1 ~ Definition 1 -->
 
-Term 2 ~ Definition 2a ~ Definition 2b
+<!-- Term 2 ~ Definition 2a ~ Definition 2b -->
 
 ### Abbreviations
 

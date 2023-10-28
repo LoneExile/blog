@@ -1,0 +1,36 @@
+---
+import Base from "@layouts/Base.astro";
+import { description } from "@utils/enum";
+import Dragon from "@assets/test/dragon.avif";
+
+const heroStyle = `background-image: url(${Dragon.src});`;
+---
+
+<Base title="VoidBox" description={description}>
+  <div class="hero flex-grow" style={heroStyle}>
+    <div class="hero-overlay bg-opacity-60"></div>
+    <div class="hero-content text-center text-neutral-content italic">
+      <div class="w-auto">
+        <div class="mb-2 bg-opacity-5 backdrop-blur-md p-5 rounded-sm">
+          <p class="text-xl font-bold mb-2">Welcome to VoidBox,</p>
+          <p>
+            Digital archive transforming fleeting thoughts into lasting blogs.
+          </p>
+          <p>Prioritizing simplicity, performance, accessibility, and SEO</p>
+          <p>
+            While it might not be the most visually appealing site just yet.
+          </p>
+          <p class="font-bold mt-2">Enjoy your journey through Voidbox!</p>
+        </div>
+        <a aria-label="Go to blog" href={"blogs"} target="_self">
+          <button
+            id="go-to-blog"
+            class="btn btn-square btn-outline w-auto px-2 text-neutral-content"
+          >
+            Let's dive in!
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</Base>
