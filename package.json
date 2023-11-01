@@ -30,7 +30,7 @@
   "devDependencies": {
     "@astrojs/markdown-remark": "^3.3.0",
     "@tailwindcss/typography": "^0.5.10",
-    "@types/node": "^20.8.9",
+    "@types/node": "^20.8.10",
     "daisyui": "^3.9.4",
     "prettier": "^3.0.3",
     "prettier-plugin-astro": "^0.12.1",
