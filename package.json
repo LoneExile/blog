@@ -28,7 +28,7 @@
     "typography@latest": "link:@@tailwindcss/typography@latest"
   },
   "devDependencies": {
-    "@astrojs/markdown-remark": "^3.3.0",
+    "@astrojs/markdown-remark": "^3.5.0",
     "@tailwindcss/typography": "^0.5.10",
     "@types/node": "^20.8.9",
     "daisyui": "^3.9.4",
