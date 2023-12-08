@@ -4,8 +4,6 @@ import sitemap from "@astrojs/sitemap";
 import node from "@astrojs/node";
 import preact from "@astrojs/preact";
 import { mermaid } from "./src/plugins/mermaid";
-import compress from "astro-compress";
-
 import partytown from "@astrojs/partytown";
 
 // https://astro.build/config
@@ -20,9 +18,9 @@ export default defineConfig({
     sitemap(),
     preact(),
     // compress({
+    //   Imgage: false,
     //   // 51.49 KB (1.83% reduction) not worth it
-    //   exclude: ["mermaid.init.js"],
-    //   img: false,
+    //   Exclude: ["mermaid.init.js", "./public/scripts/mermaid.init.js"],
     // }),
     partytown(),
   ],
@@ -34,3 +32,4 @@ export default defineConfig({
     remarkPlugins: [mermaid],
   },
 });
+
