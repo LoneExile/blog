@@ -110,20 +110,20 @@ All commands are run from the root of the project, from a terminal:
 - [x] add [Dockerfile](https://docs.astro.build/en/recipes/docker/)
 - [ ] add [external-links](https://docs.astro.build/en/recipes/external-links/)
 - [ ] add [i18n](https://docs.astro.build/en/recipes/i18n/) ( i18n is not a
-      first-class concern for Astro, wait 3.0 I guess)
+      first-class concern for Astro, wait 4.0 I guess)
 - [x] add site logo
 - [ ] ~~prep SBCs environment for hosting~~
 
 ## Challenges and Considerations Journal
-
+<!--
 ...Read on my blog
 [Here](https://voidbox.io/blogs/2023-05-13-Creating-a-Blog-A-Developer's-Journal/)
-
+-->
 ## Resources and references
 
 - [Astro hybrid-rendering](https://astro.build/blog/hybrid-rendering/)
 - [server-endpoints-api-routes](https://docs.astro.build/en/core-concepts/endpoints/#server-endpoints-api-routes)
-
+<!--
 ### Related projects
 
 - [blog](https://github.com/LoneExile/blog) this project
@@ -133,5 +133,5 @@ All commands are run from the root of the project, from a terminal:
   between Obsidian and this project
 - [Obsidian-config](https://github.com/LoneExile/Obsidian-config) my Obsidian
   config
-
+-->
 <!-- https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet -->
