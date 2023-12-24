@@ -11,6 +11,13 @@ export default defineConfig({
   image: {
     service: squooshImageService(),
   },
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "th"],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   output: "server",
   site: "https://voidbox.io",
   integrations: [
@@ -32,4 +39,3 @@ export default defineConfig({
     remarkPlugins: [mermaid],
   },
 });
-

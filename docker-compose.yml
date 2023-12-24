@@ -1,13 +1,21 @@
 version: '3.9'
 services:
   voidbox:
-    image: loneexile/blog:latest
+    # image: loneexile/blog:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: voidbox
+    restart: always
     ports:
       - '4321:4321'
-    restart: always
+    env_file:
+      - .env
     networks:
       - voidbox_network
+    depends_on:
+      - voidsync
+      - remark
   remark:
     image: umputun/remark42:latest
     container_name: 'remark42'
@@ -18,14 +26,35 @@ services:
       options:
         max-size: '10m'
         max-file: '5'
+    # uncomment to expose directly (no proxy)
     ports:
       - '8080:8080'
+      # - '443:8443'
     env_file:
       - .env
     volumes:
       - ./var:/srv/var
+      - ./customised_templates/email_confirmation_login.html.tmpl:/srv/email_confirmation_login.html.tmpl:ro
+      - ./customised_templates/email_confirmation_subscription.html.tmpl:/srv/email_confirmation_subscription.html.tmpl:ro
+      - ./customised_templates/email_reply.html.tmpl:/srv/email_reply.html.tmpl:ro
+      - ./customised_templates/email_unsubscribe.html.tmpl:/srv/email_unsubscribe.html.tmpl:ro
+      - ./customised_templates/error_response.html.tmpl:/srv/error_response.html.tmpl:ro
     networks:
       - voidbox_network
+  voidsync:
+    image: loneexile/voidsync:latest
+    container_name: voidsync
+    restart: always
+    ports:
+      - '8090:8090'
+    env_file:
+      - .env
+    depends_on:
+      - minio
+      - surrealdb
+    networks:
+      - voidbox_network
+
 networks:
   voidbox_network:
-    external: true
+    name: voidbox_network
