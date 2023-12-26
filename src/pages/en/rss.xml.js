@@ -1,14 +1,14 @@
-import rss from '@astrojs/rss'
-import {getCollection} from 'astro:content'
-import {description} from '@utils/enum'
+import rss from "@astrojs/rss";
+import { getCollection } from "astro:content";
+import data from "@data/en.json";
 
 // NOTE: https://docs.astro.build/en/guides/rss/
 
 export async function get(context) {
-  const posts = await getCollection('blogs')
+  const posts = await getCollection("blogs");
   return rss({
-    title: 'VoidBox Blog',
-    description: description,
+    title: "VoidBox Blog",
+    description: data.siteDescription,
     site: context.site,
     items: posts
       .filter((post) => !post.data.draft)
@@ -18,6 +18,6 @@ export async function get(context) {
         description: post.data.description,
         link: `/blogs/${post.slug}/`,
       })),
-    stylesheet: '/rss/styles.xsl',
-  })
+    stylesheet: "/rss/styles.xsl",
+  });
 }
