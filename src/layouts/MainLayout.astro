@@ -1,15 +1,17 @@
 ---
+import Navbar from "@components/Navbar.astro";
+import Footer from "@components/Footer.astro";
+
 interface Props {
-  title: string;
+  // title: string;
   description: string;
 }
-const { title, description } = Astro.props;
-import Footer from "@components/Footer.astro";
-import Navbar from "@components/Navbar.astro";
+
+const { description } = Astro.props;
 ---
 
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<!doctype html>
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,19 +23,16 @@ import Navbar from "@components/Navbar.astro";
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#dca54c" />
     <meta name="msapplication-TileColor" content="#dca54c" />
     <meta name="theme-color" content="#ffffff" />
-    <title>{title}</title>
-  </head>
-  <style></style>
-  <body class="bg-base-300 flex flex-col content-between min-h-screen">
+    <style></style></head
+  >
+
+  <body class="md:bg-white dark:bg-gray-800 md:dark:bg-gray-900">
     <Navbar />
-    <slot />
+    <section class="container mx-auto max-w-screen-xl mt-10 px-8">
+      <slot />
+    </section>
     <Footer />
+    <!-- <script type="text/partytown" src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script> -->
+    <script type="text/partytown" src="/scripts/flowbite.min.js"></script>
   </body>
 </html>
-
-<script>
-  const theme = localStorage.getItem("settings:theme");
-  if (theme) {
-    document.body.dataset.theme = theme;
-  }
-</script>

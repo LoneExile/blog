@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+cd ../
+
 wget https://unpkg.com/mermaid@latest/dist/mermaid.min.js
 mv mermaid.min.js ./public/scripts/mermaid.init.js
 

@@ -18,6 +18,9 @@
       "@layouts/*": [
         "src/layouts/*"
       ],
+      "@data/*": [
+        "src/data/*"
+      ],
       "@icons/*": [
         "src/icons/*"
       ],

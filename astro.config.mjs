@@ -3,8 +3,8 @@ import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 import node from "@astrojs/node";
 import preact from "@astrojs/preact";
-import { mermaid } from "./src/plugins/mermaid";
 import partytown from "@astrojs/partytown";
+import clickDirective from "./astro-click-directive/register.js";
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,8 +14,9 @@ export default defineConfig({
   i18n: {
     defaultLocale: "en",
     locales: ["en", "th"],
+    fallback: { th: "en" },
     routing: {
-      prefixDefaultLocale: false,
+      prefixDefaultLocale: true,
     },
   },
   output: "server",
@@ -24,18 +25,11 @@ export default defineConfig({
     tailwind(),
     sitemap(),
     preact(),
-    // compress({
-    //   Imgage: false,
-    //   // 51.49 KB (1.83% reduction) not worth it
-    //   Exclude: ["mermaid.init.js", "./public/scripts/mermaid.init.js"],
-    // }),
     partytown(),
+    clickDirective(),
   ],
   output: "server",
   adapter: node({
     mode: "standalone",
   }),
-  markdown: {
-    remarkPlugins: [mermaid],
-  },
 });

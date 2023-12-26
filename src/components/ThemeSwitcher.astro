@@ -1,0 +1,50 @@
+---
+import Sun from "@icons/sun.astro";
+import Moon from "@icons/moon.astro";
+
+const size = "w-5 h-5";
+---
+
+<button>
+  <div class="text-white rounded-full w-5 h-5" id="darkTheme">
+    <Sun color="mt-auto fill-current" size={size} />
+  </div>
+  <div class="rounded-full w-5 h-5" id="lightTheme">
+    <Moon color="mt-auto fill-current" size={size} />
+  </div>
+</button>
+
+<script is:inline>
+  if (
+    localStorage.getItem("settings:theme") === "dark" ||
+    (!("settings:theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.documentElement.classList.add("dark");
+    document.querySelector("#lightTheme")?.classList.add("hidden");
+    document.querySelector("#darkTheme")?.classList.remove("hidden");
+  } else {
+    document.documentElement.classList.remove("dark");
+    document.documentElement.classList.add("light");
+    document.querySelector("#darkTheme")?.classList.add("hidden");
+    document.querySelector("#lightTheme")?.classList.remove("hidden");
+  }
+</script>
+
+<script>
+  document
+    .querySelector("#theme-switcher")
+    ?.addEventListener("click", function () {
+      if (document.documentElement.classList.contains("dark")) {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("settings:theme", "light");
+        document.querySelector("#darkTheme")?.classList.add("hidden");
+        document.querySelector("#lightTheme")?.classList.remove("hidden");
+      } else {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("settings:theme", "dark");
+        document.querySelector("#lightTheme")?.classList.add("hidden");
+        document.querySelector("#darkTheme")?.classList.remove("hidden");
+      }
+    });
+</script>
