@@ -1,13 +1,10 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
-import Hero from "@components/Hero.astro";
-import JumbotronCards from "@components/JumbotronCards.astro";
-
 import data from "@data/en.json";
-const path = "/en/";
+
+const path = "/en/about/";
 ---
 
 <MainLayout description={data.siteDescription} path={path}>
-  <Hero />
-  <JumbotronCards />
+  <!-- About page content -->
 </MainLayout>

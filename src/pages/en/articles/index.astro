@@ -1,12 +1,10 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
-import Hero from "@components/Hero.astro";
 import BlogCard from "@components/BlogCard.astro";
-import JumbotronCards from "@components/JumbotronCards.astro";
-
 import data from "@data/en.json";
-
 import { getCollection } from "astro:content";
+
+const path = "/en/articles/";
 
 const posts = await getCollection("blogs", ({ data }) => {
   if (import.meta.env.PROD) {
@@ -17,7 +15,6 @@ const posts = await getCollection("blogs", ({ data }) => {
 });
 ---
 
-<MainLayout description={data.siteDescription}>
+<MainLayout description={data.siteDescription} path={path}>
   <BlogCard posts={posts} />
-  <!-- <JumbotronCards /> -->
 </MainLayout>
