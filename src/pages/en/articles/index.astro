@@ -5,10 +5,19 @@ import BlogCard from "@components/BlogCard.astro";
 import JumbotronCards from "@components/JumbotronCards.astro";
 
 import data from "@data/en.json";
+
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blogs", ({ data }) => {
+  if (import.meta.env.PROD) {
+    return data.draft !== true;
+  } else {
+    return true;
+  }
+});
 ---
 
 <MainLayout description={data.siteDescription}>
-  <Hero />
-  <!-- <BlogCard /> -->
-  <JumbotronCards />
+  <BlogCard posts={posts} />
+  <!-- <JumbotronCards /> -->
 </MainLayout>
