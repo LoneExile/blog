@@ -2,9 +2,7 @@ import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 import data from "@data/en.json";
 
-// NOTE: https://docs.astro.build/en/guides/rss/
-
-export async function get(context) {
+export async function GET(context) {
   const posts = await getCollection("blogs");
   return rss({
     title: "VoidBox Blog",
@@ -18,6 +16,7 @@ export async function get(context) {
         description: post.data.description,
         link: `/blogs/${post.slug}/`,
       })),
+    customData: `<language>en-us</language>`,
     stylesheet: "/rss/styles.xsl",
   });
 }

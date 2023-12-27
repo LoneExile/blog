@@ -4,7 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import node from "@astrojs/node";
 import preact from "@astrojs/preact";
 import partytown from "@astrojs/partytown";
-import clickDirective from "./astro-click-directive/register.js";
+import clickDirective from "./directive/click-directive/register.js";
 
 // https://astro.build/config
 export default defineConfig({

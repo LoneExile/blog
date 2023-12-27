@@ -7,7 +7,7 @@ export default () => ({
     "astro:config:setup": ({ addClientDirective }) => {
       addClientDirective({
         name: "click",
-        entrypoint: "./astro-click-directive/click.js",
+        entrypoint: "./directive/click-directive/click.js",
       });
     },
   },
