@@ -18,5 +18,5 @@ const posts = await getCollection("blogs", ({ data }) => {
 ---
 
 <MainLayout description={data.siteDescription} {currentPath} {language}>
-  <BlogCard posts={posts} />
+  <BlogCard posts={posts} {language} />
 </MainLayout>

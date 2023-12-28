@@ -1,0 +1,49 @@
+---
+export const prerender = true;
+
+import MainLayout from "@layouts/MainLayout.astro";
+import Post from "@components/Post.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import data from "@data/en.json";
+import { type CollectionEntry, getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  // TODO: #001 move this to utils?
+  const blogEntries = await getCollection("blogs", ({ data }) => {
+    if (import.meta.env.PROD) {
+      return data.draft !== true;
+    } else {
+      return true;
+    }
+  });
+
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<"blogs">;
+}
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+const language = "en";
+const currentPath = getRelativeLocaleUrl(language, "articles/" + entry.slug);
+---
+
+<MainLayout description={data.siteDescription} {currentPath} {language}>
+  <Post
+    title={entry.data.title}
+    created={entry.data.created}
+    updated={entry.data.updated}
+    draft={entry.data.draft}
+    tags={entry.data.tags}
+    description={entry.data.description}
+    url={entry.slug}
+  >
+    <!-- ... -->
+    <Content />
+  </Post>
+</MainLayout>

@@ -4,10 +4,11 @@ import Footer from "@components/Footer.astro";
 
 interface Props {
   description: string;
-  path: string;
+  currentPath: string;
+  language: string;
 }
 
-const { description, path } = Astro.props;
+const { description, currentPath, language } = Astro.props;
 ---
 
 <!doctype html>
@@ -27,7 +28,7 @@ const { description, path } = Astro.props;
   >
 
   <body class="md:bg-white dark:bg-gray-800 md:dark:bg-gray-900">
-    <Navbar path={path} />
+    <Navbar {currentPath} {language} />
     <section class="container mx-auto max-w-screen-xl mt-10 px-8">
       <slot />
     </section>
