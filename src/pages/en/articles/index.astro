@@ -3,8 +3,10 @@ import MainLayout from "@layouts/MainLayout.astro";
 import BlogCard from "@components/BlogCard.astro";
 import data from "@data/en.json";
 import { getCollection } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
-const path = "/en/articles/";
+const language = "en";
+const currentPath = getRelativeLocaleUrl(language, "articles");
 
 const posts = await getCollection("blogs", ({ data }) => {
   if (import.meta.env.PROD) {
@@ -15,6 +17,6 @@ const posts = await getCollection("blogs", ({ data }) => {
 });
 ---
 
-<MainLayout description={data.siteDescription} path={path}>
+<MainLayout description={data.siteDescription} {currentPath} {language}>
   <BlogCard posts={posts} />
 </MainLayout>

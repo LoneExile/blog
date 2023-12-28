@@ -2,12 +2,14 @@
 import MainLayout from "@layouts/MainLayout.astro";
 import Hero from "@components/Hero.astro";
 import JumbotronCards from "@components/JumbotronCards.astro";
-
+import { getRelativeLocaleUrl } from "astro:i18n";
 import data from "@data/en.json";
-const path = "/en/";
+
+const language = "en";
+const currentPath = getRelativeLocaleUrl(language, "");
 ---
 
-<MainLayout description={data.siteDescription} path={path}>
+<MainLayout description={data.siteDescription} {currentPath} {language}>
   <Hero />
   <JumbotronCards />
 </MainLayout>

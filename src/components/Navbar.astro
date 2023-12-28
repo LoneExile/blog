@@ -1,12 +1,13 @@
 ---
 import ThemeSwitcher from "@components/ThemeSwitcher.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
 interface Props {
-  path: string;
+  currentPath: string;
+  language: string;
 }
 
-const { path } = Astro.props;
-const lang = "en";
+const { currentPath, language } = Astro.props;
 
 type NavItem = {
   title: string;
@@ -16,15 +17,15 @@ type NavItem = {
 const items: NavItem[] = [
   {
     title: "Home",
-    path: "/" + lang + "/",
+    path: getRelativeLocaleUrl(language, ""),
   },
   {
     title: "Articles",
-    path: "/" + lang + "/articles/",
+    path: getRelativeLocaleUrl(language, "articles"),
   },
   {
     title: "About",
-    path: "/" + lang + "/about/",
+    path: getRelativeLocaleUrl(language, "about"),
   },
 ];
 ---
@@ -73,7 +74,7 @@ const items: NavItem[] = [
       >
         {
           items.map((item) =>
-            item.path === path ? (
+            item.path === currentPath ? (
               <li>
                 <a
                   href={item.path}

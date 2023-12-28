@@ -1,10 +1,12 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
 import data from "@data/en.json";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
-const path = "/en/about/";
+const language = "en";
+const currentPath = getRelativeLocaleUrl(language, "about");
 ---
 
-<MainLayout description={data.siteDescription} path={path}>
+<MainLayout description={data.siteDescription} {currentPath} {language}>
   <!-- About page content -->
 </MainLayout>

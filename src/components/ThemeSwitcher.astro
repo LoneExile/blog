@@ -28,6 +28,7 @@ const size = "w-5 h-5";
       window.matchMedia("(prefers-color-scheme: dark)").matches)
   ) {
     document.documentElement.classList.add("dark");
+    document.documentElement.classList.remove("light");
     document.querySelector("#lightTheme")?.classList.add("hidden");
     document.querySelector("#darkTheme")?.classList.remove("hidden");
   } else {
@@ -43,12 +44,14 @@ const size = "w-5 h-5";
     .querySelector("#theme-switcher")
     ?.addEventListener("click", function () {
       if (document.documentElement.classList.contains("dark")) {
+        document.documentElement.classList.add("light");
         document.documentElement.classList.remove("dark");
         localStorage.setItem("settings:theme", "light");
         document.querySelector("#darkTheme")?.classList.add("hidden");
         document.querySelector("#lightTheme")?.classList.remove("hidden");
       } else {
         document.documentElement.classList.add("dark");
+        document.documentElement.classList.remove("light");
         localStorage.setItem("settings:theme", "dark");
         document.querySelector("#lightTheme")?.classList.add("hidden");
         document.querySelector("#darkTheme")?.classList.remove("hidden");
