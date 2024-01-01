@@ -8,7 +8,7 @@ category: ["tech", "projects", "blog"]
 draft: false
 slug: "2023-05-13-Creating-a-Blog-A-Developer's-Journal"
 author: "Apinant U-suwantim"
-description: "Join me on a deep dive into the process of building my own blog, from choosing the right storage options to implementing real-time synchronization. This journal entry details the challenges, considerations, and victories experienced along the way, featuring technologies like Astro, Ansible, MinIO, and Surrealdb. Whether you're a fellow developer or just curious about the tech behind a blog, this post offers a detailed look into the journey of creating a modern tech blog."
+description: "Join me on a deep dive into the process of building my own blog, This journal entry details the challenges, considerations, and victories experienced along the way."
 ---
 
 ![man-vs-dragon](./cover.jpg)

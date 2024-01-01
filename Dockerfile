@@ -1,4 +1,4 @@
-FROM node:18.15.0
+FROM --platform=linux/amd64 node:18.19.0
 
 WORKDIR /blog
 
