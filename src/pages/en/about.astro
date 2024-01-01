@@ -5,13 +5,14 @@ import Logo from "@icons/logo.astro";
 import Profile from "@assets/profile.webp";
 import data from "@data/en.json";
 import { getRelativeLocaleUrl } from "astro:i18n";
+import { Image } from "astro:assets";
 
 const language = "en";
 const currentPath = getRelativeLocaleUrl(language, "about");
 ---
 
 <MainLayout description={data.siteDescription} {currentPath} {language}>
-  <div class="mb-[3%]">
+  <div class="mb-[3%] py-16">
     <div class="max-w-4xl flex items-start h-auto flex-wrap lg:my-0 pb-[5%]">
       <div
         id="profile"
@@ -64,11 +65,11 @@ const currentPath = getRelativeLocaleUrl(language, "about");
         class="flex w-full lg:w-5/5 rounded-lg shadow-2xl opacity-95 mx-6 lg:mx-0 bg-white dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white"
       >
         <div class="p-4 md:p-12 text-center lg:text-left">
-          <div
+          <Image
             class="block lg:hidden rounded-full shadow-xl mx-auto -mt-4 h-48 w-48 bg-cover bg-center"
-            style={`background-image: url('${Profile.src}')`}
-          >
-          </div>
+            src={Profile}
+            alt="Profile Picture"
+          />
 
           <h1 class="text-3xl font-bold pt-8 lg:pt-0">
             Apinant U-suwantim (Moo)
@@ -111,8 +112,8 @@ const currentPath = getRelativeLocaleUrl(language, "about");
           </div>
         </div>
         <div class="w-full m-1 hidden lg:block lg:w-4/5">
-          <img
-            src={Profile.src}
+          <Image
+            src={Profile}
             class="rounded-none lg:rounded-full shadow-2xl ring-2 p-1 ring-primary-700"
             width="702"
             height="717"

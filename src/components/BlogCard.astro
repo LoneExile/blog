@@ -3,8 +3,11 @@ import { formattedDate } from "@utils/utils";
 import type { CollectionEntry } from "astro:content";
 import Camera from "@icons/camera.astro";
 import ArrowRight from "@icons/arrow-right.astro";
+import Profile from "@assets/profile.webp";
 
 import { getRelativeLocaleUrl } from "astro:i18n";
+
+let name = "Apinant.U";
 
 interface Props {
   posts: CollectionEntry<"blogs">[];
@@ -12,10 +15,28 @@ interface Props {
 }
 
 let { posts, language } = Astro.props;
+posts = posts.sort((a, b) => {
+  if (a.data.created > b.data.created) {
+    return -1;
+  } else if (a.data.created < b.data.created) {
+    return 1;
+  } else {
+    return 0;
+  }
+});
+
 const getPath = (slug: string) => {
   return getRelativeLocaleUrl(language, slug, {
     path: "articles/" + slug,
   });
+};
+
+const dateToToday = (date: string) => {
+  const today = new Date();
+  const created = new Date(date);
+  const diffTime = Math.abs(today.getTime() - created.getTime());
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  return diffDays;
 };
 ---
 
@@ -41,7 +62,9 @@ const getPath = (slug: string) => {
                 <Camera color="fill-current" size="mr-1 w-3 h-3" />
                 Tutorial
               </span>
-              <span class="text-sm">14 days ago</span>
+              <span class="text-sm">
+                {dateToToday(post.data.created)} days ago
+              </span>
             </div>
             <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               <a href={getPath(post.slug)}>{post.data.title}</a>
@@ -51,12 +74,12 @@ const getPath = (slug: string) => {
             </p>
             <div class="flex justify-between items-center">
               <div class="flex items-center space-x-4">
-                <img
-                  class="w-7 h-7 rounded-full"
-                  src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
-                  alt="Jese Leos avatar"
-                />
-                <span class="font-medium dark:text-white"> Jese Leos</span>
+                {/* <img */}
+                {/*   class="w-7 h-7 rounded-full" */}
+                {/*   src={Profile.src} */}
+                {/*   alt={name} */}
+                {/* /> */}
+                {/* <span class="font-medium dark:text-white"> {name}</span> */}
               </div>
               <a
                 href={getPath(post.slug)}

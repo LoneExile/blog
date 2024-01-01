@@ -4,12 +4,21 @@ import Hero from "@components/Hero.astro";
 import JumbotronCards from "@components/JumbotronCards.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import data from "@data/en.json";
+import { getCollection } from "astro:content";
 
 const language = "en";
 const currentPath = getRelativeLocaleUrl(language, "");
+
+const posts = await getCollection("blogs", ({ data }) => {
+  if (import.meta.env.PROD) {
+    return data.draft !== true;
+  } else {
+    return true;
+  }
+});
 ---
 
 <MainLayout description={data.siteDescription} {currentPath} {language}>
   <Hero />
-  <JumbotronCards />
+  <JumbotronCards {posts} {language} />
 </MainLayout>

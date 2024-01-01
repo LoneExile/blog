@@ -2,6 +2,7 @@
 import ThemeSwitcher from "@components/ThemeSwitcher.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import Logo from "@icons/logo.astro";
+import Hambuger from "@icons/hamburger2.astro";
 
 interface Props {
   currentPath: string;
@@ -35,8 +36,11 @@ const items: NavItem[] = [
   <div
     class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
   >
-    <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-      <Logo color="stroke-current dark:text-white" size="w-12 h-12" />
+    <a
+      href={getRelativeLocaleUrl(language, "")}
+      class="flex items-center space-x-3 rtl:space-x-reverse"
+    >
+      <Logo color="stroke-primary-700" size="w-12 h-12" />
       <span
         class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
         >VoidBox</span
@@ -50,20 +54,7 @@ const items: NavItem[] = [
       aria-expanded="false"
     >
       <span class="sr-only">Open main menu</span>
-      <svg
-        class="w-5 h-5"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 17 14"
-      >
-        <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M1 1h15M1 7h15M1 13h15"></path>
-      </svg>
+      <Hambuger color="fill-none" size="w-5 h-5" />
     </button>
     <div class="hidden w-full md:block md:w-auto" id="navbar-default">
       <ul
@@ -94,11 +85,11 @@ const items: NavItem[] = [
           )
         }
         <li id="theme-switcher">
-          <a
+          <div
             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-700 md:p-0 dark:text-white md:dark:hover:text-primary-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
           >
             <ThemeSwitcher />
-          </a>
+          </div>
         </li>
       </ul>
     </div>

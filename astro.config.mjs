@@ -28,7 +28,7 @@ export default defineConfig({
     partytown(),
     clickDirective(),
   ],
-  output: "server",
+  output: "hybrid",
   adapter: node({
     mode: "standalone",
   }),

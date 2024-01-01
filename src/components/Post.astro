@@ -1,6 +1,13 @@
 ---
 import { formattedDate } from "@utils/utils";
-const { created, updated, draft, tags, title, description } = Astro.props;
+import Profile from "@assets/profile.webp";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { Image } from "astro:assets";
+
+const { created, updated, draft, tags, title, description, language } =
+  Astro.props;
+
+const name = "Apinant U-suwantim";
 ---
 
 <main
@@ -15,17 +22,17 @@ const { created, updated, draft, tags, title, description } = Astro.props;
           <div
             class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"
           >
-            <img
+            <Image
               class="mr-4 w-16 h-16 rounded-full"
-              src="https://avatars.githubusercontent.com/u/82561297?v=4"
-              alt="Apinant U-suwantim"
+              src={Profile}
+              alt={name}
             />
             <div>
               <a
-                href="#"
+                href={getRelativeLocaleUrl(language, "/about")}
                 rel="author"
                 class="text-xl font-bold text-gray-900 dark:text-white"
-                >Apinant U-suwantim</a
+                >{name}</a
               >
               <p class="text-base text-gray-500 dark:text-gray-400">
                 Software Engineer

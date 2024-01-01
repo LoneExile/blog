@@ -32,7 +32,7 @@ const { description, currentPath, language } = Astro.props;
     <section class="container mx-auto max-w-screen-xl mt-10 px-8">
       <slot />
     </section>
-    <Footer />
+    <Footer {language} />
     <!-- <script type="text/partytown" src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script> -->
     <script type="text/partytown" src="/scripts/flowbite.min.js"></script>
   </body>
