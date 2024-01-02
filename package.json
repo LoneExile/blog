@@ -12,7 +12,7 @@
     "desktop": "pnpm dlx unlighthouse --site localhost:4321 --desktop --no-cache"
   },
   "dependencies": {
-    "@astrojs/node": "^7.0.3",
+    "@astrojs/node": "^7.0.4",
     "@astrojs/partytown": "^2.0.3",
     "@astrojs/preact": "^3.0.2",
     "@astrojs/rss": "^4.0.1",
@@ -20,7 +20,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "@nanostores/persistent": "^0.9.1",
     "@nanostores/preact": "^0.5.0",
-    "astro": "^4.0.8",
+    "astro": "^4.0.9",
     "flowbite": "^2.2.1",
     "nanostores": "^0.9.5",
     "preact": "^10.19.3",
