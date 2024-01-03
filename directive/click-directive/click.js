@@ -3,7 +3,11 @@
  * @type {import('astro').ClientDirective}
  */
 export default (load, opts, el) => {
-  window.addEventListener(
+  const element = document.querySelector(opts.value);
+  if (!element) {
+    return;
+  }
+  element.addEventListener(
     "click",
     async () => {
       const hydrate = await load();

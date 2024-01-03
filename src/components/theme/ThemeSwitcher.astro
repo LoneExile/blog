@@ -2,10 +2,13 @@
 import Sun from "@icons/sun.astro";
 import Moon from "@icons/moon.astro";
 
+import ThemeUpdate from "@components/theme/ThemeUpdate";
+
 const size = "w-5 h-5";
 ---
 
 <div id="theme-switcher">
+  <ThemeUpdate client:click="#theme-switcher" />
   <button
     type="button"
     class="border border-primary-700 hover:bg-primary-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-sm p-1 text-center inline-flex items-center dark:border-primary-500 dark:text-primary-500 dark:hover:text-white dark:focus:ring-primary-800 dark:hover:bg-primary-500"
@@ -22,18 +25,16 @@ const size = "w-5 h-5";
 </div>
 
 <script is:inline>
-  if (
-    localStorage.getItem("settings:theme") === "dark" ||
-    (!("settings:theme" in localStorage) &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
+  if (localStorage.getItem("settings:theme") === "dark") {
     document.documentElement.classList.add("dark");
     document.documentElement.classList.remove("light");
+    localStorage.setItem("settings:theme", "dark");
     document.querySelector("#lightTheme")?.classList.add("hidden");
     document.querySelector("#darkTheme")?.classList.remove("hidden");
   } else {
     document.documentElement.classList.remove("dark");
     document.documentElement.classList.add("light");
+    localStorage.setItem("settings:theme", "light");
     document.querySelector("#darkTheme")?.classList.add("hidden");
     document.querySelector("#lightTheme")?.classList.remove("hidden");
   }
@@ -43,18 +44,9 @@ const size = "w-5 h-5";
   document
     .querySelector("#theme-switcher")
     ?.addEventListener("click", function () {
-      if (document.documentElement.classList.contains("dark")) {
-        document.documentElement.classList.add("light");
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("settings:theme", "light");
-        document.querySelector("#darkTheme")?.classList.add("hidden");
-        document.querySelector("#lightTheme")?.classList.remove("hidden");
-      } else {
-        document.documentElement.classList.add("dark");
-        document.documentElement.classList.remove("light");
-        localStorage.setItem("settings:theme", "dark");
-        document.querySelector("#lightTheme")?.classList.add("hidden");
-        document.querySelector("#darkTheme")?.classList.remove("hidden");
-      }
+      let element: HTMLElement = document.querySelectorAll(
+        "#theme-update",
+      )[0] as HTMLElement;
+      element.click();
     });
 </script>

@@ -9,9 +9,10 @@ import { Image } from "astro:assets";
 
 const language = "en";
 const currentPath = getRelativeLocaleUrl(language, "about");
+const title = "About";
 ---
 
-<MainLayout description={data.siteDescription} {currentPath} {language}>
+<MainLayout description={data.siteDescription} {currentPath} {language} {title}>
   <div class="mb-[3%] py-16">
     <div class="max-w-4xl flex items-start h-auto flex-wrap lg:my-0 pb-[5%]">
       <div

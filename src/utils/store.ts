@@ -1,9 +1,9 @@
-import {persistentMap} from '@nanostores/persistent'
+import { persistentMap } from "@nanostores/persistent";
 
 export type SettingsValue = {
-  theme: 'dark' | 'light'
-}
+  theme: "dark" | "light";
+};
 
-export const settings = persistentMap<SettingsValue>('settings:', {
-  theme: 'dark',
-})
+export const settings = persistentMap<SettingsValue>("settings:", {
+  theme: "dark",
+});
