@@ -19,6 +19,7 @@ export default defineConfig({
       prefixDefaultLocale: true,
     },
   },
+  prefetch: true,
   output: "server",
   site: "https://voidbox.io",
   integrations: [
