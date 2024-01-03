@@ -1,9 +1,11 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
 import BlogCard from "@components/BlogCard.astro";
+import Pagination from "@components/Pagination.astro";
 import data from "@data/en.json";
 import { getCollection } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
+import type { CollectionEntry } from "astro:content";
 
 const language = "en";
 const currentPath = getRelativeLocaleUrl(language, "articles");
@@ -15,8 +17,24 @@ const posts = await getCollection("blogs", ({ data }) => {
     return true;
   }
 });
+const title = "Articles";
+
+const currentPage: number | null = +Astro.url.searchParams.get("page")! || 1;
+const totalPages: number = Math.ceil(posts.length / 4);
+const totalPosts: number = posts.length;
+const articlesForPage: CollectionEntry<"blogs">[] = posts.slice(
+  (currentPage - 1) * 4,
+  currentPage * 4,
+);
 ---
 
-<MainLayout description={data.siteDescription} {currentPath} {language}>
-  <BlogCard {posts} {language} />
+<MainLayout description={data.siteDescription} {currentPath} {language} {title}>
+  <BlogCard posts={articlesForPage} {language} />
+  <Pagination
+    currentPage={currentPage}
+    totalPosts={totalPosts}
+    disablePrevious={currentPage === 1}
+    disableNext={currentPage === totalPages}
+    language={language}
+  />
 </MainLayout>
