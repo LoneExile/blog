@@ -1,4 +1,8 @@
 import { useEffect } from "preact/hooks";
+import { useStore } from "@nanostores/preact";
+import { settings, type SettingsValue } from "@utils/store";
+
+type Theme = Extract<SettingsValue["theme"], SettingsValue["theme"]>;
 
 declare global {
   interface Window {
@@ -8,10 +12,9 @@ declare global {
 }
 
 export function Comments() {
-  let theme;
+  const theme: Theme = useStore(settings).theme;
 
   useEffect(() => {
-    theme = localStorage.getItem("settings:theme") || "dark";
     if (!window || !window.REMARK42) {
       return;
     }
@@ -23,7 +26,6 @@ export function Comments() {
     if (!window) {
       return;
     }
-    theme = localStorage.getItem("settings:theme") || "dark";
 
     const { document } = window;
 
@@ -40,8 +42,7 @@ export function Comments() {
       if (url.endsWith("/")) {
         url = url.slice(0, -1);
       }
-      // const host = import.meta.env.PUBLIC_REMARK_URL;
-      const host = "https://remark.voidbox.io";
+      const host = import.meta.env.PUBLIC_REMARK_URL;
       script.innerHTML = `
         var remark_config = {
           host: "${host}",

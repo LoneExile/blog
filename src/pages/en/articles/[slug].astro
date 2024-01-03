@@ -1,11 +1,9 @@
 ---
-// export const prerender = true;
-
 import MainLayout from "@layouts/MainLayout.astro";
 import Post from "@components/Post.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import data from "@data/en.json";
 import { type CollectionEntry, getCollection } from "astro:content";
+import { Comments } from "@components/Comment";
 
 interface Props {
   entry: CollectionEntry<"blogs">;
@@ -14,6 +12,7 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 const language = "en";
 const currentPath = getRelativeLocaleUrl(language, "articles/" + entry.slug);
+const title = entry.data.title;
 
 if (entry === undefined) {
   return Astro.redirect(getRelativeLocaleUrl(language, "404/"));
@@ -36,7 +35,12 @@ export async function getStaticPaths() {
 }
 ---
 
-<MainLayout description={data.siteDescription} {currentPath} {language}>
+<MainLayout
+  description={entry.data.description}
+  {currentPath}
+  {language}
+  {title}
+>
   <Post
     title={entry.data.title}
     created={entry.data.created}
@@ -50,4 +54,5 @@ export async function getStaticPaths() {
     <!-- ... -->
     <Content />
   </Post>
+  <Comments client:visible />
 </MainLayout>
