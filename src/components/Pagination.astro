@@ -8,25 +8,47 @@ interface Props {
   disablePrevious: boolean;
   disableNext: boolean;
   language: string;
+  pathPrependWith?: string;
+  path: string;
 }
 
-const { currentPage, totalPosts, disablePrevious, disableNext, language } =
-  Astro.props;
+const {
+  currentPage,
+  totalPosts,
+  disablePrevious,
+  disableNext,
+  language,
+  pathPrependWith,
+  path,
+} = Astro.props;
 
-const currentPath = getRelativeLocaleUrl(language, "articles") + "?page=";
+const currentPath =
+  getRelativeLocaleUrl(language, path, {
+    prependWith: pathPrependWith,
+  }) + "?page=";
 ---
 
-<!-- TODO: hide when less than 4 or eq -->
 <div class="flex flex-col items-center mb-8">
   <span class="text-sm text-gray-700 dark:text-gray-400">
-    Showing <span class="font-semibold text-gray-900 dark:text-white"
-      >{currentPage * 4 - 3}</span
-    > to
-    <span class="font-semibold text-gray-900 dark:text-white"
-      >{currentPage * 4}</span
-    > of <span class="font-semibold text-gray-900 dark:text-white"
-      >{totalPosts}</span
-    > results
+    Showing{" "}
+    <span class="font-semibold text-gray-900 dark:text-white">
+      {totalPosts > 0 ? currentPage * 4 - 3 : 0}
+    </span>{" "}
+    to
+    <span class="font-semibold text-gray-900 dark:text-white">
+      {
+        totalPosts > 4
+          ? currentPage * 4 > totalPosts
+            ? totalPosts
+            : currentPage * 4
+          : totalPosts
+      }
+    </span>{" "}
+    of{" "}
+    <span class="font-semibold text-gray-900 dark:text-white">
+      {totalPosts}
+    </span>{" "}
+    results
   </span>
   <div class="inline-flex mt-2 xs:mt-0">
     <a

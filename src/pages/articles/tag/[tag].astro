@@ -1,0 +1,83 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+import BlogCard from "@components/BlogCard.astro";
+import Pagination from "@components/Pagination.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import NotFound from "@components/NotFound.astro";
+import LoneExile from "@assets/LoneExile.png";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blogs");
+
+  let tags: string[] = [];
+
+  posts.forEach((post) => {
+    if (post.data.tags) {
+      tags = [...tags, ...post.data.tags];
+    }
+  });
+
+  return tags.map((tag) => ({
+    params: {
+      tag: tag.toLowerCase(),
+    },
+  }));
+}
+
+const { tag } = Astro.params;
+
+let posts = await getCollection("blogs");
+posts = posts.filter((post) => {
+  let hasTag = false;
+  post.data.tags?.forEach((postTag: string) => {
+    if (
+      postTag.toLowerCase() === tag &&
+      (import.meta.env.PROD ? post.data.draft !== true : true)
+    ) {
+      hasTag = true;
+    }
+  });
+  return hasTag;
+});
+
+const language = "en";
+const currentPath = getRelativeLocaleUrl(language, "articles");
+
+const title = "Articles Tag: ";
+const siteDescription = "A collection of articles tag: ";
+
+if (tag === undefined) {
+  throw new Error("Tag is required");
+}
+
+const currentPage: number | null = +Astro.url.searchParams.get("page")! || 1;
+const totalPages: number = Math.ceil(posts.length / 4);
+const totalPosts: number = posts.length;
+const articlesForPage: CollectionEntry<"blogs">[] = posts.slice(
+  (currentPage - 1) * 4,
+  currentPage * 4,
+);
+---
+
+<MainLayout description={siteDescription} {currentPath} {language} {title}>
+  {
+    totalPosts === 0 ? (
+      <NotFound image={LoneExile} />
+    ) : (
+      <>
+        <BlogCard posts={articlesForPage} {language} />
+        <Pagination
+          currentPage={currentPage}
+          totalPosts={totalPosts}
+          disablePrevious={currentPage === 1}
+          disableNext={currentPage === totalPages}
+          language={language}
+          pathPrependWith="articles/tag/"
+          path={tag}
+        />
+      </>
+    )
+  }
+</MainLayout>

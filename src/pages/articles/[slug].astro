@@ -54,5 +54,5 @@ export async function getStaticPaths() {
     <!-- ... -->
     <Content />
   </Post>
-  <Comments client:visible />
+  <Comments client:visible={{ rootMargin: '200px' }} />
 </MainLayout>

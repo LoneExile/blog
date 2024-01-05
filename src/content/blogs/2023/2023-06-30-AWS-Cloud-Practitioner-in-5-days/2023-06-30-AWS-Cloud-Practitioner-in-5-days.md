@@ -1,17 +1,17 @@
 ---
 title: "AWS Cloud Practitioner in 5 days"
 description: "A comprehensive guide on how to pass the AWS Certified Cloud Practitioner Exam. This post covers the author's personal journey, preparation strategies, resources used, and exam experience."
-thumbnail: ""
+thumbnail: 
 created: 2023-07-01 12:41
 updated: 2023-07-02 08:48
-tags: ["aws", "cloud", "exam", "devops"]
-category: ["blog", "tech"]
+tags: ["aws", "cloud", "certification", "devops"]
+category: ["technology"]
 draft: false
 slug: "2023-06-30-AWS-Cloud-Practitioner-in-5-days"
 author: "Apinant U-suwantim"
 ---
 
-![blackboard](./blackboard.jpeg)
+![blackboard-unsplash-unspecified](./blackboard-unsplash-unspecified.jpeg)
 
 The CLF-C01: AWS Certified Cloud Practitioner Exam is the first step to becoming
 AWS Certified. It's a foundational exam that tests your understanding of the AWS
@@ -149,7 +149,7 @@ easy to follow with the provided instructions.
 
 ## Results and Conclusion
 
-![my-aws-cloud-practitioner-score](./aws-cloud-practitioner.png)
+![aws-cloud-practitioner-score-voidbox.io-loneexile](./aws-cloud-practitioner-score-voidbox.io-loneexile.png)
 
 I was expecting a score of around 900+ because I was confident about my
 preparation, but I ended up with a score of 850 from 1000. Still, a pass is a

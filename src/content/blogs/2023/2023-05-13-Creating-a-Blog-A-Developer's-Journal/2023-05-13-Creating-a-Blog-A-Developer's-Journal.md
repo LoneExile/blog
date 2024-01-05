@@ -3,15 +3,15 @@ title: "Creating a Blog: A Developer's Journal"
 thumbnail:
 created: 2023-05-13 13:07
 updated: 2023-06-21 11:41
-tags: ["go", "astro", "cloud"]
-category: ["tech", "projects", "blog"]
+tags: ["astro", "frontend"]
+category: ["technology"]
 draft: false
 slug: "2023-05-13-Creating-a-Blog-A-Developer's-Journal"
 author: "Apinant U-suwantim"
 description: "Join me on a deep dive into the process of building my own blog, This journal entry details the challenges, considerations, and victories experienced along the way."
 ---
 
-![man-vs-dragon](./cover.jpg)
+![man-vs-dragon-unknow-unspecified](./man-vs-dragon-unknow-unspecified.jpg)
 
 The emphasis of this site is on **simplicity**, with optimizations for
 **performance**, **accessibility**, and **SEO**. These optimizations are based
