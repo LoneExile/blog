@@ -11,13 +11,14 @@ const language = "en";
 const title = data.siteTitle;
 const currentPath = getRelativeLocaleUrl(language, "");
 
-const posts = await getCollection("blogs", ({ data }) => {
+let posts = await getCollection("blogs", ({ data }) => {
   if (import.meta.env.PROD) {
     return data.draft !== true;
   } else {
     return true;
   }
 });
+posts = posts.filter((post) => post.data.show === undefined || post.data.show);
 ---
 
 <MainLayout description={data.siteDescription} {currentPath} {language} {title}>

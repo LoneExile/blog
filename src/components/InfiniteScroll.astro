@@ -8,13 +8,6 @@ interface Props {
 }
 
 let { posts, language } = Astro.props;
-posts = await getCollection("blogs", ({ data }) => {
-  if (import.meta.env.PROD) {
-    return data.draft !== true;
-  } else {
-    return true;
-  }
-});
 
 posts = posts.sort((a, b) => {
   if (a.data.created > b.data.created) {
