@@ -1,0 +1,47 @@
+---
+// import { getCollection } from "astro:content";
+// import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  tags: string[] | undefined;
+}
+
+const { tags } = Astro.props;
+
+// const posts = await getCollection("blogs");
+
+// let tags: string[] = [];
+
+// posts.forEach((post) => {
+//   if (post.data.tags) {
+//     tags = [...tags, ...post.data.tags];
+//   }
+// });
+
+// // sort tags by frequency
+// tags = tags.sort((a, b) => {
+//   return (
+//     tags.filter((v) => v === a).length - tags.filter((v) => v === b).length
+//   );
+// });
+
+// // remove duplicates
+// tags = tags.filter((tag, index) => {
+//   return tags.indexOf(tag) === index;
+// });
+
+// console.log(tags);
+
+const className =
+  "text-secondary-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-secondary-100 border dark:border-gray-600";
+---
+
+<div class="flex flex-wrap gap-1">
+  {
+    tags?.map((tag) => (
+      <span class={className}>
+        <a href={"/articles/tag/" + tag}>#{tag.toUpperCase()}</a>
+      </span>
+    ))
+  }
+</div>

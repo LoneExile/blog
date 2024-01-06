@@ -1,0 +1,78 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
+interface Props {
+  posts: CollectionEntry<"blogs">[];
+  language: string;
+}
+
+let { posts, language } = Astro.props;
+posts = await getCollection("blogs", ({ data }) => {
+  if (import.meta.env.PROD) {
+    return data.draft !== true;
+  } else {
+    return true;
+  }
+});
+
+posts = posts.sort((a, b) => {
+  if (a.data.created > b.data.created) {
+    return -1;
+  } else if (a.data.created < b.data.created) {
+    return 1;
+  } else {
+    return 0;
+  }
+});
+
+const loop = 10;
+posts = posts.concat(...Array(loop).fill(posts));
+
+console.log(posts.length);
+
+const getPath = (slug: string) => {
+  return getRelativeLocaleUrl(language, slug, {
+    path: "articles/" + slug,
+  });
+};
+
+const style = (position: string, color: string) => {
+  return `pointer-events-none absolute -${position}-1 z-10 h-20 w-full bg-gradient-to-b from-${color}-100 to-transparent`;
+};
+---
+
+<!-- <div class="flex h-screen w-screen items-center justify-center"> -->
+<div class="relative w-full max-w-screen-lg overflow-hidden">
+  <div class="dark:hidden">
+    <div class={style("top", "white")}></div>
+    <div class={style("bottom", "white")}></div>
+    <div class={style("left", "white")}></div>
+    <div class={style("right", "white")}></div>
+  </div>
+  <div class="hidden dark:block">
+    <div class={style("top", "gray-900")}></div>
+    <div class={style("bottom", "gray-900")}></div>
+    <div class={style("left", "gray-900")}></div>
+    <div class={style("right", "gray-900")}></div>
+  </div>
+
+  <div
+    class="mx-auto grid h-[250px] w-[300px] animate-skew-scroll grid-cols-1 gap-5 sm:w-[600px] sm:grid-cols-2"
+  >
+    {
+      posts.map((post) => (
+        <>
+          <a
+            href={getPath(post.slug)}
+            aria-label={"Read more about " + post.data.title}
+            class="flex cursor-pointer items-center space-x-2 rounded-md border border-gray-100 p-5 shadow-md transition-all hover:-translate-y-1 hover:translate-x-1 hover:scale-[1.025] hover:shadow-xl text-gray-600 dark:text-white hover:underline"
+          >
+              {post.data.title}
+          </a>
+        </>
+      ))
+    }
+  </div>
+</div>
+<!-- </div> -->

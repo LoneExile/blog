@@ -2,6 +2,7 @@
 import MainLayout from "@layouts/MainLayout.astro";
 import Hero from "@components/Hero.astro";
 import JumbotronCards from "@components/JumbotronCards.astro";
+import InfiniteScroll from "@components/InfiniteScroll.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import data from "@data/en.json";
 import { getCollection } from "astro:content";
@@ -21,5 +22,5 @@ const posts = await getCollection("blogs", ({ data }) => {
 
 <MainLayout description={data.siteDescription} {currentPath} {language} {title}>
   <Hero />
-  <JumbotronCards {posts} {language} />
+  <InfiniteScroll {posts} {language} />
 </MainLayout>

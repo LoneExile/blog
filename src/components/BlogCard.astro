@@ -1,13 +1,11 @@
 ---
 import { formattedDate } from "@utils/utils";
 import type { CollectionEntry } from "astro:content";
-import Camera from "@icons/camera.astro";
 import ArrowRight from "@icons/arrow-right.astro";
-import Profile from "@assets/profile.webp";
+import TagBadge from "@components/TagBadge.astro";
+import CategoryBadge from "@components/CategoryBadge.astro";
 
 import { getRelativeLocaleUrl } from "astro:i18n";
-
-let name = "Apinant.U";
 
 interface Props {
   posts: CollectionEntry<"blogs">[];
@@ -16,6 +14,9 @@ interface Props {
 
 let { posts, language } = Astro.props;
 posts = posts.sort((a, b) => {
+  if (!a.data.created || !b.data.created) {
+    return 0;
+  }
   if (a.data.created > b.data.created) {
     return -1;
   } else if (a.data.created < b.data.created) {
@@ -46,7 +47,7 @@ const dateToToday = (date: string) => {
       <h2
         class="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
       >
-        <!-- Our Blog -->
+        <!-- My Blog -->
       </h2>
       <p class="font-medium text-gray-500 sm:text-xl dark:text-gray-400">
         "As wisdom grows and knowledge flows,<br /> the more we learn, the less we
@@ -55,43 +56,37 @@ const dateToToday = (date: string) => {
     </div>
     <div class="grid gap-8 lg:grid-cols-1">
       {
-        posts.map((post) => (
-          <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-            <div class="flex justify-between items-center mb-5 text-gray-500">
-              <span class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
-                <Camera color="fill-current" size="mr-1 w-3 h-3" />
-                Tutorial
-              </span>
-              <span class="text-sm">
-                {dateToToday(post.data.created)} days ago
-              </span>
-            </div>
-            <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              <a href={getPath(post.slug)}>{post.data.title}</a>
-            </h2>
-            <p class="mb-5 font-light text-gray-500 dark:text-gray-400">
-              {post.data.description}
-            </p>
-            <div class="flex justify-between items-center">
-              <div class="flex items-center space-x-4">
-                {/* <img */}
-                {/*   class="w-7 h-7 rounded-full" */}
-                {/*   src={Profile.src} */}
-                {/*   alt={name} */}
-                {/* /> */}
-                {/* <span class="font-medium dark:text-white"> {name}</span> */}
+        posts.map((post) =>
+          !post.data.created ? null : (
+            <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+              <div class="flex justify-between items-center mb-5 text-gray-500">
+                <CategoryBadge categorys={post.data.category} />
+                <span class="text-sm">
+                  {dateToToday(post.data.created)} days ago
+                </span>
               </div>
-              <a
-                href={getPath(post.slug)}
-                aria-label={"Read more about " + post.data.title}
-                class="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline"
-              >
-                Read more
-                <ArrowRight color="fill-current" size="ml-2 w-4 h-4" />
-              </a>
-            </div>
-          </article>
-        ))
+              <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                <a href={getPath(post.slug)}>{post.data.title}</a>
+              </h2>
+              <p class="mb-5 font-light text-gray-500 dark:text-gray-400">
+                {post.data.description}
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                  <TagBadge tags={post.data.tags} />
+                </div>
+                <a
+                  href={getPath(post.slug)}
+                  aria-label={"Read more about " + post.data.title}
+                  class="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline"
+                >
+                  Read more
+                  <ArrowRight color="fill-current" size="ml-2 w-4 h-4" />
+                </a>
+              </div>
+            </article>
+          ),
+        )
       }
     </div>
   </div>

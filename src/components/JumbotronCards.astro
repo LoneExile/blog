@@ -3,6 +3,7 @@ import ArrowRight from "@icons/arrow-right-2.astro";
 import Camera from "@icons/camera.astro";
 import Code from "@icons/code.astro";
 import Design from "@icons/design.astro";
+import CategoryBadge from "@components/CategoryBadge.astro";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 
@@ -45,15 +46,9 @@ const getPath = (slug: string) => {
     <div
       class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12 mb-8"
     >
-      <a
-        href="#"
-        class="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-blue-400 mb-2"
-      >
-        <Camera color="fill-current" size="w-2.5 h-2.5 me-1.5" />
-        Tutorial
-      </a>
+      <CategoryBadge categorys={posts[0].data.categorys} />
       <h1
-        class="text-gray-900 dark:text-white text-3xl md:text-5xl font-extrabold mb-2"
+        class="text-gray-900 dark:text-white text-3xl md:text-5xl font-extrabold my-1"
       >
         {posts[0].data.title}
       </h1>
@@ -72,13 +67,7 @@ const getPath = (slug: string) => {
       <div
         class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12"
       >
-        <a
-          href="#"
-          class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 mb-2"
-        >
-          <Design color="fill-current" size="w-2.5 h-2.5 me-1.5" />
-          Design
-        </a>
+        <CategoryBadge categorys={posts[1].data.categorys} />
         <h2 class="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">
           {posts[1].data.title}
         </h2>
@@ -98,13 +87,8 @@ const getPath = (slug: string) => {
       <div
         class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12"
       >
-        <a
-          href="#"
-          class="bg-purple-100 text-purple-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-purple-400 mb-2"
-        >
-          <Code color="fill-none" size="w-2.5 h-2.5 me-1.5" />
-          Code
-        </a>
+        <CategoryBadge categorys={posts[2].data.categorys} />
+
         <h2 class="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">
           {posts[2].data.title}
         </h2>

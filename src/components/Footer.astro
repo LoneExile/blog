@@ -35,13 +35,14 @@ const { language } = Astro.props;
           <ul class="text-gray-500 dark:text-gray-400 font-medium">
             <li class="mb-4">
               <a
+                target="_blank"
                 href="https://github.com/LoneExile/blog"
                 class="hover:underline">Source Code</a
               >
             </li>
 
             <li class="mb-4">
-              <a href="#" class="hover:underline">Changelog</a>
+              <a target="_blank" href="#" class="hover:underline">Changelog</a>
             </li>
           </ul>
         </div>
@@ -53,12 +54,15 @@ const { language } = Astro.props;
           </h2>
           <ul class="text-gray-500 dark:text-gray-400 font-medium">
             <li class="mb-4">
-              <a href="https://github.com/LoneExile" class="hover:underline"
-                >Github</a
+              <a
+                target="_blank"
+                href="https://github.com/LoneExile"
+                class="hover:underline">Github</a
               >
             </li>
             <li>
               <a
+                target="_blank"
                 href="https://www.linkedin.com/in/apinant-moo/"
                 class="hover:underline">Linkedin</a
               >
@@ -73,10 +77,14 @@ const { language } = Astro.props;
           </h2>
           <ul class="text-gray-500 dark:text-gray-400 font-medium">
             <li class="mb-4">
-              <a href="#" class="hover:underline">Privacy Policy</a>
+              <a target="_blank" href="#" class="hover:underline"
+                >Privacy Policy</a
+              >
             </li>
             <li>
-              <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+              <a target="_blank" href="#" class="hover:underline"
+                >Terms &amp; Conditions</a
+              >
             </li>
           </ul>
         </div>
@@ -92,6 +100,7 @@ const { language } = Astro.props;
       </span>
       <div class="flex mt-4 sm:justify-center sm:mt-0">
         <a
+          target="_blank"
           href="https://discord.gg/9rdch37uDe"
           class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
         >
@@ -99,6 +108,7 @@ const { language } = Astro.props;
           <span class="sr-only">Discord community</span>
         </a>
         <a
+          target="_blank"
           href="https://twitter.com/L0neExile"
           class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
         >
@@ -106,6 +116,7 @@ const { language } = Astro.props;
           <span class="sr-only">Twitter page</span>
         </a>
         <a
+          target="_blank"
           href="https://github.com/LoneExile"
           class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
         >
@@ -113,6 +124,7 @@ const { language } = Astro.props;
           <span class="sr-only">GitHub account</span>
         </a>
         <a
+          target="_blank"
           href={getRelativeLocaleUrl(language, "rss.xml").slice(-1) === "/"
             ? getRelativeLocaleUrl(language, "rss.xml").slice(0, -1)
             : getRelativeLocaleUrl(language, "rss.xml")}
