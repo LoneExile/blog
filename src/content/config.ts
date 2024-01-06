@@ -19,6 +19,8 @@ const blogCollection = defineCollection({
     draft: z.boolean(),
     author: z.enum([data.author]),
     diagram: z.boolean().optional(),
+    comments: z.boolean().optional(),
+    show: z.boolean().optional(),
   }),
 });
 

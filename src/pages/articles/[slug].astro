@@ -19,7 +19,6 @@ if (entry === undefined) {
 }
 
 export async function getStaticPaths() {
-  // TODO: #001 move this to utils?
   const blogEntries = await getCollection("blogs", ({ data }) => {
     if (import.meta.env.PROD) {
       return data.draft !== true;
@@ -50,9 +49,14 @@ export async function getStaticPaths() {
     description={entry.data.description}
     url={entry.slug}
     {language}
+    comments={entry.data.comments}
   >
-    <!-- ... -->
     <Content />
   </Post>
-  <Comments client:visible={{ rootMargin: '200px' }} />
+
+  {
+    (entry.data.comments === undefined || entry.data.comments === true) && (
+      <Comments client:visible={{ rootMargin: "200px" }} />
+    )
+  }
 </MainLayout>

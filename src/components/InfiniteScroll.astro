@@ -29,8 +29,6 @@ posts = posts.sort((a, b) => {
 const loop = 10;
 posts = posts.concat(...Array(loop).fill(posts));
 
-console.log(posts.length);
-
 const getPath = (slug: string) => {
   return getRelativeLocaleUrl(language, slug, {
     path: "articles/" + slug,
@@ -43,7 +41,7 @@ const style = (position: string, color: string) => {
 ---
 
 <!-- <div class="flex h-screen w-screen items-center justify-center"> -->
-<div class="relative w-full max-w-screen-lg overflow-hidden">
+<div class="relative w-full max-w-screen-lg overflow-hidden mt-4 mx-auto">
   <div class="dark:hidden">
     <div class={style("top", "white")}></div>
     <div class={style("bottom", "white")}></div>
@@ -68,7 +66,7 @@ const style = (position: string, color: string) => {
             aria-label={"Read more about " + post.data.title}
             class="flex cursor-pointer items-center space-x-2 rounded-md border border-gray-100 p-5 shadow-md transition-all hover:-translate-y-1 hover:translate-x-1 hover:scale-[1.025] hover:shadow-xl text-gray-600 dark:text-white hover:underline"
           >
-              {post.data.title}
+            {post.data.title}
           </a>
         </>
       ))

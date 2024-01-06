@@ -2,7 +2,6 @@
 import MainLayout from "@layouts/MainLayout.astro";
 import BlogCard from "@components/BlogCard.astro";
 import Pagination from "@components/Pagination.astro";
-// edit this data
 import { getCollection } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import type { CollectionEntry } from "astro:content";
@@ -10,13 +9,15 @@ import type { CollectionEntry } from "astro:content";
 const language = "en";
 const currentPath = getRelativeLocaleUrl(language, "articles");
 
-const posts = await getCollection("blogs", ({ data }) => {
+let posts = await getCollection("blogs", ({ data }) => {
   if (import.meta.env.PROD) {
     return data.draft !== true;
   } else {
     return true;
   }
 });
+posts = posts.filter((post) => post.data.show === undefined || post.data.show);
+
 const title = "Articles";
 const siteDescription = "A collection of articles";
 

@@ -41,9 +41,9 @@ const { language } = Astro.props;
               >
             </li>
 
-            <li class="mb-4">
-              <a target="_blank" href="#" class="hover:underline">Changelog</a>
-            </li>
+            <!-- <li class="mb-4"> -->
+            <!--   <a href="#" class="hover:underline">Changelog</a> -->
+            <!-- </li> -->
           </ul>
         </div>
         <div>
@@ -77,13 +77,21 @@ const { language } = Astro.props;
           </h2>
           <ul class="text-gray-500 dark:text-gray-400 font-medium">
             <li class="mb-4">
-              <a target="_blank" href="#" class="hover:underline"
-                >Privacy Policy</a
+              <a
+                href={getRelativeLocaleUrl(
+                  language,
+                  "articles/privacy-policy/",
+                )}
+                class="hover:underline">Privacy Policy</a
               >
             </li>
             <li>
-              <a target="_blank" href="#" class="hover:underline"
-                >Terms &amp; Conditions</a
+              <a
+                href={getRelativeLocaleUrl(
+                  language,
+                  "articles/terms-and-conditions/",
+                )}
+                class="hover:underline">Terms &amp; Conditions</a
               >
             </li>
           </ul>
