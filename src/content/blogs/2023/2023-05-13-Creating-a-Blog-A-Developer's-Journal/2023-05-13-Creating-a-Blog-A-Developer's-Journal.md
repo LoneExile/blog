@@ -1,9 +1,10 @@
 ---
 title: "Creating a Blog: A Developer's Journal"
-thumbnail:
+thumbnail: { src: "/content/blogs/{year}/{slug}/generics-unsplash-brano.jpg", alt: "" }
+language: "en"
 created: 2023-05-13 13:07
 updated: 2023-06-21 11:41
-tags: ["astro", "frontend"]
+tags: ["astro", "frontend", "self-hosted"]
 category: ["technology"]
 draft: false
 slug: "2023-05-13-Creating-a-Blog-A-Developer's-Journal"
