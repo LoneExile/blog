@@ -2,6 +2,7 @@
 import MainLayout from "@layouts/MainLayout.astro";
 import Github from "@icons/github.astro";
 import Logo from "@icons/logo.astro";
+import Linkedin from "@icons/linkedin.astro";
 import Profile from "@assets/profile.webp";
 import data from "@data/en.json";
 import { getRelativeLocaleUrl } from "astro:i18n";
@@ -99,16 +100,23 @@ const title = "About";
           </p>
 
           <div
-            class="mt-6 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center justify-between"
+            class="mt-6 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center"
           >
             <a
-              class="link"
+              class="link mr-4"
               href="https://github.com/LoneExile"
-              data-tippy-content="@LoneExile"
               target="_blank"
               aria-label="GitHub Profile"
             >
               <Github color="fill-current" size="w-6 h-6 cursor-pointer" />
+            </a>
+            <a
+              class="link"
+              href="https://www.linkedin.com/in/apinant-moo/"
+              target="_blank"
+              aria-label="Linkedin Profile"
+            >
+              <Linkedin color="fill-current" size="w-6 h-6 cursor-pointer" />
             </a>
           </div>
         </div>
