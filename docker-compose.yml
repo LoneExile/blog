@@ -1,0 +1,14 @@
+version: '3.9'
+services:
+  voidbox:
+    # image: loneexile/blog:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: voidbox
+    restart: always
+    ports:
+      - '4321:4321'
+    env_file:
+      - .env
+

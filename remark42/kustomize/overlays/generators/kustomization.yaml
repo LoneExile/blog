@@ -1,0 +1,31 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+
+patches:
+  - path: deployment.yaml
+  - path: service.yaml
+
+generatorOptions:
+  labels:
+    app: remark42-service
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: remark42-customised-templates-files
+    behavior: create
+    files:
+      - ../../../customised_templates/email_confirmation_login.html.tmpl
+      - ../../../customised_templates/email_confirmation_subscription.html.tmpl
+      - ../../../customised_templates/email_reply.html.tmpl
+      - ../../../customised_templates/email_unsubscribe.html.tmpl
+      - ../../../customised_templates/error_response.html.tmpl
+secretGenerator:
+  - name: remark42
+    # literals:
+    #   - SECRET="myS3cret"
+    envs:
+      - ../../../.env
+

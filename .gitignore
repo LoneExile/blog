@@ -14,15 +14,16 @@ pnpm-debug.log*
 
 
 # environment variables
-.env
-.env.production
+remark42/*.bak
+remark42/.env
 
 # macOS-specific files
 .DS_Store
 
 .astro
 
-# src/content/blogs/*
-public/images/blogs/*
-var/
 .unlighthouse
+*.bak
+
+src/content/blogs/test*
+src/content/blogs/_*

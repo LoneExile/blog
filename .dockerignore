@@ -1,1 +1,14 @@
 node_modules
+dist
+
+*.bak
+
+remark42
+remark42/*.bak
+remark42/.env
+
+.DS_Store
+.unlighthouse
+
+src/content/blogs/test*
+src/content/blogs/_*

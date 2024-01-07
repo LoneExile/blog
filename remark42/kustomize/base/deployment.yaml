@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: remark42-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: remark42
+  template:
+    metadata:
+      labels:
+        app: remark42
+    spec:
+      containers:
+        - name: remark42
+          image: umputun/remark42:latest
+          ports:
+            - containerPort: 8080

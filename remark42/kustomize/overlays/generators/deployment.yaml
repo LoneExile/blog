@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: remark42-deployment
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: remark42
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "25Mi"
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+          env:
+            - name: REMARK_URL
+              valueFrom:
+                secretKeyRef:
+                  name: remark42
+                  key: REMARK_URL
+            - name: SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: remark42
+                  key: SECRET
+            - name: AUTH_GOOGLE_CID
+              valueFrom:
+                secretKeyRef:
+                  name: remark42
+                  key: AUTH_GOOGLE_CID
+            - name: AUTH_GOOGLE_CSEC
+              valueFrom:
+                secretKeyRef:
+                  name: remark42
+                  key: AUTH_GOOGLE_CSEC
+            - name: AUTH_GITHUB_CID
+              valueFrom:
+                secretKeyRef:
+                  name: remark42
+                  key: AUTH_GITHUB_CID
+            - name: AUTH_GITHUB_CSEC
+              valueFrom:
+                secretKeyRef:
+                  name: remark42
+                  key: AUTH_GITHUB_CSEC
+            - name: ADMIN_SHARED_ID
+              valueFrom:
+                secretKeyRef:
+                  name: remark42
+                  key: ADMIN_SHARED_ID
+            - name: TIME_ZONE
+              value: "Asia/Bangkok"
+          volumeMounts:
+            - name: remark42-data
+              mountPath: /srv/var
+            - name: remark42-customised-templates
+              mountPath: /srv/email_confirmation_login.html.tmpl
+              subPath: email_confirmation_login.html.tmpl
+            - name: remark42-customised-templates
+              mountPath: /srv/email_confirmation_subscription.html.tmpl
+              subPath: email_confirmation_subscription.html.tmpl
+            - name: remark42-customised-templates
+              mountPath: /srv/email_reply.html.tmpl
+              subPath: email_reply.html.tmpl
+            - name: remark42-customised-templates
+              mountPath: /srv/email_unsubscribe.html.tmpl
+              subPath: email_unsubscribe.html.tmpl
+            - name: remark42-customised-templates
+              mountPath: /srv/error_response.html.tmpl
+              subPath: error_response.html.tmpl
+          securityContext:
+            readOnlyRootFilesystem: false
+      volumes:
+        - name: remark42-data
+          persistentVolumeClaim:
+            claimName: dynamic-volume
+        - name: remark42-customised-templates
+          configMap:
+            name: remark42-customised-templates-files
+
