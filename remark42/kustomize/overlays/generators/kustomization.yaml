@@ -17,15 +17,15 @@ configMapGenerator:
   - name: remark42-customised-templates-files
     behavior: create
     files:
-      - ../../../customised_templates/email_confirmation_login.html.tmpl
-      - ../../../customised_templates/email_confirmation_subscription.html.tmpl
-      - ../../../customised_templates/email_reply.html.tmpl
-      - ../../../customised_templates/email_unsubscribe.html.tmpl
-      - ../../../customised_templates/error_response.html.tmpl
+      - files/customised_templates/email_confirmation_login.html.tmpl
+      - files/customised_templates/email_confirmation_subscription.html.tmpl
+      - files/customised_templates/email_reply.html.tmpl
+      - files/customised_templates/email_unsubscribe.html.tmpl
+      - files/customised_templates/error_response.html.tmpl
 secretGenerator:
   - name: remark42
     # literals:
     #   - SECRET="myS3cret"
     envs:
-      - ../../../.env
+      - files/.env
 

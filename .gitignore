@@ -16,6 +16,7 @@ pnpm-debug.log*
 # environment variables
 remark42/*.bak
 remark42/.env
+remark42/kustomize/overlays/generators/files/.env
 
 # macOS-specific files
 .DS_Store

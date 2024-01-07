@@ -76,7 +76,7 @@ spec:
       volumes:
         - name: remark42-data
           persistentVolumeClaim:
-            claimName: dynamic-volume
+            claimName: remark42-pvc
         - name: remark42-customised-templates
           configMap:
             name: remark42-customised-templates-files
