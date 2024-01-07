@@ -18,7 +18,7 @@ show: false
 
 **Introduction:**
 
-- Welcome to [VoidBox.io](VoidBox.io).
+- Welcome to [VoidBox.io](/).
 - This policy outlines how we collect, use, protect, and handle your personal information on our blog.
 
 **Information Collection and Use:**

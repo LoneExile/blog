@@ -16,7 +16,7 @@ show: false
 
 **Introduction:**
 
-- Welcome to [VoidBox.io](VoidBox.io).
+- Welcome to [VoidBox.io](/).
 - By accessing our blog, you agree to these terms and conditions. Please read them carefully.
 
 **Use License (Creative Commons Attribution-ShareAlike (CC BY-SA)):**
@@ -45,8 +45,8 @@ show: false
 
 **Privacy Policy:**
 
-- The privacy of our visitors to [VoidBox.io](VoidBox.io) is important to us.
-- At [VoidBox.io](VoidBox.io), we recognize that privacy of your personal information is important. Here is information on what types of personal information we receive and collect when you use and visit [VoidBox.io](VoidBox.io), and how we safeguard your information.
+- The privacy of our visitors to [VoidBox.io](/) is important to us.
+- At [VoidBox.io](/), we recognize that privacy of your personal information is important. Here is information on what types of personal information we receive and collect when you use and visit [VoidBox.io](VoidBox.io), and how we safeguard your information.
 - We never sell your personal information to third parties.
 - For a detailed explanation of how we collect, use, and protect your personal data, please view our [Privacy Policy](VoidBox.io).
 - By using our blog, you agree to the collection and use of information in accordance with our Privacy Policy.

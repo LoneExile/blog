@@ -46,7 +46,7 @@ const getPath = (slug: string) => {
     <div
       class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12 mb-8"
     >
-      <CategoryBadge categorys={posts[0].data.categorys} />
+      <CategoryBadge categorys={posts[0].data.category} />
       <h1
         class="text-gray-900 dark:text-white text-3xl md:text-5xl font-extrabold my-1"
       >
@@ -67,7 +67,7 @@ const getPath = (slug: string) => {
       <div
         class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12"
       >
-        <CategoryBadge categorys={posts[1].data.categorys} />
+        <CategoryBadge categorys={posts[1].data.category} />
         <h2 class="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">
           {posts[1].data.title}
         </h2>
@@ -87,7 +87,7 @@ const getPath = (slug: string) => {
       <div
         class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12"
       >
-        <CategoryBadge categorys={posts[2].data.categorys} />
+        <CategoryBadge categorys={posts[2].data.category} />
 
         <h2 class="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">
           {posts[2].data.title}
