@@ -1,0 +1,79 @@
+---
+import { getCollection } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { Image } from "astro:assets";
+
+interface Props {
+  currentTags: string[];
+  language: string;
+}
+const { currentTags, language } = Astro.props;
+
+let posts = await getCollection("blogs", ({ data }) => {
+  if (import.meta.env.PROD) {
+    return data.draft !== true;
+  } else {
+    return true;
+  }
+});
+posts = posts.filter((post) => post.data.show === undefined || post.data.show);
+
+const relatedPosts = posts.filter((post) => {
+  if (post.data.tags) {
+    return post.data.tags.some((tag) => currentTags.includes(tag));
+  }
+  return false;
+});
+
+const getPath = (slug: string) => {
+  return getRelativeLocaleUrl(language, slug, {
+    path: "articles/" + slug,
+  });
+};
+
+function calculateReadingTime(text: string) {
+  const wordsPerMinute = 200;
+  const textLength = text.split(/\s+/).length;
+  const timeToRead = textLength / wordsPerMinute;
+  return Math.ceil(timeToRead);
+}
+---
+
+<aside aria-label="Related articles" class="py-8 lg:py-24 dark:bg-gray-900">
+  <div class="px-4 mx-auto max-w-screen-xl">
+    <h2 class="mb-8 text-2xl font-bold text-gray-900 dark:text-white">
+      Related articles
+    </h2>
+    <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        relatedPosts.map((post) => (
+          <article class="max-w-xs">
+            {post.data.thumbnail && (
+              <a href={getPath(post.slug)}>
+                <Image
+                  src={post.data.thumbnail.src}
+                  class="mb-5 rounded-lg"
+                  alt={post.data.thumbnail?.alt || ""}
+                  width="260",
+                  height="150",
+                />
+              </a>
+            )}
+            <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
+              <a href={getPath(post.slug)}>{post.data.title}</a>
+            </h2>
+            <p class="mb-4 text-gray-500 dark:text-gray-400">
+              {post.data.description}
+            </p>
+            <a
+              href="#"
+              class="inline-flex items-center font-medium underline underline-offset-4 text-primary-600 dark:text-primary-500 hover:no-underline"
+            >
+              Read in {calculateReadingTime(post.body.toString())} minutes
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</aside>

@@ -1,6 +1,8 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
 import Post from "@components/Post.astro";
+import NewSletter from "@components/NewSletter.astro";
+import RelateArticles from "@components/RelateArticles.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { type CollectionEntry, getCollection } from "astro:content";
 import { Comments } from "@components/Comment";
@@ -32,6 +34,8 @@ export async function getStaticPaths() {
     props: { entry },
   }));
 }
+
+const currentTags = entry.data.tags;
 ---
 
 <MainLayout
@@ -59,4 +63,6 @@ export async function getStaticPaths() {
       <Comments client:visible={{ rootMargin: "200px" }} />
     )
   }
+  <RelateArticles {currentTags} {language} />
+  <NewSletter {language} />
 </MainLayout>

@@ -1,6 +1,6 @@
 ---
 title: "Creating a Blog: A Developer's Journal"
-thumbnail: { src: "/content/blogs/{year}/{slug}/generics-unsplash-brano.jpg", alt: "" }
+thumbnail: { src: "./man-vs-dragon-unknow-unspecified.jpg", alt: "man-vs-dragon-unknow-unspecified" }
 language: "en"
 created: 2023-05-13 13:07
 updated: 2023-06-21 11:41

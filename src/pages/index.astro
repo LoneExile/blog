@@ -1,8 +1,8 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
 import Hero from "@components/Hero.astro";
-import JumbotronCards from "@components/JumbotronCards.astro";
 import InfiniteScroll from "@components/InfiniteScroll.astro";
+import NewSletter from "@components/NewSletter.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import data from "@data/en.json";
 import { getCollection } from "astro:content";
@@ -24,4 +24,5 @@ posts = posts.filter((post) => post.data.show === undefined || post.data.show);
 <MainLayout description={data.siteDescription} {currentPath} {language} {title}>
   <Hero />
   <InfiniteScroll {posts} {language} />
+  <NewSletter {language} />
 </MainLayout>

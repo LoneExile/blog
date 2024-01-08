@@ -1,7 +1,7 @@
 ---
 title: "Generics in TypeScript"
 description: "Master the concept of Generics in TypeScript with a comprehensive guide. Learn what generics are, why they're useful, and how to use them in your TypeScript code with practical examples."
-thumbnail: { src: "/content/blogs/{year}/{slug}/generics-unsplash-brano.jpg", alt: "" }
+thumbnail: { src: "./generics-unsplash-brano.jpg", alt: "generics-unsplash-brano" }
 language: "en"
 created: 2023-07-22 14:58
 updated: 2023-07-23 12:40

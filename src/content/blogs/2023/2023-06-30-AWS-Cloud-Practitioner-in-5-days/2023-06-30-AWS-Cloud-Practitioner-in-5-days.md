@@ -1,7 +1,7 @@
 ---
 title: "AWS Cloud Practitioner in 5 days"
 description: "A comprehensive guide on how to pass the AWS Certified Cloud Practitioner Exam. This post covers the author's personal journey, preparation strategies, resources used, and exam experience."
-thumbnail: { src: "/content/blogs/{year}/{slug}/generics-unsplash-brano.jpg", alt: "" }
+thumbnail: { src: "./blackboard-unsplash-unspecified.jpeg", alt: "blackboard-unsplash-unspecified" }
 language: "en"
 created: 2023-07-01 12:41
 updated: 2023-07-02 08:48
