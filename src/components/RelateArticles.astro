@@ -23,7 +23,7 @@ const relatedPosts = posts.filter((post) => {
     return post.data.tags.some((tag) => currentTags.includes(tag));
   }
   return false;
-});
+}).slice(0, 4);
 
 const getPath = (slug: string) => {
   return getRelativeLocaleUrl(language, slug, {

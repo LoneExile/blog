@@ -36,6 +36,8 @@ export async function getStaticPaths() {
 }
 
 const currentTags = entry.data.tags;
+const isArticle =
+  entry.data.comments === undefined || entry.data.comments === true;
 ---
 
 <MainLayout
@@ -59,10 +61,12 @@ const currentTags = entry.data.tags;
   </Post>
 
   {
-    (entry.data.comments === undefined || entry.data.comments === true) && (
-      <Comments client:visible={{ rootMargin: "200px" }} />
+    isArticle && (
+      <>
+        <Comments client:visible={{ rootMargin: "400px" }} />
+        <RelateArticles {currentTags} {language} />
+        <NewSletter {language} />
+      </>
     )
   }
-  <RelateArticles {currentTags} {language} />
-  <NewSletter {language} />
 </MainLayout>
