@@ -6,8 +6,9 @@ import { Image } from "astro:assets";
 interface Props {
   currentTags: string[];
   language: string;
+  currentSlug: string;
 }
-const { currentTags, language } = Astro.props;
+const { currentTags, language, currentSlug } = Astro.props;
 
 let posts = await getCollection("blogs", ({ data }) => {
   if (import.meta.env.PROD) {
@@ -19,7 +20,7 @@ let posts = await getCollection("blogs", ({ data }) => {
 posts = posts.filter((post) => post.data.show === undefined || post.data.show);
 
 const relatedPosts = posts.filter((post) => {
-  if (post.data.tags) {
+  if (post.data.tags && post.slug !== currentSlug) {
     return post.data.tags.some((tag) => currentTags.includes(tag));
   }
   return false;
@@ -39,6 +40,7 @@ function calculateReadingTime(text: string) {
 }
 ---
 
+{ relatedPosts.length > 0 &&
 <aside aria-label="Related articles" class="py-8 lg:py-24 dark:bg-gray-900">
   <div class="px-4 mx-auto max-w-screen-xl">
     <h2 class="mb-8 text-2xl font-bold text-gray-900 dark:text-white">
@@ -77,3 +79,4 @@ function calculateReadingTime(text: string) {
     </div>
   </div>
 </aside>
+}

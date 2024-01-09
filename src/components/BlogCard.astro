@@ -2,6 +2,7 @@
 import { formattedDate } from "@utils/utils";
 import type { CollectionEntry } from "astro:content";
 import ArrowRight from "@icons/arrow-right.astro";
+import Read from "@icons/read.astro";
 import TagBadge from "@components/TagBadge.astro";
 import CategoryBadge from "@components/CategoryBadge.astro";
 
@@ -80,8 +81,8 @@ const dateToToday = (date: string) => {
                   aria-label={"Read more about " + post.data.title}
                   class="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline"
                 >
-                  Read more
-                  <ArrowRight color="fill-current" size="ml-2 w-4 h-4" />
+                  {/* Read more */}
+                  <Read color="fill-current" size="ml-2 w-5 h-5" />
                 </a>
               </div>
             </article>
