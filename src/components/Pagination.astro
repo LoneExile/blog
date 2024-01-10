@@ -51,29 +51,39 @@ const currentPath =
     results
   </span>
   <div class="inline-flex mt-2 xs:mt-0">
-    <a
-      href={currentPath + (currentPage - 1)}
-      class={disablePrevious
-        ? "flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-400 bg-gray-100 border-0 border-s border-gray-100 rounded-s pointer-events-none"
-        : "flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-primary-800 border-0 border-s border-primary-700 rounded-s hover:bg-primary-900 dark:bg-primary-800 dark:border-primary-700 dark:text-primary-50 dark:hover:bg-primary-700 dark:hover:text-white"}
-    >
-      <Left
-        color="fill-none stroke-current"
-        size="w-3.5 h-3.5 ms-2 rtl:rotate-180"
-      />
-      Prev
-    </a>
-    <a
-      href={currentPath + (currentPage + 1)}
-      class={disableNext
-        ? "flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-400 bg-gray-100 border-0 border-s border-gray-100 rounded-e pointer-events-none"
-        : "flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-primary-800 border-0 border-s border-primary-700 rounded-e hover:bg-primary-900 dark:bg-primary-800 dark:border-primary-700 dark:text-primary-50 dark:hover:bg-primary-700 dark:hover:text-white"}
-    >
-      Next
-      <Right
-        color="fill-none stroke-current"
-        size="w-3.5 h-3.5 ms-2 rtl:rotate-180"
-      />
-    </a>
+    {
+      totalPosts > 4 && (
+        <>
+          <a
+            href={currentPath + (currentPage - 1)}
+            class={
+              disablePrevious
+                ? "flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-400 bg-gray-50 border-0 border-s border-gray-100 rounded-s pointer-events-none"
+                : "flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-primary-800 border-0 border-s border-primary-700 rounded-s hover:bg-primary-900 dark:bg-primary-800 dark:border-primary-700 dark:text-primary-50 dark:hover:bg-primary-700 dark:hover:text-white"
+            }
+          >
+            <Left
+              color="fill-none stroke-current"
+              size="w-3.5 h-3.5 ms-2 rtl:rotate-180"
+            />
+            Prev
+          </a>
+          <a
+            href={currentPath + (currentPage + 1)}
+            class={
+              disableNext
+                ? "flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-400 bg-gray-50 border-0 border-s border-gray-100 rounded-e pointer-events-none"
+                : "flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-primary-800 border-0 border-s border-primary-700 rounded-e hover:bg-primary-900 dark:bg-primary-800 dark:border-primary-700 dark:text-primary-50 dark:hover:bg-primary-700 dark:hover:text-white"
+            }
+          >
+            Next
+            <Right
+              color="fill-none stroke-current"
+              size="w-3.5 h-3.5 ms-2 rtl:rotate-180"
+            />
+          </a>
+        </>
+      )
+    }
   </div>
 </div>
