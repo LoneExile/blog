@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: listmonk-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: listmonk
+  template:
+    metadata:
+      labels:
+        app: listmonk
+    spec:
+      initContainers:
+        - image: listmonk/listmonk:latest
+          name: install
+          command:
+            - /bin/sh
+            - -c
+            - |
+              ./listmonk --install --config /listmonk/config.toml --idempotent --yes
+          # envFrom:
+          #   - secretRef:
+          #       name: listmonk-secrets
+          volumeMounts:
+            - name: config
+              mountPath: /listmonk/config.toml
+              subPath: config.toml
+              # securityContext:
+              #   runAsNonRoot: true
+              #   runAsUser: 1900
+              #   capabilities:
+              #     drop:
+              #       - ALL
+              #   allowPrivilegeEscalation: false
+              #   seccompProfile:
+              #     type: RuntimeDefault
+      containers:
+        - name: listmonk
+          image: listmonk/listmonk:latest
+          command: ["./listmonk"]
+          args: ["--config", "/etc/listmonk/config.toml"]
+          ports:
+            - containerPort: 9000
+              name: listmonk
+          env:
+            - name: TZ
+              value: "Etc/UTC"
+          volumeMounts:
+            - name: config
+              mountPath: /etc/listmonk/config.toml
+              subPath: config.toml
+              # securityContext:
+              #   runAsNonRoot: true
+              #   runAsUser: 1900
+              #   capabilities:
+              #     drop:
+              #       - ALL
+              #   allowPrivilegeEscalation: false
+              #   seccompProfile:
+              #     type: RuntimeDefault

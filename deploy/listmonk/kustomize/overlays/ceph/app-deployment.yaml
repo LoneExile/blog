@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: listmonk-deployment
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: listmonk
+      volumes:
+        - name: config
+          configMap:
+            name: app-config
+
