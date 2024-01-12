@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: listmonk-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: listmonk
+  template:
+    metadata:
+      labels:
+        app: listmonk
+    spec:
+      containers:
+        - name: listmonk
+          image: listmonk/listmonk:latest
+          command: ["./listmonk"]
+          args: ["--config", "/etc/listmonk/config.toml"]
+          ports:
+            - containerPort: 9000
+              name: listmonk
