@@ -2,6 +2,7 @@
 import { getRelativeLocaleUrl } from "astro:i18n";
 import Email from "@icons/email.astro";
 import Modal from "@components/Modal.astro";
+import Captcha from "@components/Captcha.tsx";
 
 interface Props {
   language: string;
@@ -62,6 +63,9 @@ const { language } = Astro.props;
           >.
         </div>
       </form>
+      <div class="mt-8">
+        <Captcha />
+      </div>
     </div>
   </div>
 </section>
