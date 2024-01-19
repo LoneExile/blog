@@ -10,11 +10,11 @@ spec:
         - name: remark42
           resources:
             requests:
-              cpu: "100m"
-              memory: "25Mi"
+              cpu: "500m"
+              memory: "512Mi"
             limits:
-              cpu: "1"
-              memory: "1Gi"
+              cpu: "2000m"
+              memory: "2Gi"
           env:
             - name: REMARK_URL
               valueFrom:
