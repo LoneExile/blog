@@ -62,7 +62,6 @@ func verifyCaptcha(token string) bool {
 }
 
 func addSubscriberToListmonk(email string) {
-	// Prepare subscriber data. Customize as needed.
 	subscriberData := ListmonkSubscriberRequest{
 		Email:  email,
 		Name:   "The Subscriber",
@@ -97,6 +96,7 @@ func addSubscriberToListmonk(email string) {
 	if resp.StatusCode != http.StatusOK {
 		body, _ := ioutil.ReadAll(resp.Body)
 		fmt.Printf("Error response from listmonk: %d - %s\n", resp.StatusCode, string(body))
+		// TODO: Handle error response from listmonk
 		return
 	}
 
@@ -104,7 +104,6 @@ func addSubscriberToListmonk(email string) {
 }
 
 func handleSubscribe(w http.ResponseWriter, r *http.Request) {
-	println(turnstileSecret)
 	if r.Method != "POST" {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
@@ -119,9 +118,43 @@ func handleSubscribe(w http.ResponseWriter, r *http.Request) {
 
 	if verifyCaptcha(sr.CaptchaToken) {
 		addSubscriberToListmonk(sr.Email)
-		fmt.Fprintf(w, "Subscription successful")
+		w.Header().Set("Content-Type", "application/json")
+		jsonResponse := map[string]string{"message": "Subscription successful"}
+		if err := json.NewEncoder(w).Encode(jsonResponse); err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
 	} else {
-		http.Error(w, "Invalid CAPTCHA", http.StatusUnauthorized)
+		w.Header().Set("Content-Type", "application/json")
+		jsonResponse := map[string]string{"message": "Invalid CAPTCHA"}
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		if err := json.NewEncoder(w).Encode(jsonResponse); err != nil {
+			return
+		}
+	}
+}
+
+func corsMiddleware(next http.HandlerFunc, allowedOrigins []string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		origin := r.Header.Get("Origin")
+
+		// Check if the origin is in the list of allowed origins
+		for _, allowedOrigin := range allowedOrigins {
+			if origin == allowedOrigin {
+				w.Header().Set("Access-Control-Allow-Origin", origin)
+				break
+			}
+		}
+
+		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		next(w, r)
 	}
 }
 
@@ -130,6 +163,7 @@ func main() {
 	listmonkUser = os.Getenv("LISTMONK_USER")
 	listmonkPass = os.Getenv("LISTMONK_PASS")
 	turnstileSecret = os.Getenv("TURNSTILE_SECRET")
+	allOrigins := os.Getenv("ALLOWED_ORIGINS")
 
 	if listmonkAPI == "" || listmonkUser == "" || listmonkPass == "" || turnstileSecret == "" {
 		log.Fatal(
@@ -137,6 +171,12 @@ func main() {
 		)
 	}
 
-	http.HandleFunc("/api/subscribe", handleSubscribe)
+	println(allOrigins)
+
+	allowedOrigins := []string{
+		allOrigins,
+	}
+
+	http.HandleFunc("/api/subscribe", corsMiddleware(handleSubscribe, allowedOrigins))
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

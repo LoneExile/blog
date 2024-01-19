@@ -4,10 +4,10 @@ WORKDIR /blog
 
 COPY package*.json ./
 COPY pnpm-lock.yaml ./
-COPY . .
 
 RUN npm i -g pnpm
 RUN pnpm i
+COPY . .
 RUN pnpm run build
 
 ENV PUBLIC_REMARK_URL=https://remark.voidbox.io
