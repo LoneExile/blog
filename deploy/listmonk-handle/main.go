@@ -23,8 +23,7 @@ type ListmonkSubscriberRequest struct {
 	Email  string `json:"email"`
 	Name   string `json:"name"`
 	Status string `json:"status"`
-	// Lists   []int           `json:"lists"`
-	// Attribs json.RawMessage `json:"attribs"`
+	Lists  []int  `json:"lists"`
 }
 
 type SubscriptionRequest struct {
@@ -61,25 +60,24 @@ func verifyCaptcha(token string) bool {
 	return tr.Success
 }
 
-func addSubscriberToListmonk(email string) {
+func addSubscriberToListmonk(email string) error {
 	subscriberData := ListmonkSubscriberRequest{
 		Email:  email,
-		Name:   "The Subscriber",
+		Name:   "Subscriber",
 		Status: "enabled",
-		// Lists:  []int{1},
-		// Add any custom attributes if needed
+		Lists:  []int{1},
 	}
 
 	data, err := json.Marshal(subscriberData)
 	if err != nil {
 		fmt.Println("Error marshaling subscriber data:", err)
-		return
+		return err
 	}
 
 	req, err := http.NewRequest("POST", listmonkAPI, bytes.NewBuffer(data))
 	if err != nil {
 		fmt.Println("Error creating request to listmonk:", err)
-		return
+		return err
 	}
 
 	req.Header.Set("Content-Type", "application/json")
@@ -89,7 +87,7 @@ func addSubscriberToListmonk(email string) {
 	resp, err := client.Do(req)
 	if err != nil {
 		fmt.Println("Error sending request to listmonk:", err)
-		return
+		return err
 	}
 	defer resp.Body.Close()
 
@@ -97,10 +95,12 @@ func addSubscriberToListmonk(email string) {
 		body, _ := ioutil.ReadAll(resp.Body)
 		fmt.Printf("Error response from listmonk: %d - %s\n", resp.StatusCode, string(body))
 		// TODO: Handle error response from listmonk
-		return
+		err = fmt.Errorf("Error response from listmonk: %d - %s\n", resp.StatusCode, string(body))
+		return err
 	}
 
 	fmt.Println("Subscriber added to listmonk successfully")
+	return nil
 }
 
 func handleSubscribe(w http.ResponseWriter, r *http.Request) {
@@ -112,26 +112,33 @@ func handleSubscribe(w http.ResponseWriter, r *http.Request) {
 	var sr SubscriptionRequest
 	err := json.NewDecoder(r.Body).Decode(&sr)
 	if err != nil {
-		http.Error(w, "Invalid request", http.StatusBadRequest)
+		http.Error(w, "Invalid request body", http.StatusBadRequest)
 		return
 	}
 
-	if verifyCaptcha(sr.CaptchaToken) {
-		addSubscriberToListmonk(sr.Email)
-		w.Header().Set("Content-Type", "application/json")
-		jsonResponse := map[string]string{"message": "Subscription successful"}
-		if err := json.NewEncoder(w).Encode(jsonResponse); err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-	} else {
-		w.Header().Set("Content-Type", "application/json")
-		jsonResponse := map[string]string{"message": "Invalid CAPTCHA"}
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		if err := json.NewEncoder(w).Encode(jsonResponse); err != nil {
-			return
-		}
+	if sr.CaptchaToken == "" {
+		http.Error(w, "Captcha token is required", http.StatusBadRequest)
+		return
 	}
+
+	if !verifyCaptcha(sr.CaptchaToken) {
+		jsonResponse := map[string]string{"message": "Invalid CAPTCHA"}
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusUnauthorized)
+		json.NewEncoder(w).Encode(jsonResponse)
+		return
+	}
+
+	err = addSubscriberToListmonk(sr.Email)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	jsonResponse := map[string]string{"message": "Subscription successful"}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(jsonResponse)
 }
 
 func corsMiddleware(next http.HandlerFunc, allowedOrigins []string) http.HandlerFunc {
@@ -170,8 +177,6 @@ func main() {
 			"Environment variables LISTMONK_API, LISTMONK_USER, LISTMONK_PASS, and TURNSTILE_SECRET must be set.",
 		)
 	}
-
-	println(allOrigins)
 
 	allowedOrigins := []string{
 		allOrigins,

@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: voidbox
+    container_name: loneexile/blog
     restart: always
     ports:
       - '4321:4321'
