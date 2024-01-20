@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: listmonk-handle-deployment
+  labels:
+    app: listmonk-handle
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: listmonk-handle
+  template:
+    metadata:
+      labels:
+        app: listmonk-handle
+    spec:
+      containers:
+        - name: listmonk-handle
+          image: loneexile/listmonk-handle:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: LISTMONK_API
+              valueFrom:
+                secretKeyRef:
+                  name: listmonk-api
+                  key: LISTMONK_API
+            - name: LISTMONK_USER
+              valueFrom:
+                secretKeyRef:
+                  name: listmonk-api
+                  key: LISTMONK_USER
+            - name: LISTMONK_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: listmonk-api
+                  key: LISTMONK_PASS
+            - name: TURNSTILE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: listmonk-api
+                  key: TURNSTILE_SECRET
+            - name: ALLOWED_ORIGINS
+              valueFrom:
+                secretKeyRef:
+                  name: listmonk-api
+                  key: ALLOWED_ORIGINS

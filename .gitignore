@@ -27,5 +27,7 @@ deploy/remark42/kustomize/overlays/generators/files/.env
 .unlighthouse
 *.bak
 
+.env
+
 src/content/blogs/test*
 src/content/blogs/_*

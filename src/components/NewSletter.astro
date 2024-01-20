@@ -2,6 +2,7 @@
 import { getRelativeLocaleUrl } from "astro:i18n";
 import Email from "@icons/email.astro";
 import Modal from "@components/Modal.astro";
+import Captcha from "@components/Captcha.tsx";
 
 interface Props {
   language: string;
@@ -17,7 +18,8 @@ const { language } = Astro.props;
       >
         Subscribe to our newsletter and stay up to date!
       </p>
-      <form action="#">
+
+      <form action="#" id="subscription-form">
         <div
           class="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0"
         >
@@ -40,16 +42,23 @@ const { language } = Astro.props;
               placeholder="Enter your email"
               type="email"
               id="email"
+              name="email"
               required=""
             />
           </div>
           <div>
-            <!-- <button -->
-            <!--   type="submit" -->
-            <!--   class="py-3 px-5 w-full text-sm font-medium text-center text-white rounded-lg border cursor-pointer bg-primary-700 border-primary-600 sm:rounded-none sm:rounded-r-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" -->
-            <!--   >Subscribe</button -->
-            <!-- > -->
-            <Modal />
+            <button
+              id="subscribe"
+              type="submit"
+              class="py-3 px-5 w-full text-sm font-medium text-center text-white rounded-lg border cursor-pointer bg-primary-700 border-primary-600 sm:rounded-none sm:rounded-r-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hidden"
+              >Subscribe</button
+            >
+            <button
+              id="subscribe-disabled"
+              type="button"
+              class="py-3 px-5 w-full text-sm font-medium text-center text-white rounded-lg border bg-primary-700 border-primary-600 sm:rounded-none sm:rounded-r-lg focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:focus:ring-primary-800 cursor-not-allowed"
+              disabled>Subscribe</button
+            >
           </div>
         </div>
         <div
@@ -61,7 +70,109 @@ const { language } = Astro.props;
             >Read our Privacy Policy</a
           >.
         </div>
+        <!-- TODO: remove this after submit -->
+        <!-- TODO: change theme -->
+        <div id="cf-turnstile-ele">
+          <!-- <Modal /> -->
+          <Captcha client:click="#email" />
+          <div
+            class="cf-turnstile flex justify-center mt-4"
+            data-sitekey={import.meta.env.PUBLIC_TURNSTILE_KEY}
+            data-size="normal"
+          >
+          </div>
+        </div>
       </form>
     </div>
   </div>
 </section>
+
+<!-- <script> -->
+<!--   document.addEventListener("DOMContentLoaded", function () { -->
+<!--     const turnstileContainer = document.querySelector( -->
+<!--       ".cf-turnstile", -->
+<!--     ) as HTMLElement; -->
+<!--     function adjustTurnstileSize() { -->
+<!--       if (window.innerWidth < 600) { -->
+<!--         turnstileContainer.setAttribute("data-size", "compact"); -->
+<!--       } else { -->
+<!--         turnstileContainer.setAttribute("data-size", "normal"); -->
+<!--       } -->
+<!--     } -->
+<!--     adjustTurnstileSize(); -->
+<!--     window.addEventListener("resize", adjustTurnstileSize); -->
+<!--   }); -->
+<!-- </script> -->
+
+<!-- <script> -->
+<!--   document.addEventListener("DOMContentLoaded", function () { -->
+<!--     const subscribeButton = document.getElementById("subscribe"); -->
+<!--     const subscribeDisabledButton = -->
+<!--       document.getElementById("subscribe-disabled"); -->
+<!--     function toggleSubscribeButton() { -->
+<!--       const selectTurnstileToken = document.querySelector( -->
+<!--         'input[name="cf-turnstile-response"]', -->
+<!--       ); -->
+<!--       const turnstileToken = (selectTurnstileToken as HTMLInputElement).value; -->
+<!--       if (turnstileToken && turnstileToken.trim() !== "") { -->
+<!--         (subscribeButton as HTMLElement).classList.remove("hidden"); -->
+<!--         (subscribeDisabledButton as HTMLElement).classList.add("hidden"); -->
+<!--       } else { -->
+<!--         (subscribeButton as HTMLElement).classList.add("hidden"); -->
+<!--         (subscribeDisabledButton as HTMLElement).classList.remove("hidden"); -->
+<!--       } -->
+<!--     } -->
+<!--     const targetNode = document.getElementById( -->
+<!--       "cf-turnstile-ele", -->
+<!--     ) as HTMLElement; -->
+<!--     const config = { attributes: true, childList: true, subtree: true }; -->
+<!--     const callback = (mutationList: any, _: any) => { -->
+<!--       for (const mutation of mutationList) { -->
+<!--         if (mutation.type === "attributes") { -->
+<!--           if (mutation.attributeName === "value") { -->
+<!--             toggleSubscribeButton(); -->
+<!--           } -->
+<!--         } -->
+<!--       } -->
+<!--     }; -->
+<!--     const observer = new MutationObserver(callback); -->
+<!--     observer.observe(targetNode, config); -->
+<!--   }); -->
+<!-- </script> -->
+
+<!-- <script> -->
+<!--   document -->
+<!--     .getElementById("subscription-form") -->
+<!--     ?.addEventListener("submit", function (event) { -->
+<!--       event.preventDefault(); -->
+
+<!--       const selectEmail = document?.querySelector( -->
+<!--         'input[name="email"]', -->
+<!--       ) as HTMLInputElement; -->
+<!--       const email = selectEmail?.value; -->
+<!--       const selectTurnstileToken = document.querySelector( -->
+<!--         'input[name="cf-turnstile-response"]', -->
+<!--       ) as HTMLInputElement; -->
+<!--       const turnstileToken = selectTurnstileToken?.value; -->
+
+<!--       fetch(import.meta.env.PUBLIC_TURNSTILE_HANDLE_API, { -->
+<!--         method: "POST", -->
+<!--         headers: { -->
+<!--           "Content-Type": "application/json", -->
+<!--         }, -->
+<!--         body: JSON.stringify({ -->
+<!--           email: email, -->
+<!--           captchaToken: turnstileToken, -->
+<!--         }), -->
+<!--       }) -->
+<!--         .then((response) => { -->
+<!--           if (!response.ok) { -->
+<!--             throw new Error(`HTTP error! status: ${response.status}`); -->
+<!--           } -->
+<!--           return response.json(); -->
+<!--         }) -->
+<!--         .catch((error) => { -->
+<!--           console.error("Error:", error.message); -->
+<!--         }); -->
+<!--     }); -->
+<!-- </script> -->

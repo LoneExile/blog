@@ -7,7 +7,7 @@ updated: 2023-06-21 11:41
 tags: ["astro", "frontend", "self-hosted"]
 category: ["technology"]
 draft: false
-slug: "2023-05-13-Creating-a-Blog-A-Developer's-Journal"
+slug: "2023-05-13-Creating-a-Blog-A-Developer-s-Journal"
 author: "Apinant U-suwantim"
 description: "Join me on a deep dive into the process of building my own blog, This journal entry details the challenges, considerations, and victories experienced along the way."
 ---
