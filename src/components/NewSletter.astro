@@ -59,30 +59,39 @@ const { language } = Astro.props;
               class="py-3 px-5 w-full text-sm font-medium text-center text-white rounded-lg border bg-primary-700 border-primary-600 sm:rounded-none sm:rounded-r-lg focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:focus:ring-primary-800 cursor-not-allowed"
               disabled>Subscribe</button
             >
-          </div>
-        </div>
-        <div
-          class="mx-auto max-w-screen-sm text-sm text-left text-gray-500 newsletter-form-footer dark:text-gray-300"
-        >
-          We care about the protection of your data. <a
-            href={getRelativeLocaleUrl(language, "articles/privacy-policy/")}
-            class="font-medium text-primary-600 dark:text-primary-500 hover:underline"
-            >Read our Privacy Policy</a
-          >.
-        </div>
-        <!-- TODO: remove this after submit -->
-        <!-- TODO: change theme -->
-        <div id="cf-turnstile-ele">
-          <!-- <Modal /> -->
-          <Captcha client:click="#email" />
-          <div
-            class="cf-turnstile flex justify-center mt-4"
-            data-sitekey={import.meta.env.PUBLIC_TURNSTILE_KEY}
-            data-size="normal"
-          >
+            <button
+              id="subscribe-wait"
+              type="button"
+              disabled
+              class="py-3 px-5 w-full text-sm font-medium text-center text-white rounded-lg border bg-primary-700 border-primary-600 sm:rounded-none sm:rounded-r-lg focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:focus:ring-primary-800 cursor-wait hidden"
+              disabled
+            >
+              Verifying...
+            </button>
           </div>
         </div>
       </form>
+      <div
+        class="mx-auto max-w-screen-sm text-sm text-left text-gray-500 newsletter-form-footer dark:text-gray-300"
+      >
+        We care about the protection of your data. <a
+          href={getRelativeLocaleUrl(language, "articles/privacy-policy/")}
+          class="font-medium text-primary-600 dark:text-primary-500 hover:underline"
+          >Read our Privacy Policy</a
+        >.
+      </div>
+      <!-- TODO: remove this after submit -->
+      <!-- TODO: change theme -->
+      <div id="cf-turnstile-ele">
+        <!-- <Modal /> -->
+        <Captcha client:click="#email" />
+        <div
+          class="cf-turnstile flex justify-center mt-4"
+          data-sitekey={import.meta.env.PUBLIC_TURNSTILE_KEY}
+          data-size="normal"
+        >
+        </div>
+      </div>
     </div>
   </div>
 </section>

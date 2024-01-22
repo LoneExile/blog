@@ -41,10 +41,6 @@ is to keep the site simple and focused on content.
 | [Partytown](https://partytown.builder.io/)                                     | A lazy-loaded library to help relocate resource intensive scripts into a [web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) |
 | [Mermaid](https://github.com/mermaid-js/mermaid)                               | Generate diagrams from markdown-like text.                                                                                                              |
 
-<!-- ### Font -->
-
-<!-- - [inter](https://github.com/rsms/inter) -->
-
 ## Commands
 
 All commands are run from the root of the project, from a terminal:
@@ -57,81 +53,3 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`      | Preview your build locally, before deploying     |
 | `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro --help` | Get help using the Astro CLI                     |
-
-## Todo
-
-- [ ] add [ESLint](https://docs.astro.build/en/editor-setup/#eslint) to the
-      project and set up a ci job to run it
-- [ ] Storage - figure out a way to import from [joplin](https://joplinapp.org/)
-      or [obsidian](https://obsidian.md/)) notes into this site
-      [read](https://github.com/LoneExile/blog#Storage)
-- [x] add comments functionality ([giscus](https://github.com/giscus/giscus) ,
-      [utterances](https://github.com/utterance/utterances) or
-      [remark42](https://github.com/umputun/remark42))
-  - [x] basic comments functionality
-  - [x] login with GitHub, Google, Twitter, etc.
-  - [x] configure mail server to send notifications
-        ([docker-mailserver](https://github.com/docker-mailserver/docker-mailserver)
-        or [Amazon SES](https://aws.amazon.com/ses/))
-- [ ] UI
-  - [x] add [daisyui](https://github.com/saadeghi/daisyui)
-  - [x] add dark mode with lazy loading
-  - [x] navbar
-  - [x] footer
-  - [ ] home page
-  - [x] about page
-  - [ ] blog page
-    - [ ] table of contents
-    - [x] add
-          [typography](https://github.com/tailwindlabs/tailwindcss-typography)
-          to blog posts
-    - [ ] add reading progress bar
-    - [ ] add reading time
-    - [x] add tags
-    - [ ] add categories
-    - [x] add comments
-    - [ ] add share buttons
-    - [ ] add related posts
-    - [ ] read/view count
-- [ ] search functionality
-      ([instantsearch](https://github.com/algolia/instantsearch),
-      [autocomplete](https://github.com/algolia/autocomplete),
-      [orama](https://github.com/oramasearch/orama) or none of these)
-  - [ ] add tags and categories pages
-  - [ ] add tags and categories to the navbar
-  - [ ] add tags and categories to blog posts
-- [ ] add
-      [Astro prefetch](https://docs.astro.build/en/guides/integrations-guide/prefetch/)
-      ( tried it, but it didn't seem to work. will try again later)
-- [x] add
-      [Partytown](https://docs.astro.build/en/guides/integrations-guide/partytown/)
-  - [x] [Mermaid](https://github.com/mermaid-js/mermaid) generation of diagrams
-- [x] add [Astro RSS](https://docs.astro.build/en/guides/rss/)
-- [x] add [Dockerfile](https://docs.astro.build/en/recipes/docker/)
-- [ ] add [external-links](https://docs.astro.build/en/recipes/external-links/)
-- [ ] add [i18n](https://docs.astro.build/en/recipes/i18n/) ( i18n is not a
-      first-class concern for Astro, wait 4.0 I guess)
-- [x] add site logo
-- [ ] ~~prep SBCs environment for hosting~~
-
-## Challenges and Considerations Journal
-<!--
-...Read on my blog
-[Here](https://voidbox.io/blogs/2023-05-13-Creating-a-Blog-A-Developer's-Journal/)
--->
-## Resources and references
-
-- [Astro hybrid-rendering](https://astro.build/blog/hybrid-rendering/)
-- [server-endpoints-api-routes](https://docs.astro.build/en/core-concepts/endpoints/#server-endpoints-api-routes)
-<!--
-### Related projects
-
-- [blog](https://github.com/LoneExile/blog) this project
-- [VoidSync](https://github.com/LoneExile/VoidSync) backend project
-- [note](https://github.com/LoneExile/note) frontend for note-taking app
-- [obsidian-convertor](https://github.com/LoneExile/obsidian-convertor) bridge
-  between Obsidian and this project
-- [Obsidian-config](https://github.com/LoneExile/Obsidian-config) my Obsidian
-  config
--->
-<!-- https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet -->

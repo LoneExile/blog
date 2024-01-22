@@ -8,20 +8,32 @@ export default class SubscriptionForm extends Component {
     script.defer = true;
     document.body.appendChild(script);
     // ----------------------------------------------------------------
-    const subscribeButton = document.getElementById("subscribe");
-    const subscribeDisabledButton =
-      document.getElementById("subscribe-disabled");
+    // Event listener when turnstile is loaded
+    const subscribeButton = document.getElementById("subscribe") as HTMLElement;
+    const subscribeDisabledButton = document.getElementById(
+      "subscribe-disabled",
+    ) as HTMLElement;
+    const subscribeWaitButton = document.getElementById(
+      "subscribe-wait",
+    ) as HTMLElement;
+
+    subscribeButton.classList.add("hidden");
+    subscribeDisabledButton.classList.add("hidden");
+    subscribeWaitButton.classList.remove("hidden");
+
     function toggleSubscribeButton() {
       const selectTurnstileToken = document.querySelector(
         'input[name="cf-turnstile-response"]',
       );
       const turnstileToken = (selectTurnstileToken as HTMLInputElement).value;
       if (turnstileToken && turnstileToken.trim() !== "") {
-        (subscribeButton as HTMLElement).classList.remove("hidden");
-        (subscribeDisabledButton as HTMLElement).classList.add("hidden");
+        subscribeButton.classList.remove("hidden");
+        subscribeDisabledButton.classList.add("hidden");
+        subscribeWaitButton.classList.add("hidden");
       } else {
-        (subscribeButton as HTMLElement).classList.add("hidden");
-        (subscribeDisabledButton as HTMLElement).classList.remove("hidden");
+        subscribeButton.classList.add("hidden");
+        subscribeDisabledButton.classList.remove("hidden");
+        subscribeWaitButton.classList.add("hidden");
       }
     }
     const targetNode = document.getElementById(
@@ -40,6 +52,7 @@ export default class SubscriptionForm extends Component {
     const observer = new MutationObserver(callback);
     observer.observe(targetNode, config);
     // ----------------------------------------------------------------
+    // Event listener when form is submitted
     document
       .getElementById("subscription-form")
       ?.addEventListener("submit", function (event) {
@@ -68,6 +81,14 @@ export default class SubscriptionForm extends Component {
             if (!response.ok) {
               throw new Error(`HTTP error! status: ${response.status}`);
             }
+            const selectEmail = document.querySelector(
+              'input[name="email"]',
+            ) as HTMLInputElement;
+            (selectEmail as HTMLInputElement).value = "";
+            const selectTurnstileToken = document.querySelector(
+              "#cf-turnstile-ele",
+            ) as HTMLInputElement;
+            selectTurnstileToken.classList.add("hidden");
             return response.json();
           })
           .catch((error) => {
@@ -75,6 +96,7 @@ export default class SubscriptionForm extends Component {
           });
       });
     // ----------------------------------------------------------------
+    // Adjust turnstile size on window resize
     const adjustTurnstileSize = () => {
       const turnstileContainer = document.querySelector(
         ".cf-turnstile",
