@@ -1,24 +1,11 @@
 # My personal website (WIP)
 
-This is a personal website built with Astro Starter Kit (Minimal).
-
 The emphasis of this site is on **simplicity**, with optimizations for
 **performance**, **accessibility**, and **SEO**. These optimizations are based
 on the standards set by
 [unlighthouse](https://github.com/harlan-zw/unlighthouse),
 [web.dev](https://web.dev/measure/), and [gtmetrix](https://gtmetrix.com/)
 audits.
-
-While the site may not look visually appealing at the moment, improvements are
-being made over time. There are many features I plan to add, but my primary aim
-is to keep the site simple and focused on content.
-
-> At first, when I started this project, I didn't think it would be this complex
-> or require so many integrations. I guess I've been working on the frontend
-> side in my comfort zone for too long , as my workplace hasn't allowed me to
-> try anything new. This experience has been fun and enjoyable, reminding me of
-> why I wanted to be a developer in the first place. It has reignited my passion
-> for life, and I can't wait to see the finished site.
 
 ## Integration
 
@@ -29,9 +16,8 @@ is to keep the site simple and focused on content.
 | [Markdown🧑‍🚀](https://docs.astro.build/en/guides/markdown-content/)             | Commonly used for authoring text-heavy content.                                                                                                         |
 | [Tailwind👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/tailwind/)  | Utility classes for styling instead of writing CSS.                                                                                                     |
 | [Typography](https://github.com/tailwindlabs/tailwindcss-typography)           | Provides beautiful typographic defaults for HTML.                                                                                                       |
-| [DaisyUI](https://github.com/saadeghi/daisyui)                                 | A Tailwind CSS component library.                                                                                                                       |
-| [Image👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/image/)        | An Astro integration for easy image optimization.                                                                                                       |
-| [Sharp](https://github.com/lovell/sharp)                                       | High-performance Node.js image processing library.                                                                                                      |
+| [Flowbite](https://github.com/themesberg/flowbite)                                 | A Tailwind CSS component library.                                                                                                                       |
+| [Image👨‍🚀](https://docs.astro.build/en/guides/images/)        | An Astro integration for easy image optimization.                                                                                                       |
 | [Sitemap👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/sitemap/)    | Helps search engines crawl your site more efficiently by generating a sitemap.                                                                          |
 | [Zod](https://github.com/colinhacks/zod)                                       | TypeScript-first schema validation with static type inference.                                                                                          |
 | [Adapter(Node)👨‍🚀](https://docs.astro.build/en/guides/integrations-guide/node/) | Allows Astro to deploy your SSR site to Node Targets.                                                                                                   |
@@ -39,7 +25,9 @@ is to keep the site simple and focused on content.
 | [Remark42](https://github.com/umputun/remark42)                                | A self-hosted, lightweight, and simple (yet functional) comment engine.                                                                                 |
 | [Amazon SES](https://aws.amazon.com/ses/)                                      | A cloud-based email sending service.                                                                                                                    |
 | [Partytown](https://partytown.builder.io/)                                     | A lazy-loaded library to help relocate resource intensive scripts into a [web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) |
-| [Mermaid](https://github.com/mermaid-js/mermaid)                               | Generate diagrams from markdown-like text.                                                                                                              |
+| [Listmonk](https://github.com/knadh/listmonk)                                 | A standalone, self-hosted, newsletter and mailing list manager.                                                                                         |
+| [Turnstile](https://www.cloudflare.com/products/turnstile/)                  | CAPTCHA-free web experiences to website visitors                                                                                                                 |
+<!-- | [Mermaid](https://github.com/mermaid-js/mermaid)                               | Generate diagrams from markdown-like text.                                                                                                              | -->
 
 ## Commands
 
