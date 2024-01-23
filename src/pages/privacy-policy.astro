@@ -1,0 +1,58 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+import Post from "@components/Post.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { getCollection } from "astro:content";
+
+let posts = await getCollection("blogs", ({ slug }) => {
+  if (slug === "terms-and-conditions") {
+    return true;
+  }
+});
+const entry = posts[0];
+
+const { Content } = await entry.render();
+const language = "en";
+const currentPath = getRelativeLocaleUrl(language, entry.slug);
+const title = entry.data.title;
+
+if (entry === undefined) {
+  return Astro.redirect(getRelativeLocaleUrl(language, "404/"));
+}
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection("blogs", ({ data }) => {
+    if (import.meta.env.PROD) {
+      return data.draft !== true;
+    } else {
+      return true;
+    }
+  });
+
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+---
+
+<MainLayout
+  description={entry.data.description}
+  {currentPath}
+  {language}
+  {title}
+>
+  <Post
+    title={entry.data.title}
+    created={entry.data.created}
+    updated={entry.data.updated}
+    draft={entry.data.draft}
+    tags={entry.data.tags}
+    description={entry.data.description}
+    url={entry.slug}
+    {language}
+    comments={entry.data.comments}
+  >
+    <Content />
+  </Post>
+</MainLayout>

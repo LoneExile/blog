@@ -8,7 +8,16 @@ export default class SubscriptionForm extends Component {
     script.defer = true;
     document.body.appendChild(script);
     // ----------------------------------------------------------------
-    // Event listener when turnstile is loaded
+    //
+    const turnstileContainer = document.querySelector(
+      ".cf-turnstile",
+    ) as HTMLElement;
+    const selectTurnstileToken = document.querySelector(
+      'input[name="cf-turnstile-response"]',
+    ) as HTMLInputElement;
+    const selectTurnstileTokenEle = document.querySelector(
+      "#cf-turnstile-ele",
+    ) as HTMLInputElement;
     const subscribeButton = document.getElementById("subscribe") as HTMLElement;
     const subscribeDisabledButton = document.getElementById(
       "subscribe-disabled",
@@ -16,6 +25,18 @@ export default class SubscriptionForm extends Component {
     const subscribeWaitButton = document.getElementById(
       "subscribe-wait",
     ) as HTMLElement;
+    const selectEmail = document.querySelector(
+      'input[name="email"]',
+    ) as HTMLInputElement;
+    const badgeSuccess = document.getElementById(
+      "subscribe-success",
+    ) as HTMLElement;
+    const badgeError = document.getElementById(
+      "subscribe-error",
+    ) as HTMLElement;
+
+    // ----------------------------------------------------------------
+    // Event listener when turnstile is loaded
 
     subscribeButton.classList.add("hidden");
     subscribeDisabledButton.classList.add("hidden");
@@ -58,13 +79,7 @@ export default class SubscriptionForm extends Component {
       ?.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        const selectEmail = document?.querySelector(
-          'input[name="email"]',
-        ) as HTMLInputElement;
         const email = selectEmail?.value;
-        const selectTurnstileToken = document.querySelector(
-          'input[name="cf-turnstile-response"]',
-        ) as HTMLInputElement;
         const turnstileToken = selectTurnstileToken?.value;
 
         fetch(import.meta.env.PUBLIC_TURNSTILE_HANDLE_API, {
@@ -81,26 +96,20 @@ export default class SubscriptionForm extends Component {
             if (!response.ok) {
               throw new Error(`HTTP error! status: ${response.status}`);
             }
-            const selectEmail = document.querySelector(
-              'input[name="email"]',
-            ) as HTMLInputElement;
-            (selectEmail as HTMLInputElement).value = "";
-            const selectTurnstileToken = document.querySelector(
-              "#cf-turnstile-ele",
-            ) as HTMLInputElement;
-            selectTurnstileToken.classList.add("hidden");
+            selectEmail.value = "";
+            badgeSuccess.classList.remove("hidden");
+            selectTurnstileTokenEle.classList.add("hidden");
             return response.json();
           })
           .catch((error) => {
-            console.error("Error:", error.message);
+            badgeError.classList.remove("hidden");
+            selectTurnstileTokenEle.classList.add("hidden");
+            console.error("Error:", error);
           });
       });
     // ----------------------------------------------------------------
     // Adjust turnstile size on window resize
     const adjustTurnstileSize = () => {
-      const turnstileContainer = document.querySelector(
-        ".cf-turnstile",
-      ) as HTMLElement;
       if (turnstileContainer) {
         if (window.innerWidth < 600) {
           turnstileContainer.setAttribute("data-size", "compact");

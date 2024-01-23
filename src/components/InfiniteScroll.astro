@@ -19,7 +19,7 @@ posts = posts.sort((a, b) => {
   }
 });
 
-const loop = 10;
+const loop = 50;
 posts = posts.concat(...Array(loop).fill(posts));
 
 const getPath = (slug: string) => {

@@ -20,6 +20,19 @@ const { language } = Astro.props;
       </p>
 
       <form action="#" id="subscription-form">
+        <div class="max-w-screen-sm flex mx-auto">
+          <span
+            id="subscribe-success"
+            class="bg-green-100 text-green-799 text-xs font-medium mb-2 ml-2 me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300 mx-0 text-left hidden"
+          >
+            Success
+          </span>
+          <span
+            id="subscribe-error"
+            class="bg-red-100 text-red-799 text-xs font-medium mb-2 ml-2 me-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300 mx-0 text-left hidden"
+            >Error</span
+          >
+        </div>
         <div
           class="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0"
         >
@@ -75,12 +88,11 @@ const { language } = Astro.props;
         class="mx-auto max-w-screen-sm text-sm text-left text-gray-500 newsletter-form-footer dark:text-gray-300"
       >
         We care about the protection of your data. <a
-          href={getRelativeLocaleUrl(language, "articles/privacy-policy/")}
+          href={getRelativeLocaleUrl(language, "privacy-policy")}
           class="font-medium text-primary-600 dark:text-primary-500 hover:underline"
           >Read our Privacy Policy</a
         >.
       </div>
-      <!-- TODO: remove this after submit -->
       <!-- TODO: change theme -->
       <div id="cf-turnstile-ele">
         <!-- <Modal /> -->

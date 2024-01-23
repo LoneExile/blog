@@ -78,19 +78,13 @@ const { language } = Astro.props;
           <ul class="text-gray-500 dark:text-gray-400 font-medium">
             <li class="mb-4">
               <a
-                href={getRelativeLocaleUrl(
-                  language,
-                  "articles/privacy-policy/",
-                )}
+                href={getRelativeLocaleUrl(language, "privacy-policy")}
                 class="hover:underline">Privacy Policy</a
               >
             </li>
             <li>
               <a
-                href={getRelativeLocaleUrl(
-                  language,
-                  "articles/terms-and-conditions/",
-                )}
+                href={getRelativeLocaleUrl(language, "terms-and-conditions")}
                 class="hover:underline">Terms &amp; Conditions</a
               >
             </li>
