@@ -31,7 +31,7 @@
     "@types/node": "^20.11.6",
     "flowbite-typography": "^1.0.3",
     "prettier": "^3.2.4",
-    "prettier-plugin-astro": "^0.12.3",
+    "prettier-plugin-astro": "^0.13.0",
     "ts-dedent": "^2.2.0",
     "typescript": "^5.3.3",
     "unist-util-visit": "^4.1.2"
