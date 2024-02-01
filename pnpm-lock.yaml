@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@astrojs/node':
-    specifier: ^7.0.4
-    version: 7.0.4(astro@4.2.4)
+    specifier: ^8.1.0
+    version: 8.1.0(astro@4.2.4)
   '@astrojs/partytown':
     specifier: ^2.0.4
     version: 2.0.4
@@ -117,10 +117,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@astrojs/node@7.0.4(astro@4.2.4):
-    resolution: {integrity: sha512-og36WkHZ+v32filXWx2Iu9iwj6v9QUQaBl5GcTHVGmw1lrGdztl0MtbqbY56az4ew/HkWq3GPSSQ70aZd0u86Q==}
+  /@astrojs/node@8.1.0(astro@4.2.4):
+    resolution: {integrity: sha512-u0MyRX5ViEqMtH0vNvq+cDSbQYsPYbI/N3pfZ8vHXiOsZpWwl8BfBfuNjWOoIF8bRB1i42uzyQ7jU8/V9/TS9Q==}
     peerDependencies:
-      astro: ^4.0.0
+      astro: ^4.2.0
     dependencies:
       astro: 4.2.4(@types/node@20.11.6)(typescript@5.3.3)
       send: 0.18.0
