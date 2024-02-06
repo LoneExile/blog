@@ -4,7 +4,7 @@ description: "A comprehensive guide on how to pass the AWS Certified Cloud Pract
 thumbnail: { src: "./blackboard-unsplash-unspecified.jpeg", alt: "blackboard-unsplash-unspecified" }
 language: "en"
 created: 2023-07-01 12:41
-updated: 2023-07-02 08:48
+updated: 2024-02-06 10:44
 tags: ["aws", "cloud", "certification", "devops"]
 category: ["technology"]
 draft: false
@@ -60,27 +60,12 @@ what those services were.
 I simply treated S3 as regular file storage and Batch and Lambda as standard
 servers. Looking back, I realize I had many questions: Why use Lambda and Batch?
 Can Lambda work independently? Why not use
-[EC2 RI or Spot instances](https://aws.amazon.com/ec2/instance-types/)? Should
-my code be loosely coupled? What IAM role should I use? Could
-[Textract](https://aws.amazon.com/textract/) help me? What's the most
-cost-effective method? What are the
-[best practices](https://aws.amazon.com/architecture/well-architected/)?
-
+[EC2 RI or Spot instances](https://aws.amazon.com/ec2/instance-types/)?
 Another point of frustration was that during planning and design sessions with
-my team, we never really discussed best practices for cloud platforms. Should
-our DevOps team have been part of these discussions?
+my team, we never really discussed best practices for cloud platforms.
 
-No offense to anyone, but every time I needed to access our team main project
-server, which involved multiple services, I had to manually request access for
-each one. Isn't there an automated solution for this, like AWS
-[CloudFormation](https://aws.amazon.com/cloudformation/) or
-[Terraform](https://www.terraform.io/), that can help manage infrastructure as
-code?
-
-Apologies if I sound a bit cocky. I'm not blaming anyone. I'm simply too
-curious. Unfortunately, I've since left that company. However, I want to stress
-that understanding cloud technology is important as it can help solve problems
-in more efficient and effective ways.
+However, I want to stress that understanding cloud technology is important as
+it can help solve problems in more efficient and effective ways.
 
 Have I convinced you yet? If so... **Let's get started!!**
 
