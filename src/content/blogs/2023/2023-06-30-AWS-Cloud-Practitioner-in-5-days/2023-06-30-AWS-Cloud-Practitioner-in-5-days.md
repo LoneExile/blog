@@ -1,7 +1,14 @@
 ---
 title: "AWS Cloud Practitioner in 5 days"
-description: "A comprehensive guide on how to pass the AWS Certified Cloud Practitioner Exam. This post covers the author's personal journey, preparation strategies, resources used, and exam experience."
-thumbnail: { src: "./blackboard-unsplash-unspecified.jpeg", alt: "blackboard-unsplash-unspecified" }
+description:
+  "A comprehensive guide on how to pass the AWS Certified Cloud Practitioner
+  Exam. This post covers the author's personal journey, preparation strategies,
+  resources used, and exam experience."
+thumbnail:
+  {
+    src: "./blackboard-unsplash-unspecified.jpeg",
+    alt: "blackboard-unsplash-unspecified",
+  }
 language: "en"
 created: 2023-07-01 12:41
 updated: 2024-02-06 10:44
@@ -60,12 +67,12 @@ what those services were.
 I simply treated S3 as regular file storage and Batch and Lambda as standard
 servers. Looking back, I realize I had many questions: Why use Lambda and Batch?
 Can Lambda work independently? Why not use
-[EC2 RI or Spot instances](https://aws.amazon.com/ec2/instance-types/)?
-Another point of frustration was that during planning and design sessions with
-my team, we never really discussed best practices for cloud platforms.
+[EC2 RI or Spot instances](https://aws.amazon.com/ec2/instance-types/)? Another
+point of frustration was that during planning and design sessions with my team,
+we never really discussed best practices for cloud platforms.
 
-However, I want to stress that understanding cloud technology is important as
-it can help solve problems in more efficient and effective ways.
+However, I want to stress that understanding cloud technology is important as it
+can help solve problems in more efficient and effective ways.
 
 Have I convinced you yet? If so... **Let's get started!!**
 

@@ -1,6 +1,10 @@
 ---
 title: "Creating a Blog: A Developer's Journal"
-thumbnail: { src: "./man-vs-dragon-unknow-unspecified.jpg", alt: "man-vs-dragon-unknow-unspecified" }
+thumbnail:
+  {
+    src: "./man-vs-dragon-unknow-unspecified.jpg",
+    alt: "man-vs-dragon-unknow-unspecified",
+  }
 language: "en"
 created: 2023-05-13 13:07
 updated: 2024-01-24 16:49
@@ -9,18 +13,21 @@ category: ["technology"]
 draft: false
 slug: "2023-05-13-Creating-a-Blog-A-Developer-s-Journal"
 author: "Apinant U-suwantim"
-description: "Join me on a deep dive into the process of building my own blog, This journal entry details the challenges, considerations, and victories experienced along the way."
+description:
+  "Join me on a deep dive into the process of building my own blog, This journal
+  entry details the challenges, considerations, and victories experienced along
+  the way."
 ---
 
 ![man-vs-dragon-unknow-unspecified](./man-vs-dragon-unknow-unspecified.jpg)
 
 ## Hello, Reader! 👋
 
-Welcome to my blog! I'm Apinant, a software developer from Thailand. I've been
-working as a developer for about 2 years now,  I'm passionate about
-learning new things and sharing my knowledge with others. I've been thinking
-about starting a blog for a while now, and I finally decided to do it. I'm
-excited to share my journey with you.
+Welcome to my blog! I'm Apinant, a software developer. I've been working as a
+developer for about 2 years now, I'm passionate about learning new things and
+sharing my knowledge with others. I've been thinking about starting a blog for a
+while now, and I finally decided to do it. I'm excited to share my journey with
+you.
 
 ## Challenges and Considerations Journal
 
@@ -54,9 +61,9 @@ matters is that I'm having fun along the way, right?!🤔
 Alright, frontend design isn't my strongest suit.
 **[Tailwind](https://tailwindcss.com/)**, with its class-based approach, seems a
 no-brainer to me as it eliminates the need to handwrite styles for each tag.
-**[Flowbite](https://github.com/themesberg/flowbite)** is next on my list - considering my lack of
-natural artistic ability, I need some guidelines, and Flowbite appears to be a
-fantastic option. As for
+**[Flowbite](https://github.com/themesberg/flowbite)** is next on my list -
+considering my lack of natural artistic ability, I need some guidelines, and
+Flowbite appears to be a fantastic option. As for
 **[Tailwindcss Typography](https://github.com/tailwindlabs/tailwindcss-typography)**,
 it's an essential aspect of styling my markdown text, and it seems to be a quick
 and easy solution (as far as I can tell).
@@ -79,9 +86,9 @@ popular choice, but it's a closed-source solution, which I'd rather avoid. So,
 that leaves me with remark42. It's an open-source option and packed with
 features. The tricky part is modifying the UI to match my blog's theme.
 
-One challenge with remark42 is that I need to host it myself and
-setting up an SMTP server to send emails. After investigating how
-to set up an SMTP server on my server using
+One challenge with remark42 is that I need to host it myself and setting up an
+SMTP server to send emails. After investigating how to set up an SMTP server on
+my server using
 [docker-mailserver](https://github.com/docker-mailserver/docker-mailserver), it
 seemed a bit overwhelming at this stage. Thus, I've decided to use
 [Amazon SES](https://aws.amazon.com/ses/) for now.
@@ -89,33 +96,33 @@ seemed a bit overwhelming at this stage. Thus, I've decided to use
 #### Newsletter
 
 Since I'm already using Amazon SES for remark42, I decided to use it for my
-newsletter as well. I'm using [Listmonk](https://github.com/knadh/listmonk) to manage my newsletter. It's a
-self-hosted, open-source, and free newsletter and mailing list manager. It's
-easy to set up and use, and it has a beautiful UI.  I'm also using
-[Turnstile](https://www.cloudflare.com/products/turnstile/)
-to prevent bots from subscribing to my newsletter. and of course, I'm using
+newsletter as well. I'm using [Listmonk](https://github.com/knadh/listmonk) to
+manage my newsletter. It's a self-hosted, open-source, and free newsletter and
+mailing list manager. It's easy to set up and use, and it has a beautiful UI.
+I'm also using [Turnstile](https://www.cloudflare.com/products/turnstile/) to
+prevent bots from subscribing to my newsletter. and of course, I'm using
 [Partytown](https://partytown.builder.io/) to lazy load Listmonk's JavaScript
 and CSS.
 
 #### Backend
 
 Actually, I have written a backend for this blog before, and I got burned out
-due to the complexity of the project that I tried to implement. The backend project
-not only intended to serve this blog but also to serve as my note-taking app
-automatically update the blog when I update my notes. It was a great idea, but I
-didn't have enough time to implement it. So, fist rule of thumb, don't get burned out!
+due to the complexity of the project that I tried to implement. The backend
+project not only intended to serve this blog but also to serve as my note-taking
+app automatically update the blog when I update my notes. It was a great idea,
+but I didn't have enough time to implement it. So, fist rule of thumb, don't get
+burned out!
 
 ### At the end of the day
 
-When I started this project, I didn't think it would be this complex
-or require so many integrations. I guess I've been working on the frontend
-side in my comfort zone for too long , as my workplace hasn't allowed me to
-try anything new.
+When I started this project, I didn't think it would be this complex or require
+so many integrations. I guess I've been working on the frontend side in my
+comfort zone for too long , as my workplace hasn't allowed me to try anything
+new.
 
-This experience has been fun and enjoyable, reminding me of
-why I wanted to be a developer in the first place. It has reignited my passion
-for lifelong learning and trying new things. I'm looking forward to the next
-challenge! 🚀
+This experience has been fun and enjoyable, reminding me of why I wanted to be a
+developer in the first place. It has reignited my passion for lifelong learning
+and trying new things. I'm looking forward to the next challenge! 🚀
 
-If you have any questions or suggestions, let me know in the comments below.
-I'd love to hear from you! 👋
+If you have any questions or suggestions, let me know in the comments below. I'd
+love to hear from you! 👋
