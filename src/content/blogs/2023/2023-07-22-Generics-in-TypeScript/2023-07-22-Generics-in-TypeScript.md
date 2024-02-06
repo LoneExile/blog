@@ -14,21 +14,34 @@ author: "Apinant U-suwantim"
 
 ![generics-unsplash-brano](./generics-unsplash-brano.jpg)
 
-TypeScript, a statically typed superset of JavaScript, offers a variety of advanced type features that enhance JavaScript's capabilities. One such feature is generics, a powerful tool that increases the reusability and maintainability of your code. In this blog post, we'll dive deep into generics, exploring what they are, why they're useful, and how to use them in your TypeScript code.
+TypeScript, a statically typed superset of JavaScript, offers a variety of
+advanced type features that enhance JavaScript's capabilities. One such feature
+is generics, a powerful tool that increases the reusability and maintainability
+of your code. In this blog post, we'll dive deep into generics, exploring what
+they are, why they're useful, and how to use them in your TypeScript code.
 
 ## Unraveling Generics
 
-In programming, we often create functions or classes that can work with different types of data. For instance, a function might accept an array of numbers, strings, or objects. However, without a way to handle multiple types, we'd have to write separate functions for each type, leading to redundant and hard-to-maintain code.
+In programming, we often create functions or classes that can work with different
+types of data. For instance, a function might accept an array of numbers, strings,
+or objects. However, without a way to handle multiple types, we'd have to write
+separate functions for each type, leading to redundant and hard-to-maintain code.
 
-This is where generics come in. Generics are a feature of TypeScript that allows you to write code that can handle a variety of types while maintaining type safety. They're like variables for types, represented by a placeholder (commonly `T`), which TypeScript replaces with the actual type when the function or class is used.
+This is where generics come in. Generics are a feature of TypeScript that allows
+you to write code that can handle a variety of types while maintaining type safety.
+They're like variables for types, represented by a placeholder (commonly `T`),
+which TypeScript replaces with the actual type when the function or class is used.
 
 ## The Flip Side of Generics
 
-While generics are powerful, they can be confusing to new developers. They also may not be supported by all languages, so it's important to understand the environment in which you're working.
+While generics are powerful, they can be confusing to new developers. They also
+may not be supported by all languages, so it's important to understand
+the environment in which you're working.
 
 ## Generics in Action
 
-Let's look at a practical example of how generics can improve your TypeScript code. Consider the following code block:
+Let's look at a practical example of how generics can improve your TypeScript code.
+Consider the following code block:
 
 ```typescript
 type JobRun = {
@@ -66,7 +79,9 @@ run.onCompleted((job) => {
 
 ```
 
-In this code, the `job` property and the `callback` function in `onCompleted` method are typed as `any`, which means we lose the benefits of TypeScript's type checking.
+In this code, the `job` property and the `callback` function in `onCompleted`
+method are typed as `any`, which means we lose the benefits of TypeScript's
+type checking.
 
 We can improve this by using generics:
 
@@ -110,9 +125,11 @@ run.onCompleted((job) => {
 
 ```
 
-Now, TypeScript can check that the `job` property and the `callback` function are of the correct type.
+Now, TypeScript can check that the `job` property and the `callback` function
+are of the correct type.
 
-We can take this a step further by ensuring that the job object adheres to a specific structure:
+We can take this a step further by ensuring that the job object adheres to
+a specific structure:
 
 ```typescript
 type Job = {
@@ -130,7 +147,7 @@ type JobRun<J extends Job> = {
 };
 
 type SendEmailJob = Job & {
-//                  ^? (parameter) Job & 
+//                  ^? (parameter) Job &
 // { recipientEmail: string; subject: string; }
 // `&` operator is used to combine multiple types.
 // means that SendEmailJob must be a subtype of Job
@@ -172,9 +189,12 @@ run.onCompleted((job) => {
 })
 ```
 
-With this code, TypeScript will ensure that the job object has the properties required by the `Job` type.
+With this code, TypeScript will ensure that the job object has the properties
+required by the `Job` type.
 
-In conclusion, generics are a powerful feature of TypeScript that allow you to write more reusable and maintainable code. While they can be confusing at first, with practice, they can greatly enhance your TypeScript programming.
+In conclusion, generics are a powerful feature of TypeScript that allow you to
+write more reusable and maintainable code. While they can be confusing at first,
+with practice, they can greatly enhance your TypeScript programming.
 
 ## References
 
