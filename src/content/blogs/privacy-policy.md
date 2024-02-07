@@ -1,5 +1,5 @@
 ---
-title: "Terms and Conditions for VoidBox.io"
+title: "Privacy Policy"
 language: "en"
 created: 2024-01-06 22:40
 updated: 2024-01-06 22:40

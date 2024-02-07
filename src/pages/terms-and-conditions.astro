@@ -5,7 +5,7 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import { getCollection } from "astro:content";
 
 let posts = await getCollection("blogs", ({ slug }) => {
-  if (slug === "privacy-policy") {
+  if (slug === "terms-and-conditions") {
     return true;
   }
 });
