@@ -30,19 +30,19 @@ const name = "Apinant U-suwantim";
 ---
 
 <main
-  class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 antialiased"
+  class="bg-white pb-16 pt-8 antialiased dark:bg-gray-900 lg:pb-24 lg:pt-16"
 >
-  <div class="flex justify-between px-4 mx-auto max-w-screen-xl">
+  <div class="mx-auto flex max-w-screen-xl justify-between px-4">
     <article
-      class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-rose dark:format-invert"
+      class="format format-sm format-rose mx-auto w-full max-w-2xl dark:format-invert sm:format-base lg:format-lg"
     >
-      <header class="mb-4 lg:mb-6 not-format">
+      <header class="not-format mb-4 lg:mb-6">
         {
           (comments === undefined || comments === true) && (
-            <address class="flex items-center mb-6 not-italic">
-              <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+            <address class="mb-6 flex items-center not-italic">
+              <div class="mr-3 inline-flex items-center text-sm text-gray-900 dark:text-white">
                 <Image
-                  class="mr-4 w-16 h-16 rounded-full"
+                  class="mr-4 h-16 w-16 rounded-full"
                   src={Profile}
                   alt={name}
                 />
@@ -68,7 +68,7 @@ const name = "Apinant U-suwantim";
           )
         }
         <h1
-          class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white"
+          class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 dark:text-white lg:mb-6 lg:text-4xl"
         >
           {title}
         </h1>

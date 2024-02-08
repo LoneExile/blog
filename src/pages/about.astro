@@ -16,10 +16,10 @@ const title = "About";
 
 <MainLayout description={data.siteDescription} {currentPath} {language} {title}>
   <div class="mb-[3%]">
-    <div class="max-w-4xl flex items-start h-auto flex-wrap lg:my-0 pb-[5%]">
+    <div class="flex h-auto max-w-4xl flex-wrap items-start pb-[5%] lg:my-0">
       <div
         id="profile"
-        class="flex w-full lg:w-5/5 rounded-lg shadow-2xl opacity-95 mx-6 lg:mx-0 bg-white dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white"
+        class="lg:w-5/5 mx-6 flex w-full rounded-lg bg-white text-gray-900 opacity-95 shadow-2xl dark:border-gray-700 dark:bg-gray-800 dark:text-white lg:mx-0"
       >
         <div class="p-2 pb-4 text-center lg:text-left">
           <Logo
@@ -27,7 +27,7 @@ const title = "About";
             size="w-20 h-20"
           />
           <h1
-            class="block lg:hidden text-3xl font-bold my-auto lg:pt-0 items-center justify-center text-center"
+            class="my-auto block items-center justify-center text-center text-3xl font-bold lg:hidden lg:pt-0"
           >
             What is this !?
           </h1>
@@ -37,15 +37,15 @@ const title = "About";
               <Logo color="p-1 my-auto stroke-current" size="w-20 h-20" />
             </div>
             <h1
-              class="hidden lg:block text-3xl font-bold ml-[5%] my-auto lg:pt-0 items-center justify-center text-center"
+              class="my-auto ml-[5%] hidden items-center justify-center text-center text-3xl font-bold lg:block lg:pt-0"
             >
               What is this !?
             </h1>
           </div>
-          <div class="w-5/5 mx-[5%] pt-3 border-b-2 border-primary opacity-25">
+          <div class="w-5/5 border-primary mx-[5%] border-b-2 pt-3 opacity-25">
           </div>
-          <div class="pt-4 px-[5%]">
-            <span class="font-bold italic text-xl">Voidbox</span>
+          <div class="px-[5%] pt-4">
+            <span class="text-xl font-bold italic">Voidbox</span>
             <p class="mb-2 font-light text-gray-500 dark:text-gray-400">
               born from the struggle of retaining and accessing my learning and
               coding experiences, Voidbox serves as my digital archive. Here, I
@@ -62,32 +62,32 @@ const title = "About";
         </div>
       </div>
     </div>
-    <div class="max-w-4xl flex items-start h-auto flex-wrap mx-auto lg:my-0">
+    <div class="mx-auto flex h-auto max-w-4xl flex-wrap items-start lg:my-0">
       <div
         id="profile"
-        class="flex w-full lg:w-5/5 rounded-lg shadow-2xl opacity-95 mx-6 lg:mx-0 bg-white dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white"
+        class="lg:w-5/5 mx-6 flex w-full rounded-lg bg-white text-gray-900 opacity-95 shadow-2xl dark:border-gray-700 dark:bg-gray-800 dark:text-white lg:mx-0"
       >
-        <div class="p-4 md:p-12 text-center lg:text-left">
+        <div class="p-4 text-center md:p-12 lg:text-left">
           <Image
-            class="block lg:hidden rounded-full shadow-xl mx-auto -mt-4 h-48 w-48 bg-cover bg-center"
+            class="mx-auto -mt-4 block h-48 w-48 rounded-full bg-cover bg-center shadow-xl lg:hidden"
             src={Profile}
             alt="Profile Picture"
           />
 
-          <h1 class="text-3xl font-bold pt-8 lg:pt-0">
+          <h1 class="pt-8 text-3xl font-bold lg:pt-0">
             Apinant U-suwantim (Moo)
           </h1>
           <div
-            class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-primary opacity-25"
+            class="border-primary mx-auto w-4/5 border-b-2 pt-3 opacity-25 lg:mx-0"
           >
           </div>
           <p
-            class="pt-4 font-bold flex items-center justify-center lg:justify-start"
+            class="flex items-center justify-center pt-4 font-bold lg:justify-start"
           >
             Software Engineer
           </p>
           <p
-            class="text-xs lg:text-sm flex items-center justify-center lg:justify-start"
+            class="flex items-center justify-center text-xs lg:justify-start lg:text-sm"
           >
             Bangkok, Thailand
           </p>
@@ -101,7 +101,7 @@ const title = "About";
           </p>
 
           <div
-            class="mt-6 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center"
+            class="mx-auto mt-6 flex w-4/5 flex-wrap items-center lg:w-full lg:pb-0"
           >
             <a
               class="link mr-4"
@@ -121,10 +121,10 @@ const title = "About";
             </a>
           </div>
         </div>
-        <div class="w-full m-1 hidden lg:block lg:w-4/5">
+        <div class="m-1 hidden w-full lg:block lg:w-4/5">
           <Image
             src={Profile}
-            class="rounded-none lg:rounded-full shadow-2xl ring-2 p-1 ring-primary-700"
+            class="rounded-none p-1 shadow-2xl ring-2 ring-primary-700 lg:rounded-full"
             width="702"
             height="717"
             alt="Profile Picture"

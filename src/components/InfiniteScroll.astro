@@ -1,5 +1,4 @@
 ---
-import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
 interface Props {
@@ -23,9 +22,7 @@ const loop = 50;
 posts = posts.concat(...Array(loop).fill(posts));
 
 const getPath = (slug: string) => {
-  return getRelativeLocaleUrl(language, slug, {
-    path: "articles/" + slug,
-  });
+  return getRelativeLocaleUrl(language, "articles/" + slug);
 };
 
 const style = (position: string, color: string) => {
@@ -34,7 +31,7 @@ const style = (position: string, color: string) => {
 ---
 
 <!-- <div class="flex h-screen w-screen items-center justify-center"> -->
-<div class="relative w-full max-w-screen-lg overflow-hidden mt-4 mx-auto">
+<div class="relative mx-auto mt-4 w-full max-w-screen-lg overflow-hidden">
   <div class="dark:hidden">
     <div class={style("top", "white")}></div>
     <div class={style("bottom", "white")}></div>
@@ -49,7 +46,7 @@ const style = (position: string, color: string) => {
   </div>
 
   <div
-    class="mx-auto grid h-[300px] md:h-[400px] w-[300px] animate-skew-scroll grid-cols-1 gap-5 sm:w-[600px] sm:grid-cols-2"
+    class="mx-auto grid h-[300px] w-[300px] animate-skew-scroll grid-cols-1 gap-5 sm:w-[600px] sm:grid-cols-2 md:h-[400px]"
   >
     {
       posts.map((post) => (
@@ -57,7 +54,7 @@ const style = (position: string, color: string) => {
           <a
             href={getPath(post.slug)}
             aria-label={"Read more about " + post.data.title}
-            class="flex cursor-pointer items-center space-x-2 rounded-md border border-gray-100 p-5 shadow-md transition-all hover:-translate-y-1 hover:translate-x-1 hover:scale-[1.025] hover:shadow-xl text-gray-600 dark:text-white hover:underline"
+            class="flex cursor-pointer items-center space-x-2 rounded-md border border-gray-100 p-5 text-gray-600 shadow-md transition-all hover:-translate-y-1 hover:translate-x-1 hover:scale-[1.025] hover:underline hover:shadow-xl dark:text-white"
           >
             {post.data.title}
           </a>

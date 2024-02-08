@@ -28,7 +28,7 @@ const currentPath =
   }) + "?page=";
 ---
 
-<div class="flex flex-col items-center mb-8">
+<div class="mb-8 flex flex-col items-center">
   <span class="text-sm text-gray-700 dark:text-gray-400">
     Showing{" "}
     <span class="font-semibold text-gray-900 dark:text-white">
@@ -50,7 +50,7 @@ const currentPath =
     </span>{" "}
     results
   </span>
-  <div class="inline-flex mt-2 xs:mt-0">
+  <div class="xs:mt-0 mt-2 inline-flex">
     {
       totalPosts > 4 && (
         <>
@@ -58,13 +58,13 @@ const currentPath =
             href={currentPath + (currentPage - 1)}
             class={
               disablePrevious
-                ? "flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-400 bg-gray-50 border-0 border-s border-gray-100 rounded-s pointer-events-none"
-                : "flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-primary-800 border-0 border-s border-primary-700 rounded-s hover:bg-primary-900 dark:bg-primary-800 dark:border-primary-700 dark:text-primary-50 dark:hover:bg-primary-700 dark:hover:text-white"
+                ? "pointer-events-none flex h-8 items-center justify-center rounded-s border-0 border-s border-gray-100 bg-gray-50 px-3 text-sm font-medium text-gray-400"
+                : "flex h-8 items-center justify-center rounded-s border-0 border-s border-primary-700 bg-primary-800 px-3 text-sm font-medium text-white hover:bg-primary-900 dark:border-primary-700 dark:bg-primary-800 dark:text-primary-50 dark:hover:bg-primary-700 dark:hover:text-white"
             }
           >
             <Left
               color="fill-none stroke-current"
-              size="w-3.5 h-3.5 ms-2 rtl:rotate-180"
+              size="ms-2 h-3.5 w-3.5 rtl:rotate-180"
             />
             Prev
           </a>
@@ -72,14 +72,14 @@ const currentPath =
             href={currentPath + (currentPage + 1)}
             class={
               disableNext
-                ? "flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-400 bg-gray-50 border-0 border-s border-gray-100 rounded-e pointer-events-none"
-                : "flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-primary-800 border-0 border-s border-primary-700 rounded-e hover:bg-primary-900 dark:bg-primary-800 dark:border-primary-700 dark:text-primary-50 dark:hover:bg-primary-700 dark:hover:text-white"
+                ? "pointer-events-none flex h-8 items-center justify-center rounded-e border-0 border-s border-gray-100 bg-gray-50 px-3 text-sm font-medium text-gray-400"
+                : "flex h-8 items-center justify-center rounded-e border-0 border-s border-primary-700 bg-primary-800 px-3 text-sm font-medium text-white hover:bg-primary-900 dark:border-primary-700 dark:bg-primary-800 dark:text-primary-50 dark:hover:bg-primary-700 dark:hover:text-white"
             }
           >
             Next
             <Right
               color="fill-none stroke-current"
-              size="w-3.5 h-3.5 ms-2 rtl:rotate-180"
+              size="ms-2 h-3.5 w-3.5 rtl:rotate-180"
             />
           </a>
         </>
