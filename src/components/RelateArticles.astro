@@ -27,9 +27,7 @@ const relatedPosts = posts.filter((post) => {
 }).slice(0, 4);
 
 const getPath = (slug: string) => {
-  return getRelativeLocaleUrl(language, slug, {
-    path: "articles/" + slug,
-  });
+  return getRelativeLocaleUrl(language, "articles/" + slug);
 };
 
 function calculateReadingTime(text: string) {
@@ -41,8 +39,8 @@ function calculateReadingTime(text: string) {
 ---
 
 { relatedPosts.length > 0 &&
-<aside aria-label="Related articles" class="py-8 lg:py-24 dark:bg-gray-900">
-  <div class="px-4 mx-auto max-w-screen-xl">
+<aside aria-label="Related articles" class="py-8 dark:bg-gray-900 lg:py-24">
+  <div class="mx-auto max-w-screen-xl px-4">
     <h2 class="mb-8 text-2xl font-bold text-gray-900 dark:text-white">
       Related articles
     </h2>
@@ -69,7 +67,7 @@ function calculateReadingTime(text: string) {
             </p>
             <a
               href="#"
-              class="inline-flex items-center font-medium underline underline-offset-4 text-primary-600 dark:text-primary-500 hover:no-underline"
+              class="inline-flex items-center font-medium text-primary-600 underline underline-offset-4 hover:no-underline dark:text-primary-500"
             >
               Read in {calculateReadingTime(post.body.toString())} minutes
             </a>

@@ -20,19 +20,19 @@ const { language } = Astro.props;
           <Logo color="stroke-current mr-4 dark:text-white" size="w-10 h-10" />
 
           <span
-            class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+            class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white"
             >VoidBox</span
           >
         </a>
       </div>
-      <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+      <div class="grid grid-cols-2 gap-8 sm:grid-cols-3 sm:gap-6">
         <div>
           <h2
-            class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
+            class="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white"
           >
             Resources
           </h2>
-          <ul class="text-gray-500 dark:text-gray-400 font-medium">
+          <ul class="font-medium text-gray-500 dark:text-gray-400">
             <li class="mb-4">
               <a
                 target="_blank"
@@ -48,11 +48,11 @@ const { language } = Astro.props;
         </div>
         <div>
           <h2
-            class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
+            class="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white"
           >
             Follow Me
           </h2>
-          <ul class="text-gray-500 dark:text-gray-400 font-medium">
+          <ul class="font-medium text-gray-500 dark:text-gray-400">
             <li class="mb-4">
               <a
                 target="_blank"
@@ -71,11 +71,11 @@ const { language } = Astro.props;
         </div>
         <div>
           <h2
-            class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
+            class="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white"
           >
             Legal
           </h2>
-          <ul class="text-gray-500 dark:text-gray-400 font-medium">
+          <ul class="font-medium text-gray-500 dark:text-gray-400">
             <li class="mb-4">
               <a
                 href={getRelativeLocaleUrl(language, "privacy-policy")}
@@ -92,19 +92,19 @@ const { language } = Astro.props;
         </div>
       </div>
     </div>
-    <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+    <hr class="my-6 border-gray-200 dark:border-gray-700 sm:mx-auto lg:my-8" />
     <div class="sm:flex sm:items-center sm:justify-between">
-      <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
+      <span class="text-sm text-gray-500 dark:text-gray-400 sm:text-center"
         >© 2024 <a
           href={getRelativeLocaleUrl(language, "")}
           class="hover:underline">VoidBox</a
         >. All Rights Reserved.
       </span>
-      <div class="flex mt-4 sm:justify-center sm:mt-0">
+      <div class="mt-4 flex sm:mt-0 sm:justify-center">
         <a
           target="_blank"
           href="https://discord.gg/9rdch37uDe"
-          class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+          class="ms-5 text-gray-500 hover:text-gray-900 dark:hover:text-white"
         >
           <Discord color="fill-current" size="w-4 h-4" />
           <span class="sr-only">Discord community</span>
@@ -112,7 +112,7 @@ const { language } = Astro.props;
         <a
           target="_blank"
           href="https://twitter.com/L0neExile"
-          class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+          class="ms-5 text-gray-500 hover:text-gray-900 dark:hover:text-white"
         >
           <Twitter color="fill-current" size="w-4 h-4" />
           <span class="sr-only">Twitter page</span>
@@ -120,7 +120,7 @@ const { language } = Astro.props;
         <a
           target="_blank"
           href="https://github.com/LoneExile"
-          class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+          class="ms-5 text-gray-500 hover:text-gray-900 dark:hover:text-white"
         >
           <Github color="fill-current" size="w-4 h-4" />
           <span class="sr-only">GitHub account</span>
@@ -130,7 +130,7 @@ const { language } = Astro.props;
           href={getRelativeLocaleUrl(language, "rss.xml").slice(-1) === "/"
             ? getRelativeLocaleUrl(language, "rss.xml").slice(0, -1)
             : getRelativeLocaleUrl(language, "rss.xml")}
-          class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+          class="ms-5 text-gray-500 hover:text-gray-900 dark:hover:text-white"
         >
           <Rss color="fill-current" size="w-4 h-4" />
           <span class="sr-only">GitHub account</span>

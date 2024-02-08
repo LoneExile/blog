@@ -76,7 +76,7 @@ export default class SubscriptionForm extends Component {
     // Event listener when form is submitted
     document
       .getElementById("subscription-form")
-      ?.addEventListener("submit", function (event) {
+      ?.addEventListener("submit", function(event) {
         event.preventDefault();
 
         const email = selectEmail?.value;

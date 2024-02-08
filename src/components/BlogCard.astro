@@ -1,7 +1,5 @@
 ---
-import { formattedDate } from "@utils/utils";
 import type { CollectionEntry } from "astro:content";
-import ArrowRight from "@icons/arrow-right.astro";
 import Read from "@icons/read.astro";
 import TagBadge from "@components/TagBadge.astro";
 import CategoryBadge from "@components/CategoryBadge.astro";
@@ -28,9 +26,7 @@ posts = posts.sort((a, b) => {
 });
 
 const getPath = (slug: string) => {
-  return getRelativeLocaleUrl(language, slug, {
-    path: "articles/" + slug,
-  });
+  return getRelativeLocaleUrl(language, "articles/" + slug);
 };
 
 const dateToToday = (date: string) => {
@@ -43,14 +39,14 @@ const dateToToday = (date: string) => {
 ---
 
 <section class="bg-white dark:bg-gray-900">
-  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-    <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
+  <div class="mx-auto max-w-screen-xl px-4 py-8 lg:px-6 lg:py-16">
+    <div class="mx-auto mb-8 max-w-screen-sm text-center lg:mb-16">
       <h2
-        class="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+        class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white lg:text-4xl"
       >
         <!-- My Blog -->
       </h2>
-      <p class="font-medium text-gray-500 sm:text-xl dark:text-gray-400">
+      <p class="font-medium text-gray-500 dark:text-gray-400 sm:text-xl">
         "As wisdom grows and knowledge flows,<br /> the more we learn, the less we
         know." - <span class="text-sm">VoidBox</span>
       </p>
