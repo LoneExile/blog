@@ -9,12 +9,15 @@ export async function GET(context) {
     description: data.siteDescription,
     site: context.site,
     items: posts
-      .filter((post) => !post.data.draft)
+      .filter(
+        (post) =>
+          !post.data.draft && (post.data.show === undefined || post.data.show),
+      )
       .map((post) => ({
         title: post.data.title,
         pubDate: post.data.created,
         description: post.data.description,
-        link: `/blogs/${post.slug}/`,
+        link: `/th/articles/${post.slug}/`,
       })),
     customData: `<language>th-th</language>`,
     stylesheet: "/rss/styles.xsl",

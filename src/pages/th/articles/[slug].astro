@@ -1,0 +1,35 @@
+---
+import ArticlePage from "@pages/articles/[slug].astro";
+
+import { getCollection } from "astro:content";
+
+let posts = await getCollection("blogs", ({ data }) => {
+  if (import.meta.env.PROD) {
+    return data.draft !== true;
+  } else {
+    return true;
+  }
+});
+posts = posts.filter((post) => post.data.show === undefined || post.data.show);
+
+export async function getStaticPaths() {
+  let blogEntries = await getCollection("blogs", ({ data }) => {
+    if (import.meta.env.PROD) {
+      return data.draft !== true;
+    } else {
+      return true;
+    }
+  });
+
+  blogEntries = blogEntries.filter(
+    (post) => post.data.show === undefined || post.data.show,
+  );
+
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+---
+
+<ArticlePage language={"en"} entry={posts[0]} />

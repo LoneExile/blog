@@ -4,6 +4,14 @@ import Post from "@components/Post.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { getCollection } from "astro:content";
 
+interface Props {
+  language: string;
+}
+let { language } = Astro.props;
+if (!language) {
+  language = "en";
+}
+
 let posts = await getCollection("blogs", ({ slug }) => {
   if (slug === "terms-and-conditions") {
     return true;
@@ -12,7 +20,6 @@ let posts = await getCollection("blogs", ({ slug }) => {
 const entry = posts[0];
 
 const { Content } = await entry.render();
-const language = "en";
 const currentPath = getRelativeLocaleUrl(language, entry.slug);
 const title = entry.data.title;
 

@@ -42,7 +42,14 @@ posts = posts.filter((post) => {
   return hasTag;
 });
 
-const language = "en";
+interface Props {
+  language: string;
+}
+let { language } = Astro.props;
+if (!language) {
+  language = "en";
+}
+
 const currentPath = getRelativeLocaleUrl(language, "articles");
 
 const title = "Articles Tag: ";

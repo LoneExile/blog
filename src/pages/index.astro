@@ -4,10 +4,29 @@ import Hero from "@components/Hero.astro";
 import InfiniteScroll from "@components/InfiniteScroll.astro";
 import NewSletter from "@components/NewSletter.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import data from "@data/en.json";
 import { getCollection } from "astro:content";
 
-const language = "en";
+interface Props {
+  language: string;
+}
+let { language } = Astro.props;
+if (!language) {
+  language = "en";
+}
+
+// interface SiteData {
+//   siteDescription: string;
+//   siteTitle: string;
+//   author: string;
+// }
+
+let data;
+if (language === "th") {
+  data = await import("@data/th.json").then((module) => module.default);
+} else {
+  data = await import("@data/en.json").then((module) => module.default);
+}
+
 const title = data.siteTitle;
 const currentPath = getRelativeLocaleUrl(language, "");
 

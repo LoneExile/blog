@@ -6,7 +6,14 @@ import { getCollection } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import type { CollectionEntry } from "astro:content";
 
-const language = "en";
+interface Props {
+  language: string;
+}
+let { language } = Astro.props;
+if (!language) {
+  language = "en";
+}
+
 const currentPath = getRelativeLocaleUrl(language, "articles");
 
 let posts = await getCollection("blogs", ({ data }) => {

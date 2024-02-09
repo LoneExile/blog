@@ -9,10 +9,14 @@ import { Comments } from "@components/Comment";
 
 interface Props {
   entry: CollectionEntry<"blogs">;
+  language: string;
 }
-const { entry } = Astro.props;
+
+let { entry, language } = Astro.props;
+if (!language) {
+  language = "en";
+}
 const { Content } = await entry.render();
-const language = "en";
 const currentPath = getRelativeLocaleUrl(language, "articles/" + entry.slug);
 const title = entry.data.title;
 

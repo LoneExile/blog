@@ -9,7 +9,14 @@ import data from "@data/en.json";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { Image } from "astro:assets";
 
-const language = "en";
+interface Props {
+  language: string;
+}
+let { language } = Astro.props;
+if (!language) {
+  language = "en";
+}
+
 const currentPath = getRelativeLocaleUrl(language, "about");
 const title = "About";
 ---
