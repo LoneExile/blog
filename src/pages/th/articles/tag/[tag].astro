@@ -1,0 +1,24 @@
+---
+import TagsPage from "@pages/articles/tag/[tag].astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blogs");
+
+  let tags: string[] = [];
+
+  posts.forEach((post) => {
+    if (post.data.tags) {
+      tags = [...tags, ...post.data.tags];
+    }
+  });
+
+  return tags.map((tag) => ({
+    params: {
+      tag: tag.toLowerCase(),
+    },
+  }));
+}
+---
+
+<TagsPage language={"th"} />

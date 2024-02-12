@@ -14,10 +14,10 @@ export default defineConfig({
   i18n: {
     defaultLocale: "en",
     locales: ["en", "th"],
-    fallback: { th: "en" },
-    routing: {
-      prefixDefaultLocale: false,
-    },
+    // fallback: { th: "en" },
+    // routing: {
+    //   prefixDefaultLocale: false,
+    // },
   },
   prefetch: false,
   output: "server",

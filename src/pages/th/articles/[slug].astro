@@ -1,16 +1,16 @@
 ---
 import ArticlePage from "@pages/articles/[slug].astro";
+import { type CollectionEntry, getCollection } from "astro:content";
 
-import { getCollection } from "astro:content";
+interface Props {
+  entry: CollectionEntry<"blogs">;
+  language: string;
+}
 
-let posts = await getCollection("blogs", ({ data }) => {
-  if (import.meta.env.PROD) {
-    return data.draft !== true;
-  } else {
-    return true;
-  }
-});
-posts = posts.filter((post) => post.data.show === undefined || post.data.show);
+let { entry, language } = Astro.props;
+if (!language) {
+  language = "th";
+}
 
 export async function getStaticPaths() {
   let blogEntries = await getCollection("blogs", ({ data }) => {
@@ -32,4 +32,4 @@ export async function getStaticPaths() {
 }
 ---
 
-<ArticlePage language={"en"} entry={posts[0]} />
+<ArticlePage {language} {entry} />
