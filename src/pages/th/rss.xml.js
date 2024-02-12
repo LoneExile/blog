@@ -1,6 +1,10 @@
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
-import data from "@data/th.json";
+import { loadData } from "@utils/loadData.ts";
+import props from "./_props.json";
+
+const language = props.language;
+let data = await loadData(language);
 
 export async function GET(context) {
   const posts = await getCollection("blogs");
@@ -17,9 +21,9 @@ export async function GET(context) {
         title: post.data.title,
         pubDate: post.data.created,
         description: post.data.description,
-        link: `/th/articles/${post.slug}/`,
+        link: `/${language}/articles/${post.slug}/`,
       })),
-    customData: `<language>th-th</language>`,
+    customData: `<language>${language}-${language}</language>`,
     stylesheet: "/rss/styles.xsl",
   });
 }

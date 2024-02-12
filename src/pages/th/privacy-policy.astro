@@ -1,5 +1,8 @@
 ---
 import PrivacyPolicyPage from "@pages/privacy-policy.astro";
+import props from "./_props.json";
+
+const language = props.language;
 ---
 
-<PrivacyPolicyPage language="th" />
+<PrivacyPolicyPage {language} />

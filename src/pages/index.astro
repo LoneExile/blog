@@ -5,6 +5,7 @@ import InfiniteScroll from "@components/InfiniteScroll.astro";
 import NewSletter from "@components/NewSletter.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { getCollection } from "astro:content";
+import { loadData } from "@utils/loadData.ts";
 
 interface Props {
   language: string;
@@ -20,12 +21,7 @@ if (!language) {
 //   author: string;
 // }
 
-let data;
-if (language === "th") {
-  data = await import("@data/th.json").then((module) => module.default);
-} else {
-  data = await import("@data/en.json").then((module) => module.default);
-}
+let data = await loadData(language);
 
 const title = data.siteTitle;
 const currentPath = getRelativeLocaleUrl(language, "");

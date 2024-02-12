@@ -1,5 +1,8 @@
 ---
 import NotFound from "@pages/404.astro";
+import props from "./_props.json";
+
+const language = props.language;
 ---
 
-<NotFound language="th" />
+<NotFound {language} />

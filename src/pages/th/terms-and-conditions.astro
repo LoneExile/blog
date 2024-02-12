@@ -1,5 +1,8 @@
 ---
 import TermsAndConditionsPage from "@pages/terms-and-conditions.astro";
+import props from "./_props.json";
+
+const language = props.language;
 ---
 
-<TermsAndConditionsPage language="th" />
+<TermsAndConditionsPage {language} />

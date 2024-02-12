@@ -1,5 +1,8 @@
 ---
 import Home from "@pages/index.astro";
+import props from "./_props.json";
+
+const language = props.language;
 ---
 
-<Home language="th" />
+<Home {language} />
