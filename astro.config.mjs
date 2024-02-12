@@ -17,6 +17,7 @@ export default defineConfig({
     // fallback: { th: "en" },
     // routing: {
     //   prefixDefaultLocale: false,
+    //   redirectToDefaultLocale: false
     // },
   },
   prefetch: false,

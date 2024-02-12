@@ -1,6 +1,6 @@
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
-import { loadData } from "@utils/loadData.ts";
+import { loadData } from "@utils/load-data.ts";
 import props from "./_props.json";
 
 const language = props.language;
