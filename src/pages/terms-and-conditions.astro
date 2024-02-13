@@ -1,7 +1,6 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
 import Post from "@components/Post.astro";
-import { getRelativeLocaleUrl } from "astro:i18n";
 import { getCollection } from "astro:content";
 
 interface Props {
@@ -20,7 +19,7 @@ let posts = await getCollection("blogs", ({ slug }) => {
 const entry = posts[0];
 
 const { Content } = await entry.render();
-const currentPath = getRelativeLocaleUrl(language, entry.slug);
+const currentPath = entry.slug;
 const title = entry.data.title;
 
 if (entry === undefined) {

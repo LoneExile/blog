@@ -6,7 +6,6 @@ import Linkedin from "@icons/linkedin.astro";
 import Profile from "@assets/profile.webp";
 import NewSletter from "@components/NewSletter.astro";
 import data from "@data/en.json";
-import { getRelativeLocaleUrl } from "astro:i18n";
 import { Image } from "astro:assets";
 
 interface Props {
@@ -17,7 +16,7 @@ if (!language) {
   language = "en";
 }
 
-const currentPath = getRelativeLocaleUrl(language, "about");
+const currentPath = "about";
 const title = "About";
 ---
 

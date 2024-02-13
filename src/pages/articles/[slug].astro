@@ -3,7 +3,6 @@ import MainLayout from "@layouts/MainLayout.astro";
 import Post from "@components/Post.astro";
 import NewSletter from "@components/NewSletter.astro";
 import RelateArticles from "@components/RelateArticles.astro";
-import { getRelativeLocaleUrl } from "astro:i18n";
 import { type CollectionEntry, getCollection } from "astro:content";
 import { Comments } from "@components/Comment";
 
@@ -18,7 +17,7 @@ if (!language) {
 }
 
 const { Content } = await entry.render();
-const currentPath = getRelativeLocaleUrl(language, "articles/" + entry.slug);
+const currentPath = "articles/" + entry.slug;
 const title = entry.data.title;
 
 if (entry === undefined) {

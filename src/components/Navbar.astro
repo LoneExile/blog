@@ -12,6 +12,10 @@ interface Props {
 
 const { currentPath, language } = Astro.props;
 
+const getPath = (path: string) => {
+  return getRelativeLocaleUrl(language, path);
+};
+
 type NavItem = {
   title: string;
   path: string;
@@ -63,7 +67,7 @@ const items: NavItem[] = [
       >
         {
           items.map((item) =>
-            item.path === currentPath ? (
+            item.path === getPath(currentPath) ? (
               <li>
                 <a
                   href={item.path}

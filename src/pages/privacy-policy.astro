@@ -20,7 +20,7 @@ let posts = await getCollection("blogs", ({ slug }) => {
 const entry = posts[0];
 
 const { Content } = await entry.render();
-const currentPath = getRelativeLocaleUrl(language, entry.slug);
+const currentPath = entry.slug;
 const title = entry.data.title;
 
 if (entry === undefined) {

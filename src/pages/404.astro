@@ -2,7 +2,6 @@
 import MainLayout from "@layouts/MainLayout.astro";
 import NotFound from "@components/NotFound.astro";
 import LoneExile from "@assets/LoneExile.png";
-import { getRelativeLocaleUrl } from "astro:i18n";
 
 interface Props {
   language: string;
@@ -12,7 +11,7 @@ if (!language) {
   language = "en";
 }
 
-const currentPath = getRelativeLocaleUrl(language, "");
+const currentPath = "404";
 const title = "Page Not Found";
 ---
 

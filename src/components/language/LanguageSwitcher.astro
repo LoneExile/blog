@@ -1,4 +1,5 @@
 ---
+import { getRelativeLocaleUrl } from "astro:i18n";
 interface Props {
   language: string;
   currentPath: string;
@@ -7,9 +8,9 @@ const { language, currentPath } = Astro.props;
 
 let targetPath;
 if (language === "th") {
-  targetPath = currentPath.replace("/th/", "/");
+  targetPath = getRelativeLocaleUrl("en", currentPath);
 } else {
-  targetPath = "/th" + currentPath;
+  targetPath = getRelativeLocaleUrl("th", currentPath);
 }
 ---
 

@@ -3,7 +3,6 @@ import MainLayout from "@layouts/MainLayout.astro";
 import BlogCard from "@components/BlogCard.astro";
 import Pagination from "@components/Pagination.astro";
 import { getCollection } from "astro:content";
-import { getRelativeLocaleUrl } from "astro:i18n";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
@@ -14,7 +13,7 @@ if (!language) {
   language = "en";
 }
 
-const currentPath = getRelativeLocaleUrl(language, "articles");
+const currentPath = "articles";
 
 let posts = await getCollection("blogs", ({ data }) => {
   if (import.meta.env.PROD) {
