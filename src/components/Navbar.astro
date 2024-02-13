@@ -1,5 +1,6 @@
 ---
 import ThemeSwitcher from "@components/theme/ThemeSwitcher.astro";
+import LanguageSwitcher from "@components/language/LanguageSwitcher.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import Logo from "@icons/logo.astro";
 import Hambuger from "@icons/hamburger2.astro";
@@ -87,26 +88,10 @@ const items: NavItem[] = [
         <li>
           <div class="flex px-2">
             <ThemeSwitcher />
-            <button
-              id="langToggle"
-              class="focus:shadow-outline ml-2 rounded bg-secondary-500 px-2 py-1.5 text-sm font-normal text-white hover:bg-secondary-700 focus:outline-none"
-              type="button"
-            >
-              {language === "en" ? "EN" : "TH"}
-            </button>
+            <LanguageSwitcher {language} {currentPath} />
           </div>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-
-<!-- <script is:inline> -->
-<!--   document.getElementById("langToggle").addEventListener("click", function () { -->
-<!--     if (this.innerText === "EN") { -->
-<!--       this.innerText = "TH"; -->
-<!--     } else { -->
-<!--       this.innerText = "EN"; -->
-<!--     } -->
-<!--   }); -->
-<!-- </script> -->

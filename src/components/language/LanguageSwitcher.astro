@@ -1,0 +1,34 @@
+---
+interface Props {
+  language: string;
+  currentPath: string;
+}
+const { language, currentPath } = Astro.props;
+
+let targetPath;
+if (language === "th") {
+  targetPath = currentPath.replace("/th/", "/");
+} else {
+  targetPath = "/th" + currentPath;
+}
+---
+
+<button
+  id="langToggle"
+  class="focus:shadow-outline ml-2 rounded bg-secondary-500 px-2 py-1.5 text-sm font-normal text-white hover:bg-secondary-700 focus:outline-none"
+  type="button"
+>
+  <a href={targetPath} class="text-white no-underline">
+    {language.toUpperCase()}
+  </a>
+
+  <!-- <script is:inline> -->
+  <!--   document.getElementById("langToggle").addEventListener("click", function () { -->
+  <!--     if (this.innerText === "EN") { -->
+  <!--       this.innerText = "TH"; -->
+  <!--     } else { -->
+  <!--       this.innerText = "EN"; -->
+  <!--     } -->
+  <!--   }); -->
+  <!-- </script> -->
+</button>
