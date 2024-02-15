@@ -1,12 +1,23 @@
 ---
 import TagsPage from "@pages/articles/tag/[tag].astro";
-import { getCollection } from "astro:content";
 import props from "../../_props.json";
+import { getCollection } from "astro:content";
+import { type AnyCollectionEntry, collections } from "@utils/load-data.ts";
 
-const language = props.language;
 export async function getStaticPaths() {
-  const posts = await getCollection("blogs");
+  const language = props.language;
+  let posts: AnyCollectionEntry[] = [];
+  type MyCollectionKeys = keyof typeof collections;
 
+  for (const collection of Object.keys(collections) as MyCollectionKeys[]) {
+    let collectionEntries = await getCollection(collection);
+    collectionEntries = collectionEntries.filter(
+      (post) =>
+        post.data.language === language &&
+        (post.data.show === true || post.data.show === undefined),
+    );
+    posts = posts.concat(collectionEntries);
+  }
   let tags: string[] = [];
 
   posts.forEach((post) => {
@@ -16,11 +27,11 @@ export async function getStaticPaths() {
   });
 
   return tags.map((tag) => ({
-    params: {
-      tag: tag.toLowerCase(),
-    },
+    params: { tag: tag.toLowerCase() },
+    props: { posts, language },
   }));
 }
+let { posts, language } = Astro.props;
 ---
 
-<TagsPage {language} />
+<TagsPage {posts} {language} />

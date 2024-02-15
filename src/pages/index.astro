@@ -3,8 +3,7 @@ import MainLayout from "@layouts/MainLayout.astro";
 import Hero from "@components/Hero.astro";
 import InfiniteScroll from "@components/InfiniteScroll.astro";
 import NewSletter from "@components/NewSletter.astro";
-import { getCollection } from "astro:content";
-import { loadData } from "@utils/load-data.ts";
+import { loadData, loadCollection } from "@utils/load-data.ts";
 
 interface Props {
   language: string;
@@ -13,6 +12,8 @@ let { language } = Astro.props;
 if (!language) {
   language = "en";
 }
+let posts = await loadCollection(language);
+posts = posts.filter((post) => post.data.show || post.data.show === undefined);
 
 // interface SiteData {
 //   siteDescription: string;
@@ -24,15 +25,6 @@ let data = await loadData(language);
 
 const title = data.siteTitle;
 const currentPath = "";
-
-let posts = await getCollection("blogs", ({ data }) => {
-  if (import.meta.env.PROD) {
-    return data.draft !== true;
-  } else {
-    return true;
-  }
-});
-posts = posts.filter((post) => post.data.show === undefined || post.data.show);
 ---
 
 <MainLayout description={data.siteDescription} {currentPath} {language} {title}>

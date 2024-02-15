@@ -1,9 +1,10 @@
 import rss from "@astrojs/rss";
-import { getCollection } from "astro:content";
 import data from "@data/en.json";
+import { collections, loadCollection } from "@utils/load-data.ts";
+// import { getCollection } from "astro:content";
 
 export async function GET(context) {
-  const posts = await getCollection("blogs");
+  let posts = await loadCollection("en");
   return rss({
     title: "VoidBox Blog",
     description: data.siteDescription,

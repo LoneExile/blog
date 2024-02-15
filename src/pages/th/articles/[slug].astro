@@ -1,34 +1,37 @@
 ---
 import ArticlePage from "@pages/articles/[slug].astro";
-import { type CollectionEntry, getCollection } from "astro:content";
 import props from "../_props.json";
-
-const language = props.language;
-
-interface Props {
-  entry: CollectionEntry<"blogs">;
-}
-
-let { entry } = Astro.props;
+import { type AnyCollectionEntry } from "@utils/load-data.ts";
+import { getCollection } from "astro:content";
+import { collections } from "../../../content/config.ts";
 
 export async function getStaticPaths() {
-  let blogEntries = await getCollection("blogs", ({ data }) => {
-    if (import.meta.env.PROD) {
-      return data.draft !== true;
-    } else {
-      return true;
-    }
-  });
+  const language = props.language;
+  let posts: AnyCollectionEntry[] = [];
+  type MyCollectionKeys = keyof typeof collections;
 
-  blogEntries = blogEntries.filter(
-    (post) => post.data.show === undefined || post.data.show,
-  );
+  for (const collection of Object.keys(collections) as MyCollectionKeys[]) {
+    let collectionEntries = await getCollection(collection);
+    collectionEntries = collectionEntries.filter(
+      (post) =>
+        post.data.language === language &&
+        (post.data.show === true || post.data.show === undefined),
+    );
 
-  return blogEntries.map((entry) => ({
+    posts = posts.concat(collectionEntries);
+  }
+
+  return posts.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
   }));
 }
+const language = props.language;
+
+interface Props {
+  entry: AnyCollectionEntry;
+}
+let { entry } = Astro.props;
 ---
 
 <ArticlePage entry={entry} language={language} />

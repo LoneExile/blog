@@ -1,5 +1,6 @@
 import { z, defineCollection } from "astro:content";
-import data from "@data/en.json";
+import dataEng from "@data/en.json";
+import dataTha from "@data/th.json";
 
 const blogCollection = defineCollection({
   schema: ({ image }) =>
@@ -13,13 +14,17 @@ const blogCollection = defineCollection({
       created: z.string(),
       updated: z.string(),
       draft: z.boolean(),
-      author: z.enum([data.author]),
+      author: z.enum([dataEng.author, dataTha.author]),
       diagram: z.boolean().optional(),
       comments: z.boolean().optional(),
       show: z.boolean().optional(),
     }),
 });
 
-export const collections = {
-  blogs: blogCollection,
+const collections = {
+  // blogs: blogCollection,
+  blogs_en: blogCollection,
+  blogs_th: blogCollection,
 };
+
+export { collections, blogCollection };

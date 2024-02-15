@@ -1,13 +1,13 @@
 import rss from "@astrojs/rss";
-import { getCollection } from "astro:content";
 import { loadData } from "@utils/load-data.ts";
 import props from "./_props.json";
+import { loadCollection } from "@utils/load-data.ts";
 
 const language = props.language;
 let data = await loadData(language);
 
 export async function GET(context) {
-  const posts = await getCollection("blogs");
+  let posts = await loadCollection(language);
   return rss({
     title: "VoidBox Blog",
     description: data.siteDescription,

@@ -7,7 +7,7 @@ settings:
 dependencies:
   '@astrojs/node':
     specifier: ^8.2.0
-    version: 8.2.0(astro@4.3.6)
+    version: 8.2.0(astro@4.3.7)
   '@astrojs/partytown':
     specifier: ^2.0.4
     version: 2.0.4
@@ -22,7 +22,7 @@ dependencies:
     version: 3.0.5
   '@astrojs/tailwind':
     specifier: ^5.1.0
-    version: 5.1.0(astro@4.3.6)(tailwindcss@3.4.1)
+    version: 5.1.0(astro@4.3.7)(tailwindcss@3.4.1)
   '@nanostores/persistent':
     specifier: ^0.9.1
     version: 0.9.1(nanostores@0.9.5)
@@ -30,8 +30,8 @@ dependencies:
     specifier: ^0.5.0
     version: 0.5.0(nanostores@0.9.5)(preact@10.19.4)
   astro:
-    specifier: ^4.3.6
-    version: 4.3.6(@types/node@20.11.17)(typescript@5.3.3)
+    specifier: ^4.3.7
+    version: 4.3.7(@types/node@20.11.17)(typescript@5.3.3)
   flowbite:
     specifier: ^2.2.1
     version: 2.2.1
@@ -117,12 +117,12 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@astrojs/node@8.2.0(astro@4.3.6):
+  /@astrojs/node@8.2.0(astro@4.3.7):
     resolution: {integrity: sha512-keQIPvdx8hquG+KnWoJp7io/GoczBEJer9X8WzPHK2fnVRXYDKGzXWZw3Dbg0ZhXJreVV3xzniN7nr6e7hgDXg==}
     peerDependencies:
       astro: ^4.2.0
     dependencies:
-      astro: 4.3.6(@types/node@20.11.17)(typescript@5.3.3)
+      astro: 4.3.7(@types/node@20.11.17)(typescript@5.3.3)
       send: 0.18.0
       server-destroy: 1.0.1
     transitivePeerDependencies:
@@ -176,13 +176,13 @@ packages:
       zod: 3.22.4
     dev: false
 
-  /@astrojs/tailwind@5.1.0(astro@4.3.6)(tailwindcss@3.4.1):
+  /@astrojs/tailwind@5.1.0(astro@4.3.7)(tailwindcss@3.4.1):
     resolution: {integrity: sha512-BJoCDKuWhU9FT2qYg+fr6Nfb3qP4ShtyjXGHKA/4mHN94z7BGcmauQK23iy+YH5qWvTnhqkd6mQPQ1yTZTe9Ig==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0
       tailwindcss: ^3.0.24
     dependencies:
-      astro: 4.3.6(@types/node@20.11.17)(typescript@5.3.3)
+      astro: 4.3.7(@types/node@20.11.17)(typescript@5.3.3)
       autoprefixer: 10.4.17(postcss@8.4.35)
       postcss: 8.4.35
       postcss-load-config: 4.0.2(postcss@8.4.35)
@@ -1070,8 +1070,8 @@ packages:
   /array-iterate@2.0.1:
     resolution: {integrity: sha512-I1jXZMjAgCMmxT4qxXfPXa6SthSoE8h6gkSI9BGGNv8mP8G/v0blc+qFnZu6K42vTOiuME596QaLO0TP3Lk0xg==}
 
-  /astro@4.3.6(@types/node@20.11.17)(typescript@5.3.3):
-    resolution: {integrity: sha512-VYJGsBygMtPM/qTRgn5QdxkSILgjpW2uHVw3snp/Gkl+N9uRAAnuYxrUO7wkbLejfrmlb0nZyyKG+H5VDQPbeg==}
+  /astro@4.3.7(@types/node@20.11.17)(typescript@5.3.3):
+    resolution: {integrity: sha512-spdl+Ae6WZjQ0w8VBPq8ulN1hdN0m4EWvKG7ecgHjPQIHidMnzWJoZLEFEeKASqCGB1fDibqr7RDHoHkhZbp2Q==}
     engines: {node: '>=18.14.1', npm: '>=6.14.0'}
     hasBin: true
     dependencies:
@@ -1202,19 +1202,19 @@ packages:
     dev: false
     optional: true
 
-  /bare-fs@2.1.3:
-    resolution: {integrity: sha512-Oa7F0QJV7We0mtKq7Tk246uiBrl7vun64cPEsJOEwv2vHjnVL9yO7aH3643aSrd4rXfVe7yhJ9LHZywQQAXKFQ==}
+  /bare-fs@2.1.5:
+    resolution: {integrity: sha512-5t0nlecX+N2uJqdxe9d18A98cp2u9BETelbjKpiVgQqzzmVNFYWEAjQHqS+2Khgto1vcwhik9cXucaj5ve2WWA==}
     requiresBuild: true
     dependencies:
       bare-events: 2.2.0
-      bare-os: 2.1.2
+      bare-os: 2.1.3
       bare-path: 2.1.0
       streamx: 2.15.8
     dev: false
     optional: true
 
-  /bare-os@2.1.2:
-    resolution: {integrity: sha512-slQjOn78Q8itnzomNAamiKo5MDpEpV3JnoNZ93lyynaFh6paWcU+5c0GVcZ7EYIJC2unN2JGdF1qupdscYl0Yg==}
+  /bare-os@2.1.3:
+    resolution: {integrity: sha512-YMKOQzoMouGCrYgJ0rassKvmbTz+TYDOKKmu4JkfNXS/qKn+If1ODCMEXnmknQXfnB1PS8bR+uHu6xBgwAQXew==}
     requiresBuild: true
     dev: false
     optional: true
@@ -1223,7 +1223,7 @@ packages:
     resolution: {integrity: sha512-DIIg7ts8bdRKwJRJrUMy/PICEaQZaPGZ26lsSx9MJSwIhSrcdHn7/C8W+XmnG/rKi6BaRcz+JO00CjZteybDtw==}
     requiresBuild: true
     dependencies:
-      bare-os: 2.1.2
+      bare-os: 2.1.3
     dev: false
     optional: true
 
@@ -1292,7 +1292,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001587
-      electron-to-chromium: 1.4.667
+      electron-to-chromium: 1.4.668
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.22.3)
     dev: false
@@ -1633,8 +1633,8 @@ packages:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
     dev: false
 
-  /electron-to-chromium@1.4.667:
-    resolution: {integrity: sha512-66L3pLlWhTNVUhnmSA5+qDM3fwnXsM6KAqE36e2w4KN0g6pkEtlT5bs41FQtQwVwKnfhNBXiWRLPs30HSxd7Kw==}
+  /electron-to-chromium@1.4.668:
+    resolution: {integrity: sha512-ZOBocMYCehr9W31+GpMclR+KBaDZOoAEabLdhpZ8oU1JFDwIaFY0UDbpXVEUFc0BIP2O2Qn3rkfCjQmMR4T/bQ==}
     dev: false
 
   /emoji-regex@10.3.0:
@@ -3785,7 +3785,7 @@ packages:
       pump: 3.0.0
       tar-stream: 3.1.7
     optionalDependencies:
-      bare-fs: 2.1.3
+      bare-fs: 2.1.5
       bare-path: 2.1.0
     dev: false
     optional: true

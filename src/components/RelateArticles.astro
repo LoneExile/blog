@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { loadCollection } from "@utils/load-data.ts";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { Image } from "astro:assets";
 
@@ -9,16 +9,7 @@ interface Props {
   currentSlug: string;
 }
 const { currentTags, language, currentSlug } = Astro.props;
-
-let posts = await getCollection("blogs", ({ data }) => {
-  if (import.meta.env.PROD) {
-    return data.draft !== true;
-  } else {
-    return true;
-  }
-});
-posts = posts.filter((post) => post.data.show === undefined || post.data.show);
-
+const posts = await loadCollection(language);
 const relatedPosts = posts.filter((post) => {
   if (post.data.tags && post.slug !== currentSlug) {
     return post.data.tags.some((tag) => currentTags.includes(tag));

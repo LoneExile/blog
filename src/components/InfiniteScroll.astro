@@ -1,8 +1,9 @@
 ---
-import type { CollectionEntry } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
+import { type AnyCollectionEntry } from "@utils/load-data.ts";
+
 interface Props {
-  posts: CollectionEntry<"blogs">[];
+  posts: AnyCollectionEntry[];
   language: string;
 }
 
@@ -19,7 +20,7 @@ posts = posts.sort((a, b) => {
 });
 
 const loop = 50;
-posts = posts.concat(...Array(loop).fill(posts));
+let display = posts.concat(...Array(loop).fill(posts));
 
 const getPath = (slug: string) => {
   return getRelativeLocaleUrl(language, "articles/" + slug);
@@ -49,7 +50,7 @@ const style = (position: string, color: string) => {
     class="mx-auto grid h-[300px] w-[300px] animate-skew-scroll grid-cols-1 gap-5 sm:w-[600px] sm:grid-cols-2 md:h-[400px]"
   >
     {
-      posts.map((post) => (
+      display.map((post) => (
         <>
           <a
             href={getPath(post.slug)}

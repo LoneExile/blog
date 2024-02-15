@@ -1,6 +1,13 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import Post from "@components/Post.astro";
+import {
+  type MyCollectionKeys,
+  type AnyCollectionEntry,
+  collections,
+  loadCollection,
+} from "@utils/load-data.ts";
 import { getCollection } from "astro:content";
 
 interface Props {
@@ -10,36 +17,30 @@ let { language } = Astro.props;
 if (!language) {
   language = "en";
 }
+let posts: AnyCollectionEntry[] = [];
 
-let posts = await getCollection("blogs", ({ slug }) => {
-  if (slug === "terms-and-conditions") {
-    return true;
-  }
-});
-const entry = posts[0];
+for (const collection of Object.keys(collections) as MyCollectionKeys[]) {
+  let collectionEntries = await getCollection(collection);
+  collectionEntries = collectionEntries.filter(
+    (post) =>
+      post.data.language === language &&
+      post.slug.includes("terms-and-conditions"),
+  );
+  posts = posts.concat(collectionEntries);
+}
+
+// posts = await loadCollection(language);
+// posts = posts.filter((post) => post.slug.includes("terms-and-conditions"));
+
+let entry = posts[0];
+
+if (!entry) {
+  return Astro.redirect(getRelativeLocaleUrl(language, "404/"));
+}
 
 const { Content } = await entry.render();
 const currentPath = entry.slug;
 const title = entry.data.title;
-
-if (entry === undefined) {
-  return Astro.redirect(getRelativeLocaleUrl(language, "404/"));
-}
-
-export async function getStaticPaths() {
-  const blogEntries = await getCollection("blogs", ({ data }) => {
-    if (import.meta.env.PROD) {
-      return data.draft !== true;
-    } else {
-      return true;
-    }
-  });
-
-  return blogEntries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
-}
 ---
 
 <MainLayout

@@ -7,13 +7,4 @@ const formattedDate = (date: string): string => {
   });
 };
 
-import type { CollectionEntry } from "astro:content";
-const getBlogNoDrafts = (post: CollectionEntry<"blogs">) => {
-  if (import.meta.env.PROD) {
-    return post.data.draft !== true;
-  } else {
-    return post;
-  }
-};
-
-export { formattedDate, getBlogNoDrafts };
+export { formattedDate };

@@ -1,13 +1,12 @@
 ---
-import type { CollectionEntry } from "astro:content";
 import Read from "@icons/read.astro";
 import TagBadge from "@components/TagBadge.astro";
 import CategoryBadge from "@components/CategoryBadge.astro";
-
 import { getRelativeLocaleUrl } from "astro:i18n";
+import { type AnyCollectionEntry } from "@utils/load-data.ts";
 
 interface Props {
-  posts: CollectionEntry<"blogs">[];
+  posts: AnyCollectionEntry[];
   language: string;
 }
 

@@ -2,8 +2,7 @@
 import MainLayout from "@layouts/MainLayout.astro";
 import BlogCard from "@components/BlogCard.astro";
 import Pagination from "@components/Pagination.astro";
-import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
+import { loadCollection, type AnyCollectionEntry } from "@utils/load-data.ts";
 
 interface Props {
   language: string;
@@ -14,23 +13,15 @@ if (!language) {
 }
 
 const currentPath = "articles";
-
-let posts = await getCollection("blogs", ({ data }) => {
-  if (import.meta.env.PROD) {
-    return data.draft !== true;
-  } else {
-    return true;
-  }
-});
-posts = posts.filter((post) => post.data.show === undefined || post.data.show);
-
+let posts = await loadCollection(language);
+posts = posts.filter((post) => post.data.show || post.data.show === undefined);
 const title = "Articles";
 const siteDescription = "A collection of articles";
 
 const currentPage: number | null = +Astro.url.searchParams.get("page")! || 1;
 const totalPages: number = Math.ceil(posts.length / 4);
 const totalPosts: number = posts.length;
-const articlesForPage: CollectionEntry<"blogs">[] = posts.slice(
+const articlesForPage: AnyCollectionEntry[] = posts.slice(
   (currentPage - 1) * 4,
   currentPage * 4,
 );
