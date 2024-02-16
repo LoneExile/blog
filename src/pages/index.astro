@@ -9,26 +9,25 @@ interface Props {
   language: string;
 }
 let { language } = Astro.props;
+let data: SiteData = await loadData(language);
 if (!language) {
-  language = "en";
+  language = data.language;
 }
 let posts = await loadCollection(language);
 posts = posts.filter((post) => post.data.show || post.data.show === undefined);
 
-// interface SiteData {
-//   siteDescription: string;
-//   siteTitle: string;
-//   author: string;
-// }
-
-let data = await loadData(language);
-
 const title = data.siteTitle;
-const currentPath = "";
+const currentPath = data.home.path;
 ---
 
-<MainLayout description={data.siteDescription} {currentPath} {language} {title}>
-  <Hero />
+<MainLayout
+  {data}
+  description={data.siteDescription}
+  {currentPath}
+  {language}
+  {title}
+>
+  <Hero {data} />
   <InfiniteScroll {posts} {language} />
   <NewSletter {language} />
 </MainLayout>

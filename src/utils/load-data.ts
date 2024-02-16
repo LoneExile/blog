@@ -7,10 +7,8 @@ type AnyCollectionEntry = CollectionEntry<MyCollectionKeys>;
 async function loadData(language: string) {
   if (language === "th") {
     return import("@data/th.json").then((module) => module.default);
-  } else if (language === "en") {
-    return import("@data/en.json").then((module) => module.default);
   } else {
-    throw new Error("Unsupported language");
+    return import("@data/en.json").then((module) => module.default);
   }
 }
 async function loadCollection(language: string) {
@@ -21,7 +19,7 @@ async function loadCollection(language: string) {
 
   for (const collection of Object.keys(collections) as MyCollectionKeys[]) {
     let collectionEntries = await getCollection(collection, ({ data }) => {
-      if (import.meta.env.PROD /* && (data.show === undefined || data.show) */ && data.language === language && data.draft !== true) {
+      if (import.meta.env.PROD && data.language === language && data.draft !== true) {
         return true;
       }
       return false;

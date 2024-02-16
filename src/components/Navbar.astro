@@ -8,9 +8,10 @@ import Hambuger from "@icons/hamburger2.astro";
 interface Props {
   currentPath: string;
   language: string;
+  data: SiteData;
 }
 
-const { currentPath, language } = Astro.props;
+const { currentPath, language, data } = Astro.props;
 
 const getPath = (path: string) => {
   return getRelativeLocaleUrl(language, path);
@@ -23,15 +24,15 @@ type NavItem = {
 
 const items: NavItem[] = [
   {
-    title: "Home",
+    title: data.navbar.home,
     path: getRelativeLocaleUrl(language, ""),
   },
   {
-    title: "Articles",
+    title: data.navbar.articles,
     path: getRelativeLocaleUrl(language, "articles"),
   },
   {
-    title: "About",
+    title: data.navbar.about,
     path: getRelativeLocaleUrl(language, "about"),
   },
 ];

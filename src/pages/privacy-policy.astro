@@ -1,12 +1,11 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
-import { getRelativeLocaleUrl } from "astro:i18n";
+import { loadData } from "@utils/load-data.ts";
 import Post from "@components/Post.astro";
 import {
   type MyCollectionKeys,
   type AnyCollectionEntry,
   collections,
-  loadCollection,
 } from "@utils/load-data.ts";
 import { getCollection } from "astro:content";
 
@@ -14,8 +13,9 @@ interface Props {
   language: string;
 }
 let { language } = Astro.props;
+let data: SiteData = await loadData(language);
 if (!language) {
-  language = "en";
+  language = data.language;
 }
 let posts: AnyCollectionEntry[] = [];
 
@@ -28,25 +28,19 @@ for (const collection of Object.keys(collections) as MyCollectionKeys[]) {
   posts = posts.concat(collectionEntries);
 }
 
-// posts = await loadCollection(language);
-// posts = posts.filter((post) => post.slug.includes("privacy-policy"));
-
 let entry = posts[0];
 
 if (!entry) {
-  return Astro.redirect(getRelativeLocaleUrl(language, "404/"));
+  return Astro.redirect(getRelativeLocaleUrl(language, data.pageNotFound.path));
 }
 
 const { Content } = await entry.render();
 const currentPath = entry.slug;
 const title = entry.data.title;
-
-if (entry === undefined) {
-  return Astro.redirect(getRelativeLocaleUrl(language, "404/"));
-}
 ---
 
 <MainLayout
+  {data}
   description={entry.data.description}
   {currentPath}
   {language}

@@ -1,5 +1,49 @@
 {
+  "language": "en",
   "siteTitle": "Voidbox",
   "siteDescription": "Welcome to Voidbox, a digital archive documenting a programmer's journey through the bleeding-edge of technology. Dive in and explore this realm of accessible wisdom and inspiration.",
-  "author": "Apinant U-suwantim"
+  "author": "Apinant U-suwantim",
+  "home": {
+    "path": "",
+    "hero": {
+      "title": "Digital archive",
+      "description": "transforming fleeting thoughts into lasting blogs. \n Enjoy your journey through Voidbox!"
+    }
+  },
+  "navbar": {
+    "home": "Home",
+    "articles": "Articles",
+    "about": "About"
+  },
+  "articles": {
+    "title": "Articles",
+    "description": "A collection of articles",
+    "quote": "\"As wisdom grows and knowledge flows,\n the more we learn, the less we know.\" - ",
+    "daysAgo": "days ago",
+    "path": "articles"
+  },
+  "about": {
+    "title": "About",
+    "description": "A little bit about me",
+    "path": "about",
+    "aboutSite": {
+      "title": "What is this !?",
+      "description": "born from the struggle of retaining and accessing my learning and coding experiences, Voidbox serves as my digital archive. Here, I share my journey through the bleeding-edge of technology, capturing and transforming fleeting knowledge into accessible wisdom. May Voidbox guide you in your coding journey, much like a compass in the vast ocean of technology."
+    },
+    "aboutAuthor": {
+      "title": "Apinant U-suwantim (Moo)",
+      "role": "Software Engineer",
+      "location": "Bangkok, Thailand",
+      "description": "Hello, I'm Moo I'm an enthusiastic developer and programmer based in Thailand, with a growing interest in languages and tools like Rust, Go, Lua, Astro, Cloud-related and many more along the way.. Presently, I am focused on my day job while dedicating my spare time to building a blog website to share my thoughts and the knowledge I've accumulated."
+    }
+  },
+  "pageNotFound": {
+    "title": "Page Not Found",
+    "description": "Oops! The page you are looking for has been removed or relocated.",
+    "path": "404"
+  },
+  "tags": {
+    "title": "Articles Tag: ",
+    "description": "A collection of articles tag: "
+  }
 }

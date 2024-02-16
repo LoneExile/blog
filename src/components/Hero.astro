@@ -1,6 +1,12 @@
 ---
 import cat from "@assets/vintage-cat-rawpixel.com-jeanbernard.png";
 import { Image } from "astro:assets";
+
+interface Props {
+  data: SiteData;
+}
+
+const { data } = Astro.props;
 ---
 
 <section class="bg-white dark:bg-gray-900">
@@ -11,13 +17,12 @@ import { Image } from "astro:assets";
       <h1
         class="mb-4 max-w-2xl text-4xl font-extrabold leading-none tracking-tight dark:text-white md:text-5xl xl:text-6xl"
       >
-        Digital archive
+        {data.home.hero.title}
       </h1>
       <p
-        class="mb-6 max-w-2xl font-light text-gray-500 dark:text-gray-400 md:text-lg lg:mb-8 lg:text-xl"
+        class="mb-6 max-w-2xl whitespace-pre-line font-light text-gray-500 dark:text-gray-400 md:text-lg lg:mb-8 lg:text-xl"
       >
-        transforming fleeting thoughts into lasting blogs. <br />
-        Enjoy your journey through Voidbox!
+        {data.home.hero.description}
       </p>
     </div>
     <div class="hidden lg:col-span-5 lg:mt-0 lg:flex">

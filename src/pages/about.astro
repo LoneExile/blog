@@ -5,22 +5,29 @@ import Logo from "@icons/logo.astro";
 import Linkedin from "@icons/linkedin.astro";
 import Profile from "@assets/profile.webp";
 import NewSletter from "@components/NewSletter.astro";
-import data from "@data/en.json";
 import { Image } from "astro:assets";
+import { loadData } from "@utils/load-data.ts";
 
 interface Props {
   language: string;
 }
 let { language } = Astro.props;
+let data: SiteData = await loadData(language);
 if (!language) {
-  language = "en";
+  language = data.language;
 }
 
-const currentPath = "about";
-const title = "About";
+const currentPath = data.about.path;
+const title = data.about.title;
 ---
 
-<MainLayout description={data.siteDescription} {currentPath} {language} {title}>
+<MainLayout
+  {data}
+  description={data.about.description}
+  {currentPath}
+  {language}
+  {title}
+>
   <div class="mb-[3%]">
     <div class="flex h-auto max-w-4xl flex-wrap items-start pb-[5%] lg:my-0">
       <div
@@ -45,20 +52,15 @@ const title = "About";
             <h1
               class="my-auto ml-[5%] hidden items-center justify-center text-center text-3xl font-bold lg:block lg:pt-0"
             >
-              What is this !?
+              {data.about.aboutSite.title}
             </h1>
           </div>
           <div class="w-5/5 border-primary mx-[5%] border-b-2 pt-3 opacity-25">
           </div>
           <div class="px-[5%] pt-4">
-            <span class="text-xl font-bold italic">Voidbox</span>
+            <span class="text-xl font-bold italic">{data.siteTitle}</span>
             <p class="mb-2 font-light text-gray-500 dark:text-gray-400">
-              born from the struggle of retaining and accessing my learning and
-              coding experiences, Voidbox serves as my digital archive. Here, I
-              share my journey through the bleeding-edge of technology,
-              capturing and transforming fleeting knowledge into accessible
-              wisdom. May Voidbox guide you in your coding journey, much like a
-              compass in the vast ocean of technology.
+              {data.about.aboutSite.description}
             </p>
 
             <p class="mb-2">
@@ -81,7 +83,7 @@ const title = "About";
           />
 
           <h1 class="pt-8 text-3xl font-bold lg:pt-0">
-            Apinant U-suwantim (Moo)
+            {data.about.aboutAuthor.title}
           </h1>
           <div
             class="border-primary mx-auto w-4/5 border-b-2 pt-3 opacity-25 lg:mx-0"
@@ -90,20 +92,15 @@ const title = "About";
           <p
             class="flex items-center justify-center pt-4 font-bold lg:justify-start"
           >
-            Software Engineer
+            {data.about.aboutAuthor.role}
           </p>
           <p
             class="flex items-center justify-center text-xs lg:justify-start lg:text-sm"
           >
-            Bangkok, Thailand
+            {data.about.aboutAuthor.location}
           </p>
           <p class="pt-4 font-light text-gray-500 dark:text-gray-400">
-            Hello, I'm Moo I'm an enthusiastic developer and programmer based in
-            Thailand, with a growing interest in languages and tools like Rust,
-            Go, Lua, Astro, Cloud-related and many more along the way..
-            Presently, I am focused on my day job while dedicating my spare time
-            to building a blog website to share my thoughts and the knowledge
-            I've accumulated.
+            {data.about.aboutAuthor.description}
           </p>
 
           <div

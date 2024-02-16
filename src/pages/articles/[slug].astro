@@ -7,9 +7,12 @@ import { Comments } from "@components/Comment";
 import { type AnyCollectionEntry } from "@utils/load-data.ts";
 import { collections } from "../../content/config.ts";
 import { getCollection } from "astro:content";
+import { loadData } from "@utils/load-data.ts";
 
 export async function getStaticPaths() {
-  let language = "en";
+  let data: SiteData = await loadData("");
+  let language = data.language;
+
   let posts: AnyCollectionEntry[] = [];
   type MyCollectionKeys = keyof typeof collections;
 
@@ -30,8 +33,9 @@ export async function getStaticPaths() {
 }
 
 let { entry, language } = Astro.props;
+let data: SiteData = await loadData(language);
 if (!language) {
-  language = "en";
+  language = data.language;
 }
 
 const { Content } = await entry.render();
@@ -48,6 +52,7 @@ const isArticle =
 ---
 
 <MainLayout
+  data={data}
   description={entry.data.description}
   {currentPath}
   {language}

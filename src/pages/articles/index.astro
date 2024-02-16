@@ -2,21 +2,23 @@
 import MainLayout from "@layouts/MainLayout.astro";
 import BlogCard from "@components/BlogCard.astro";
 import Pagination from "@components/Pagination.astro";
+import { loadData } from "@utils/load-data.ts";
 import { loadCollection, type AnyCollectionEntry } from "@utils/load-data.ts";
 
 interface Props {
   language: string;
 }
 let { language } = Astro.props;
+let data: SiteData = await loadData(language);
 if (!language) {
-  language = "en";
+  language = data.language;
 }
 
 const currentPath = "articles";
 let posts = await loadCollection(language);
 posts = posts.filter((post) => post.data.show || post.data.show === undefined);
-const title = "Articles";
-const siteDescription = "A collection of articles";
+const title = data.articles.title;
+const siteDescription = data.articles.description;
 
 const currentPage: number | null = +Astro.url.searchParams.get("page")! || 1;
 const totalPages: number = Math.ceil(posts.length / 4);
@@ -27,9 +29,15 @@ const articlesForPage: AnyCollectionEntry[] = posts.slice(
 );
 ---
 
-<MainLayout description={siteDescription} {currentPath} {language} {title}>
+<MainLayout
+  {data}
+  description={siteDescription}
+  {currentPath}
+  {language}
+  {title}
+>
   <div class="flex flex-col justify-between">
-    <BlogCard posts={articlesForPage} {language} />
+    <BlogCard {data} posts={articlesForPage} {language} />
     <Pagination
       currentPage={currentPage}
       totalPosts={totalPosts}

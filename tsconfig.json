@@ -32,6 +32,9 @@
       ],
       "@utils/*": [
         "src/utils/*"
+      ],
+      "*": [
+        "types/*.d.ts",
       ]
     },
     "jsx": "react-jsx",

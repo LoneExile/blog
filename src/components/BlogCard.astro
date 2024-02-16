@@ -8,12 +8,14 @@ import { type AnyCollectionEntry } from "@utils/load-data.ts";
 interface Props {
   posts: AnyCollectionEntry[];
   language: string;
+  data: SiteData;
 }
 
-let { posts, language } = Astro.props;
+let { posts, language, data } = Astro.props;
 if (!language) {
-  language = "en";
+  language = data.language;
 }
+
 posts = posts.sort((a, b) => {
   if (!a.data.created || !b.data.created) {
     return 0;
@@ -28,7 +30,7 @@ posts = posts.sort((a, b) => {
 });
 
 const getPath = (slug: string) => {
-  return getRelativeLocaleUrl(language, "articles/" + slug);
+  return getRelativeLocaleUrl(language, data.articles.path + "/" + slug);
 };
 
 const dateToToday = (date: string) => {
@@ -48,9 +50,10 @@ const dateToToday = (date: string) => {
       >
         <!-- My Blog -->
       </h2>
-      <p class="font-medium text-gray-500 dark:text-gray-400 sm:text-xl">
-        "As wisdom grows and knowledge flows,<br /> the more we learn, the less we
-        know." - <span class="text-sm">VoidBox</span>
+      <p
+        class="whitespace-pre-line font-medium text-gray-500 dark:text-gray-400 sm:text-xl"
+      >
+        {data.articles.quote}<span class="text-sm">{data.siteTitle}</span>
       </p>
     </div>
     <div class="grid gap-8 lg:grid-cols-1">
@@ -61,7 +64,7 @@ const dateToToday = (date: string) => {
               <div class="mb-5 flex items-center justify-between text-gray-500">
                 <CategoryBadge categorys={post.data.category} />
                 <span class="text-sm">
-                  {dateToToday(post.data.created)} days ago
+                  {dateToToday(post.data.created)} {data.articles.daysAgo}
                 </span>
               </div>
               <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
