@@ -22,7 +22,6 @@ const blogCollection = defineCollection({
 });
 
 const collections = {
-  // blogs: blogCollection,
   blogs_en: blogCollection,
   blogs_th: blogCollection,
 };
