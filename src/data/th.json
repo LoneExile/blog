@@ -1,49 +1,49 @@
 {
   "language": "th",
   "siteTitle": "Voidbox",
-  "siteDescription": "Welcome to Voidbox, a digital archive documenting a programmer's journey through the bleeding-edge of technology. Dive in and explore this realm of accessible wisdom and inspiration.",
-  "author": "Apinant U-suwantim",
+  "siteDescription": "ยินดีต้อนรับสู่ Voidbox, คลังข้อมูลดิจิทัลที่บันทึกการเดินทางของโปรแกรมเมอร์ผ่านเทคโนโลยีชั้นนำแห่งยุค ดำดิ่งเข้าไปและสำรวจโลกแห่งปัญญาและแรงบันดาลใจที่เข้าถึงได้",
+  "author": "อภินันท์ อู่สุวรณทิม",
   "home": {
     "path": "",
     "hero": {
-      "title": "Digital archive",
-      "description": "transforming fleeting thoughts into lasting blogs. \n Enjoy your journey through Voidbox!"
+      "title": "คลังข้อมูลดิจิทัล",
+      "description": "เปลี่ยนความคิดชั่วขณะให้กลายเป็นบล็อกที่คงอยู่นาน \n สนุกกับการเดินทางของคุณผ่าน Voidbox!"
     }
   },
   "navbar": {
-    "home": "Home",
-    "articles": "Articles",
-    "about": "About"
+    "home": "หน้าหลัก",
+    "articles": "บทความ",
+    "about": "เกี่ยวกับบล็อกนี้"
   },
   "articles": {
-    "title": "Articles",
-    "description": "A collection of articles",
-    "quote": "\"As wisdom grows and knowledge flows,\n the more we learn, the less we know.\" - ",
-    "daysAgo": "days ago",
+    "title": "บทความ",
+    "description": "รวบรวมบทความต่างๆ",
+    "quote": "\"เมื่อสติปัญญาเติบโตขึ้นและความรู้หลั่งไหล\n ยิ่งเราเรียนรู้มากเท่าไร เราก็ยิ่งรู้น้อยลงเท่านั้น\" -",
+    "daysAgo": "วันที่แล้ว",
     "path": "articles"
   },
   "about": {
-    "title": "About",
-    "description": "A little bit about me",
+    "title": "เกี่ยวกับบล็อกนี้",
+    "description": "เล็กน้อยเกี่ยวกับฉัน",
     "path": "about",
     "aboutSite": {
       "title": "What is this !?",
-      "description": "born from the struggle of retaining and accessing my learning and coding experiences, Voidbox serves as my digital archive. Here, I share my journey through the bleeding-edge of technology, capturing and transforming fleeting knowledge into accessible wisdom. May Voidbox guide you in your coding journey, much like a compass in the vast ocean of technology."
+      "description": "เกิดจากการดิ้นรนเพื่อรักษาและเข้าถึงประสบการณ์การเรียนรู้และการเขียนโค้ดของผม Voidbox ทำหน้าที่เป็นคลังข้อมูลดิจิทัลของผม ที่นี่ ผมแบ่งปันการเดินทางของผมผ่านเทคโนโลยีล้ำหน้า รวบรวมและเปลี่ยนความรู้ที่หายวับไปเป็นภูมิปัญญาที่สามารถเข้าถึงได้ ขอให้ Voidbox นำทางคุณในเส้นทางการเขียนโค้ด เหมือนกับเข็มทิศในมหาสมุทรอันกว้างใหญ่แห่งเทคโนโลยี"
     },
     "aboutAuthor": {
-      "title": "Apinant U-suwantim (Moo)",
+      "title": "อภินันท์ อู่สุวรณทิม (หมู)",
       "role": "Software Engineer",
-      "location": "Bangkok, Thailand",
-      "description": "Hello, I'm Moo I'm an enthusiastic developer and programmer based in Thailand, with a growing interest in languages and tools like Rust, Go, Lua, Astro, Cloud-related and many more along the way.. Presently, I am focused on my day job while dedicating my spare time to building a blog website to share my thoughts and the knowledge I've accumulated."
+      "location": "กรุงเทพฯ, ประเทศไทย",
+      "description": "สวัสดีครับ ผมชื่อหมู ผมเป็นนักพัฒนาและโปรแกรมเมอร์ผู้กระตือรือร้นที่ทำงานอยู่ในประเทศไทย โดยมีความสนใจในภาษาและเครื่องมือต่างๆ เช่น Rust, Go, Lua, Astro, Cloud และอื่นๆ อีกมากมายตลอดเส้นทาง.. ปัจจุบัน ผมมุ่งเน้นไปที่งานประจำวันของผมพร้อมทั้งอุทิศเวลาว่างให้กับการสร้างเว็บไซต์บล็อกเพื่อแบ่งปันความคิดและความรู้ที่ผมได้สั่งสมมา"
     }
   },
   "pageNotFound": {
-    "title": "Page Not Found",
-    "description": "Oops! The page you are looking for has been removed or relocated.",
+    "title": "ไม่พบหน้านี้",
+    "description": "อ๊ะ! เพจที่คุณกำลังมองหาถูกลบหรือย้ายแล้ว",
     "path": "404"
   },
   "tags": {
-    "title": "Articles Tag: ",
-    "description": "A collection of articles tag: "
+    "title": "บทความแท็ก: ",
+    "description": "แท็กคอลเลกชันบทความ: "
   }
 }
