@@ -38,6 +38,16 @@ declare global {
         description: string;
       }
     };
+    newSletter: {
+      title: string;
+      placeholder: string;
+      button: string;
+      buttonSuccess: string;
+      buttonError: string;
+      buttonVerifying: string;
+      subDescription: string;
+      privacyPolicyLink: string;
+    };
     pageNotFound: {
       title: string;
       description: string;
