@@ -14,15 +14,15 @@ if (language === "th") {
 }
 ---
 
-<button
-  id="langToggle"
-  class="focus:shadow-outline ml-2 rounded bg-secondary-500 px-2 py-1.5 text-sm font-normal text-white hover:bg-secondary-700 focus:outline-none"
-  type="button"
->
-  <a href={targetPath} class="text-white no-underline">
+<a href={targetPath} class="text-white no-underline">
+  <button
+    id="langToggle"
+    class="focus:shadow-outline ml-2 rounded bg-secondary-500 px-2 py-1.5 text-sm font-normal text-white hover:bg-secondary-700 focus:outline-none"
+    type="button"
+  >
     {language.toUpperCase()}
-  </a>
-</button>
+  </button>
+</a>
 
 <!-- <script is:inline> -->
 <!--   document.getElementById("langToggle").addEventListener("click", function () { -->
