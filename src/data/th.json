@@ -37,6 +37,16 @@
       "description": "สวัสดีครับ ผมชื่อหมู ผมเป็นนักพัฒนาและโปรแกรมเมอร์ผู้กระตือรือร้นที่ทำงานอยู่ในประเทศไทย โดยมีความสนใจในภาษาและเครื่องมือต่างๆ เช่น Rust, Go, Lua, Astro, Cloud และอื่นๆ อีกมากมายตลอดเส้นทาง.. ปัจจุบัน ผมมุ่งเน้นไปที่งานประจำวันของผมพร้อมทั้งอุทิศเวลาว่างให้กับการสร้างเว็บไซต์บล็อกเพื่อแบ่งปันความคิดและความรู้ที่ผมได้สั่งสมมา"
     }
   },
+  "newSletter": {
+    "title": "Subscribe to our newsletter and stay up to date!",
+    "placeholder": "Enter your email",
+    "button": "Subscribe",
+    "buttonSuccess": "Success",
+    "buttonError": "Error",
+    "buttonVerifying": "Verifying...",
+    "subDescription": "We care about the protection of your data.",
+    "privacyPolicyLink": "Read our Privacy Policy."
+  },
   "pageNotFound": {
     "title": "ไม่พบหน้านี้",
     "description": "อ๊ะ! เพจที่คุณกำลังมองหาถูกลบหรือย้ายแล้ว",

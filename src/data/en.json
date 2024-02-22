@@ -37,6 +37,16 @@
       "description": "Hello, I'm Moo I'm an enthusiastic developer and programmer based in Thailand, with a growing interest in languages and tools like Rust, Go, Lua, Astro, Cloud-related and many more along the way.. Presently, I am focused on my day job while dedicating my spare time to building a blog website to share my thoughts and the knowledge I've accumulated."
     }
   },
+  "newSletter": {
+    "title": "Subscribe to our newsletter and stay up to date!",
+    "placeholder": "Enter your email",
+    "button": "Subscribe",
+    "buttonSuccess": "Success",
+    "buttonError": "Error",
+    "buttonVerifying": "Verifying...",
+    "subDescription": "We care about the protection of your data.",
+    "privacyPolicyLink": "Read our Privacy Policy."
+  },
   "pageNotFound": {
     "title": "Page Not Found",
     "description": "Oops! The page you are looking for has been removed or relocated.",
