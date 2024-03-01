@@ -19,7 +19,7 @@ spec:
             - /bin/sh
             - -c
             - |
-              ./listmonk --install --config /listmonk/config.toml --idempotent --yes
+              ./listmonk --install --config /listmonk/config.toml --idempotent --yes && yes | ./listmonk --upgrade
           # envFrom:
           #   - secretRef:
           #       name: listmonk-secrets
