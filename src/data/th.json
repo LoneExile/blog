@@ -34,18 +34,22 @@
       "title": "อภินันท์ อู่สุวรณทิม (หมู)",
       "role": "Software Engineer",
       "location": "กรุงเทพฯ, ประเทศไทย",
-      "description": "สวัสดีครับ ผมชื่อหมู ผมเป็นนักพัฒนาและโปรแกรมเมอร์ผู้กระตือรือร้นที่ทำงานอยู่ในประเทศไทย โดยมีความสนใจในภาษาและเครื่องมือต่างๆ เช่น Rust, Go, Lua, Astro, Cloud และอื่นๆ อีกมากมายตลอดเส้นทาง.. ปัจจุบัน ผมมุ่งเน้นไปที่งานประจำวันของผมพร้อมทั้งอุทิศเวลาว่างให้กับการสร้างเว็บไซต์บล็อกเพื่อแบ่งปันความคิดและความรู้ที่ผมได้สั่งสมมา"
+      "description": "สวัสดีครับ ผมชื่อหมู ผมเป็นนักพัฒนาและโปรแกรมเมอร์ผู้กระตือรือร้น ทำงานอยู่ที่ไทย โดยมีความสนใจในภาษาและเครื่องมือต่างๆ เช่น Rust, Go, Lua, Astro, Cloud และอื่นๆ อีกมากมายตลอดเส้นทาง.. ปัจจุบัน ผมมุ่งเน้นไปที่งานประจำวันของผมพร้อมทั้งอุทิศเวลาว่างให้กับการสร้างเว็บไซต์บล็อกเพื่อแบ่งปันความคิดและความรู้ที่ผมได้สั่งสมมา"
     }
   },
+  "relateArticles": {
+    "title": "บทความที่เกี่ยวข้อง",
+    "readingTime": "อ่าน __ นาที"
+  },
   "newSletter": {
-    "title": "Subscribe to our newsletter and stay up to date!",
-    "placeholder": "Enter your email",
+    "title": "สมัครรับจดหมายข่าวของเราและติดตามข่าวสารล่าสุด",
+    "placeholder": "กรอกอีเมล",
     "button": "Subscribe",
-    "buttonSuccess": "Success",
-    "buttonError": "Error",
-    "buttonVerifying": "Verifying...",
-    "subDescription": "We care about the protection of your data.",
-    "privacyPolicyLink": "Read our Privacy Policy."
+    "buttonSuccess": "สำเร็จ",
+    "buttonError": "ไม่สำเร็จ",
+    "buttonVerifying": "ตรวจสอบ...",
+    "subDescription": "เราใส่ใจเกี่ยวกับการปกป้องข้อมูลของคุณ",
+    "privacyPolicyLink": "อ่านนโยบายความเป็นส่วนตัวของเรา"
   },
   "pageNotFound": {
     "title": "ไม่พบหน้านี้",

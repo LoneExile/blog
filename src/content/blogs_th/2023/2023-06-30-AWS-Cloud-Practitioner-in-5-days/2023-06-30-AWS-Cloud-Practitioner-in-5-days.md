@@ -1,9 +1,7 @@
 ---
-title: "AWS Cloud Practitioner in 5 days th"
+title: "AWS Cloud Practitioner ใน 5 วัน"
 description:
-  "A comprehensive guide on how to pass the AWS Certified Cloud Practitioner
-  Exam. This post covers the author's personal journey, preparation strategies,
-  resources used, and exam experience."
+  "คู่มือที่ครอบคลุมเกี่ยวกับการผ่านการสอบ AWS Certified Cloud Practitioner โพสต์นี้ครอบคลุมการเตรียมตัว กลยุทธ์การเตรียมตัวทรัพยากรที่ใช้และประสบการณ์การสอบ"
 thumbnail:
   {
     src: "../../../images/2023/2023-06-30-AWS-Cloud-Practitioner-in-5-days/blackboard-unsplash-unspecified.jpeg",
@@ -21,18 +19,12 @@ author: "Apinant U-suwantim"
 
 ![blackboard-unsplash-unspecified](../../../images/2023/2023-06-30-AWS-Cloud-Practitioner-in-5-days/blackboard-unsplash-unspecified.jpeg)
 
-The CLF-C01: AWS Certified Cloud Practitioner Exam is the first step to becoming
-AWS Certified. It's a foundational exam that tests your understanding of the AWS
-Cloud, making it suitable for anyone looking to familiarize themselves with AWS
-Cloud.
+การสอบ CLF-C01: AWS Certified Cloud Practitioner เป็นก้าวแรกในการรับรอง AWS Certified นี่คือการสอบพื้นฐานที่ทดสอบความเข้าใจของคุณผู้อ่านเกี่ยวกับ AWS Cloud ทําให้มันเหมาะสําหรับทุกคนที่ต้องการที่จะคุ้นเคยกับ AWS Cloud
 
-For readers visiting this blog from the future, please note that CLF-C01 exam,
-will be replaced by the CLF-C02 exam. From my perspective, if you're aiming for
-a 100% score like I did, there isn't much difference between the two versions.
-If you come across a mock exam for the old version, don't hesitate to use it for
-practice.
+สําหรับผู้อ่านที่เยี่ยมชมบล็อกนี้จากอนาคต โปรดทราบว่าการสอบ CLF-C01 จะถูกแทนที่โดยการสอบ CLF-C02 จากมุมมองของผม ถ้าผู้อ่านตั้งเป้าหมายให้คะแนน 100% อย่างที่ผมทํา มีความแตกต่างไม่มากระหว่างสองชุดสอบ
+ถ้าผู้อ่านพบกับการสอบจำลองแบบสําหรับรุ่นเก่า อย่าลังเลที่จะใช้มันเพื่อฝึกซ้อมนะครับ
 
-Here the comparison table from
+ตารางเปรียบเทียบจาก
 [AWS website](https://aws.amazon.com/certification/certified-cloud-practitioner/).
 
 | Domain                  | [CLF-C01](https://d1.awsstatic.com/training-and-certification/docs-cloud-practitioner/AWS-Certified-Cloud-Practitioner_Exam-Guide.pdf) | [CLF-C02](https://d1.awsstatic.com/training-and-certification/docs-cloud-practitioner/AWS-Certified-Cloud-Practitioner_Exam-Guide_C02.pdf) |
@@ -42,121 +34,68 @@ Here the comparison table from
 | Technology              | 33%                                                                                                                                    | 34%                                                                                                                                        |
 | Billing and Pricing     | 16%                                                                                                                                    | 12%                                                                                                                                        |
 
-## Background
+## ขอเกริ่นก่อนน
 
-I have been working with AWS Cloud at a surface level in my recent role as a
-Software Engineer. However, I've never really dived deep into it since it wasn't
-part of my job responsibilities. Consequently, my experience with AWS Cloud is
-quite limited.
+ผมทํางานที่ใช้ AWS Cloud ในระดับพื้นผิวเผิน ในงานล่าสุดของผมในฐานะวิศวกรซอฟต์แวร์ อย่างไรก็ตาม ผมไม่เคยเจาะลึกเข้าไปในเรื่องนี้ เพราะมันไม่ได้เป็นส่วนหนึ่งของความรับผิดชอบในงานของผม ดังนั้นประสบการณ์ของผมกับ AWS Cloud ก็ค่อนข้างมีอย่างจํากัด
 
-Should you take this exam? Absolutely, yes! I highly recommend it. It's an
-excellent starting point for getting familiar with cloud platforms. This isn't
-exclusive to AWS - you could also explore other cloud platforms like
-[Azure](https://azure.microsoft.com/en-us) or [GCP](https://cloud.google.com/).
+แล้วเราจำเป็นต้องสอบไหม? แน่นอน ผมขอแนะนําอย่างยิ่ง มันเป็นจุดเริ่มต้นที่ยอดเยี่ยมสําหรับการคุ้นเคยกับแพลตฟอร์มคลาวด์ นี่ไม่ใช่เฉพาะสําหรับ AWS - ผู้อ่านยังสามารถสํารวจแพลตฟอร์มคลาวด์อื่น ๆ เช่น [Azure](https://azure.microsoft.com/en-us)
+หรือ [GCP](https://cloud.google.com/).
 
-Doing so will help you understand the bigger picture of how cloud technology
-works and how it can transform your future work.
+การทําเช่นนั้นจะช่วยให้ผู้อ่านเข้าใจภาพที่ใหญ่กว่าของวิธีการทํางานของคลาวด์และวิธีที่มันสามารถเปลี่ยนการทำงานในอนาคตของผู้อ่านได้
 
-For instance, in the past, I was tasked with extracting data from large PDF
-files, splitting them, uploading the pieces to
-[AWS S3](https://aws.amazon.com/s3/), and converting the data into database
-records. This process involved AWS [Batch](https://aws.amazon.com/batch/) and
-[Lambda](https://aws.amazon.com/lambda/). However, at the time, I had no idea
-what those services were.
+ตัวอย่างเช่นในอดีตผมได้รับมอบหมายงานในการแปลงข้อมูลจาก PDF ขนาดใหญ่แบ่งออกอัปโหลดชิ้นส่วนไปยัง [AWS S3](https://aws.amazon.com/s3/) และแปลงข้อมูลเป็นบันทึกฐานข้อมูล กระบวนการนี้เกี่ยวข้องกับ AWS [Batch](https://aws.amazon.com/batch/) และ [Lambda](https://AWs.Amazon.com/lambda/). อย่างไรก็ตาม ตอนนั้นผมไม่รู้ว่าบริการเหล่านั้นคืออะไร
 
-I simply treated S3 as regular file storage and Batch and Lambda as standard
-servers. Looking back, I realize I had many questions: Why use Lambda and Batch?
-Can Lambda work independently? Why not use
-[EC2 RI or Spot instances](https://aws.amazon.com/ec2/instance-types/)? Another
-point of frustration was that during planning and design sessions with my team,
-we never really discussed best practices for cloud platforms.
+ผมใช้ S3 เป็นพื้นที่เก็บไฟล์ปกติ Batch และ Lambda ใช้เป็นเหมือนเซิร์ฟเวอร์ทั่วไป เมื่อมองกลับมา ผมรู้ว่าผมมีคําถามมากมาย ทําไมต้องใช้ Lambda และ Batch?
+Lambda สามารถทํางานได้อย่างอิสระได้มั้ย? ทําไมไม่ใช้ [EC2 RI or Spot instances](https://aws.amazon.com/ec2/instance-types/)? อีกจุดของความสงสัยคือในระหว่างการวางแผนและการออกแบบ session กับทีมของผม เราไม่เคยพูดถึงการปฏิบัติที่ดีที่สุดสําหรับแพลตฟอร์มคลาวด์เลย
 
-However, I want to stress that understanding cloud technology is important as it
-can help solve problems in more efficient and effective ways.
+อย่างไรก็ตามผมอยากจะเน้นว่าการเข้าใจเทคโนโลยีคลาวด์เป็นสิ่งสําคัญเพราะมันสามารถช่วยแก้ปัญหาได้ในวิธีที่มีประสิทธิภาพมากขึ้น
 
-Have I convinced you yet? If so... **Let's get started!!**
+## การเตรียมตัวก่อนสอบ
 
-## Preparation and Resources
+### วันที่ 1 - 2: จำแล้วทำความเข้าใจให้ได้มากที่สุด
 
-### Day 1 - 2: Absorb as Much Information as Possible
-
-I spent the first few hours of the first day researching the exam. I needed to
-understand the exam format, the number of questions, the time limit, the passing
-score, and other relevant details. Afterward, I dedicated the rest of the day to
-studying for the exam. Here are the resources I used:
+ผมใช้เวลาไม่กี่ชั่วโมงแรกของวันแรกในหาข้อมูลเกี่ยวกับการสอบ ผมต้องการที่จะเข้าใจรูปแบบการสอบ จํานวนคําถามเวลาเกณฑ์คะแนนผ่านและรายละเอียดอื่นๆ ที่เกี่ยวข้อง หลังจากนั้น ผมใช้เวลาที่เหลือของวันเพื่อเรียนสําหรับการสอบ นี่คือทรัพยากรที่ผมใช้:
 
 - AWS Cloud Documentation
 
-While some people might prefer
-[the official AWS Cloud Documentation](https://explore.skillbuilder.aws/learn/course/external/view/elearning/134/aws-cloud-practitioner-essentials),
-which is comprehensive and detailed, I favor physical books because reading
-online tends to strain my eyes. However, if you're comfortable with online
-reading, the AWS Cloud Documentation is an excellent resource, and it even
-includes a mock exam at the end.
+ในขณะที่บางคนอาจชอบ [AWS Cloud Documentation](https://explore.skillbuilder.aws/learn/course/external/view/elearning/134/aws-cloud-practitioner-essentials) ซึ่งครอบคลุมและรายละเอียด ผมชอบอ่านหนังสือเป็นเล่มๆมากกว่า เพราะการอ่านออนไลน์มีแนวโน้มที่จะทําให้ตาของผมเหนื่อย อย่างไรก็ตามถ้าผู้อ่านรู้สึกสบายกับการอ่านออนไลน์ AWS Cloud Documentation เป็นทรัพยากรที่ยอดเยี่ยมและรวมถึงการสอบแบบจําลองในตอนจบ
 
-- Video Courses
+- วีดีโอคอร์ส
 
-[The official AWS Cloud video course](https://explore.skillbuilder.aws/) is a
-great starting point. It's free and updated regularly. YouTube is another
-platform with a wealth of content. I recommend watching videos at 1.5x or even
-2x speed to save time, if you can keep up. However, I chose to use Udemy for my
-studies. YouTube has good content, but it's not as well-organized, and the
-videos I liked tended to cram a lot of information into long, 14-16 hour videos.
-It was hard for me to commit to watching these lengthy videos.
+[หลักสูตรวิดีโอ AWS Cloud อย่างเป็นทางการ](https://explore.skillbuilder.aws/) เป็นจุดเริ่มต้นที่ยอดเยี่ยม มันฟรีและอัปเดตเป็นประจํา YouTube เป็นก็มีเนื้อหามากมาย ผมขอแนะนําให้ดูวิดีโอที่ความเร็ว 1.5x หรือแม้กระทั่ง 2x เพื่อประหยัดเวลาถ้าผู้อ่านสามารถฟังทันได้ อย่างไรก็ตาม ผมเลือกใช้ Udemy สําหรับการศึกษาของผม YouTube มีเนื้อหาที่ดี แต่มันไม่ได้จัดระเบียบอย่างดีและวิดีโอที่ผมชอบมีแนวโน้มที่จะรวมข้อมูลจํานวนมากลงในวิดีโอเดียวยาว 14-16 ชั่วโมง มันยากสําหรับผมที่จะมุ่งมั่นที่จะดูวิดีโอที่ยาวนานเหล่านี้
 
-- Other Resources
+- แหล่งข้อมูลอื่นๆ
 
-I found flashcards to be an effective learning tool that utilizes time
-efficiently. You can use them while waiting for food, riding a bus, or even
-during a bathroom break. You'd be surprised at how much you can learn in short
-bursts of time. Anki and Quizlet are great platforms for finding useful
-flashcards.
+ผมพบว่าแฟลชการ์ด (flashcards) เป็นเครื่องมือการเรียนรู้ที่มีประสิทธิภาพ ที่ใช้เวลาอย่างมีประสิทธิภาพ ผู้อ่านสามารถใช้มันในขณะที่รออาหาร นั้งรถบัส หรือแม้กระทั่งในช่วงพักในห้องน้ํา ผู้อ่านจะประหลาดใจว่าผู้อ่านจะได้เรียนรู้มากแค่ไหน ในช่วงเวลาสั้น ๆ Anki และ Quizlet เป็นแพลตฟอร์มที่ยอดเยี่ยมสําหรับการค้นหาแฟลชการ์ดที่มีประโยชน์
 
-### Day 3-5: Practice with Mock Exams
+### วันที่ 3-5: ฝึกทำข้อสอบจำลอง
 
-I had about 10 mock exams at my disposal. Three were from the official AWS
-Cloud, and the rest I purchased from Udemy for around 10 dollars, which included
-6 tests. I believe it was a worthwhile investment.
+ผมมีข้อสอบจำลองประมาณ 10 ชุด 3 ชุดมาจาก AWS Cloud official และส่วนที่เหลือผมซื้อจาก Udemy ประมาณ 10 ดอลลาร์ซึ่งรวมถึงการทดสอบ 6 ชุด ผมเชื่อว่ามันเป็นการลงทุนที่คุ้มค่า
 
-My study approach was to take a mock exam, review the questions I got wrong and
-understand why, then retake the test before moving on to the next one. I
-repeated this process for each exam. I managed to take 3-4 mock exams per day,
-and I found this method to be very effective.
+วิธีการศึกษาของผมคือการสอบแบบจําลอง ตรวจสอบคําถามที่ผมผิดพลาดและเข้าใจว่าทําไม จากนั้นทําการทดสอบอีกครั้งก่อนที่จะผ่านไปทำชุดถัดไป ผมทําซ้ํากระบวนการซ้ำไปมาประมาณ 3-4 ครั้งต่อวัน และผมพบว่าวิธีการนี้มีประสิทธิภาพมาก
 
-## Exam Day
+## วันสอบ
 
-I took the exam at home via Pearson VUE's online proctoring because the closest
-test center was too far from my place. To take the exam, you need a reliable
-internet connection, a webcam, and a microphone.
+ผมทําการสอบที่บ้านผ่านทางออนไลน์ของ Pearson VUE เพราะศูนย์ทดสอบที่ใกล้ที่สุดไกลเกินไปจากที่ผมอยู่ เพื่อสอบผู้อ่านต้องมีอินเทอร์เน็ตเชื่อมต่อที่คงที่ เว็บแคม และไมโครโฟน
 
-I checked in 30 minutes before the exam. The entire check-in process took around
-15 minutes, but then I had to wait in a queue for another 30 minutes before the
-proctor showed up. During this waiting time, I couldn't leave my spot.
+ผมเช็คอิน 30 นาทีก่อนสอบ กระบวนการเช็คอินทั้งหมดใช้เวลาประมาณ 15 นาที แต่จากนั้นผมต้องรอคอยอีก 30 นาทีก่อนที่ผู้คุมสอบจะปรากฏตัว ในช่วงรอคอยนี้ ผมไม่สามารถออกจากที่นั่งได้
 
-One mistake I made was drinking coffee before the exam, which increased my
-anxiety during the test. However, the overall process was straightforward and
-easy to follow with the provided instructions.
+ข้อผิดพลาดหนึ่งที่ผมทําคือดื่มกาแฟก่อนการสอบ ซึ่งเพิ่มอยากเข้าห้องน้ำของผมระหว่างการทดสอบ อย่างไรก็ตาม กระบวนการโดยรวมก็เรียบร้อยและง่ายต่อการปฏิบัติตามคําแนะนําที่ให้
 
-> **Tip:** If you're a non-native English speaker like me, I recommend
-> requesting an exam accommodation to get an extra 30 minutes.
+> **เคล็ดลับ:** หากผู้อ่านเป็นไม่ได้ใช้ภาษาอังกฤษเป็นภาษาหลัก 
+> ผมขอแนะนําให้ขอเวลาทดสอบเพิ่มเติมได้ 30 นาที
 
-## Results and Conclusion
+## ผลลัพธ์และข้อสรุป
 
 ![aws-cloud-practitioner-score-voidbox.io-loneexile](../../../images/2023/2023-06-30-AWS-Cloud-Practitioner-in-5-days/aws-cloud-practitioner-score-voidbox.io-loneexile.png)
 
-I was expecting a score of around 900+ because I was confident about my
-preparation, but I ended up with a score of 850 from 1000. Still, a pass is a
-pass!
+ผมคาดหวังคะแนนประมาณ 900+ เพราะผมมั่นใจในความพร้อมของผม แต่ผมจบลงด้วยคะแนน 850 จาก 1000 อย่างไรก็ตาม ผ่านก็คือผ่าน!
 
-My approach to preparing for the exam was to focus on understanding the concepts
-that made sense to me. I didn't want to over-focus on AWS because the main goal
-was to become familiar with cloud platforms and how they work, not to memorize
-every detail.
+การเตรียมตัวสําหรับการสอบของผมคือการมุ่งเน้นไปที่การเข้าใจแนวคิดที่สมเหตุสมผลกับผม ผมไม่อยากมุ่งเน้นไปที่ AWS มากเกินไป เพราะเป้าหมายหลักคือการคุ้นเคยกับแพลตฟอร์มคลาวด์และวิธีการทํางานของพวกเขา ไม่ใช่การจําทุกรายละเอียด
 
-I hope this blog post will help you get started with AWS Cloud. If you have any
-questions, feel free to leave a comment below. I'll do my best to answer them.
+ผมหวังว่าโพสต์บล็อกนี้จะช่วยให้ผู้อ่านเริ่มต้นกับ AWS Cloud หากมีคําถามหรือคําแนะนําใดๆ โปรดแจ้งให้ผมทราบในความคิดเห็นด้านล่าง
 
-For those of you preparing to take the exam, good luck and have fun!
+สําหรับผู้ที่กําลังเตรียมตัวสําหรับการสอบ, ขอให้โชคดีครับ!
 
 ---
 

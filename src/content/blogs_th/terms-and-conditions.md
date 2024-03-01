@@ -1,5 +1,5 @@
 ---
-title: "Terms and Conditions th"
+title: "Terms and Conditions"
 language: "th"
 created: 2024-01-06 22:40
 updated: 2024-01-06 22:40

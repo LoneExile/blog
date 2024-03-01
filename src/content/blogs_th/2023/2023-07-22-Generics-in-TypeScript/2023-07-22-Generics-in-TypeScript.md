@@ -1,6 +1,6 @@
 ---
-title: "Generics in TypeScript th"
-description: "Master the concept of Generics in TypeScript with a comprehensive guide. Learn what generics are, why they're useful, and how to use them in your TypeScript code with practical examples."
+title: "Generics ใน TypeScript"
+description: "เข้าใจในแนวคิดของ Generics ใน TypeScript ด้วยคู่มือที่ครอบคลุม เรียนรู้ว่า generics คืออะไร ทําไมมันมีประโยชน์ และวิธีใช้มันในโค้ด TypeScript ของคุณด้วยตัวอย่างที่ใช้งานได้"
 thumbnail: { src: "../../../images/2023/2023-07-22-Generics-in-TypeScript/generics-unsplash-brano.jpg", alt: "generics-unsplash-brano" }
 language: "th"
 created: 2023-07-22 14:58
@@ -14,34 +14,20 @@ author: "Apinant U-suwantim"
 
 ![generics-unsplash-brano](../../../images/2023/2023-07-22-Generics-in-TypeScript/generics-unsplash-brano.jpg)
 
-TypeScript, a statically typed superset of JavaScript, offers a variety of
-advanced type features that enhance JavaScript's capabilities. One such feature
-is generics, a powerful tool that increases the reusability and maintainability
-of your code. In this blog post, we'll dive deep into generics, exploring what
-they are, why they're useful, and how to use them in your TypeScript code.
+TypeScript เป็น Superset ของ JavaScript มีคุณสมบัติประเภทขั้นสูงมากมายที่ช่วยเพิ่มความสามารถของ JavaScript คุณสมบัติหนึ่งคือ Generics เป็นเครื่องมือที่มีประสิทธิภาพซึ่งช่วยเพิ่มความสามารถในการใช้ซ้ําและบํารุงรักษาโค้ดของผู้อ่าน ในโพสต์บล็อกนี้เราจะเจาะลึกเข้าไปใน Generics การสืบสวนว่ามันคืออะไร ทําไมมันมีประโยชน์และวิธีใช้มันในโค้ด TypeScript ของผู้อ่าน
 
-## Unraveling Generics
+## Generics คืออะไร
 
-In programming, we often create functions or classes that can work with different
-types of data. For instance, a function might accept an array of numbers, strings,
-or objects. However, without a way to handle multiple types, we'd have to write
-separate functions for each type, leading to redundant and hard-to-maintain code.
+ในการเขียนโปรแกรม เรามักจะสร้างฟังก์ชั่นหรือคลาสที่สามารถทํางานกับข้อมูลประเภทต่าง ๆ ตัวอย่างเช่น ฟังก์ชันอาจยอมรับจํานวนหมายเลข สตริง หรือออปเจ็ค อย่างไรก็ตาม โดยไม่มีวิธีจัดการหลายประเภท เราจะต้องเขียนฟังก์ชั่นแยกต่างหากสําหรับแต่ละประเภท ซึ่งจะทําให้โค้ดซ้ําซ้อนและยากที่จะรักษาไว้
 
-This is where generics come in. Generics are a feature of TypeScript that allows
-you to write code that can handle a variety of types while maintaining type safety.
-They're like variables for types, represented by a placeholder (commonly `T`),
-which TypeScript replaces with the actual type when the function or class is used.
+Generics เป็นคุณสมบัติของ TypeScript ซึ่งช่วยให้ผู้อ่านเขียนโค้ดที่สามารถจัดการกับประเภทต่างๆ
+มันเหมือนกับตัวแปรสําหรับ type (โดยทั่วไปใช้ `T`) ซึ่ง TypeScript จะแทนที่ด้วยประเภทจริงเมื่อใช้ฟังก์ชั่นหรือคลาส
 
-## The Flip Side of Generics
-
-While generics are powerful, they can be confusing to new developers. They also
-may not be supported by all languages, so it's important to understand
-the environment in which you're working.
 
 ## Generics in Action
 
-Let's look at a practical example of how generics can improve your TypeScript code.
-Consider the following code block:
+ลองดูตัวอย่างที่ใช้งานได้เกี่ยวกับ Generics
+บล็อกโค้ดต่อไปนี้:
 
 ```typescript
 type JobRun = {
@@ -79,11 +65,9 @@ run.onCompleted((job) => {
 
 ```
 
-In this code, the `job` property and the `callback` function in `onCompleted`
-method are typed as `any`, which means we lose the benefits of TypeScript's
-type checking.
+ในโค้ดนี้ คุณสมบัติ `job` และฟังก์ชั่น `callback` ในวิธีการ `onCompleted` จะถูกพิมพ์เป็น `any` ซึ่งหมายความว่าเราจะสูญเสียประโยชน์ของการตรวจสอบประเภทของ TypeScript
 
-We can improve this by using generics:
+เราสามารถปรับปรุงเรื่องนี้ได้โดยใช้ Generics:
 
 ```typescript
 type JobRun<J> = {
@@ -125,11 +109,9 @@ run.onCompleted((job) => {
 
 ```
 
-Now, TypeScript can check that the `job` property and the `callback` function
-are of the correct type.
+ตอนนี้ TypeScript สามารถตรวจสอบว่าคุณสมบัติ `job` และฟังก์ชั่น `callback` เป็นประเภทที่ถูกต้อง
 
-We can take this a step further by ensuring that the job object adheres to
-a specific structure:
+เราสามารถทําสิ่งนี้ได้อีกขั้นหนึ่งโดยให้แน่ใจว่าวัตถุงานสอดคล้องกับโครงสร้างที่เฉพาะเจาะจง:
 
 ```typescript
 type Job = {
@@ -189,14 +171,11 @@ run.onCompleted((job) => {
 })
 ```
 
-With this code, TypeScript will ensure that the job object has the properties
-required by the `Job` type.
+ด้วยโค้ดนี้ TypeScript จะให้แน่ใจว่าวัตถุงานมีคุณสมบัติที่ต้องการโดยประเภท `Job`
 
-In conclusion, generics are a powerful feature of TypeScript that allow you to
-write more reusable and maintainable code. While they can be confusing at first,
-with practice, they can greatly enhance your TypeScript programming.
+ในการสรุป, Generics เป็นคุณสมบัติที่แข็งแกร่งของ TypeScript ซึ่งช่วยให้ผู้อ่านเขียนโค้ดที่สามารถใช้ซ้ําและบํารุงรักษาได้มากขึ้น ในขณะที่ Generics อาจทําให้สับสนในตอนแรก ด้วยการฝึกฝนการใช้ Generics สามารถช่วยปรับปรุงการเขียนโปรแกรม TypeScript ของผู้อ่านอย่างมาก
 
-## References
+## อ้างอิง
 
 - [(Doc) TypeScript Generics](https://www.typescriptlang.org/docs/handbook/2/generics.html)
 - [(Youtube) How to use generics in TypeScript](https://youtu.be/t0qQSujSslQ)

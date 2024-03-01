@@ -38,6 +38,10 @@ declare global {
         description: string;
       }
     };
+    relateArticles: {
+      title: string;
+      readingTime: string;
+    }
     newSletter: {
       title: string;
       placeholder: string;

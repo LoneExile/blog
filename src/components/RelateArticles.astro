@@ -7,8 +7,9 @@ interface Props {
   currentTags: string[];
   language: string;
   currentSlug: string;
+  data: SiteData;
 }
-const { currentTags, language, currentSlug } = Astro.props;
+const { currentTags, language, currentSlug, data } = Astro.props;
 const posts = await loadCollection(language);
 const relatedPosts = posts.filter((post) => {
   if (post.data.tags && post.slug !== currentSlug) {
@@ -33,7 +34,7 @@ function calculateReadingTime(text: string) {
 <aside aria-label="Related articles" class="py-8 dark:bg-gray-900 lg:py-24">
   <div class="mx-auto max-w-screen-xl px-4">
     <h2 class="mb-8 text-2xl font-bold text-gray-900 dark:text-white">
-      Related articles
+      { data.relateArticles.title }
     </h2>
     <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
       {
@@ -60,7 +61,7 @@ function calculateReadingTime(text: string) {
               href="#"
               class="inline-flex items-center font-medium text-primary-600 underline underline-offset-4 hover:no-underline dark:text-primary-500"
             >
-              Read in {calculateReadingTime(post.body.toString())} minutes
+              { data.relateArticles.readingTime.replace("__", calculateReadingTime(post.body.toString()).toString())}
             </a>
           </article>
         ))

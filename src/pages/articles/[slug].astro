@@ -76,7 +76,7 @@ const isArticle =
     isArticle && (
       <>
         <Comments client:visible={{ rootMargin: "400px" }} />
-        <RelateArticles {currentTags} {language} currentSlug={entry.slug} />
+        <RelateArticles {currentTags} {language} {data} currentSlug={entry.slug} />
         <NewSletter {language} {data} />
       </>
     )
