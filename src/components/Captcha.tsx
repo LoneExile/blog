@@ -12,9 +12,11 @@ export default class SubscriptionForm extends Component {
     const turnstileContainer = document.querySelector(
       ".cf-turnstile",
     ) as HTMLElement;
-    const selectTurnstileToken = document.querySelector(
-      'input[name="cf-turnstile-response"]',
-    ) as HTMLInputElement;
+    const selectTurnstileToken = () => {
+      return document.querySelector(
+        'input[name="cf-turnstile-response"]',
+      ) as HTMLInputElement;
+    }
     const selectTurnstileTokenEle = document.querySelector(
       "#cf-turnstile-ele",
     ) as HTMLInputElement;
@@ -43,7 +45,7 @@ export default class SubscriptionForm extends Component {
     subscribeWaitButton.classList.remove("hidden");
 
     function toggleSubscribeButton() {
-      const turnstileToken = (selectTurnstileToken as HTMLInputElement).value;
+      const turnstileToken = selectTurnstileToken().value;
       if (turnstileToken && turnstileToken.trim() !== "") {
         subscribeButton.classList.remove("hidden");
         subscribeDisabledButton.classList.add("hidden");
@@ -77,7 +79,7 @@ export default class SubscriptionForm extends Component {
         event.preventDefault();
 
         const email = (selectEmail as HTMLInputElement).value;
-        const turnstileToken = (selectTurnstileToken as HTMLInputElement).value;
+        const turnstileToken = selectTurnstileToken().value;
 
         fetch(import.meta.env.PUBLIC_TURNSTILE_HANDLE_API, {
           method: "POST",
