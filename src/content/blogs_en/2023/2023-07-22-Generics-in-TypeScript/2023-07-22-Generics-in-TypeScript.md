@@ -1,7 +1,7 @@
 ---
 title: "Generics in TypeScript"
 description: "Master the concept of Generics in TypeScript with a comprehensive guide. Learn what generics are, why they're useful, and how to use them in your TypeScript code with practical examples."
-thumbnail: { src: "./generics-unsplash-brano.jpg", alt: "generics-unsplash-brano" }
+thumbnail: { src: "../../../images/2023/2023-07-22-Generics-in-TypeScript/generics-unsplash-brano.jpg", alt: "generics-unsplash-brano" }
 language: "en"
 created: 2023-07-22 14:58
 updated: 2023-07-23 12:40
@@ -12,7 +12,7 @@ slug: "2023-07-22-Generics-in-TypeScript"
 author: "Apinant U-suwantim"
 ---
 
-![generics-unsplash-brano](./generics-unsplash-brano.jpg)
+![generics-unsplash-brano](../../../images/2023/2023-07-22-Generics-in-TypeScript/generics-unsplash-brano.jpg)
 
 TypeScript, a statically typed superset of JavaScript, offers a variety of
 advanced type features that enhance JavaScript's capabilities. One such feature

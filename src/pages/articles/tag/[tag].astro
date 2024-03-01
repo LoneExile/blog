@@ -2,15 +2,30 @@
 import MainLayout from "@layouts/MainLayout.astro";
 import BlogCard from "@components/BlogCard.astro";
 import Pagination from "@components/Pagination.astro";
-import { getRelativeLocaleUrl } from "astro:i18n";
 import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
 import NotFound from "@components/NotFound.astro";
 import LoneExile from "@assets/LoneExile.png";
+import { loadData } from "@utils/load-data.ts";
+import {
+  type AnyCollectionEntry,
+  collections,
+  type MyCollectionKeys,
+} from "@utils/load-data.ts";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blogs");
+  let data: SiteData = await loadData("");
+  let language = data.language;
+  let posts: AnyCollectionEntry[] = [];
 
+  for (const collection of Object.keys(collections) as MyCollectionKeys[]) {
+    let collectionEntries = await getCollection(collection);
+    collectionEntries = collectionEntries.filter(
+      (post) =>
+        post.data.language === language &&
+        (post.data.show === true || post.data.show === undefined),
+    );
+    posts = posts.concat(collectionEntries);
+  }
   let tags: string[] = [];
 
   posts.forEach((post) => {
@@ -20,15 +35,18 @@ export async function getStaticPaths() {
   });
 
   return tags.map((tag) => ({
-    params: {
-      tag: tag.toLowerCase(),
-    },
+    params: { tag: tag.toLowerCase() },
+    props: { posts, language },
   }));
 }
 
-const { tag } = Astro.params;
+let { posts, language } = Astro.props;
+let { tag } = Astro.params;
+let data: SiteData = await loadData(language);
+if (!language) {
+  language = data.language;
+}
 
-let posts = await getCollection("blogs");
 posts = posts.filter((post) => {
   let hasTag = false;
   post.data.tags?.forEach((postTag: string) => {
@@ -42,11 +60,10 @@ posts = posts.filter((post) => {
   return hasTag;
 });
 
-const language = "en";
-const currentPath = getRelativeLocaleUrl(language, "articles");
+const currentPath = "articles";
 
-const title = "Articles Tag: ";
-const siteDescription = "A collection of articles tag: ";
+const title = data.tags.title;
+const siteDescription = data.tags.description;
 
 if (tag === undefined) {
   throw new Error("Tag is required");
@@ -55,19 +72,25 @@ if (tag === undefined) {
 const currentPage: number | null = +Astro.url.searchParams.get("page")! || 1;
 const totalPages: number = Math.ceil(posts.length / 4);
 const totalPosts: number = posts.length;
-const articlesForPage: CollectionEntry<"blogs">[] = posts.slice(
+const articlesForPage: AnyCollectionEntry[] = posts.slice(
   (currentPage - 1) * 4,
   currentPage * 4,
 );
 ---
 
-<MainLayout description={siteDescription} {currentPath} {language} {title}>
+<MainLayout
+  {data}
+  description={siteDescription}
+  {currentPath}
+  {language}
+  {title}
+>
   {
     totalPosts === 0 ? (
       <NotFound image={LoneExile} />
     ) : (
       <>
-        <BlogCard posts={articlesForPage} {language} />
+        <BlogCard {data} posts={articlesForPage} {language} />
         <Pagination
           currentPage={currentPage}
           totalPosts={totalPosts}

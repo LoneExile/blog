@@ -1,10 +1,13 @@
 import rss from "@astrojs/rss";
-import data from "@data/en.json";
-import { collections, loadCollection } from "@utils/load-data.ts";
-// import { getCollection } from "astro:content";
+import { loadData } from "@utils/load-data.ts";
+import props from "./_props.json";
+import { loadCollection } from "@utils/load-data.ts";
+
+const language = props.language;
+let data = await loadData(language);
 
 export async function GET(context) {
-  let posts = await loadCollection("en");
+  let posts = await loadCollection(language);
   return rss({
     title: "VoidBox Blog",
     description: data.siteDescription,
@@ -18,9 +21,9 @@ export async function GET(context) {
         title: post.data.title,
         pubDate: post.data.created,
         description: post.data.description,
-        link: `/articles/${post.slug}/`,
+        link: `/${language}/articles/${post.slug}/`,
       })),
-    customData: `<language>en-us</language>`,
+    customData: `<language>${language}-${language}</language>`,
     stylesheet: "/rss/styles.xsl",
   });
 }

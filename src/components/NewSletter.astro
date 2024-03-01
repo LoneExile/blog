@@ -6,8 +6,9 @@ import Captcha from "@components/Captcha.tsx";
 
 interface Props {
   language: string;
+  data: SiteData;
 }
-const { language } = Astro.props;
+const { language, data } = Astro.props;
 ---
 
 <section class="bg-white dark:bg-gray-900">
@@ -16,7 +17,7 @@ const { language } = Astro.props;
       <p
         class="mx-auto mb-8 max-w-2xl text-gray-500 dark:text-gray-400 sm:text-xl md:mb-12"
       >
-        Subscribe to our newsletter and stay up to date!
+        {data.newSletter.title}
       </p>
 
       <form action="#" id="subscription-form">
@@ -25,13 +26,14 @@ const { language } = Astro.props;
             id="subscribe-success"
             class="text-green-799 mx-0 mb-2 me-2 ml-2 hidden rounded-full bg-green-100 px-2.5 py-0.5 text-left text-xs font-medium dark:bg-green-900 dark:text-green-300"
           >
-            Success
+            {data.newSletter.buttonSuccess}
           </span>
           <span
             id="subscribe-error"
             class="text-red-799 mx-0 mb-2 me-2 ml-2 hidden rounded-full bg-red-100 px-2.5 py-0.5 text-left text-xs font-medium dark:bg-red-900 dark:text-red-300"
-            >Error</span
           >
+            {data.newSletter.buttonError}
+          </span>
         </div>
         <div
           class="mx-auto mb-3 max-w-screen-sm items-center space-y-4 sm:flex sm:space-y-0"
@@ -40,8 +42,9 @@ const { language } = Astro.props;
             <label
               for="email"
               class="mb-2 hidden text-sm font-medium text-gray-900 dark:text-gray-300"
-              >Email address</label
             >
+              Email address
+            </label>
             <div
               class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
             >
@@ -52,7 +55,7 @@ const { language } = Astro.props;
             </div>
             <input
               class="block w-full rounded-lg border border-gray-300 bg-white p-3 pl-9 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500 sm:rounded-none sm:rounded-l-lg"
-              placeholder="Enter your email"
+              placeholder={data.newSletter.placeholder}
               type="email"
               id="email"
               name="email"
@@ -64,14 +67,17 @@ const { language } = Astro.props;
               id="subscribe"
               type="submit"
               class="hidden w-full cursor-pointer rounded-lg border border-primary-600 bg-primary-700 px-5 py-3 text-center text-sm font-medium text-white hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:rounded-none sm:rounded-r-lg"
-              >Subscribe</button
             >
+              {data.newSletter.button}
+            </button>
             <button
               id="subscribe-disabled"
               type="button"
               class="w-full cursor-not-allowed rounded-lg border border-primary-600 bg-primary-700 px-5 py-3 text-center text-sm font-medium text-white focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:focus:ring-primary-800 sm:rounded-none sm:rounded-r-lg"
-              disabled>Subscribe</button
+              disabled
             >
+              {data.newSletter.button}
+            </button>
             <button
               id="subscribe-wait"
               type="button"
@@ -79,7 +85,7 @@ const { language } = Astro.props;
               class="hidden w-full cursor-wait rounded-lg border border-primary-600 bg-primary-700 px-5 py-3 text-center text-sm font-medium text-white focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:focus:ring-primary-800 sm:rounded-none sm:rounded-r-lg"
               disabled
             >
-              Verifying...
+              {data.newSletter.buttonVerifying}
             </button>
           </div>
         </div>
@@ -87,11 +93,12 @@ const { language } = Astro.props;
       <div
         class="newsletter-form-footer mx-auto max-w-screen-sm text-left text-sm text-gray-500 dark:text-gray-300"
       >
-        We care about the protection of your data. <a
+        {data.newSletter.subDescription}
+        <a
           href={getRelativeLocaleUrl(language, "privacy-policy")}
           class="font-medium text-primary-600 hover:underline dark:text-primary-500"
-          >Read our Privacy Policy</a
-        >.
+          >{data.newSletter.privacyPolicyLink}</a
+        >
       </div>
       <!-- TODO: change theme -->
       <div id="cf-turnstile-ele">

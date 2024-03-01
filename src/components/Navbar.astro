@@ -1,5 +1,6 @@
 ---
 import ThemeSwitcher from "@components/theme/ThemeSwitcher.astro";
+import LanguageSwitcher from "@components/language/LanguageSwitcher.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import Logo from "@icons/logo.astro";
 import Hambuger from "@icons/hamburger2.astro";
@@ -7,9 +8,14 @@ import Hambuger from "@icons/hamburger2.astro";
 interface Props {
   currentPath: string;
   language: string;
+  data: SiteData;
 }
 
-const { currentPath, language } = Astro.props;
+const { currentPath, language, data } = Astro.props;
+
+const getPath = (path: string) => {
+  return getRelativeLocaleUrl(language, path);
+};
 
 type NavItem = {
   title: string;
@@ -18,23 +24,23 @@ type NavItem = {
 
 const items: NavItem[] = [
   {
-    title: "Home",
+    title: data.navbar.home,
     path: getRelativeLocaleUrl(language, ""),
   },
   {
-    title: "Articles",
+    title: data.navbar.articles,
     path: getRelativeLocaleUrl(language, "articles"),
   },
   {
-    title: "About",
+    title: data.navbar.about,
     path: getRelativeLocaleUrl(language, "about"),
   },
 ];
 ---
 
-<nav class="bg-white border-gray-200 dark:bg-gray-900">
+<nav class="border-gray-200 bg-white dark:bg-gray-900">
   <div
-    class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+    class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4"
   >
     <a
       href={getRelativeLocaleUrl(language, "")}
@@ -42,14 +48,14 @@ const items: NavItem[] = [
     >
       <Logo color="stroke-primary-700" size="w-12 h-12" />
       <span
-        class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+        class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white"
         >VoidBox</span
       >
     </a>
     <button
       data-collapse-toggle="navbar-default"
       type="button"
-      class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+      class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:hidden"
       aria-controls="navbar-default"
       aria-expanded="false"
     >
@@ -58,15 +64,15 @@ const items: NavItem[] = [
     </button>
     <div class="hidden w-full md:block md:w-auto" id="navbar-default">
       <ul
-        class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+        class="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium rtl:space-x-reverse dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-gray-900"
       >
         {
           items.map((item) =>
-            item.path === currentPath ? (
+            item.path === getPath(currentPath) ? (
               <li>
                 <a
                   href={item.path}
-                  class="block py-2 px-3 text-white bg-primary-700 rounded md:bg-transparent md:text-primary-700 md:p-0 dark:text-white md:dark:text-primary-500"
+                  class="mt-1 block rounded bg-primary-700 px-3 py-2 text-white dark:text-white md:bg-transparent md:p-0 md:text-primary-700 md:dark:text-primary-500"
                   aria-current="page"
                 >
                   {item.title}
@@ -76,7 +82,7 @@ const items: NavItem[] = [
               <li>
                 <a
                   href={item.path}
-                  class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-700 md:p-0 dark:text-white md:dark:hover:text-primary-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  class="mt-1 block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-primary-700 md:dark:hover:bg-transparent md:dark:hover:text-primary-500"
                 >
                   {item.title}
                 </a>
@@ -85,10 +91,9 @@ const items: NavItem[] = [
           )
         }
         <li>
-          <div
-            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-700 md:p-0 dark:text-white md:dark:hover:text-primary-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-          >
+          <div class="flex px-2">
             <ThemeSwitcher />
+            <LanguageSwitcher {language} {currentPath} />
           </div>
         </li>
       </ul>

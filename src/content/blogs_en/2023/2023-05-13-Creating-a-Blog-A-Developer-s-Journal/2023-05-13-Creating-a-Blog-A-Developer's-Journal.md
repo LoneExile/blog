@@ -2,7 +2,8 @@
 title: "Creating a Blog: A Developer's Journal"
 thumbnail:
   {
-    src: "./man-vs-dragon-unknow-unspecified.jpg",
+    # src: "./man-vs-dragon-unknow-unspecified.jpg",
+    src: "../../../images/2023/2023-05-13-Creating-a-Blog-A-Developer-s-Journal/man-vs-dragon-unknow-unspecified.jpg",
     alt: "man-vs-dragon-unknow-unspecified",
   }
 language: "en"
@@ -19,7 +20,7 @@ description:
   the way."
 ---
 
-![man-vs-dragon-unknow-unspecified](./man-vs-dragon-unknow-unspecified.jpg)
+![man-vs-dragon-unknow-unspecified](../../../images/2023/2023-05-13-Creating-a-Blog-A-Developer-s-Journal/man-vs-dragon-unknow-unspecified.jpg)
 
 ## Hello, Reader! 👋
 

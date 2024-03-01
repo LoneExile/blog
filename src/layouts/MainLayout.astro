@@ -3,13 +3,14 @@ import Navbar from "@components/Navbar.astro";
 import Footer from "@components/Footer.astro";
 
 interface Props {
+  data: SiteData;
   description: string;
   currentPath: string;
   language: string;
   title: string;
 }
 
-const { description, currentPath, language, title } = Astro.props;
+const { data, description, currentPath, language, title } = Astro.props;
 ---
 
 <!doctype html>
@@ -29,10 +30,10 @@ const { description, currentPath, language, title } = Astro.props;
     <style></style></head
   >
 
-  <body class="md:bg-white dark:bg-gray-900">
-    <div class="flex flex-col h-screen justify-between">
-      <Navbar {currentPath} {language} />
-      <section class="container mx-auto max-w-screen-xl mt-10 px-8">
+  <body class="dark:bg-gray-900 md:bg-white">
+    <div class="flex h-screen flex-col justify-between">
+      <Navbar {data} {currentPath} {language} />
+      <section class="container mx-auto mt-10 max-w-screen-xl px-8">
         <slot />
       </section>
       <Footer {language} />

@@ -1,14 +1,28 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
+import { loadData } from "@utils/load-data.ts";
 import NotFound from "@components/NotFound.astro";
 import LoneExile from "@assets/LoneExile.png";
-import { getRelativeLocaleUrl } from "astro:i18n";
 
-const language = "en";
-const currentPath = getRelativeLocaleUrl(language, "");
-const title = "Page Not Found";
+interface Props {
+  language: string;
+}
+let { language } = Astro.props;
+let data: SiteData = await loadData(language);
+if (!language) {
+  language = data.language;
+}
+
+const currentPath = data.pageNotFound.path;
+const title = data.pageNotFound.title;
 ---
 
-<MainLayout description="Error page not found" {currentPath} {language} {title}>
+<MainLayout
+  {data}
+  description={data.pageNotFound.description}
+  {currentPath}
+  {language}
+  {title}
+>
   <NotFound image={LoneExile} />
 </MainLayout>

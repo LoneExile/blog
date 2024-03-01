@@ -1,42 +1,48 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
+import { loadData } from "@utils/load-data.ts";
 import Post from "@components/Post.astro";
-import { getRelativeLocaleUrl } from "astro:i18n";
+import {
+  type MyCollectionKeys,
+  type AnyCollectionEntry,
+  collections,
+} from "@utils/load-data.ts";
 import { getCollection } from "astro:content";
 
-let posts = await getCollection("blogs", ({ slug }) => {
-  if (slug === "terms-and-conditions") {
-    return true;
-  }
-});
-const entry = posts[0];
+interface Props {
+  language: string;
+}
+let { language } = Astro.props;
+let data: SiteData = await loadData(language);
+if (!language) {
+  language = data.language;
+}
+
+let posts: AnyCollectionEntry[] = [];
+
+for (const collection of Object.keys(collections) as MyCollectionKeys[]) {
+  let collectionEntries = await getCollection(collection);
+  collectionEntries = collectionEntries.filter(
+    (post) =>
+      post.data.language === language &&
+      post.slug.includes("terms-and-conditions"),
+  );
+  posts = posts.concat(collectionEntries);
+}
+
+let entry = posts[0];
+
+if (!entry) {
+  return Astro.redirect(getRelativeLocaleUrl(language, data.pageNotFound.path));
+}
 
 const { Content } = await entry.render();
-const language = "en";
-const currentPath = getRelativeLocaleUrl(language, entry.slug);
+const currentPath = entry.slug;
 const title = entry.data.title;
-
-if (entry === undefined) {
-  return Astro.redirect(getRelativeLocaleUrl(language, "404/"));
-}
-
-export async function getStaticPaths() {
-  const blogEntries = await getCollection("blogs", ({ data }) => {
-    if (import.meta.env.PROD) {
-      return data.draft !== true;
-    } else {
-      return true;
-    }
-  });
-
-  return blogEntries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
-}
 ---
 
 <MainLayout
+  {data}
   description={entry.data.description}
   {currentPath}
   {language}

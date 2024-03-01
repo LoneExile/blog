@@ -2,37 +2,42 @@
 import MainLayout from "@layouts/MainLayout.astro";
 import BlogCard from "@components/BlogCard.astro";
 import Pagination from "@components/Pagination.astro";
-import { getCollection } from "astro:content";
-import { getRelativeLocaleUrl } from "astro:i18n";
-import type { CollectionEntry } from "astro:content";
+import { loadData } from "@utils/load-data.ts";
+import { loadCollection, type AnyCollectionEntry } from "@utils/load-data.ts";
 
-const language = "en";
-const currentPath = getRelativeLocaleUrl(language, "articles");
+interface Props {
+  language: string;
+}
+let { language } = Astro.props;
+let data: SiteData = await loadData(language);
+if (!language) {
+  language = data.language;
+}
 
-let posts = await getCollection("blogs", ({ data }) => {
-  if (import.meta.env.PROD) {
-    return data.draft !== true;
-  } else {
-    return true;
-  }
-});
-posts = posts.filter((post) => post.data.show === undefined || post.data.show);
-
-const title = "Articles";
-const siteDescription = "A collection of articles";
+const currentPath = "articles";
+let posts = await loadCollection(language);
+posts = posts.filter((post) => post.data.show || post.data.show === undefined);
+const title = data.articles.title;
+const siteDescription = data.articles.description;
 
 const currentPage: number | null = +Astro.url.searchParams.get("page")! || 1;
 const totalPages: number = Math.ceil(posts.length / 4);
 const totalPosts: number = posts.length;
-const articlesForPage: CollectionEntry<"blogs">[] = posts.slice(
+const articlesForPage: AnyCollectionEntry[] = posts.slice(
   (currentPage - 1) * 4,
   currentPage * 4,
 );
 ---
 
-<MainLayout description={siteDescription} {currentPath} {language} {title}>
+<MainLayout
+  {data}
+  description={siteDescription}
+  {currentPath}
+  {language}
+  {title}
+>
   <div class="flex flex-col justify-between">
-    <BlogCard posts={articlesForPage} {language} />
+    <BlogCard {data} posts={articlesForPage} {language} />
     <Pagination
       currentPage={currentPage}
       totalPosts={totalPosts}

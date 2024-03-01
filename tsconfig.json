@@ -12,6 +12,9 @@
       "@components/*": [
         "src/components/*"
       ],
+      "@content/*": [
+        "src/pages/content/*"
+      ],
       "@assets/*": [
         "src/assets/*"
       ],
@@ -29,6 +32,9 @@
       ],
       "@utils/*": [
         "src/utils/*"
+      ],
+      "*": [
+        "types/*.d.ts",
       ]
     },
     "jsx": "react-jsx",

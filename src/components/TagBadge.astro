@@ -1,12 +1,21 @@
 ---
 // import { getCollection } from "astro:content";
 // import type { CollectionEntry } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
 interface Props {
   tags: string[] | undefined;
+  language: string;
 }
 
-const { tags } = Astro.props;
+let { tags, language } = Astro.props;
+if (!language) {
+  language = "en";
+}
+
+const getPath = (slug: string) => {
+  return getRelativeLocaleUrl(language, "articles/tag/" + slug);
+};
 
 // const posts = await getCollection("blogs");
 
@@ -40,7 +49,7 @@ const className =
   {
     tags?.map((tag) => (
       <span class={className}>
-        <a href={"/articles/tag/" + tag}>#{tag.toUpperCase()}</a>
+        <a href={getPath(tag)}>#{tag.toUpperCase()}</a>
       </span>
     ))
   }

@@ -1,0 +1,35 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+interface Props {
+  language: string;
+  currentPath: string;
+}
+const { language, currentPath } = Astro.props;
+
+let targetPath;
+if (language === "th") {
+  targetPath = getRelativeLocaleUrl("en", currentPath);
+} else {
+  targetPath = getRelativeLocaleUrl("th", currentPath);
+}
+---
+
+<a href={targetPath} class="text-white no-underline">
+  <button
+    id="langToggle"
+    class="focus:shadow-outline ml-2 rounded bg-secondary-500 px-2 py-1.5 text-sm font-normal text-white hover:bg-secondary-700 focus:outline-none"
+    type="button"
+  >
+    {language.toUpperCase()}
+  </button>
+</a>
+
+<!-- <script is:inline> -->
+<!--   document.getElementById("langToggle").addEventListener("click", function () { -->
+<!--     if (this.innerText === "EN") { -->
+<!--       this.innerText = "TH"; -->
+<!--     } else { -->
+<!--       this.innerText = "EN"; -->
+<!--     } -->
+<!--   }); -->
+<!-- </script> -->
