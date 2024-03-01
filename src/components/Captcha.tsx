@@ -43,9 +43,6 @@ export default class SubscriptionForm extends Component {
     subscribeWaitButton.classList.remove("hidden");
 
     function toggleSubscribeButton() {
-      const selectTurnstileToken = document.querySelector(
-        'input[name="cf-turnstile-response"]',
-      );
       const turnstileToken = (selectTurnstileToken as HTMLInputElement).value;
       if (turnstileToken && turnstileToken.trim() !== "") {
         subscribeButton.classList.remove("hidden");
@@ -79,8 +76,8 @@ export default class SubscriptionForm extends Component {
       ?.addEventListener("submit", function(event) {
         event.preventDefault();
 
-        const email = selectEmail?.value;
-        const turnstileToken = selectTurnstileToken?.value;
+        const email = (selectEmail as HTMLInputElement).value;
+        const turnstileToken = (selectTurnstileToken as HTMLInputElement).value;
 
         fetch(import.meta.env.PUBLIC_TURNSTILE_HANDLE_API, {
           method: "POST",
