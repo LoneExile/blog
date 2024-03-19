@@ -26,10 +26,10 @@ podTemplate {
       )
     }
     // Define tools if applicable, or handle tool installation differently within a pod
-    tools {
-      maven 'maven'
-      jdk 'java'
-    }
+    // tools {
+    //   maven 'maven'
+    //   jdk 'java'
+    // }
 
     stage('Run shell') {
       sh 'echo hello world'
