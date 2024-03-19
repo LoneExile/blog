@@ -19,12 +19,13 @@ podTemplate {
     }
 
     // Define the environment variables at the top if they are global
-    environment {
-      GIT_COMMIT_SHORT = sh(
-        script: "printf \$(git rev-parse --short ${GIT_COMMIT})",
-        returnStdout: true
-      )
-    }
+    // environment {
+    //   GIT_COMMIT_SHORT = sh(
+    //     script: "printf \$(git rev-parse --short ${GIT_COMMIT})",
+    //     returnStdout: true
+    //   )
+    // }
+
     // Define tools if applicable, or handle tool installation differently within a pod
     // tools {
     //   maven 'maven'
