@@ -1,22 +1,22 @@
 podTemplate {
   // Define pod template
   node(POD_LABEL) {
-    stage('Setup Environment') {
-      steps {
-        // Example of setting up tools manually if they are not included in your container image
-        sh '''
-          if ! type mvn > /dev/null; then
-          echo "Maven not found, installing..."
-          # Install Maven command here
-          fi
-          if ! type java > /dev/null; then
-          echo "JDK not found, installing..."
-          # Install JDK command here
-          fi
-          # Ensure SonarScanner is setup or install it
-          '''
-      }
-    }
+    // stage('Setup Environment') {
+    //   steps {
+    //     // Example of setting up tools manually if they are not included in your container image
+    //     sh '''
+    //       if ! type mvn > /dev/null; then
+    //       echo "Maven not found, installing..."
+    //       # Install Maven command here
+    //       fi
+    //       if ! type java > /dev/null; then
+    //       echo "JDK not found, installing..."
+    //       # Install JDK command here
+    //       fi
+    //       # Ensure SonarScanner is setup or install it
+    //       '''
+    //   }
+    // }
 
     // Define the environment variables at the top if they are global
     // environment {
