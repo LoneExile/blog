@@ -15,9 +15,6 @@
 //     }
 // }
 
-#!groovy
-pipeline {
-  // agent any
   node(POD_LABEL) {
     environment {
       GIT_COMMIT_SHORT = sh(
@@ -61,4 +58,3 @@ pipeline {
       }
     }
   }
-}
