@@ -21,7 +21,7 @@ podTemplate(containers: [
     }
 
     stage('SonarQube Analysis') {
-      def scannerHome = tool 'SonarScanner';
+      def scannerHome = tool 'sonar-scaner';
       withSonarQubeEnv() {
         sh "${scannerHome}/bin/sonar-scanner"
       }
