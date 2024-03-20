@@ -20,22 +20,20 @@ podTemplate(containers: [
         }
 
         stage('SonarQube Analysis') {
-            steps {
-                script {
-                    try {
-                        def scannerHome = tool 'sonar-scaner'
-                        withSonarQubeEnv {
-                            sh "${scannerHome}/bin/sonar-scanner"
-                        }
-                    } catch (Exception e) {
-                        echo 'SonarQube Scanner not found'
+            script {
+                try {
+                    def scannerHome = tool 'sonar-scaner'
+                    withSonarQubeEnv {
+                        sh "${scannerHome}/bin/sonar-scanner"
                     }
+                } catch (Exception e) {
+                    echo 'SonarQube Scanner not found'
                 }
-            // def scannerHome = tool 'sonar-scaner'
-            // withSonarQubeEnv {
-            //     sh "${scannerHome}/bin/sonar-scanner"
-            // }
             }
+        // def scannerHome = tool 'sonar-scaner'
+        // withSonarQubeEnv {
+        //     sh "${scannerHome}/bin/sonar-scanner"
+        // }
         }
 
         // Add more stages as needed
