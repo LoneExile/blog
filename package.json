@@ -22,7 +22,7 @@
     "@nanostores/preact": "^0.5.1",
     "astro": "^4.5.15",
     "flowbite": "^2.3.0",
-    "nanostores": "^0.9.5",
+    "nanostores": "^0.10.2",
     "preact": "^10.20.1",
     "tailwindcss": "^3.4.3"
   },
