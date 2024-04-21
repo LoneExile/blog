@@ -77,7 +77,8 @@ spec:
       volumes:
         - name: remark42-data
           persistentVolumeClaim:
-            claimName: bob-nfs-pvc
+            # claimName: bob-nfs-pvc
+            claimName: nfs-pvc-worker-1
         - name: remark42-customised-templates
           configMap:
             name: remark42-customised-templates-files

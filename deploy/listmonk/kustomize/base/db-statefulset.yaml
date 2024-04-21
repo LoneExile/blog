@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: postgresql-statefulset
+  name: listmonk-postgresql-statefulset
 spec:
   serviceName: postgresql
   replicas: 1
@@ -44,3 +44,5 @@ spec:
           volumeMounts:
             - name: postgres-pv-claim
               mountPath: /var/lib/postgresql/data
+              subPath: config/listmonk/db/data
+
