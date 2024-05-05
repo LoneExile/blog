@@ -12,3 +12,6 @@ remark42/.env
 
 src/content/blogs/test*
 src/content/blogs/_*
+
+deploy
+.env

@@ -1,0 +1,74 @@
+pipeline {
+    environment {
+        CONTAINER_REGISTRY_CREDENTIALS = credentials('docker')
+        SONARQUBE_SCANNER_HOME = tool 'sonar-scanner'
+        SONAR_HOST_URL = 'https://sonar.apinant.dev/'
+        SONAR_TOKEN = credentials('sonar-token')
+    }
+
+    agent {
+        kubernetes {
+                yaml '''
+            apiVersion: v1
+            kind: Pod
+            spec:
+              containers:
+              - name: docker
+                image: loneexile/docker-cli:latest
+                command:
+                - cat
+                tty: true
+                volumeMounts:
+                - name: certs
+                  readOnly: true
+                  mountPath: /certs
+                - name: buildkit-cache
+                  mountPath: /var/lib/buildkit
+                  subPath: buildkit
+              - name: jnlp
+                image: loneexile/jenkins-inbound-node:arm64
+                command:
+                 - /usr/local/bin/jenkins-agent
+                tty: true
+              volumes:
+              - name: certs
+                secret:
+                    secretName: buildkit-client-certs
+              - name: buildkit-cache
+                persistentVolumeClaim:
+                  claimName: bob-nfs-pvc
+            '''
+        }
+    }
+
+    stages {
+        stage('SonarQube Analysis') {
+            steps {
+                container('jnlp') {
+                    withSonarQubeEnv('sonar') {
+                        sh "${env.SONARQUBE_SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=deploy/config/sonar-project.properties"
+                    }
+                }
+            }
+        }
+
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+
+        stage('Build Image') {
+            steps {
+                container('docker') {
+                    sh 'ls'
+                    sh 'echo $CONTAINER_REGISTRY_CREDENTIALS_PSW | docker login --username $CONTAINER_REGISTRY_CREDENTIALS_USR --password-stdin'
+                    // sh 'make ximage VERSION=v1.0.0'
+                    sh 'make ximage'
+                }
+            }
+        }
+    }
+}
