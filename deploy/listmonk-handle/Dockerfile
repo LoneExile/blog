@@ -1,4 +1,4 @@
-FROM golang:1.22.2 as builder
+FROM golang:1.22.2 AS builder
 
 WORKDIR /listmonk-backend
 
@@ -11,6 +11,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o myapp ./
 
 FROM alpine:3.19.1
 
+# https://pkgs.alpinelinux.org/package/edge/main/x86/ca-certificates
 RUN apk --no-cache add ca-certificates=20240226-r0
 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
