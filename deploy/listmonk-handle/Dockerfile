@@ -1,4 +1,4 @@
-FROM golang:1.21.6 as builder
+FROM golang:1.22.2 as builder
 
 WORKDIR /listmonk-backend
 
@@ -9,18 +9,17 @@ COPY . .
 # Build the application
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o myapp ./
 
-FROM alpine:latest
+FROM alpine:3.19.1
 
-RUN apk --no-cache add ca-certificates
+RUN apk --no-cache add ca-certificates=20240226-r0
 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
+USER appuser
 
 WORKDIR /listmonk-backend/
 
 COPY --from=builder /listmonk-backend/myapp /listmonk-backend/
-
-# Set the user to the non-root user
-USER appuser
 
 EXPOSE 8080
 
