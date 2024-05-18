@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ .Release.Name }}-service"
+  labels:
+    app: blog
+spec:
+  selector:
+    app: blog
+  type: {{ .Values.service.type }}
+  ports:
+    - protocol: TCP
+      port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+---
+## Debugging output
+# {{- printf "service.type: %s\n" .Values.service.type }}
+# {{- printf "service.port: %d\n" .Values.service.port }}
+# {{- printf "service.targetPort: %d\n" .Values.service.targetPort }}
