@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@astrojs/markdown-remark": "^5.1.0",
-    "@types/node": "^20.12.12",
+    "@types/node": "^20.13.0",
     "flowbite-typography": "^1.0.3",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",
