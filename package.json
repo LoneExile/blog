@@ -14,7 +14,7 @@
   "dependencies": {
     "@astrojs/node": "^8.2.6",
     "@astrojs/partytown": "^2.1.0",
-    "@astrojs/preact": "^3.4.0",
+    "@astrojs/preact": "^3.5.0",
     "@astrojs/rss": "^4.0.6",
     "@astrojs/sitemap": "^3.1.5",
     "@astrojs/tailwind": "^5.1.0",
