@@ -19,10 +19,13 @@ async function loadCollection(language: string) {
 
   for (const collection of Object.keys(collections) as MyCollectionKeys[]) {
     let collectionEntries = await getCollection(collection, ({ data }) => {
-      if (import.meta.env.PROD && data.language === language && data.draft !== true) {
-        return true;
-      }
-      return false;
+      // if (import.meta.env.PROD && data.language === language && data.draft !== true) {
+      //   return true;
+      // } else if (!import.meta.env.PROD && data.language === language) {
+      //   return true;
+      // }
+      // return false;
+      return true;
     });
 
     posts = posts.concat(collectionEntries);
@@ -38,10 +41,11 @@ async function listCollectionByLanguage(language: string) {
   const postsByLanguage: Record<string, any[]> = {};
   for (const collection of Object.keys(collections) as MyCollectionKeys[]) {
     let collectionEntries = await getCollection(collection, ({ data }) => {
-      if (import.meta.env.PROD /* && (data.show === undefined || data.show) */ && data.language === language && data.draft !== true) {
-        return true;
-      }
-      return false;
+      // if (import.meta.env.PROD /* && (data.show === undefined || data.show) */ && data.language === language && data.draft !== true) {
+      //   return true;
+      // }
+      // return false;
+      return true;
     });
 
     if (!postsByLanguage[language]) {
