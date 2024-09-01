@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@astrojs/node':
-        specifier: ^8.3.2
-        version: 8.3.2(astro@4.13.0(@types/node@22.0.3)(typescript@5.5.4))
+        specifier: ^8.3.3
+        version: 8.3.3(astro@4.13.0(@types/node@22.0.3)(typescript@5.5.4))
       '@astrojs/partytown':
         specifier: ^2.1.1
         version: 2.1.1
@@ -92,8 +92,8 @@ packages:
   '@astrojs/markdown-remark@5.2.0':
     resolution: {integrity: sha512-vWGM24KZXz11jR3JO+oqYU3T2qpuOi4uGivJ9SQLCAI01+vEkHC60YJMRvHPc+hwd60F7euNs1PeOEixIIiNQw==}
 
-  '@astrojs/node@8.3.2':
-    resolution: {integrity: sha512-Upv0D+9b3RXp7XViQTtrijaDqihHWbVHLdJQ2sxtPOEtw2GDrVxuC6LmXIUew5YvJ9Ylmpst6KizVwO8d/K9/Q==}
+  '@astrojs/node@8.3.3':
+    resolution: {integrity: sha512-idrKhnnPSi0ABV+PCQsRQqVNwpOvVDF/+fkwcIiE8sr9J8EMvW9g/oyAt8T4X2OBJ8FUzYPL8klfCdG7r0eB5g==}
     peerDependencies:
       astro: ^4.2.0
 
@@ -2285,7 +2285,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/node@8.3.2(astro@4.13.0(@types/node@22.0.3)(typescript@5.5.4))':
+  '@astrojs/node@8.3.3(astro@4.13.0(@types/node@22.0.3)(typescript@5.5.4))':
     dependencies:
       astro: 4.13.0(@types/node@22.0.3)(typescript@5.5.4)
       send: 0.18.0
