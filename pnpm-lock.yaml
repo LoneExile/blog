@@ -30,8 +30,8 @@ importers:
         specifier: ^0.10.1
         version: 0.10.1(nanostores@0.10.3)
       '@nanostores/preact':
-        specifier: ^0.5.1
-        version: 0.5.1(nanostores@0.10.3)(preact@10.23.1)
+        specifier: ^0.5.2
+        version: 0.5.2(nanostores@0.10.3)(preact@10.23.1)
       astro:
         specifier: ^4.13.0
         version: 4.13.0(@types/node@22.0.3)(typescript@5.5.4)
@@ -510,11 +510,11 @@ packages:
     peerDependencies:
       nanostores: ^0.9.0 || ^0.10.0
 
-  '@nanostores/preact@0.5.1':
-    resolution: {integrity: sha512-kofyeDwzM3TrOd37ay+Xxgk3Cn6jih23dxELc7Mr9IJV55jmWATfNP9b7O/awwCL7CE5z5PfzFnNk/W+tMaWGw==}
+  '@nanostores/preact@0.5.2':
+    resolution: {integrity: sha512-DZ5G0UuHTJ8NNS8I3Jd6f4RCcWIl4siYD+vaV6jQf0T6xJ3QqTSkJkYNQTZK7O+7NC/mzaLkomyLQqD+w1E0Tg==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
-      nanostores: ^0.9.0 || ^0.10.0
+      nanostores: ^0.9.0 || ^0.10.0 || ^0.11.0
       preact: '>=10.0.0'
 
   '@nodelib/fs.scandir@2.1.5':
@@ -2671,7 +2671,7 @@ snapshots:
     dependencies:
       nanostores: 0.10.3
 
-  '@nanostores/preact@0.5.1(nanostores@0.10.3)(preact@10.23.1)':
+  '@nanostores/preact@0.5.2(nanostores@0.10.3)(preact@10.23.1)':
     dependencies:
       nanostores: 0.10.3
       preact: 10.23.1
