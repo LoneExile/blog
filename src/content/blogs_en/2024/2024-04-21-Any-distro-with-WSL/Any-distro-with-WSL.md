@@ -7,7 +7,7 @@ created: 2024-04-21 19:24
 updated: 2023-08-20 12:43
 tags: ["wsl", "windows" ]
 category: ["technology"]
-draft: true
+draft: false
 slug: "2024-04-21-Any-distro-with-WSL"
 author: "Apinant U-suwantim"
 ---
