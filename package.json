@@ -12,28 +12,28 @@
     "desktop": "pnpm dlx unlighthouse --site localhost:4321 --desktop --no-cache"
   },
   "dependencies": {
-    "@astrojs/node": "^8.3.3",
+    "@astrojs/node": "^8.3.4",
     "@astrojs/partytown": "^2.1.2",
-    "@astrojs/preact": "^3.5.2",
+    "@astrojs/preact": "^3.5.3",
     "@astrojs/rss": "^4.0.7",
     "@astrojs/sitemap": "^3.1.6",
-    "@astrojs/tailwind": "^5.1.0",
+    "@astrojs/tailwind": "^5.1.1",
     "@nanostores/persistent": "^0.10.2",
     "@nanostores/preact": "^0.5.2",
-    "astro": "^4.15.3",
+    "astro": "^4.15.9",
     "flowbite": "^2.5.1",
     "nanostores": "^0.10.3",
-    "preact": "^10.23.2",
-    "tailwindcss": "^3.4.10"
+    "preact": "^10.24.1",
+    "tailwindcss": "^3.4.13"
   },
   "devDependencies": {
     "@astrojs/markdown-remark": "^5.2.0",
-    "@types/node": "^22.5.4",
-    "flowbite-typography": "^1.0.3",
+    "@types/node": "^22.7.2",
+    "flowbite-typography": "^1.0.4",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
     "ts-dedent": "^2.2.0",
-    "typescript": "^5.5.4",
+    "typescript": "^5.6.2",
     "unist-util-visit": "^4.1.2"
   }
 }
