@@ -1,4 +1,4 @@
-import { defineConfig, squooshImageService } from "astro/config";
+import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 import node from "@astrojs/node";
@@ -8,9 +8,6 @@ import clickDirective from "./directive/click-directive/register.js";
 
 // https://astro.build/config
 export default defineConfig({
-  image: {
-    service: squooshImageService(),
-  },
   i18n: {
     defaultLocale: "en",
     locales: ["en", "th"],
