@@ -93,7 +93,9 @@ const items: NavItem[] = [
         <li>
           <div class="flex px-2">
             <ThemeSwitcher />
-            <LanguageSwitcher {language} {currentPath} />
+            <div class="hidden">
+              <LanguageSwitcher {language} {currentPath} />
+            </div>
           </div>
         </li>
       </ul>
