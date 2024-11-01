@@ -15,7 +15,7 @@
     "@astrojs/node": "^8.3.4",
     "@astrojs/partytown": "^2.1.2",
     "@astrojs/preact": "^3.5.3",
-    "@astrojs/rss": "^4.0.8",
+    "@astrojs/rss": "^4.0.9",
     "@astrojs/sitemap": "^3.2.0",
     "@astrojs/tailwind": "^5.1.2",
     "@nanostores/persistent": "^0.10.2",
