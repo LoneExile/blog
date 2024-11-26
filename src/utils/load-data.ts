@@ -21,6 +21,8 @@ async function loadCollection(language: string) {
     let collectionEntries = await getCollection(collection, ({ data }) => {
       if (import.meta.env.PROD && data.language === language && data.draft !== true) {
         return true;
+      } else if (!import.meta.env.PROD && data.language === language) {
+        return true;
       }
       return false;
     });

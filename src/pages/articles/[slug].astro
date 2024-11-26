@@ -8,6 +8,7 @@ import { type AnyCollectionEntry } from "@utils/load-data.ts";
 import { collections } from "../../content/config.ts";
 import { getCollection } from "astro:content";
 import { loadData } from "@utils/load-data.ts";
+import ImageZoom from "@components/ImageZoom.astro";
 
 export async function getStaticPaths() {
   let data: SiteData = await loadData("");
@@ -51,6 +52,30 @@ const isArticle =
   entry.data.comments === undefined || entry.data.comments === true;
 ---
 
+<style is:global>
+  .toc-list {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .toc-list-item {
+    position: relative;
+    padding-left: 1.5em;
+  }
+
+  .toc-list-item::before {
+    content: "•"; /* "•" or "→" "❯" */
+    position: absolute;
+    left: 0.5em;
+  }
+
+  /* Indent nested lists */
+  .toc-list .toc-list {
+    padding-left: 1.5em;
+  }
+</style>
+
+<ImageZoom />
 <MainLayout
   data={data}
   description={entry.data.description}
@@ -76,7 +101,12 @@ const isArticle =
     isArticle && (
       <>
         <Comments client:visible={{ rootMargin: "400px" }} />
-        <RelateArticles {currentTags} {language} {data} currentSlug={entry.slug} />
+        <RelateArticles
+          {currentTags}
+          {language}
+          {data}
+          currentSlug={entry.slug}
+        />
         <NewSletter {language} {data} />
       </>
     )
