@@ -32,6 +32,13 @@ function isInvalidParent(parent: any) {
   );
 }
 
+function getAriaLabel(alt: string): string {
+  if (alt.length === 0) {
+    return 'Zoom image';
+  }
+  return 'Zoom image: ' + alt;
+}
+
 function createZoomableElement(node: any, alt: string) {
   return {
     type: 'element',
@@ -43,7 +50,7 @@ function createZoomableElement(node: any, alt: string) {
         type: 'element',
         tagName: 'button',
         properties: {
-          'aria-label': `Zoom image${alt.length > 0 ? `: ${alt}` : ''}`,
+          'aria-label': getAriaLabel(alt),
           class: 'image-zoom-control',
         },
         children: [
