@@ -16,7 +16,8 @@ import { rehypeImageZoom } from './src/utils/rehype-image-zoom.ts'
 export default defineConfig({
   markdown: {
     rehypePlugins: [
-      rehypeRaw, rehypeImageZoom,
+      rehypeRaw,
+      rehypeImageZoom,
       rehypeSlug,
       [
         rehypeAutolinkHeadings,
@@ -44,7 +45,6 @@ export default defineConfig({
     // },
   },
   prefetch: false,
-  output: "server",
   site: "https://voidbox.io",
   integrations: [
     tailwind(),
