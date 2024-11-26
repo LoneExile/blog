@@ -1,4 +1,4 @@
-import { defineConfig, squooshImageService } from "astro/config";
+import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 import node from "@astrojs/node";
@@ -36,6 +36,9 @@ export default defineConfig({
         },
       ],
     ],
+  },
+  image: {
+    service: squooshImageService(),
   },
   i18n: {
     defaultLocale: "en",
