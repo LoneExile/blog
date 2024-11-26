@@ -14,9 +14,6 @@ import { rehypeImageZoom } from './src/utils/rehype-image-zoom.ts'
 
 // https://astro.build/config
 export default defineConfig({
-  image: {
-    service: squooshImageService(),
-  },
   markdown: {
     rehypePlugins: [
       rehypeRaw, rehypeImageZoom,
@@ -36,9 +33,6 @@ export default defineConfig({
         },
       ],
     ],
-  },
-  image: {
-    service: squooshImageService(),
   },
   i18n: {
     defaultLocale: "en",
