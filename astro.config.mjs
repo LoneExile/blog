@@ -27,9 +27,19 @@ export default defineConfig({
         rehypeToc,
         {
           headings: ["h1", "h2", "h3"],
-          // cssClasses: {
-          //   toc: "toc-post",
-          //   link: "toc-link",
+          cssClasses: {
+            toc: "toc-post",
+            list: "toc-list",
+            listItem: "toc-list-item",
+            link: "toc-link",
+          },
+          // customizeTOC: (toc) => {
+          //   // Ensure the TOC has the nav element
+          //   if (toc.tagName !== 'nav') {
+          //     const nav = { type: 'element', tagName: 'nav', properties: { ...toc.properties }, children: [toc] }
+          //     return nav
+          //   }
+          //   return toc
           // },
         },
       ],
