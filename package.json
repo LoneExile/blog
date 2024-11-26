@@ -14,27 +14,27 @@
   "dependencies": {
     "@astrojs/node": "^8.3.4",
     "@astrojs/partytown": "^2.1.2",
-    "@astrojs/preact": "^3.5.3",
-    "@astrojs/rss": "^4.0.8",
-    "@astrojs/sitemap": "^3.2.0",
+    "@astrojs/preact": "^3.5.4",
+    "@astrojs/rss": "^4.0.9",
+    "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "^5.1.2",
     "@nanostores/persistent": "^0.10.2",
     "@nanostores/preact": "^0.5.2",
-    "astro": "^4.16.2",
+    "astro": "^4.16.14",
     "flowbite": "^2.5.2",
     "nanostores": "^0.11.3",
-    "preact": "^10.24.2",
+    "preact": "^10.25.0",
     "sharp": "^0.33.5",
-    "tailwindcss": "^3.4.13"
+    "tailwindcss": "^3.4.15"
   },
   "devDependencies": {
     "@astrojs/markdown-remark": "^5.3.0",
-    "@types/node": "^22.7.5",
-    "flowbite-typography": "^1.0.4",
+    "@types/node": "^22.10.0",
+    "flowbite-typography": "^1.0.5",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
     "ts-dedent": "^2.2.0",
-    "typescript": "^5.6.3",
+    "typescript": "^5.7.2",
     "unist-util-visit": "^4.1.2"
   }
 }

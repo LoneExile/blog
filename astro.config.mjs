@@ -8,6 +8,9 @@ import clickDirective from "./directive/click-directive/register.js";
 
 // https://astro.build/config
 export default defineConfig({
+  // redirects: {
+  //   '/': '/en'
+  // },
   i18n: {
     defaultLocale: "en",
     locales: ["en", "th"],
