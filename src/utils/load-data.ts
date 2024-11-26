@@ -11,26 +11,27 @@ async function loadData(language: string) {
     return import("@data/en.json").then((module) => module.default);
   }
 }
-async function loadCollection(language: string) {
-  if (!language) {
-    language = "en";
-  }
+
+async function getFilteredCollections(language: string = "en") {
   let posts: AnyCollectionEntry[] = [];
 
   for (const collection of Object.keys(collections) as MyCollectionKeys[]) {
     let collectionEntries = await getCollection(collection, ({ data }) => {
-      if (import.meta.env.PROD && data.language === language && data.draft !== true) {
-        return true;
-      } else if (!import.meta.env.PROD && data.language === language) {
-        return true;
+      if (data.language !== language) return false;
+      if (import.meta.env.PROD) {
+        return !data.draft;
       }
-      return false;
+      return true;
     });
 
     posts = posts.concat(collectionEntries);
   }
 
   return posts;
+}
+
+async function loadCollection(language: string) {
+  return getFilteredCollections(language);
 }
 
 async function listCollectionByLanguage(language: string) {

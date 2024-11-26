@@ -6,87 +6,91 @@ import { visitParents } from 'unist-util-visit-parents'
 const elementTagNames = new Set(['img', 'picture'])
 const mdxJsxFlowElementNames = new Set(['img', 'picture', 'astro-image', 'Image', 'Picture'])
 
-export function rehypeImageZoom() {
-  return function transformer(tree: Root) {
-    visitParents(tree, ['element', 'mdxJsxFlowElement'], (node, parents) => {
-      if (node.type !== 'element' && node.type !== 'mdxJsxFlowElement') return CONTINUE
-      if (node.type === 'element' && !elementTagNames.has(node.tagName)) return CONTINUE
-      if (node.type === 'mdxJsxFlowElement' && node.name && !mdxJsxFlowElementNames.has(node.name)) return CONTINUE
+function isValidNodeType(node: any) {
+  if (node.type !== 'element' && node.type !== 'mdxJsxFlowElement') return false;
+  if (node.type === 'element' && !elementTagNames.has(node.tagName)) return false;
+  if (node.type === 'mdxJsxFlowElement' && node.name && !mdxJsxFlowElementNames.has(node.name)) return false;
+  return true;
+}
 
-      // Skip images with the `data-zoom-off` attribute.
-      if (
-        (node.type === 'element' && 'dataZoomOff' in node.properties) ||
-        (node.type === 'mdxJsxFlowElement' &&
-          node.attributes.some(
-            (attribute) => attribute.type === 'mdxJsxAttribute' && attribute.name === 'data-zoom-off',
-          ))
-      ) {
-        return SKIP
-      }
+function hasZoomOffAttribute(node: any) {
+  if (node.type === 'element' && 'dataZoomOff' in node.properties) return true;
+  if (node.type === 'mdxJsxFlowElement') {
+    return node.attributes.some(
+      (attribute: any) => attribute.type === 'mdxJsxAttribute' && attribute.name === 'data-zoom-off'
+    );
+  }
+  return false;
+}
 
-      const isInvalidImage = parents.some((parent) => {
-        return (
-          parent.type === 'element' &&
-          // Exclude images wrapped in an element with the CSS class `not-content`.
-          (String(parent.properties['className']).includes('not-content') ||
-            // Exclude images wrapped in an interactive element.
-            parent.tagName === 'button' ||
-            (parent.tagName === 'a' && 'href' in parent.properties))
-        )
-      })
+function isInvalidParent(parent: any) {
+  return (
+    parent.type === 'element' &&
+    (String(parent.properties['className']).includes('not-content') ||
+      parent.tagName === 'button' ||
+      (parent.tagName === 'a' && 'href' in parent.properties))
+  );
+}
 
-      if (isInvalidImage) return SKIP
-
-      let alt = ''
-
-      if (node.type === 'element' && node.tagName === 'img') {
-        alt = String(node.properties['alt']).trim()
-      }
-
-      const parent = parents.at(-1)
-      const index = parent?.children.indexOf(node)
-
-      if (!parent || index === undefined) return CONTINUE
-
-      parent.children[index] = {
+function createZoomableElement(node: any, alt: string) {
+  return {
+    type: 'element',
+    tagName: 'image-zoom-zoomable',
+    properties: {},
+    children: [
+      node,
+      {
         type: 'element',
-        tagName: 'image-zoom-zoomable',
-        properties: {},
+        tagName: 'button',
+        properties: {
+          'aria-label': `Zoom image${alt.length > 0 ? `: ${alt}` : ''}`,
+          class: 'image-zoom-control',
+        },
         children: [
-          node,
           {
             type: 'element',
-            tagName: 'button',
+            tagName: 'svg',
             properties: {
-              'aria-label': `Zoom image${alt.length > 0 ? `: ${alt}` : ''}`,
-              class: 'image-zoom-control',
+              'aria-hidden': 'true',
+              fill: 'currentColor',
+              viewBox: '0 0 24 24',
             },
             children: [
               {
                 type: 'element',
-                tagName: 'svg',
+                tagName: 'use',
                 properties: {
-                  'aria-hidden': 'true',
-                  fill: 'currentColor',
-                  viewBox: '0 0 24 24',
+                  href: 'image-zoom-icon-zoom',
                 },
-                children: [
-                  {
-                    type: 'element',
-                    tagName: 'use',
-                    properties: {
-                      href: 'image-zoom-icon-zoom',
-                    },
-                    children: [],
-                  },
-                ],
+                children: [],
               },
             ],
           },
         ],
+      },
+    ],
+  };
+}
+
+export function rehypeImageZoom() {
+  return function transformer(tree: Root) {
+    visitParents(tree, ['element', 'mdxJsxFlowElement'], (node, parents) => {
+      if (!isValidNodeType(node)) return CONTINUE;
+      if (hasZoomOffAttribute(node)) return SKIP;
+      
+      if (parents.some(isInvalidParent)) return SKIP;
+
+      let alt = '';
+      if (node.type === 'element' && node.tagName === 'img') {
+        alt = String(node.properties['alt']).trim();
       }
 
-      return SKIP
-    })
-  }
+      const parent = parents.at(-1);
+      const index = parent?.children.indexOf(node);
+      if (!parent || index === undefined) return CONTINUE;
+
+      parent.children[index] = createZoomableElement(node, alt);
+      return SKIP;
+    });
+  };
 }
