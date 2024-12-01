@@ -20,7 +20,7 @@
     "@astrojs/tailwind": "^5.1.2",
     "@nanostores/persistent": "^0.10.2",
     "@nanostores/preact": "^0.5.2",
-    "astro": "^4.16.14",
+    "astro": "^4.16.16",
     "flowbite": "^2.5.2",
     "nanostores": "^0.11.3",
     "preact": "^10.25.0",
