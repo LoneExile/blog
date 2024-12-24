@@ -9,8 +9,8 @@ import rehypeToc from "rehype-toc";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 
-import rehypeRaw from 'rehype-raw'
-import { rehypeImageZoom } from './src/utils/rehype-image-zoom.ts'
+import rehypeRaw from "rehype-raw";
+import { rehypeImageZoom } from "./src/utils/rehype-image-zoom.ts";
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,10 +19,7 @@ export default defineConfig({
       rehypeRaw,
       rehypeImageZoom,
       rehypeSlug,
-      [
-        rehypeAutolinkHeadings,
-        { behavior: "wrap" },
-      ],
+      [rehypeAutolinkHeadings, { behavior: "wrap" }],
       [
         rehypeToc,
         {
@@ -63,7 +60,7 @@ export default defineConfig({
     partytown(),
     clickDirective(),
   ],
-  output: "hybrid",
+  output: "static",
   adapter: node({
     mode: "standalone",
   }),
