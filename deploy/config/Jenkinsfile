@@ -2,7 +2,7 @@ pipeline {
     environment {
         CONTAINER_REGISTRY_CREDENTIALS = credentials('docker')
         SONARQUBE_SCANNER_HOME = tool 'sonar-scanner'
-        SONAR_HOST_URL = 'https://sonar.apinant.dev/'
+        SONAR_HOST_URL = 'https://sonar.voidbox.io/'
         SONAR_TOKEN = credentials('sonar-token')
     }
 
@@ -36,7 +36,7 @@ pipeline {
                     secretName: buildkit-client-certs
               - name: buildkit-cache
                 persistentVolumeClaim:
-                  claimName: bob-nfs-pvc
+                  claimName: jenkins-pvc
             '''
         }
     }
