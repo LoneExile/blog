@@ -1,9 +1,7 @@
 pipeline {
     environment {
         CONTAINER_REGISTRY_CREDENTIALS = credentials('docker')
-        SONARQUBE_SCANNER_HOME = tool 'sonar-scanner'
-        SONAR_HOST_URL = 'https://sonar.voidbox.io/'
-        SONAR_TOKEN = credentials('sonar-token')
+        SONARQUBE_SCANNER_HOME = tool 'sonar-scanner' // NOTE: need to match the name of the SonarQube installer in Tools
     }
 
     agent {
@@ -45,7 +43,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 container('jnlp') {
-                    withSonarQubeEnv('sonar') {
+                    withSonarQubeEnv('sonar') { // NOTE: need to match the name of the SonarQube server configuration in Jenkins
                         sh "${env.SONARQUBE_SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=deploy/config/sonar-project.properties"
                     }
                 }

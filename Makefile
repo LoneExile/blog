@@ -2,10 +2,9 @@ APP=blog
 VERSION?=latest
 BUILD?=$(shell /bin/date +%Y%m%d%H%M%S)
 # linux/amd64, linux/arm64
-PLATFORM?=linux/arm64 
+PLATFORM?=linux/arm64
 REGISTRY?=loneexile
 
-# tcp://buildkitd.buildkit.svc.cluster.local:1234
 ximage:
 	docker buildx create --name imagebuilder --driver=remote tcp://buildkitd:1234 --bootstrap --use;
 	cat ~/.docker/buildx/instances/imagebuilder;
