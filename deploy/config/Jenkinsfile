@@ -1,6 +1,7 @@
 pipeline {
     environment {
         CONTAINER_REGISTRY_CREDENTIALS = credentials('docker')
+        CONTAINER_REGISTRY_CREDENTIALS_HARBOR = credentials('harbor')
         SONARQUBE_SCANNER_HOME = tool 'sonar-scanner' // NOTE: need to match the name of the SonarQube installer in Tools
     }
 
@@ -10,6 +11,13 @@ pipeline {
             apiVersion: v1
             kind: Pod
             spec:
+              nodeSelector: 
+                chip: intel
+              tolerations:
+                - key: "chip"
+                  operator: "Equal"
+                  value: "intel"
+                  effect: "NoSchedule"
               containers:
               - name: docker
                 image: loneexile/docker-cli:latest
@@ -24,7 +32,7 @@ pipeline {
                   mountPath: /var/lib/buildkit
                   subPath: buildkit
               - name: jnlp
-                image: loneexile/jenkins-inbound-node:arm64
+                image: loneexile/jenkins-inbound-node:latest
                 command:
                  - /usr/local/bin/jenkins-agent
                 tty: true
@@ -62,7 +70,9 @@ pipeline {
             steps {
                 container('docker') {
                     sh 'ls'
+                    sh 'pwd'
                     sh 'echo $CONTAINER_REGISTRY_CREDENTIALS_PSW | docker login --username $CONTAINER_REGISTRY_CREDENTIALS_USR --password-stdin'
+                    sh 'echo $CONTAINER_REGISTRY_CREDENTIALS_HARBOR_PSW | docker login https://harbor.voidbox.io --username $CONTAINER_REGISTRY_CREDENTIALS_HARBOR_USR --password-stdin'
                     // sh 'make ximage VERSION=v1.0.0'
                     sh 'make ximage'
                 }
