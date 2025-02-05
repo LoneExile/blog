@@ -70,6 +70,7 @@ pipeline {
             steps {
                 container('docker') {
                     sh 'ls'
+                    sh 'pwd'
                     sh 'echo $CONTAINER_REGISTRY_CREDENTIALS_PSW | docker login --username $CONTAINER_REGISTRY_CREDENTIALS_USR --password-stdin'
                     sh 'echo $CONTAINER_REGISTRY_CREDENTIALS_HARBOR_PSW | docker login https://harbor.voidbox.io --username $CONTAINER_REGISTRY_CREDENTIALS_HARBOR_USR --password-stdin'
                     // sh 'make ximage VERSION=v1.0.0'
