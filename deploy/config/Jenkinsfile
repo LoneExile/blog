@@ -31,6 +31,9 @@ pipeline {
                 - name: buildkit-cache
                   mountPath: /var/lib/buildkit
                   subPath: buildkit
+                # - name: buildkit-cache
+                #   mountPath: /home/jenkins/agent/workspace/personal_blog_jenkins/dist
+                #   subPath: blog/dist
               - name: jnlp
                 image: loneexile/jenkins-inbound-node:latest
                 command:
