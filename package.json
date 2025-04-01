@@ -38,7 +38,7 @@
     "@types/node": "^22.13.0",
     "flowbite-typography": "^1.0.5",
     "mdast-util-mdx-jsx": "^3.2.0",
-    "prettier": "^3.4.2",
+    "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.14.1",
     "ts-dedent": "^2.2.0",
     "typescript": "^5.7.3",
