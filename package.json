@@ -41,7 +41,7 @@
     "prettier": "^3.4.2",
     "prettier-plugin-astro": "^0.14.1",
     "ts-dedent": "^2.2.0",
-    "typescript": "^5.7.3",
+    "typescript": "^5.8.3",
     "unist-util-visit": "^4.1.2"
   }
 }
