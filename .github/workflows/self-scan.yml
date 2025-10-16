@@ -1,0 +1,90 @@
+name: Self Repo Scanner
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install gitleaks
+        run: |
+          wget https://github.com/gitleaks/gitleaks/releases/download/v8.18.2/gitleaks_8.18.2_linux_x64.tar.gz
+          tar -xzf gitleaks_8.18.2_linux_x64.tar.gz
+          sudo mv gitleaks /usr/local/bin/
+          gitleaks version
+
+      - name: Run gitleaks scan
+        id: scan
+        continue-on-error: true
+        run: |
+          gitleaks detect --report-format json --report-path gitleaks-report.json --verbose
+
+      - name: Process scan results
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            
+            let scanResults = '# Security Scan Report\n\n';
+            scanResults += `Generated: ${new Date().toISOString()}\n`;
+            scanResults += `Repository: ${context.repo.owner}/${context.repo.repo}\n`;
+            scanResults += `Branch: ${context.ref}\n\n`;
+
+            if (fs.existsSync('gitleaks-report.json')) {
+              const report = JSON.parse(fs.readFileSync('gitleaks-report.json', 'utf8'));
+              
+              if (report.length > 0) {
+                scanResults += `## ⚠️ Gitleaks Scan Results\n\n`;
+                scanResults += `Found **${report.length}** potential secret(s):\n\n`;
+                
+                report.forEach((finding, i) => {
+                  scanResults += `### ${i+1}. ${finding.RuleID}\n`;
+                  scanResults += `- **File:** \`${finding.File}\`\n`;
+                  scanResults += `- **Line:** ${finding.StartLine}\n`;
+                  scanResults += `- **Commit:** ${finding.Commit?.substring(0, 7) || 'N/A'}\n`;
+                  if (finding.Secret) {
+                    scanResults += `- **Match:** \`${finding.Secret.substring(0, 20)}...\`\n`;
+                  }
+                  scanResults += `\n`;
+                });
+
+                core.setFailed(`Found ${report.length} potential secret(s) in the repository`);
+              } else {
+                scanResults += `## ✅ No Issues Found\n\nNo secrets detected in the repository.\n`;
+              }
+            } else {
+              scanResults += `## ✅ No Issues Found\n\nNo secrets detected in the repository.\n`;
+            }
+
+            await core.summary
+              .addRaw(scanResults)
+              .write();
+
+            fs.writeFileSync('SECURITY_SCAN_REPORT.md', scanResults);
+
+      - name: Upload scan report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-scan-report
+          path: |
+            gitleaks-report.json
+            SECURITY_SCAN_REPORT.md
+          retention-days: 30
