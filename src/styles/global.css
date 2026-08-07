@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+/* Flowbite v4 + typography plugins (Tailwind v4 CSS-first config) */
+@plugin "flowbite/plugin";
+@plugin "flowbite-typography";
+@source "../node_modules/flowbite";
+
+/* Class-based dark mode (was darkMode: "class" in tailwind.config.cjs) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-body:
+    Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans:
+    Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --color-text-50: #f7eef0;
+  --color-text-100: #eedde0;
+  --color-text-200: #debac2;
+  --color-text-300: #cd98a3;
+  --color-text-400: #bd7585;
+  --color-text-500: #ac5366;
+  --color-text-600: #8a4252;
+  --color-text-700: #67323d;
+  --color-text-800: #452129;
+  --color-text-900: #221114;
+  --color-text-950: #11080a;
+
+  --color-background-50: #f9ecef;
+  --color-background-100: #f2d9df;
+  --color-background-200: #e6b3bf;
+  --color-background-300: #d98c9f;
+  --color-background-400: #cc667f;
+  --color-background-500: #bf4060;
+  --color-background-600: #99334c;
+  --color-background-700: #732639;
+  --color-background-800: #4d1926;
+  --color-background-900: #260d13;
+  --color-background-950: #13060a;
+
+  --color-primary-50: #fde8ed;
+  --color-primary-100: #fbd0db;
+  --color-primary-200: #f6a2b7;
+  --color-primary-300: #f27393;
+  --color-primary-400: #ee446f;
+  --color-primary-500: #e9164b;
+  --color-primary-600: #bb113c;
+  --color-primary-700: #8c0d2d;
+  --color-primary-800: #5d091e;
+  --color-primary-900: #2f040f;
+  --color-primary-950: #170207;
+
+  --color-secondary-50: #fce8ed;
+  --color-secondary-100: #fad1db;
+  --color-secondary-200: #f4a4b8;
+  --color-secondary-300: #ef7694;
+  --color-secondary-400: #ea4871;
+  --color-secondary-500: #e41b4d;
+  --color-secondary-600: #b7153e;
+  --color-secondary-700: #89102e;
+  --color-secondary-800: #5b0b1f;
+  --color-secondary-900: #2e050f;
+  --color-secondary-950: #170308;
+
+  --color-accent-50: #fee6ec;
+  --color-accent-100: #fecdd9;
+  --color-accent-200: #fc9cb4;
+  --color-accent-300: #fb6a8e;
+  --color-accent-400: #fa3869;
+  --color-accent-500: #f90643;
+  --color-accent-600: #c70536;
+  --color-accent-700: #950428;
+  --color-accent-800: #63031b;
+  --color-accent-900: #32010d;
+  --color-accent-950: #190107;
+
+  --animate-skew-scroll: skew-scroll 20s linear infinite;
+
+  @keyframes skew-scroll {
+    0% {
+      transform: rotatex(20deg) rotateZ(-20deg) skewX(20deg)
+        translateZ(0) translateY(0);
+    }
+    100% {
+      transform: rotatex(20deg) rotateZ(-20deg) skewX(20deg)
+        translateZ(0) translateY(-100%);
+    }
+  }
+}
+
+/* Rose color modifier for flowbite-typography
+   (was theme.typography.rose in tailwind.config.cjs) */
+.format-rose {
+  --tw-prose-body: var(--color-rose-500);
+  --tw-prose-headings: var(--color-rose-900);
+  --tw-prose-lead: var(--color-rose-500);
+  --tw-prose-links: var(--color-rose-600);
+  --tw-prose-bold: var(--color-rose-900);
+  --tw-prose-counters: var(--color-rose-500);
+  --tw-prose-bullets: var(--color-rose-500);
+  --tw-prose-hr: var(--color-rose-200);
+  --tw-prose-quotes: var(--color-rose-900);
+  --tw-prose-quote-borders: var(--color-rose-300);
+  --tw-prose-captions: var(--color-rose-700);
+  --tw-prose-code: var(--color-rose-900);
+  --tw-prose-code-bg: var(--color-rose-50);
+  --tw-prose-pre-code: var(--color-rose-100);
+  --tw-prose-pre-bg: var(--color-rose-900);
+  --tw-prose-th-borders: var(--color-rose-300);
+  --tw-prose-td-borders: var(--color-rose-200);
+  --tw-format-th-bg: var(--color-rose-50);
+  --tw-prose-invert-body: var(--color-rose-200);
+  --tw-prose-invert-headings: var(--color-white);
+  --tw-prose-invert-lead: var(--color-rose-300);
+  --tw-prose-invert-links: var(--color-white);
+  --tw-prose-invert-bold: var(--color-white);
+  --tw-prose-invert-counters: var(--color-rose-400);
+  --tw-prose-invert-bullets: var(--color-rose-600);
+  --tw-prose-invert-hr: var(--color-rose-700);
+  --tw-prose-invert-quotes: var(--color-pink-100);
+  --tw-prose-invert-quote-borders: var(--color-rose-700);
+  --tw-prose-invert-captions: var(--color-rose-400);
+  --tw-prose-invert-code: var(--color-white);
+  --tw-prose-invert-pre-code: var(--color-rose-300);
+  --tw-prose-invert-pre-bg: rgb(0 0 0 / 50%);
+  --tw-prose-invert-th-borders: var(--color-rose-600);
+  --tw-prose-invert-td-borders: var(--color-rose-700);
+  --tw-format-invert-th-bg: var(--color-rose-700);
+}

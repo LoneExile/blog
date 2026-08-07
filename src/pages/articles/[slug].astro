@@ -5,8 +5,8 @@ import NewSletter from "@components/NewSletter.astro";
 import RelateArticles from "@components/RelateArticles.astro";
 import { Comments } from "@components/Comment";
 import { type AnyCollectionEntry } from "@utils/load-data.ts";
-import { collections } from "../../content/config.ts";
-import { getCollection } from "astro:content";
+import { collections } from "../../content.config.ts";
+import { getCollection, render } from "astro:content";
 import { loadData } from "@utils/load-data.ts";
 import ImageZoom from "@components/ImageZoom.astro";
 
@@ -28,7 +28,7 @@ export async function getStaticPaths() {
   }
 
   return posts.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: { entry, language },
   }));
 }
@@ -39,8 +39,8 @@ if (!language) {
   language = data.language;
 }
 
-const { Content } = await entry.render();
-const currentPath = "articles/" + entry.slug;
+const { Content } = await render(entry);
+const currentPath = "articles/" + entry.id;
 const title = entry.data.title;
 
 if (entry === undefined) {
@@ -90,7 +90,7 @@ const isArticle =
     draft={entry.data.draft}
     tags={entry.data.tags}
     description={entry.data.description}
-    url={entry.slug}
+    url={entry.id}
     {language}
     comments={entry.data.comments}
   >
@@ -105,7 +105,7 @@ const isArticle =
           {currentTags}
           {language}
           {data}
-          currentSlug={entry.slug}
+          currentSlug={entry.id}
         />
         <NewSletter {language} {data} />
       </>

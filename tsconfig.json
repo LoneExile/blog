@@ -4,37 +4,36 @@
     "astrojs/client"
   ],
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
       "@pages/*": [
-        "src/pages/*"
+        "./src/pages/*"
       ],
       "@components/*": [
-        "src/components/*"
+        "./src/components/*"
       ],
       "@content/*": [
-        "src/pages/content/*"
+        "./src/pages/content/*"
       ],
       "@assets/*": [
-        "src/assets/*"
+        "./src/assets/*"
       ],
       "@layouts/*": [
-        "src/layouts/*"
+        "./src/layouts/*"
       ],
       "@data/*": [
-        "src/data/*"
+        "./src/data/*"
       ],
       "@icons/*": [
-        "src/icons/*"
+        "./src/icons/*"
       ],
       "@types": [
-        "src/types"
+        "./src/types"
       ],
       "@utils/*": [
-        "src/utils/*"
+        "./src/utils/*"
       ],
       "*": [
-        "types/*.d.ts"
+        "./types/*.d.ts"
       ]
     },
     "jsx": "react-jsx",

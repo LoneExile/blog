@@ -7,7 +7,7 @@ import {
   type AnyCollectionEntry,
   collections,
 } from "@utils/load-data.ts";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 
 interface Props {
   language: string;
@@ -23,7 +23,7 @@ for (const collection of Object.keys(collections) as MyCollectionKeys[]) {
   let collectionEntries = await getCollection(collection);
   collectionEntries = collectionEntries.filter(
     (post) =>
-      post.data.language === language && post.slug.includes("privacy-policy"),
+      post.data.language === language && post.id.includes("privacy-policy"),
   );
   posts = posts.concat(collectionEntries);
 }
@@ -34,8 +34,8 @@ if (!entry) {
   return Astro.redirect(getRelativeLocaleUrl(language, data.pageNotFound.path));
 }
 
-const { Content } = await entry.render();
-const currentPath = entry.slug;
+const { Content } = await render(entry);
+const currentPath = entry.id;
 const title = entry.data.title;
 ---
 
@@ -53,7 +53,7 @@ const title = entry.data.title;
     draft={entry.data.draft}
     tags={entry.data.tags}
     description={entry.data.description}
-    url={entry.slug}
+    url={entry.id}
     {language}
     comments={entry.data.comments}
   >

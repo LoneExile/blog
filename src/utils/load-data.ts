@@ -1,6 +1,6 @@
 import { getCollection } from "astro:content";
 import { type CollectionEntry } from "astro:content";
-import { collections } from "../content/config.ts"
+import { collections } from "../content.config.ts"
 type MyCollectionKeys = keyof typeof collections;
 type AnyCollectionEntry = CollectionEntry<MyCollectionKeys>;
 

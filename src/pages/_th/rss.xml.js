@@ -21,7 +21,7 @@ export async function GET(context) {
         title: post.data.title,
         pubDate: post.data.created,
         description: post.data.description,
-        link: `/${language}/articles/${post.slug}/`,
+        link: `/${language}/articles/${post.id}/`,
       })),
     customData: `<language>${language}-${language}</language>`,
     stylesheet: "/rss/styles.xsl",

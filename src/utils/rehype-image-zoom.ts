@@ -1,5 +1,5 @@
 import 'mdast-util-mdx-jsx'
-import type { Root } from 'hast'
+import type { Element, ElementContent, Root } from 'hast'
 import { CONTINUE, SKIP } from 'unist-util-visit'
 import { visitParents } from 'unist-util-visit-parents'
 
@@ -39,7 +39,7 @@ function getAriaLabel(alt: string): string {
   return 'Zoom image: ' + alt;
 }
 
-function createZoomableElement(node: any, alt: string) {
+function createZoomableElement(node: ElementContent, alt: string): Element {
   return {
     type: 'element',
     tagName: 'image-zoom-zoomable',
@@ -93,10 +93,10 @@ export function rehypeImageZoom() {
       }
 
       const parent = parents.at(-1);
-      const index = parent?.children.indexOf(node);
+      const index = parent?.children.indexOf(node as unknown as ElementContent);
       if (!parent || index === undefined) return CONTINUE;
 
-      parent.children[index] = createZoomableElement(node, alt);
+      parent.children[index] = createZoomableElement(node as unknown as ElementContent, alt);
       return SKIP;
     });
   };

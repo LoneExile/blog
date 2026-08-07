@@ -12,7 +12,7 @@ interface Props {
 const { currentTags, language, currentSlug, data } = Astro.props;
 const posts = await loadCollection(language);
 const relatedPosts = posts.filter((post) => {
-  if (post.data.tags && post.slug !== currentSlug) {
+  if (post.data.tags && post.id !== currentSlug) {
     return post.data.tags.some((tag) => currentTags.includes(tag));
   }
   return false;
@@ -41,7 +41,7 @@ function calculateReadingTime(text: string) {
         relatedPosts.map((post) => (
           <article class="max-w-xs">
             {post.data.thumbnail && (
-              <a href={getPath(post.slug)}>
+              <a href={getPath(post.id)}>
                 <Image
                   src={post.data.thumbnail.src}
                   class="mb-5 rounded-lg"
@@ -52,7 +52,7 @@ function calculateReadingTime(text: string) {
               </a>
             )}
             <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
-              <a href={getPath(post.slug)}>{post.data.title}</a>
+              <a href={getPath(post.id)}>{post.data.title}</a>
             </h2>
             <p class="mb-4 text-gray-500 dark:text-gray-400">
               {post.data.description}

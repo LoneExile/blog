@@ -3,7 +3,7 @@ import ArticlePage from "@pages/articles/[slug].astro";
 import props from "../_props.json";
 import { type AnyCollectionEntry } from "@utils/load-data.ts";
 import { getCollection } from "astro:content";
-import { collections } from "../../../content/config.ts";
+import { collections } from "../../../content.config.ts";
 
 export async function getStaticPaths() {
   const language = props.language;
@@ -22,7 +22,7 @@ export async function getStaticPaths() {
   }
 
   return posts.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: { entry },
   }));
 }

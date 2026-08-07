@@ -68,7 +68,7 @@ const dateToToday = (date: string) => {
                 </span>
               </div>
               <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                <a href={getPath(post.slug)}>{post.data.title}</a>
+                <a href={getPath(post.id)}>{post.data.title}</a>
               </h2>
               <p class="mb-5 font-light text-gray-500 dark:text-gray-400">
                 {post.data.description}
@@ -78,7 +78,7 @@ const dateToToday = (date: string) => {
                   <TagBadge {language} tags={post.data.tags} />
                 </div>
                 <a
-                  href={getPath(post.slug)}
+                  href={getPath(post.id)}
                   aria-label={"Read more about " + post.data.title}
                   class="inline-flex items-center font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
