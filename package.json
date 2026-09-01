@@ -22,7 +22,7 @@
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.2.0",
     "flowbite": "^4.0.2",
-    "nanostores": "^1.4.2",
+    "nanostores": "^1.5.2",
     "preact": "^10.29.8",
     "rehype": "^13.0.2",
     "rehype-autolink-headings": "^7.1.0",
