@@ -57,7 +57,7 @@ export default defineConfig({
     // },
   },
   prefetch: false,
-  site: "https://voidbox.io",
+  site: "https://blog.apinant.dev",
   integrations: [sitemap(), preact(), partytown(), clickDirective()],
   vite: {
     plugins: [tailwindcss()],
