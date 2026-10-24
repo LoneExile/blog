@@ -9,3 +9,11 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "monthly"
+  - package-ecosystem: "docker" # Dockerfile base images (pinned by digest)
+    directory: "/"
+    schedule:
+      interval: "monthly"
+  - package-ecosystem: "github-actions" # .github/workflows
+    directory: "/"
+    schedule:
+      interval: "monthly"
