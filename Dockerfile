@@ -1,11 +1,15 @@
-FROM node:22 AS builder
+FROM node:22.23.4@sha256:63538dfe497cc29dfafdda25ada09b46db68a3f4cc205abf1f5d6bf0913f3384 AS builder
+
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 
 WORKDIR /blog
 
-COPY package*.json ./
-COPY pnpm-lock.yaml ./
+# pnpm's version is the exact one in package.json "packageManager"; corepack fetches it.
+# pnpm-workspace.yaml (overrides, allowBuilds) and .npmrc change what a frozen install
+# resolves, so they must be present for the install.
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
 
-RUN npm install --ignore-scripts -g pnpm@9.0.6 && pnpm install --ignore-scripts
+RUN corepack enable && corepack install && pnpm install --frozen-lockfile --ignore-scripts
 COPY . .
 
 ENV PUBLIC_REMARK_URL=https://remark.voidbox.io

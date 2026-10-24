@@ -2,6 +2,9 @@ jobs:
   build:
     environment: deploy
     runs-on: ubuntu-latest
+    env:
+      # Never prompt before corepack downloads the pnpm pinned in package.json.
+      COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
     steps:
       - name: Checkout Commit
         uses: actions/checkout@v3
@@ -11,10 +14,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version-file: '.nvmrc'
-      - name: Install pnpm
-        run: npm i --location=global pnpm
+      # pnpm's version is the exact one in package.json "packageManager"; corepack fetches it.
+      - name: Enable corepack
+        run: corepack enable
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
       - env:
           LOCALE_CI: en
         name: Build
