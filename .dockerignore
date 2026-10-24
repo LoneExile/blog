@@ -15,3 +15,5 @@ src/content/blogs/_*
 
 deploy
 .env
+.git
+.astro
