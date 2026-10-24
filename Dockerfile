@@ -3,7 +3,7 @@
 # Node must satisfy astro's engines (>=22.23.4) and match .nvmrc.
 
 # ---- base: node + the pnpm version pinned in package.json ("packageManager") ----
-FROM node:22.23.4@sha256:63538dfe497cc29dfafdda25ada09b46db68a3f4cc205abf1f5d6bf0913f3384 AS base
+FROM node:26.12.0@sha256:45a2bf9d9300e9cf47ecb375e38447c140c45ef5fbae869c430475b05b98d86e AS base
 
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 
@@ -34,7 +34,7 @@ ENV PUBLIC_TURNSTILE_HANDLE_API="https://listmonk1-handle.voidbox.io/api/subscri
 RUN pnpm run build
 
 # ---- runtime: prod deps + dist, non-root ----
-FROM node:22.23.4-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d AS runtime
+FROM node:26.12.0-slim@sha256:e556a144463cc8dc53afe8de6d2fa0db5c132fd39ffa232c17641bd40df2bf11 AS runtime
 
 ARG USERNAME=blog
 ARG USER_UID=1001
