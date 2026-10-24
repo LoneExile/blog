@@ -1,3 +1,9 @@
 allowBuilds:
   esbuild: true
   sharp: true
+overrides:
+  # rollup 4.0-4.58 has GHSA-mw96-cpmx-2vgc (arbitrary file write). It is only an optional peer of
+  # @rollup/pluginutils (via @astrojs/preact) and @rollup/plugin-node-resolve (via flowbite-datepicker),
+  # which auto-install-peers had pinned at 4.34.0 in the lockfile; a direct bump never moves it.
+  # Raising the peer range keeps any rollup that does get installed patched.
+  rollup: ^4.59.0
