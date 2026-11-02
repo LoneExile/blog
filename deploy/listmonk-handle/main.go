@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"log"
@@ -22,7 +23,12 @@ var (
 	listIDs         []int
 
 	turnstileVerifyURL = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
+
+	turnstileClient = &http.Client{Timeout: 10 * time.Second}
+	listmonkClient  = &http.Client{Timeout: 10 * time.Second}
 )
+
+const maxBodyBytes = 4 << 10
 
 // parseListIDs parses a comma-separated list of positive integer list IDs.
 func parseListIDs(s string) ([]int, error) {
@@ -65,7 +71,7 @@ type TurnstileResponse struct {
 }
 
 func verifyCaptcha(token string) bool {
-	resp, err := http.PostForm(turnstileVerifyURL,
+	resp, err := turnstileClient.PostForm(turnstileVerifyURL,
 		url.Values{"secret": {turnstileSecret}, "response": {token}})
 	if err != nil {
 		fmt.Println("Error verifying CAPTCHA:", err)
@@ -112,20 +118,20 @@ func addSubscriberToListmonk(email string) error {
 	req.Header.Set("Content-Type", "application/json")
 	req.SetBasicAuth(listmonkUser, listmonkPass)
 
-	client := &http.Client{Timeout: time.Second * 10}
-	resp, err := client.Do(req)
+	resp, err := listmonkClient.Do(req)
 	if err != nil {
-		fmt.Println("Error sending request to listmonk:", err)
-		return err
+		return fmt.Errorf("sending request to listmonk: %w", err)
 	}
 	defer resp.Body.Close()
 
+	// 409: the subscriber already exists. Report success so the endpoint
+	// does not reveal which addresses are subscribed.
+	if resp.StatusCode == http.StatusConflict {
+		return nil
+	}
 	if resp.StatusCode != http.StatusOK {
-		body, _ := io.ReadAll(resp.Body)
-		fmt.Printf("Error response from listmonk: %d - %s\n", resp.StatusCode, string(body))
-		// TODO: Handle error response from listmonk
-		err = fmt.Errorf("Error response from listmonk: %d - %s\n", resp.StatusCode, string(body))
-		return err
+		body, _ := io.ReadAll(io.LimitReader(resp.Body, 1024))
+		return fmt.Errorf("listmonk responded %d: %s", resp.StatusCode, body)
 	}
 
 	fmt.Println("Subscriber added to listmonk successfully")
@@ -138,9 +144,15 @@ func handleSubscribe(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	r.Body = http.MaxBytesReader(w, r.Body, maxBodyBytes)
 	var sr SubscriptionRequest
 	err := json.NewDecoder(r.Body).Decode(&sr)
 	if err != nil {
+		var tooBig *http.MaxBytesError
+		if errors.As(err, &tooBig) {
+			http.Error(w, "Request body too large", http.StatusRequestEntityTooLarge)
+			return
+		}
 		http.Error(w, "Invalid request body", http.StatusBadRequest)
 		return
 	}
@@ -151,23 +163,24 @@ func handleSubscribe(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if !verifyCaptcha(sr.CaptchaToken) {
-		jsonResponse := map[string]string{"message": "Invalid CAPTCHA"}
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusUnauthorized)
-		json.NewEncoder(w).Encode(jsonResponse)
+		writeMessage(w, http.StatusUnauthorized, "Invalid CAPTCHA")
 		return
 	}
 
-	err = addSubscriberToListmonk(sr.Email)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+	if err := addSubscriberToListmonk(sr.Email); err != nil {
+		// Detail stays in the server log; the client gets a fixed body.
+		log.Printf("subscribe failed: %v", err)
+		writeMessage(w, http.StatusInternalServerError, "Subscription failed")
 		return
 	}
 
-	jsonResponse := map[string]string{"message": "Subscription successful"}
+	writeMessage(w, http.StatusOK, "Subscription successful")
+}
+
+func writeMessage(w http.ResponseWriter, status int, msg string) {
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(jsonResponse)
+	w.WriteHeader(status)
+	json.NewEncoder(w).Encode(map[string]string{"message": msg})
 }
 
 func corsMiddleware(next http.HandlerFunc, allowedOrigins []string) http.HandlerFunc {
@@ -214,6 +227,15 @@ func main() {
 
 	allowedOrigins := parseOrigins(os.Getenv("ALLOWED_ORIGINS"))
 
-	http.HandleFunc("/api/subscribe", corsMiddleware(handleSubscribe, allowedOrigins))
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	mux := http.NewServeMux()
+	mux.HandleFunc("/api/subscribe", corsMiddleware(handleSubscribe, allowedOrigins))
+	srv := &http.Server{
+		Addr:              ":8080",
+		Handler:           mux,
+		ReadHeaderTimeout: 5 * time.Second,
+		ReadTimeout:       10 * time.Second,
+		WriteTimeout:      30 * time.Second,
+		IdleTimeout:       60 * time.Second,
+	}
+	log.Fatal(srv.ListenAndServe())
 }

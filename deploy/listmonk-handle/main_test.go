@@ -8,6 +8,7 @@ import (
 	"strings"
 	"sync/atomic"
 	"testing"
+	"time"
 )
 
 func TestParseListIDs(t *testing.T) {
@@ -148,5 +149,88 @@ func TestCORSAllowsOnlyListedOrigins(t *testing.T) {
 	rec := do("OPTIONS", "https://blog.example")
 	if rec.Code != 200 || f.listmonkCalls.Load() != before {
 		t.Errorf("preflight code=%d, listmonk calls changed=%v", rec.Code, f.listmonkCalls.Load() != before)
+	}
+}
+
+func TestSubscribeTreatsExistingSubscriberAsSuccess(t *testing.T) {
+	setup(t, true, nil, func(r *http.Request) {})
+	lm := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusConflict)
+		w.Write([]byte(`{"message":"E-mail already exists."}`))
+	}))
+	defer lm.Close()
+	listmonkAPI = lm.URL
+	rec := post(handleSubscribe, `{"email":"a@example.com","captchaToken":"t"}`)
+	if rec.Code != 200 || strings.TrimSpace(rec.Body.String()) != `{"message":"Subscription successful"}` {
+		t.Errorf("got %d %q", rec.Code, rec.Body.String())
+	}
+}
+
+func TestSubscribeHidesListmonkFailureDetail(t *testing.T) {
+	setup(t, true, nil, nil)
+	lm := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("SECRET-UPSTREAM-DETAIL"))
+	}))
+	defer lm.Close()
+	listmonkAPI = lm.URL
+	rec := post(handleSubscribe, `{"email":"a@example.com","captchaToken":"t"}`)
+	if rec.Code != 500 || strings.TrimSpace(rec.Body.String()) != `{"message":"Subscription failed"}` {
+		t.Errorf("got %d %q", rec.Code, rec.Body.String())
+	}
+	if rec.Header().Get("Content-Type") != "application/json" {
+		t.Errorf("content type = %q", rec.Header().Get("Content-Type"))
+	}
+}
+
+func TestSubscribeHidesTransportErrorDetail(t *testing.T) {
+	setup(t, true, nil, nil)
+	listmonkAPI = "http://listmonk.internal.invalid:1/api/subscribers"
+	rec := post(handleSubscribe, `{"email":"a@example.com","captchaToken":"t"}`)
+	if rec.Code != 500 || strings.Contains(rec.Body.String(), "internal.invalid") {
+		t.Errorf("got %d %q", rec.Code, rec.Body.String())
+	}
+}
+
+func TestTurnstileClientTimesOut(t *testing.T) {
+	f := setup(t, true, nil, nil)
+	release := make(chan struct{})
+	slow := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		select {
+		case <-release:
+		case <-r.Context().Done():
+		}
+	}))
+	defer slow.Close()
+	defer close(release)
+	turnstileVerifyURL = slow.URL
+	old := turnstileClient
+	turnstileClient = &http.Client{Timeout: 100 * time.Millisecond}
+	defer func() { turnstileClient = old }()
+
+	done := make(chan *httptest.ResponseRecorder, 1)
+	go func() { done <- post(handleSubscribe, `{"email":"a@example.com","captchaToken":"t"}`) }()
+	select {
+	case rec := <-done:
+		if rec.Code != 401 && rec.Code != 500 {
+			t.Errorf("code = %d", rec.Code)
+		}
+	case <-time.After(3 * time.Second):
+		t.Fatal("handler hung on slow Turnstile")
+	}
+	if f.listmonkCalls.Load() != 0 {
+		t.Error("listmonk called after Turnstile timeout")
+	}
+}
+
+func TestSubscribeRejectsOversizedBody(t *testing.T) {
+	f := setup(t, true, nil, nil)
+	body := `{"email":"a@example.com","captchaToken":"` + strings.Repeat("x", 10000) + `"}`
+	rec := post(handleSubscribe, body)
+	if rec.Code < 400 || rec.Code > 499 {
+		t.Errorf("code = %d", rec.Code)
+	}
+	if f.turnstileCalls.Load() != 0 || f.listmonkCalls.Load() != 0 {
+		t.Error("upstream called for oversized body")
 	}
 }
