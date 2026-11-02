@@ -1,28 +1,16 @@
-FROM golang:1.22.2 AS builder
+FROM golang:1.26-alpine@sha256:a2012b4a1d1f9f7e9f44e0d39b805a901e856b1dd80b4e6ee4338db547050308 AS builder
 
-WORKDIR /listmonk-backend
-
+WORKDIR /src
 COPY go.mod ./
+COPY *.go ./
+RUN CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/listmonk-handle .
 
-COPY . .
+FROM alpine:3.22@sha256:2e0b81d60597f449baa56dc25d355367869d2dca4cd57e866f1e2b52af3eb55f
 
-# Build the application
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o myapp ./
+RUN apk add --no-cache ca-certificates
 
-FROM alpine:3.19.1
+COPY --from=builder /out/listmonk-handle /usr/local/bin/listmonk-handle
 
-# https://pkgs.alpinelinux.org/package/edge/main/x86/ca-certificates
-RUN apk --no-cache add ca-certificates=20240226-r0
-
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
-
-USER appuser
-
-WORKDIR /listmonk-backend/
-
-COPY --from=builder /listmonk-backend/myapp /listmonk-backend/
-
+USER 10001:10001
 EXPOSE 8080
-
-ENTRYPOINT ["/listmonk-backend/myapp"]
-
+ENTRYPOINT ["/usr/local/bin/listmonk-handle"]

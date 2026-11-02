@@ -4,11 +4,13 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"net/url"
 	"os"
+	"strconv"
+	"strings"
 	"time"
 )
 
@@ -17,7 +19,34 @@ var (
 	listmonkUser    string
 	listmonkPass    string
 	turnstileSecret string
+	listIDs         []int
+
+	turnstileVerifyURL = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
 )
+
+// parseListIDs parses a comma-separated list of positive integer list IDs.
+func parseListIDs(s string) ([]int, error) {
+	var ids []int
+	for _, part := range strings.Split(s, ",") {
+		id, err := strconv.Atoi(strings.TrimSpace(part))
+		if err != nil || id < 1 {
+			return nil, fmt.Errorf("invalid list ID %q", part)
+		}
+		ids = append(ids, id)
+	}
+	return ids, nil
+}
+
+// parseOrigins parses a comma-separated list of origins, dropping empty entries.
+func parseOrigins(s string) []string {
+	var origins []string
+	for _, part := range strings.Split(s, ",") {
+		if o := strings.TrimSpace(part); o != "" {
+			origins = append(origins, o)
+		}
+	}
+	return origins
+}
 
 type ListmonkSubscriberRequest struct {
 	Email  string `json:"email"`
@@ -36,7 +65,7 @@ type TurnstileResponse struct {
 }
 
 func verifyCaptcha(token string) bool {
-	resp, err := http.PostForm("https://challenges.cloudflare.com/turnstile/v0/siteverify",
+	resp, err := http.PostForm(turnstileVerifyURL,
 		url.Values{"secret": {turnstileSecret}, "response": {token}})
 	if err != nil {
 		fmt.Println("Error verifying CAPTCHA:", err)
@@ -44,7 +73,7 @@ func verifyCaptcha(token string) bool {
 	}
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Println("Error reading CAPTCHA verification response:", err)
 		return false
@@ -65,7 +94,7 @@ func addSubscriberToListmonk(email string) error {
 		Email:  email,
 		Name:   "Subscriber",
 		Status: "enabled",
-		Lists:  []int{1},
+		Lists:  listIDs,
 	}
 
 	data, err := json.Marshal(subscriberData)
@@ -92,7 +121,7 @@ func addSubscriberToListmonk(email string) error {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		body, _ := ioutil.ReadAll(resp.Body)
+		body, _ := io.ReadAll(resp.Body)
 		fmt.Printf("Error response from listmonk: %d - %s\n", resp.StatusCode, string(body))
 		// TODO: Handle error response from listmonk
 		err = fmt.Errorf("Error response from listmonk: %d - %s\n", resp.StatusCode, string(body))
@@ -170,7 +199,6 @@ func main() {
 	listmonkUser = os.Getenv("LISTMONK_USER")
 	listmonkPass = os.Getenv("LISTMONK_PASS")
 	turnstileSecret = os.Getenv("TURNSTILE_SECRET")
-	allOrigins := os.Getenv("ALLOWED_ORIGINS")
 
 	if listmonkAPI == "" || listmonkUser == "" || listmonkPass == "" || turnstileSecret == "" {
 		log.Fatal(
@@ -178,9 +206,13 @@ func main() {
 		)
 	}
 
-	allowedOrigins := []string{
-		allOrigins,
+	ids, err := parseListIDs(os.Getenv("LISTMONK_LIST_IDS"))
+	if err != nil {
+		log.Fatalf("Environment variable LISTMONK_LIST_IDS must be comma-separated positive integers: %v", err)
 	}
+	listIDs = ids
+
+	allowedOrigins := parseOrigins(os.Getenv("ALLOWED_ORIGINS"))
 
 	http.HandleFunc("/api/subscribe", corsMiddleware(handleSubscribe, allowedOrigins))
 	log.Fatal(http.ListenAndServe(":8080", nil))
