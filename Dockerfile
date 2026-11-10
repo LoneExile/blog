@@ -27,9 +27,12 @@ RUN pnpm install --frozen-lockfile --ignore-scripts
 
 COPY . .
 
-ENV PUBLIC_REMARK_URL=https://remark.voidbox.io
-ENV PUBLIC_TURNSTILE_KEY=0x4AAAAAAAPw32CkVrP409aE
-ENV PUBLIC_TURNSTILE_HANDLE_API="https://listmonk1-handle.voidbox.io/api/subscribe"
+ARG PUBLIC_REMARK_URL=https://remark.apinant.dev
+ARG PUBLIC_TURNSTILE_KEY=0x4AAAAAAAPw32CkVrP409aE
+ARG PUBLIC_TURNSTILE_HANDLE_API=https://listmonk.apinant.dev/api/subscribe
+ENV PUBLIC_REMARK_URL=$PUBLIC_REMARK_URL
+ENV PUBLIC_TURNSTILE_KEY=$PUBLIC_TURNSTILE_KEY
+ENV PUBLIC_TURNSTILE_HANDLE_API=$PUBLIC_TURNSTILE_HANDLE_API
 
 RUN pnpm run build
 
