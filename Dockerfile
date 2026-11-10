@@ -3,7 +3,7 @@
 # Node must satisfy astro's engines (>=22.23.4) and match .nvmrc.
 
 # ---- base: node + the pnpm version pinned in package.json ("packageManager") ----
-FROM node:22.23.4@sha256:63538dfe497cc29dfafdda25ada09b46db68a3f4cc205abf1f5d6bf0913f3384 AS base
+FROM node:26.13.0@sha256:6d2c7d5d074bf72f81ddc252b4fbb5d625bc028eeda49cb4b8c2ff8eda1ee617 AS base
 
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 
@@ -37,7 +37,7 @@ ENV PUBLIC_TURNSTILE_HANDLE_API=$PUBLIC_TURNSTILE_HANDLE_API
 RUN pnpm run build
 
 # ---- runtime: prod deps + dist, non-root ----
-FROM node:22.23.4-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d AS runtime
+FROM node:26.13.0-slim@sha256:e4db4c914bf8ad241bd24804fc25d272d89bad97e68cdc8a1414862790a02c39 AS runtime
 
 ARG USERNAME=blog
 ARG USER_UID=1001
