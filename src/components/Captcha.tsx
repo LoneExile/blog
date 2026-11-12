@@ -2,6 +2,16 @@ import { Component } from "preact";
 
 export default class SubscriptionForm extends Component {
   componentDidMount() {
+    const turnstileContainer = document.querySelector(
+      ".cf-turnstile",
+    ) as HTMLElement;
+    // Match the blog's theme (the class on <html>), not the device setting that
+    // Turnstile's default "auto" follows. Set before api.js loads: it renders
+    // .cf-turnstile on load and never changes the theme after that.
+    turnstileContainer?.setAttribute(
+      "data-theme",
+      document.documentElement.classList.contains("dark") ? "dark" : "light",
+    );
     const script = document.createElement("script");
     script.src =
       "https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback";
@@ -9,9 +19,6 @@ export default class SubscriptionForm extends Component {
     document.body.appendChild(script);
     // ----------------------------------------------------------------
     //
-    const turnstileContainer = document.querySelector(
-      ".cf-turnstile",
-    ) as HTMLElement;
     const selectTurnstileToken = () => {
       return document.querySelector(
         'input[name="cf-turnstile-response"]',
