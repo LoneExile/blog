@@ -8,14 +8,14 @@ category: []
 draft: false
 slug: "privacy-policy"
 author: "Apinant U-suwantim"
-description: "Privacy Policy for VoidBox.io"
+description: "Privacy Policy for apinant.dev"
 comments: false
 show: false
 ---
 
 **Introduction:**
 
-- Welcome to [VoidBox.io](/).
+- Welcome to [apinant.dev](/).
 - This policy outlines how we collect, use, protect, and handle your personal
   information on our blog.
 
@@ -58,7 +58,7 @@ show: false
 - You have the right to access, edit, or delete your personal information at any
   time.
 - For any requests related to your personal data, please contact us at
-  <Apinant@VoidBox.io>.
+  <me@apinant.dev>.
 
 **Third-party Disclosure:**
 
@@ -77,4 +77,4 @@ show: false
 **Contact Information:**
 
 - If you have any questions about this Privacy Policy, please contact us at
-  <Apinant@VoidBox.io>.
+  <me@apinant.dev>.

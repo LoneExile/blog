@@ -31,6 +31,10 @@ declare global {
         title: string;
         description: string;
       }
+      rebrand: {
+        title: string;
+        description: string;
+      }
       aboutAuthor: {
         title: string;
         role: string;

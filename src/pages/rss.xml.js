@@ -6,7 +6,7 @@ import { collections, loadCollection } from "@utils/load-data.ts";
 export async function GET(context) {
   let posts = await loadCollection("en");
   return rss({
-    title: "VoidBox Blog",
+    title: "apinant.dev",
     description: data.siteDescription,
     site: context.site,
     items: posts
