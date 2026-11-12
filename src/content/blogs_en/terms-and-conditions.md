@@ -8,20 +8,20 @@ category: []
 draft: false
 slug: "terms-and-conditions"
 author: "Apinant U-suwantim"
-description: "Terms and Conditions for VoidBox.io"
+description: "Terms and Conditions for apinant.dev"
 comments: false
 show: false
 ---
 
 **Introduction:**
 
-- Welcome to [VoidBox.io](/).
+- Welcome to [apinant.dev](/).
 - By accessing our blog, you agree to these terms and conditions. Please read
   them carefully.
 
 **Use License (Creative Commons Attribution-ShareAlike (CC BY-SA)):**
 
-- This work by VoidBox.io is licensed under a Creative Commons
+- This work by apinant.dev is licensed under a Creative Commons
   Attribution-ShareAlike 4.0 International License.
 - You are free to share (copy and redistribute the material in any medium or
   format) and adapt (remix, transform, and build upon the material) for any
@@ -59,14 +59,14 @@ show: false
 
 **Privacy Policy:**
 
-- The privacy of our visitors to [VoidBox.io](/) is important to us.
-- At [VoidBox.io](/), we recognize that privacy of your personal information is
+- The privacy of our visitors to [apinant.dev](/) is important to us.
+- At [apinant.dev](/), we recognize that privacy of your personal information is
   important. Here is information on what types of personal information we
-  receive and collect when you use and visit [VoidBox.io](VoidBox.io), and how
+  receive and collect when you use and visit [apinant.dev](/), and how
   we safeguard your information.
 - We never sell your personal information to third parties.
 - For a detailed explanation of how we collect, use, and protect your personal
-  data, please view our [Privacy Policy](VoidBox.io).
+  data, please view our [Privacy Policy](/privacy-policy).
 - By using our blog, you agree to the collection and use of information in
   accordance with our Privacy Policy.
 
@@ -85,4 +85,4 @@ show: false
 **Contact Information:**
 
 - For any questions or concerns regarding the terms, please contact us at
-  <Apinant@VoidBox.io>.
+  <me@apinant.dev>.

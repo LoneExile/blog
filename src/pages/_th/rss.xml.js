@@ -9,7 +9,7 @@ let data = await loadData(language);
 export async function GET(context) {
   let posts = await loadCollection(language);
   return rss({
-    title: "VoidBox Blog",
+    title: "apinant.dev",
     description: data.siteDescription,
     site: context.site,
     items: posts
