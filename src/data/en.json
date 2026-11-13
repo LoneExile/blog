@@ -10,12 +10,9 @@
       "title": "Digital archive",
       "description": "Notes from a software engineer in Bangkok on Linux, the cloud, TypeScript and the tools I build with, written down so they don't fade."
     },
-    "latest": {
-      "title": "Latest writing",
-      "all": "All articles"
-    },
     "grid": {
-      "pause": "Pause animation"
+      "pause": "Pause animation",
+      "all": "All articles"
     }
   },
   "navbar": {

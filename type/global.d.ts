@@ -12,12 +12,9 @@ declare global {
         title: string;
         description: string;
       };
-      latest: {
-        title: string;
-        all: string;
-      };
       grid: {
         pause: string;
+        all: string;
       };
     };
     navbar: {
