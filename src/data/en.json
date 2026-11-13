@@ -13,6 +13,9 @@
     "latest": {
       "title": "Latest writing",
       "all": "All articles"
+    },
+    "grid": {
+      "pause": "Pause animation"
     }
   },
   "navbar": {

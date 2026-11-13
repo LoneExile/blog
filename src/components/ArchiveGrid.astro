@@ -1,0 +1,135 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { type AnyCollectionEntry } from "@utils/load-data.ts";
+
+// The tilted, slowly moving wall of article cards under the home hero.
+// Decoration only: screen readers and keyboard users get the "Latest writing"
+// list below it, so the cards are aria-hidden and out of the tab order (a
+// mouse can still click them).
+//
+// Seamless loop: the track holds three identical copies and slides by exactly
+// one copy (-33.3% to -66.6% of its height), so the end frame equals the
+// start frame. Starting one copy in keeps the band filled above as well.
+interface Props {
+  posts: AnyCollectionEntry[];
+  language: string;
+  data: SiteData;
+}
+
+const { posts, language, data } = Astro.props;
+
+// One copy has to be longer than the visible band, whatever the post count.
+const copy = Array.from({ length: Math.max(1, Math.ceil(12 / posts.length)) }, () => posts).flat();
+---
+
+<div class="archive-grid relative mx-auto mt-12 w-full max-w-screen-lg" data-archive-grid>
+  <div class="archive-band h-[300px] overflow-hidden md:h-[400px]" aria-hidden="true">
+    <!-- Same height as the band, so the tilt pivots on the band's centre; the
+         track overflows it and the band clips what is out of view. -->
+    <div class="archive-tilt mx-auto h-[300px] w-[260px] sm:w-[600px] md:h-[400px]">
+      <div class="archive-track">
+        {
+          [0, 1, 2].map(() => (
+            <ul class="grid grid-cols-1 gap-5 pb-5 sm:grid-cols-2">
+              {copy.map((post) => (
+                <li>
+                  <a
+                    href={getRelativeLocaleUrl(language, "articles/" + post.id)}
+                    tabindex="-1"
+                    class="flex min-h-16 items-center rounded-md border border-gray-200 p-5 text-gray-700 shadow-md transition-shadow hover:underline hover:shadow-xl dark:border-gray-700 dark:text-white"
+                  >
+                    {post.data.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+  <button
+    type="button"
+    data-archive-pause
+    aria-pressed="false"
+    class="archive-pause absolute right-2 top-2 inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 bg-white/90 text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-900/90 dark:text-gray-200 dark:hover:bg-gray-800"
+  >
+    <span class="sr-only">{data.home.grid.pause}</span>
+    <svg class="archive-icon-pause h-4 w-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+      <path d="M4 2h3v12H4zM9 2h3v12H9z"></path>
+    </svg>
+    <svg class="archive-icon-play h-4 w-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+      <path d="M4 2l10 6-10 6z"></path>
+    </svg>
+  </button>
+</div>
+
+<style>
+  /* Fade all four edges. A mask works on any background, light or dark. */
+  .archive-band {
+    -webkit-mask-image:
+      linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent),
+      linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent),
+      linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+    mask-composite: intersect;
+  }
+
+  /* The old isometric tilt. The track moves inside it, so it slides along the
+     tilted axis. */
+  .archive-tilt {
+    transform: rotateX(20deg) rotateZ(-20deg) skewX(20deg);
+  }
+
+  .archive-track {
+    animation: archive-scroll 30s linear infinite;
+    transform: translateY(-33.3333%);
+  }
+
+  /* Paused by hovering the band or by the pause button. */
+  .archive-grid:hover .archive-track,
+  .archive-grid[data-paused] .archive-track {
+    animation-play-state: paused;
+  }
+
+  .archive-icon-play,
+  .archive-grid[data-paused] .archive-icon-pause {
+    display: none;
+  }
+  .archive-grid[data-paused] .archive-icon-play {
+    display: block;
+  }
+
+  /* Devices asking for less motion get the tilted grid standing still, and
+     no pause button since nothing moves. */
+  @media (prefers-reduced-motion: reduce) {
+    .archive-track {
+      animation: none;
+    }
+    .archive-pause {
+      display: none;
+    }
+  }
+
+  @keyframes archive-scroll {
+    from {
+      transform: translateY(-33.3333%);
+    }
+    to {
+      transform: translateY(-66.6667%);
+    }
+  }
+</style>
+
+<script>
+  for (const grid of document.querySelectorAll<HTMLElement>("[data-archive-grid]")) {
+    const button = grid.querySelector<HTMLButtonElement>("[data-archive-pause]");
+    button?.addEventListener("click", () => {
+      const paused = !grid.hasAttribute("data-paused");
+      grid.toggleAttribute("data-paused", paused);
+      button.setAttribute("aria-pressed", String(paused));
+    });
+  }
+</script>
