@@ -3,7 +3,6 @@ import MainLayout from "@layouts/MainLayout.astro";
 import Hero from "@components/Hero.astro";
 import NewSletter from "@components/NewSletter.astro";
 import ArchiveGrid from "@components/ArchiveGrid.astro";
-import PostRow from "@components/PostRow.astro";
 import cat from "@assets/vintage-cat-rawpixel.com-jeanbernard.png";
 import { getImage } from "astro:assets";
 import { getRelativeLocaleUrl } from "astro:i18n";
@@ -20,7 +19,6 @@ if (!language) {
 }
 
 const posts = await loadPublishedPosts(language);
-const latest = posts.slice(0, 3);
 const heroImage = await getImage({
   src: cat,
   width: 494,
@@ -49,34 +47,16 @@ const hero = { src: heroImage.src, srcset: heroImage.srcSet.attribute, width: 49
   />
   <Hero {data} image={hero} />
   <ArchiveGrid {posts} {language} {data} />
-
-  <section aria-labelledby="latest-title" class="mt-16 max-w-3xl">
-    <div
-      class="flex items-baseline justify-between gap-4 border-b border-gray-200 pb-2 dark:border-gray-700"
+  {/* The grid is decoration (hidden from keyboards and screen readers), so
+      this link is the home page's own way into the posts. */}
+  <p class="mt-6 text-center">
+    <a
+      href={getRelativeLocaleUrl(language, "articles")}
+      class="inline-block py-2 font-medium text-primary-700 hover:underline dark:text-primary-400"
     >
-      <h2
-        id="latest-title"
-        class="text-sm font-bold uppercase tracking-wide text-gray-600 dark:text-gray-400"
-      >
-        {data.home.latest.title}
-      </h2>
-      <a
-        href={getRelativeLocaleUrl(language, "articles")}
-        class="py-2 text-sm font-medium text-primary-700 hover:underline dark:text-primary-400"
-      >
-        {data.home.latest.all} →
-      </a>
-    </div>
-    <ol class="divide-y divide-gray-200 dark:divide-gray-800">
-      {
-        latest.map((post) => (
-          <li>
-            <PostRow {post} {language} />
-          </li>
-        ))
-      }
-    </ol>
-  </section>
+      {data.home.grid.all} →
+    </a>
+  </p>
 
   <NewSletter {language} {data} />
 </MainLayout>

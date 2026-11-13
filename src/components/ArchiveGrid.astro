@@ -3,9 +3,9 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import { type AnyCollectionEntry } from "@utils/load-data.ts";
 
 // The tilted, slowly moving wall of article cards under the home hero.
-// Decoration only: screen readers and keyboard users get the "Latest writing"
-// list below it, so the cards are aria-hidden and out of the tab order (a
-// mouse can still click them).
+// Decoration only: screen readers and keyboard users get the "All articles"
+// link under it (src/pages/index.astro), so the cards are aria-hidden and out
+// of the tab order (a mouse can still click them).
 //
 // Seamless loop: the track holds three identical copies and slides by exactly
 // one copy (-33.3% to -66.6% of its height), so the end frame equals the
