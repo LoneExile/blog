@@ -26,18 +26,20 @@
 </image-zoom>
 
 <style is:global>
+  /* Colours follow the blog's theme class on <html> (.dark), set in MainLayout. */
   :root {
     --image-zoom-animation-duration: 300ms;
+    --image-zoom-backdrop-bg: var(--color-white);
+    --image-zoom-surface: var(--color-white);
+    --image-zoom-border: var(--color-gray-300);
+    --image-zoom-text: var(--color-gray-900);
   }
 
-  :root {
-    /* Custom backdrop background color in dark mode. */
-    --image-zoom-backdrop-bg: oklch(0 0 0);
-  }
-
-  :root[data-theme="light"] {
-    /* Custom backdrop background color in light mode. */
-    --image-zoom-backdrop-bg: oklch(100% 0 0);
+  :root.dark {
+    --image-zoom-backdrop-bg: var(--color-gray-950);
+    --image-zoom-surface: var(--color-gray-800);
+    --image-zoom-border: var(--color-gray-600);
+    --image-zoom-text: var(--color-white);
   }
 
   body:has(dialog.image-zoom-dialog[open]) {
@@ -69,8 +71,9 @@
   }
 
   .image-zoom-control {
-    background-color: var(--sl-color-bg-nav);
-    border: 2px solid var(--sl-color-gray-2);
+    background-color: var(--image-zoom-surface);
+    border: 2px solid var(--image-zoom-border);
+    color: var(--image-zoom-text);
     border-radius: 50%;
     display: grid;
     height: 44px;
@@ -114,7 +117,7 @@
   }
 
   dialog::backdrop {
-    background: var(--image-zoom-backdrop-bg, var(--sl-color-black));
+    background: var(--image-zoom-backdrop-bg);
     opacity: 0.2;
   }
 
@@ -132,20 +135,21 @@
   figure :global(figcaption) {
     background-color: color-mix(
       in srgb,
-      var(--sl-color-bg-nav),
+      var(--image-zoom-surface),
       transparent 10%
     );
-    border-top: 1px solid var(--sl-color-hairline);
+    border-top: 1px solid var(--image-zoom-border);
+    color: var(--image-zoom-text);
     cursor: initial;
     inset: auto 0 0 0;
     opacity: 0;
-    padding: var(--sl-nav-pad-y) var(--sl-nav-pad-x);
+    padding: 0.75rem 1rem;
     position: absolute;
   }
 
   @media (prefers-reduced-transparency) {
     figure :global(figcaption) {
-      background-color: var(--sl-color-bg-nav);
+      background-color: var(--image-zoom-surface);
     }
   }
 

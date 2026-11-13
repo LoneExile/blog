@@ -34,27 +34,14 @@ async function loadCollection(language: string) {
   return getFilteredCollections(language);
 }
 
-async function listCollectionByLanguage(language: string) {
-  if (!language) {
-    language = "en";
-  }
-  const postsByLanguage: Record<string, any[]> = {};
-  for (const collection of Object.keys(collections) as MyCollectionKeys[]) {
-    let collectionEntries = await getCollection(collection, ({ data }) => {
-      if (import.meta.env.PROD /* && (data.show === undefined || data.show) */ && data.language === language && data.draft !== true) {
-        return true;
-      }
-      return false;
-    });
-
-    if (!postsByLanguage[language]) {
-      postsByLanguage[language] = [];
-    }
-    postsByLanguage[language] = postsByLanguage[language].concat(collectionEntries);
-  }
-
-  return postsByLanguage
+// Posts readers can browse: not drafts (in production) and not the legal pages
+// (`show: false`), newest first. `created` strings ("2024-04-21 19:24") sort
+// correctly as text.
+async function loadPublishedPosts(language: string) {
+  const posts = await getFilteredCollections(language);
+  return posts
+    .filter((post) => post.data.show !== false)
+    .sort((a, b) => b.data.created.localeCompare(a.data.created));
 }
 
-
-export { loadData, loadCollection, listCollectionByLanguage, type AnyCollectionEntry, type MyCollectionKeys, collections }
+export { loadData, loadCollection, loadPublishedPosts, type AnyCollectionEntry, type MyCollectionKeys, collections }

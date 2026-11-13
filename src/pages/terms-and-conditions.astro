@@ -8,6 +8,7 @@ import {
   collections,
 } from "@utils/load-data.ts";
 import { getCollection, render } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
 interface Props {
   language: string;
@@ -48,17 +49,7 @@ const title = entry.data.title;
   {language}
   {title}
 >
-  <Post
-    title={entry.data.title}
-    created={entry.data.created}
-    updated={entry.data.updated}
-    draft={entry.data.draft}
-    tags={entry.data.tags}
-    description={entry.data.description}
-    url={entry.id}
-    {language}
-    comments={entry.data.comments}
-  >
+  <Post title={entry.data.title} created={entry.data.created} updated={entry.data.updated} {language} {data} byline={false}>
     <Content />
   </Post>
 </MainLayout>

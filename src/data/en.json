@@ -3,23 +3,33 @@
   "siteTitle": "Apinant.dev",
   "siteDescription": "Welcome to Apinant.dev, a digital archive documenting a programmer's journey through the bleeding-edge of technology. Dive in and explore this realm of accessible wisdom and inspiration.",
   "author": "Apinant U-suwantim",
+  "skipLink": "Skip to content",
   "home": {
     "path": "",
     "hero": {
       "title": "Digital archive",
-      "description": "transforming fleeting thoughts into lasting blogs. \n Enjoy your journey through Apinant.dev!"
+      "description": "Notes from a software engineer in Bangkok on Linux, the cloud, TypeScript and the tools I build with, written down so they don't fade."
+    },
+    "latest": {
+      "title": "Latest writing",
+      "all": "All articles"
     }
   },
   "navbar": {
+    "label": "Main",
     "home": "Home",
     "articles": "Articles",
-    "about": "About"
+    "about": "About",
+    "menuOpen": "Open main menu",
+    "menuClose": "Close main menu",
+    "darkTheme": "Dark theme"
   },
   "articles": {
     "title": "Articles",
-    "description": "A collection of articles",
-    "quote": "\"As wisdom grows and knowledge flows,\n the more we learn, the less we know.\" - ",
-    "daysAgo": "days ago",
+    "description": "Everything on Apinant.dev, grouped by year.",
+    "intro": "Everything I've written, newest first.",
+    "postCount": "__ posts",
+    "postCountOne": "1 post",
     "path": "articles"
   },
   "about": {
@@ -27,8 +37,9 @@
     "description": "A little bit about me",
     "path": "about",
     "aboutSite": {
-      "title": "What is this !?",
-      "description": "born from the struggle of retaining and accessing my learning and coding experiences, Apinant.dev serves as my digital archive. Here, I share my journey through the bleeding-edge of technology, capturing and transforming fleeting knowledge into accessible wisdom. May Apinant.dev guide you in your coding journey, much like a compass in the vast ocean of technology."
+      "title": "About this site",
+      "description": "Born from the struggle of retaining and accessing my learning and coding experiences, Apinant.dev serves as my digital archive. Here, I share my journey through the bleeding-edge of technology, capturing and transforming fleeting knowledge into accessible wisdom. May Apinant.dev guide you in your coding journey, much like a compass in the vast ocean of technology.",
+      "closing": "Dive in, enjoy, and I hope you find it as useful as I do."
     },
     "rebrand": {
       "title": "VoidBox is now Apinant.dev",
@@ -38,30 +49,53 @@
       "title": "Apinant U-suwantim (Moo)",
       "role": "Software Engineer",
       "location": "Bangkok, Thailand",
-      "description": "Hello, I'm Moo I'm an enthusiastic developer and programmer based in Thailand, with a growing interest in languages and tools like Rust, Go, Lua, Astro, Cloud-related and many more along the way.. Presently, I am focused on my day job while dedicating my spare time to building a blog website to share my thoughts and the knowledge I've accumulated."
+      "description": "Hello, I'm Moo. I'm an enthusiastic developer and programmer based in Thailand, with a growing interest in languages and tools like Rust, Go, Lua, Astro, Cloud-related and many more along the way. Presently, I am focused on my day job while dedicating my spare time to building a blog website to share my thoughts and the knowledge I've accumulated.",
+      "photoAlt": "Apinant (Moo) standing outdoors in a navy polo shirt"
     }
   },
   "relateArticles": {
-    "title": "Related Articles",
-    "readingTime": "Read in __ minutes"
+    "title": "Related articles"
+  },
+  "comments": {
+    "title": "Comments"
+  },
+  "post": {
+    "lastUpdated": "Last updated"
   },
   "newSletter": {
-    "title": "Subscribe to our newsletter and stay up to date!",
-    "placeholder": "Enter your email",
+    "title": "Get new posts by email",
+    "description": "An email when I publish something new.",
+    "label": "Email address",
+    "placeholder": "you@example.com",
     "button": "Subscribe",
-    "buttonSuccess": "Success",
-    "buttonError": "Error",
-    "buttonVerifying": "Verifying...",
-    "subDescription": "We care about the protection of your data.",
-    "privacyPolicyLink": "Read our Privacy Policy."
+    "busy": "Subscribing…",
+    "checking": "Checking you're human…",
+    "needCheck": "Finish the check below, then press Subscribe.",
+    "checkFailed": "The human check couldn't load. Reload the page and try again.",
+    "success": "Thanks, you're on the list.",
+    "error": "Couldn't subscribe right now. Please try again.",
+    "subDescription": "Unsubscribe any time.",
+    "privacyPolicyLink": "Read the privacy policy."
   },
   "pageNotFound": {
-    "title": "Page Not Found",
+    "title": "Page not found",
     "description": "Oops! The page you are looking for has been removed or relocated.",
-    "path": "404"
+    "path": "404",
+    "heading": "This page isn't here",
+    "body": "The link may be old or mistyped. Here are the newest posts instead.",
+    "browse": "Browse all articles",
+    "recent": "Newest posts"
   },
   "tags": {
-    "title": "Articles Tag: ",
-    "description": "A collection of articles tag: "
+    "title": "Tagged",
+    "description": "Articles tagged ",
+    "back": "All articles"
+  },
+  "footer": {
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "source": "Source code",
+    "license": "Text licensed CC BY-SA 4.0",
+    "rss": "RSS feed"
   }
 }

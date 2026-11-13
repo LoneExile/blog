@@ -36,43 +36,48 @@ const items: NavItem[] = [
     path: getRelativeLocaleUrl(language, "about"),
   },
 ];
+
+// Article pages count as "Articles" for the active link.
+const current = currentPath.startsWith("articles/")
+  ? getPath("articles")
+  : getPath(currentPath);
 ---
 
-<nav class="border-gray-200 bg-white dark:bg-gray-900">
-  <div
-    class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4"
+<header class="bg-white dark:bg-gray-900">
+  <nav
+    aria-label={data.navbar.label}
+    class="page-container flex flex-wrap items-center justify-between gap-y-2 py-4"
   >
     <a
       href={getRelativeLocaleUrl(language, "")}
-      class="flex items-center space-x-3 rtl:space-x-reverse"
+      class="flex min-w-0 items-center gap-3"
     >
-      <Logo color="text-primary-700 dark:text-primary-500" size="w-8 h-8" />
-      <span
-        class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white"
-        >Apinant.dev</span
-      >
+      <Logo color="text-primary-700 dark:text-primary-400" size="w-8 h-8 shrink-0" />
+      <span class="text-xl font-bold sm:text-2xl">{data.siteTitle}</span>
     </a>
     <button
-      data-collapse-toggle="navbar-default"
       type="button"
-      class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:hidden"
+      data-menu-toggle
+      class="inline-flex h-11 w-11 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 md:hidden"
       aria-controls="navbar-default"
       aria-expanded="false"
+      data-label-open={data.navbar.menuOpen}
+      data-label-close={data.navbar.menuClose}
     >
-      <span class="sr-only">Open main menu</span>
+      <span class="sr-only">{data.navbar.menuOpen}</span>
       <Hambuger color="fill-none" size="w-5 h-5" />
     </button>
     <div class="hidden w-full md:block md:w-auto" id="navbar-default">
       <ul
-        class="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium rtl:space-x-reverse dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-gray-900"
+        class="flex flex-col gap-1 rounded-lg border border-gray-200 bg-gray-50 p-2 font-medium dark:border-gray-700 dark:bg-gray-800 md:flex-row md:items-center md:gap-6 md:border-0 md:bg-transparent md:p-0 md:dark:bg-transparent"
       >
         {
           items.map((item) =>
-            item.path === getPath(currentPath) ? (
+            item.path === current ? (
               <li>
                 <a
                   href={item.path}
-                  class="mt-1 block rounded bg-primary-700 px-3 py-2 text-white dark:text-white md:bg-transparent md:p-0 md:text-primary-700 md:dark:text-primary-500"
+                  class="block rounded-md bg-primary-700 px-3 py-2.5 text-white md:bg-transparent md:p-0 md:text-primary-700 md:underline md:decoration-2 md:underline-offset-8 md:dark:text-primary-400"
                   aria-current="page"
                 >
                   {item.title}
@@ -82,7 +87,7 @@ const items: NavItem[] = [
               <li>
                 <a
                   href={item.path}
-                  class="mt-1 block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-primary-700 md:dark:hover:bg-transparent md:dark:hover:text-primary-500"
+                  class="block rounded-md px-3 py-2.5 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 md:p-0 md:hover:bg-transparent md:hover:text-primary-700 md:dark:hover:bg-transparent md:dark:hover:text-primary-400"
                 >
                   {item.title}
                 </a>
@@ -90,15 +95,39 @@ const items: NavItem[] = [
             ),
           )
         }
-        <li>
-          <div class="flex px-2">
-            <ThemeSwitcher />
-            <div class="hidden">
-              <LanguageSwitcher {language} {currentPath} />
-            </div>
+        <li class="px-1 pt-1 md:p-0">
+          <ThemeSwitcher {data} />
+          <div class="hidden">
+            <LanguageSwitcher {language} {currentPath} />
           </div>
         </li>
       </ul>
     </div>
-  </div>
-</nav>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const menu = document.getElementById("navbar-default");
+  const label = toggle?.querySelector(".sr-only");
+
+  const setOpen = (open: boolean) => {
+    if (!toggle || !menu || !label) return;
+    menu.classList.toggle("hidden", !open);
+    toggle.setAttribute("aria-expanded", String(open));
+    label.textContent = open
+      ? (toggle.dataset.labelClose ?? "")
+      : (toggle.dataset.labelOpen ?? "");
+  };
+
+  toggle?.addEventListener("click", () => {
+    setOpen(toggle.getAttribute("aria-expanded") !== "true");
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && toggle?.getAttribute("aria-expanded") === "true") {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+</script>

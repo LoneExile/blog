@@ -2,51 +2,63 @@
 import Sun from "@icons/sun.astro";
 import Moon from "@icons/moon.astro";
 
-import ThemeUpdate from "@components/theme/ThemeUpdate";
-
+interface Props {
+  data: SiteData;
+}
+const { data } = Astro.props;
 const size = "w-5 h-5";
 ---
 
-<div id="theme-switcher">
-  <ThemeUpdate client:click="#theme-switcher" />
-  <button
-    type="button"
-    class="inline-flex items-center rounded-full border border-primary-700 p-1 text-center text-sm font-medium hover:bg-primary-700 hover:text-white focus:outline-none focus:ring-4 focus:ring-primary-300 dark:border-primary-500 dark:text-primary-500 dark:hover:bg-primary-500 dark:hover:text-white dark:focus:ring-primary-800"
-  >
-    <div id="darkTheme">
-      <Sun color="mt-auto fill-current" size={size} />
-    </div>
-    <div id="lightTheme">
-      <Moon color="mt-auto fill-current" size={size} />
-    </div>
-
-    <span class="sr-only">Icon description</span>
-  </button>
-</div>
-
-<script is:inline>
-  if (localStorage.getItem("settings:theme") === "dark") {
-    document.documentElement.classList.add("dark");
-    document.documentElement.classList.remove("light");
-    localStorage.setItem("settings:theme", "dark");
-    document.querySelector("#lightTheme")?.classList.add("hidden");
-    document.querySelector("#darkTheme")?.classList.remove("hidden");
-  } else {
-    document.documentElement.classList.remove("dark");
-    document.documentElement.classList.add("light");
-    localStorage.setItem("settings:theme", "light");
-    document.querySelector("#darkTheme")?.classList.add("hidden");
-    document.querySelector("#lightTheme")?.classList.remove("hidden");
-  }
-</script>
+<button
+  id="theme-toggle"
+  type="button"
+  aria-pressed="false"
+  class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-400 dark:hover:text-gray-900"
+>
+  <span class="sr-only">{data.navbar.darkTheme}</span>
+  <span class="hidden dark:inline"><Sun color="fill-current" size={size} /></span>
+  <span class="dark:hidden"><Moon color="fill-current" size={size} /></span>
+</button>
 
 <script>
-  document
-    .querySelector("#theme-switcher")
-    ?.addEventListener("click", function () {
-      let element: HTMLElement = document.querySelectorAll(
-        "#theme-update",
-      )[0] as HTMLElement;
-      element.click();
-    });
+  // The theme itself is set before first paint by the inline script in
+  // MainLayout. This button saves an explicit choice and announces it with a
+  // "theme-change" event (comments and the newsletter check follow it).
+  const root = document.documentElement;
+  const button = document.getElementById("theme-toggle");
+  const query = window.matchMedia("(prefers-color-scheme: dark)");
+
+  const apply = (dark: boolean) => {
+    root.classList.toggle("dark", dark);
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", dark ? "#1c1717" : "#ffffff");
+    button?.setAttribute("aria-pressed", String(dark));
+    window.dispatchEvent(
+      new CustomEvent("theme-change", { detail: dark ? "dark" : "light" }),
+    );
+  };
+
+  const saved = (): string | null => {
+    try {
+      return localStorage.getItem("settings:theme");
+    } catch {
+      return null;
+    }
+  };
+
+  button?.setAttribute("aria-pressed", String(root.classList.contains("dark")));
+
+  button?.addEventListener("click", () => {
+    const dark = !root.classList.contains("dark");
+    try {
+      localStorage.setItem("settings:theme", dark ? "dark" : "light");
+    } catch {}
+    apply(dark);
+  });
+
+  // With no saved choice, keep following the device setting.
+  query.addEventListener("change", (event) => {
+    if (saved() === null) apply(event.matches);
+  });
 </script>

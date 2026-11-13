@@ -1,106 +1,45 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
-import BlogCard from "@components/BlogCard.astro";
-import Pagination from "@components/Pagination.astro";
-import { getCollection } from "astro:content";
-import NotFound from "@components/NotFound.astro";
-import LoneExile from "@assets/LoneExile.png";
-import { loadData } from "@utils/load-data.ts";
-import {
-  type AnyCollectionEntry,
-  collections,
-  type MyCollectionKeys,
-} from "@utils/load-data.ts";
+import ArticleIndex from "@components/ArticleIndex.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { loadData, loadPublishedPosts } from "@utils/load-data.ts";
 
 export async function getStaticPaths() {
-  let data: SiteData = await loadData("");
-  let language = data.language;
-  let posts: AnyCollectionEntry[] = [];
+  const data: SiteData = await loadData("");
+  const language = data.language;
+  const posts = await loadPublishedPosts(language);
+  const tags = new Set(posts.flatMap((post) => post.data.tags.map((tag) => tag.toLowerCase())));
 
-  for (const collection of Object.keys(collections) as MyCollectionKeys[]) {
-    let collectionEntries = await getCollection(collection);
-    collectionEntries = collectionEntries.filter(
-      (post) =>
-        post.data.language === language &&
-        (post.data.show === true || post.data.show === undefined),
-    );
-    posts = posts.concat(collectionEntries);
-  }
-  let tags: string[] = [];
-
-  posts.forEach((post) => {
-    if (post.data.tags) {
-      tags = [...tags, ...post.data.tags];
-    }
-  });
-
-  return tags.map((tag) => ({
-    params: { tag: tag.toLowerCase() },
-    props: { posts, language },
+  return [...tags].map((tag) => ({
+    params: { tag },
+    props: {
+      language,
+      posts: posts.filter((post) => post.data.tags.some((postTag) => postTag.toLowerCase() === tag)),
+    },
   }));
 }
 
-let { posts, language } = Astro.props;
-let { tag } = Astro.params;
-let data: SiteData = await loadData(language);
-if (!language) {
-  language = data.language;
-}
-
-posts = posts.filter((post) => {
-  let hasTag = false;
-  post.data.tags?.forEach((postTag: string) => {
-    if (
-      postTag.toLowerCase() === tag &&
-      (import.meta.env.PROD ? post.data.draft !== true : true)
-    ) {
-      hasTag = true;
-    }
-  });
-  return hasTag;
-});
-
-const currentPath = "articles";
-
-const title = data.tags.title;
-const siteDescription = data.tags.description;
-
-if (tag === undefined) {
-  throw new Error("Tag is required");
-}
-
-const currentPage: number | null = +Astro.url.searchParams.get("page")! || 1;
-const totalPages: number = Math.ceil(posts.length / 4);
-const totalPosts: number = posts.length;
-const articlesForPage: AnyCollectionEntry[] = posts.slice(
-  (currentPage - 1) * 4,
-  currentPage * 4,
-);
+const { posts, language } = Astro.props;
+const { tag } = Astro.params;
+const data: SiteData = await loadData(language);
+const title = `${data.tags.title} #${tag}`;
 ---
 
 <MainLayout
   {data}
-  description={siteDescription}
-  {currentPath}
+  description={`${data.tags.description}#${tag}`}
+  currentPath="articles"
   {language}
   {title}
 >
-  {
-    totalPosts === 0 ? (
-      <NotFound image={LoneExile} />
-    ) : (
-      <>
-        <BlogCard {data} posts={articlesForPage} {language} />
-        <Pagination
-          currentPage={currentPage}
-          totalPosts={totalPosts}
-          disablePrevious={currentPage === 1}
-          disableNext={currentPage === totalPages}
-          language={language}
-          pathPrependWith="articles/tag/"
-          path={tag}
-        />
-      </>
-    )
-  }
+  <header class="max-w-3xl">
+    <a
+      href={getRelativeLocaleUrl(language, "articles")}
+      class="text-sm font-medium text-primary-700 hover:underline dark:text-primary-400"
+    >
+      ← {data.tags.back}
+    </a>
+    <h1 class="mt-2 text-3xl font-bold text-gray-900 dark:text-white lg:text-4xl">{title}</h1>
+  </header>
+  <ArticleIndex {posts} {language} {data} />
 </MainLayout>

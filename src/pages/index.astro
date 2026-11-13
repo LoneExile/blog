@@ -1,33 +1,79 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
 import Hero from "@components/Hero.astro";
-import InfiniteScroll from "@components/InfiniteScroll.astro";
 import NewSletter from "@components/NewSletter.astro";
-import { loadData, loadCollection } from "@utils/load-data.ts";
+import PostRow from "@components/PostRow.astro";
+import cat from "@assets/vintage-cat-rawpixel.com-jeanbernard.png";
+import { getImage } from "astro:assets";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { loadData, loadPublishedPosts } from "@utils/load-data.ts";
 
 interface Props {
   language: string;
 }
+
 let { language } = Astro.props;
 let data: SiteData = await loadData(language);
 if (!language) {
   language = data.language;
 }
-let posts = await loadCollection(language);
-posts = posts.filter((post) => post.data.show || post.data.show === undefined);
 
-const title = data.siteTitle;
-const currentPath = data.home.path;
+const latest = (await loadPublishedPosts(language)).slice(0, 3);
+const heroImage = await getImage({
+  src: cat,
+  width: 494,
+  height: 494,
+  densities: [1, 2],
+  format: "webp",
+});
+const hero = { src: heroImage.src, srcset: heroImage.srcSet.attribute, width: 494, height: 494 };
 ---
 
 <MainLayout
   {data}
   description={data.siteDescription}
-  {currentPath}
+  currentPath={data.home.path}
   {language}
-  {title}
+  title={data.siteTitle}
 >
-  <Hero {data} />
-  <InfiniteScroll {posts} {language} />
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    href={hero.src}
+    imagesrcset={hero.srcset}
+    media="(min-width: 1024px)"
+    fetchpriority="high"
+  />
+  <Hero {data} image={hero} />
+
+  <section aria-labelledby="latest-title" class="mt-16 max-w-3xl">
+    <div
+      class="flex items-baseline justify-between gap-4 border-b border-gray-200 pb-2 dark:border-gray-700"
+    >
+      <h2
+        id="latest-title"
+        class="text-sm font-bold uppercase tracking-wide text-gray-600 dark:text-gray-400"
+      >
+        {data.home.latest.title}
+      </h2>
+      <a
+        href={getRelativeLocaleUrl(language, "articles")}
+        class="py-2 text-sm font-medium text-primary-700 hover:underline dark:text-primary-400"
+      >
+        {data.home.latest.all} →
+      </a>
+    </div>
+    <ol class="divide-y divide-gray-200 dark:divide-gray-800">
+      {
+        latest.map((post) => (
+          <li>
+            <PostRow {post} {language} />
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
   <NewSletter {language} {data} />
 </MainLayout>

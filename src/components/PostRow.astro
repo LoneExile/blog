@@ -1,0 +1,46 @@
+---
+import TagBadge from "@components/TagBadge.astro";
+import { formattedDate, isoDate } from "@utils/utils";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { type AnyCollectionEntry } from "@utils/load-data.ts";
+
+// One post in a list: date, title, one-line summary and (optionally) tags.
+// Used by the home page, the articles index, tag pages, the 404 page and
+// related articles, so every list of posts reads the same way.
+interface Props {
+  post: AnyCollectionEntry;
+  language: string;
+  /** "short" ("Apr 21") under a year heading, "long" everywhere else. */
+  dateStyle?: "short" | "long";
+  showTags?: boolean;
+  /** Heading level for the title, so it nests under the list's heading. */
+  level?: "h2" | "h3";
+}
+
+const { post, language, dateStyle = "long", showTags = false, level = "h3" } = Astro.props;
+const Heading = level;
+const href = getRelativeLocaleUrl(language, "articles/" + post.id);
+---
+
+<article class="py-5 sm:grid sm:grid-cols-[8rem_1fr] sm:gap-6">
+  <time
+    datetime={isoDate(post.data.created)}
+    class="block text-sm tabular-nums text-gray-600 dark:text-gray-400 sm:pt-1"
+  >
+    {formattedDate(post.data.created, dateStyle)}
+  </time>
+  <div class="mt-1 sm:mt-0">
+    <Heading class="text-lg font-bold leading-snug text-gray-900 dark:text-white">
+      <a
+        href={href}
+        class="hover:text-primary-700 hover:underline dark:hover:text-primary-400"
+      >
+        {post.data.title}
+      </a>
+    </Heading>
+    <p class="mt-1 max-w-prose text-gray-700 dark:text-gray-300">
+      {post.data.summary ?? post.data.description}
+    </p>
+    {showTags && <TagBadge {language} tags={post.data.tags} />}
+  </div>
+</article>
