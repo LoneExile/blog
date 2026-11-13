@@ -5,12 +5,13 @@ interface Props {
 }
 const { color, size } = Astro.props;
 const iconClass = color + " " + size;
+
+// Three stacked slabs ("archive layers"). Drawn on a 32 grid with each slab's
+// top and bottom edge on a whole unit, so the rows stay sharp at 16, 32 and
+// 48 px (the slanted sides use half units). Fill follows the text colour.
+// public/favicon.svg and the PNG icons use the same path.
 ---
 
-<!-- Three stacked slabs ("archive layers"). Drawn on a 32 grid with each slab's
-     top and bottom edge on a whole unit, so the rows stay sharp at 16, 32 and
-     48 px (the slanted sides use half units). Fill follows the text colour.
-     public/favicon.svg and the PNG icons use the same path. -->
 <svg
   class={iconClass}
   viewBox="0 0 32 32"

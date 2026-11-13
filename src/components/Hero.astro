@@ -18,8 +18,8 @@ const { data, image } = Astro.props;
     </p>
   </div>
   <div class="hidden lg:col-span-5 lg:flex lg:justify-end">
-    <!-- Decorative. Hidden below lg, so it stays lazy there; on lg the page
-         preloads it (media query) because it is the largest paint. -->
+    {/* Decorative. Hidden below lg, so it stays lazy there; on lg the page
+        preloads it (media query) because it is the largest paint. */}
     <img
       class="dark:invert"
       src={image.src}

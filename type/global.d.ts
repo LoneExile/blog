@@ -16,6 +16,9 @@ declare global {
         title: string;
         all: string;
       };
+      grid: {
+        pause: string;
+      };
     };
     navbar: {
       label: string;
