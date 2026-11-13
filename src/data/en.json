@@ -1,14 +1,14 @@
 {
   "language": "en",
   "siteTitle": "Apinant.dev",
-  "siteDescription": "Welcome to Apinant.dev, a digital archive documenting a programmer's journey through the bleeding-edge of technology. Dive in and explore this realm of accessible wisdom and inspiration.",
+  "siteDescription": "Apinant.dev is a digital archive: notes on whatever I'm learning, building or thinking about, written down so they don't fade.",
   "author": "Apinant U-suwantim",
   "skipLink": "Skip to content",
   "home": {
     "path": "",
     "hero": {
       "title": "Digital archive",
-      "description": "Notes from a software engineer in Bangkok on Linux, the cloud, TypeScript and the tools I build with, written down so they don't fade."
+      "description": "Notes on whatever I'm learning, building or thinking about, written down so they don't fade."
     },
     "grid": {
       "pause": "Pause animation",
