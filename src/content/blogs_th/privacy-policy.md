@@ -8,14 +8,14 @@ category: []
 draft: false
 slug: "privacy-policy"
 author: "Apinant U-suwantim"
-description: "Privacy Policy for apinant.dev"
+description: "Privacy Policy for Apinant.dev"
 comments: false
 show: false
 ---
 
 **Introduction:**
 
-- Welcome to [apinant.dev](/).
+- Welcome to [Apinant.dev](/).
 - This policy outlines how we collect, use, protect, and handle your personal
   information on our blog.
 

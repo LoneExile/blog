@@ -1,13 +1,13 @@
 {
   "language": "en",
-  "siteTitle": "apinant.dev",
-  "siteDescription": "Welcome to apinant.dev, a digital archive documenting a programmer's journey through the bleeding-edge of technology. Dive in and explore this realm of accessible wisdom and inspiration.",
+  "siteTitle": "Apinant.dev",
+  "siteDescription": "Welcome to Apinant.dev, a digital archive documenting a programmer's journey through the bleeding-edge of technology. Dive in and explore this realm of accessible wisdom and inspiration.",
   "author": "Apinant U-suwantim",
   "home": {
     "path": "",
     "hero": {
       "title": "Digital archive",
-      "description": "transforming fleeting thoughts into lasting blogs. \n Enjoy your journey through apinant.dev!"
+      "description": "transforming fleeting thoughts into lasting blogs. \n Enjoy your journey through Apinant.dev!"
     }
   },
   "navbar": {
@@ -28,10 +28,10 @@
     "path": "about",
     "aboutSite": {
       "title": "What is this !?",
-      "description": "born from the struggle of retaining and accessing my learning and coding experiences, apinant.dev serves as my digital archive. Here, I share my journey through the bleeding-edge of technology, capturing and transforming fleeting knowledge into accessible wisdom. May apinant.dev guide you in your coding journey, much like a compass in the vast ocean of technology."
+      "description": "born from the struggle of retaining and accessing my learning and coding experiences, Apinant.dev serves as my digital archive. Here, I share my journey through the bleeding-edge of technology, capturing and transforming fleeting knowledge into accessible wisdom. May Apinant.dev guide you in your coding journey, much like a compass in the vast ocean of technology."
     },
     "rebrand": {
-      "title": "VoidBox is now apinant.dev",
+      "title": "VoidBox is now Apinant.dev",
       "description": "This blog used to live at voidbox.io. It now has its own domain, blog.apinant.dev, and the name moved with it. Every article is still here; only the name and the address changed. If you bookmarked or followed the RSS feed at voidbox.io, please switch to blog.apinant.dev."
     },
     "aboutAuthor": {
