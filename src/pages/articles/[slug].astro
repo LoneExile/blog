@@ -40,75 +40,126 @@ if (!language) {
 }
 
 const { Content } = await render(entry);
-const currentPath = "articles/" + entry.id;
-const title = entry.data.title;
-
-if (entry === undefined) {
-  return Astro.redirect(getRelativeLocaleUrl(language, "404/"));
-}
-
-const currentTags = entry.data.tags;
 const isArticle =
   entry.data.comments === undefined || entry.data.comments === true;
 ---
 
 <style is:global>
+  /* Contents box built by rehype-toc (astro.config.mjs). */
+  .toc-post {
+    border-left: 2px solid var(--color-primary-200);
+    padding-left: 1rem;
+  }
+  .dark .toc-post {
+    border-left-color: var(--color-primary-800);
+  }
+  .toc-post .toc-title {
+    margin: 0 0 0.25rem;
+    font-weight: 700;
+  }
   .toc-list {
     list-style: none;
     padding-left: 0;
   }
-
-  .toc-list-item {
-    position: relative;
-    padding-left: 1.5em;
-  }
-
-  .toc-list-item::before {
-    content: "•"; /* "•" or "→" "❯" */
-    position: absolute;
-    left: 0.5em;
-  }
-
-  /* Indent nested lists */
   .toc-list .toc-list {
-    padding-left: 1.5em;
+    padding-left: 1.25em;
+  }
+
+  /* Copy button added to each code block by the script below. */
+  .code-block {
+    position: relative;
+  }
+  .code-copy {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    min-width: 2.75rem;
+    min-height: 2rem;
+    padding: 0.25rem 0.625rem;
+    border: 1px solid #30363d;
+    border-radius: 0.375rem;
+    background: #161b22;
+    color: #e6edf3;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.5;
+    cursor: pointer;
+  }
+  .code-copy:hover {
+    background: #21262d;
+  }
+  /* The button sits in a strip above the first line, so it never covers code
+     that scrolls underneath it. */
+  .code-block pre {
+    padding-top: 3rem;
   }
 </style>
 
-<ImageZoom />
 <MainLayout
-  data={data}
+  {data}
   description={entry.data.description}
-  {currentPath}
+  currentPath={"articles/" + entry.id}
   {language}
-  {title}
+  title={entry.data.title}
 >
+  <ImageZoom />
   <Post
     title={entry.data.title}
     created={entry.data.created}
-    updated={entry.data.updated}
-    draft={entry.data.draft}
-    tags={entry.data.tags}
-    description={entry.data.description}
-    url={entry.id}
     {language}
-    comments={entry.data.comments}
+    {data}
+    byline={isArticle}
   >
     <Content />
   </Post>
 
   {
     isArticle && (
-      <>
-        <Comments client:visible={{ rootMargin: "400px" }} />
+      <div class="reading-column">
+        <Comments client:visible={{ rootMargin: "400px" }} title={data.comments.title} />
         <RelateArticles
-          {currentTags}
+          currentTags={entry.data.tags}
           {language}
           {data}
           currentSlug={entry.id}
         />
         <NewSletter {language} {data} />
-      </>
+      </div>
     )
   }
 </MainLayout>
+
+<script>
+  // One polite live region announces "Copied" for every copy button.
+  const announcer = document.createElement("p");
+  announcer.className = "sr-only";
+  announcer.setAttribute("aria-live", "polite");
+  document.body.append(announcer);
+
+  for (const pre of document.querySelectorAll<HTMLPreElement>(".format pre")) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "code-block";
+    pre.replaceWith(wrapper);
+    wrapper.append(pre);
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "code-copy";
+    button.textContent = "Copy";
+    button.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(pre.innerText);
+        button.textContent = "Copied";
+        announcer.textContent = "Code copied";
+        setTimeout(() => {
+          button.textContent = "Copy";
+          announcer.textContent = "";
+        }, 2000);
+      } catch {
+        // Clipboard can be blocked (permissions, insecure context); the code
+        // stays selectable by hand.
+      }
+    });
+    wrapper.append(button);
+  }
+</script>

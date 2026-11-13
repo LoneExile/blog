@@ -67,7 +67,7 @@ function createZoomableElement(node: ElementContent, alt: string): Element {
                 type: 'element',
                 tagName: 'use',
                 properties: {
-                  href: 'image-zoom-icon-zoom',
+                  href: '#image-zoom-icon-zoom',
                 },
                 children: [],
               },

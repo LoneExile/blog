@@ -4,7 +4,7 @@ thumbnail:
   {
     # src: "./man-vs-dragon-unknow-unspecified.jpg",
     src: "../../../images/2023/2023-05-13-Creating-a-Blog-A-Developer-s-Journal/man-vs-dragon-unknow-unspecified.jpg",
-    alt: "man-vs-dragon-unknow-unspecified",
+    alt: "A small caped figure with a glowing sword faces a huge dragon with an open mouth in a misty mountain scene",
   }
 language: "en"
 created: 2023-05-13 13:07
@@ -18,9 +18,10 @@ description:
   "Join me on a deep dive into the process of building my own blog, This journal
   entry details the challenges, considerations, and victories experienced along
   the way."
+summary: "How I built this blog with Astro, and why I picked Tailwind, remark42, Amazon SES and Listmonk along the way."
 ---
 
-![man-vs-dragon-unknow-unspecified](../../../images/2023/2023-05-13-Creating-a-Blog-A-Developer-s-Journal/man-vs-dragon-unknow-unspecified.jpg)
+![A small caped figure with a glowing sword faces a huge dragon with an open mouth in a misty mountain scene.](../../../images/2023/2023-05-13-Creating-a-Blog-A-Developer-s-Journal/man-vs-dragon-unknow-unspecified.jpg)
 
 ## Hello, Reader! 👋
 

@@ -1,7 +1,6 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
 import Github from "@icons/github.astro";
-import Logo from "@icons/logo.astro";
 import Linkedin from "@icons/linkedin.astro";
 import Profile from "@assets/profile.webp";
 import NewSletter from "@components/NewSletter.astro";
@@ -17,129 +16,87 @@ if (!language) {
   language = data.language;
 }
 
-const currentPath = data.about.path;
-const title = data.about.title;
+const { aboutAuthor, aboutSite, rebrand } = data.about;
+const iconLink =
+  "inline-flex h-10 w-10 items-center justify-center rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white";
 ---
 
 <MainLayout
   {data}
   description={data.about.description}
-  {currentPath}
+  currentPath={data.about.path}
   {language}
-  {title}
+  title={data.about.title}
 >
-  <div class="mb-[3%]">
-    <div class="flex h-auto max-w-4xl flex-wrap items-start pb-[5%] lg:my-0">
-      <div
-        id="profile"
-        class="lg:w-5/5 mx-6 flex w-full rounded-lg bg-white text-gray-900 opacity-95 shadow-2xl dark:border-gray-700 dark:bg-gray-800 dark:text-white lg:mx-0"
-      >
-        <div class="p-2 pb-4 text-center lg:text-left">
-          <Logo
-            color="block lg:hidden mx-auto"
-            size="w-20 h-20"
-          />
-          <h1
-            class="my-auto block items-center justify-center text-center text-3xl font-bold lg:hidden lg:pt-0"
-          >
-            What is this !?
-          </h1>
+  <div class="max-w-3xl">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white lg:text-4xl">
+      {data.about.title}
+    </h1>
 
-          <div class="flex">
-            <div class="m-1 hidden lg:block">
-              <Logo color="p-1 my-auto" size="w-20 h-20" />
-            </div>
-            <h1
-              class="my-auto ml-[5%] hidden items-center justify-center text-center text-3xl font-bold lg:block lg:pt-0"
-            >
-              {data.about.aboutSite.title}
-            </h1>
-          </div>
-          <div class="w-5/5 border-primary mx-[5%] border-b-2 pt-3 opacity-25">
-          </div>
-          <div class="px-[5%] pt-4">
-            <span class="text-xl font-bold italic">{data.siteTitle}</span>
-            <p class="mb-2 font-light text-gray-500 dark:text-gray-400">
-              {data.about.aboutSite.description}
-            </p>
-
-            <p class="mb-2">
-              Dive in, enjoy, and I hope you find it as useful as I do.
-            </p>
-
-            <h2 class="mt-6 text-xl font-bold">{data.about.rebrand.title}</h2>
-            <p class="mb-2 font-light text-gray-500 dark:text-gray-400">
-              {data.about.rebrand.description}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="mx-auto flex h-auto max-w-4xl flex-wrap items-start lg:my-0">
-      <div
-        id="profile"
-        class="lg:w-5/5 mx-6 flex w-full rounded-lg bg-white text-gray-900 opacity-95 shadow-2xl dark:border-gray-700 dark:bg-gray-800 dark:text-white lg:mx-0"
-      >
-        <div class="p-4 text-center md:p-12 lg:text-left">
-          <Image
-            class="mx-auto -mt-4 block h-48 w-48 rounded-full bg-cover bg-center shadow-xl lg:hidden"
-            src={Profile}
-            alt="Profile Picture"
-          />
-
-          <h1 class="pt-8 text-3xl font-bold lg:pt-0">
-            {data.about.aboutAuthor.title}
-          </h1>
-          <div
-            class="border-primary mx-auto w-4/5 border-b-2 pt-3 opacity-25 lg:mx-0"
-          >
-          </div>
-          <p
-            class="flex items-center justify-center pt-4 font-bold lg:justify-start"
-          >
-            {data.about.aboutAuthor.role}
-          </p>
-          <p
-            class="flex items-center justify-center text-xs lg:justify-start lg:text-sm"
-          >
-            {data.about.aboutAuthor.location}
-          </p>
-          <p class="pt-4 font-light text-gray-500 dark:text-gray-400">
-            {data.about.aboutAuthor.description}
-          </p>
-
-          <div
-            class="mx-auto mt-6 flex w-4/5 flex-wrap items-center lg:w-full lg:pb-0"
-          >
-            <a
-              class="link mr-4"
-              href="https://github.com/LoneExile"
-              target="_blank"
-              aria-label="GitHub Profile"
-            >
-              <Github color="fill-current" size="w-6 h-6 cursor-pointer" />
+    <section
+      aria-labelledby="author-name"
+      class="mt-8 flex flex-col gap-6 sm:flex-row sm:items-start"
+    >
+      <Image
+        src={Profile}
+        width={144}
+        height={144}
+        alt={aboutAuthor.photoAlt}
+        class="h-36 w-36 shrink-0 rounded-full object-cover ring-2 ring-primary-700 ring-offset-4 ring-offset-white dark:ring-primary-400 dark:ring-offset-gray-900"
+      />
+      <div>
+        <h2 id="author-name" class="text-2xl font-bold text-gray-900 dark:text-white">
+          {aboutAuthor.title}
+        </h2>
+        <p class="mt-1 text-gray-600 dark:text-gray-400">
+          {aboutAuthor.role} · {aboutAuthor.location}
+        </p>
+        <p class="mt-4 max-w-[60ch] leading-relaxed text-gray-700 dark:text-gray-300">
+          {aboutAuthor.description}
+        </p>
+        <ul class="-ml-2.5 mt-3 flex gap-1">
+          <li>
+            <a href="https://github.com/LoneExile" target="_blank" rel="noopener noreferrer" class={iconLink}>
+              <Github color="fill-current" size="w-6 h-6" />
+              <span class="sr-only">GitHub</span>
             </a>
+          </li>
+          <li>
             <a
-              class="link"
               href="https://www.linkedin.com/in/apinant-moo/"
               target="_blank"
-              aria-label="Linkedin Profile"
+              rel="noopener noreferrer"
+              class={iconLink}
             >
-              <Linkedin color="fill-current" size="w-6 h-6 cursor-pointer" />
+              <Linkedin color="fill-current" size="w-6 h-6" />
+              <span class="sr-only">LinkedIn</span>
             </a>
-          </div>
-        </div>
-        <div class="m-1 hidden w-full lg:block lg:w-4/5">
-          <Image
-            src={Profile}
-            class="rounded-none p-1 shadow-2xl ring-2 ring-primary-700 lg:rounded-full"
-            width="702"
-            height="717"
-            alt="Profile Picture"
-          />
-        </div>
+          </li>
+        </ul>
       </div>
-    </div>
+    </section>
+
+    <section aria-labelledby="about-site" class="mt-12">
+      <h2 id="about-site" class="text-xl font-bold text-gray-900 dark:text-white">
+        {aboutSite.title}
+      </h2>
+      <p class="mt-2 max-w-[60ch] leading-relaxed text-gray-700 dark:text-gray-300">
+        {aboutSite.description}
+      </p>
+      <p class="mt-3 max-w-[60ch] leading-relaxed text-gray-700 dark:text-gray-300">
+        {aboutSite.closing}
+      </p>
+    </section>
+
+    <section aria-labelledby="about-rebrand" class="mt-10">
+      <h2 id="about-rebrand" class="text-xl font-bold text-gray-900 dark:text-white">
+        {rebrand.title}
+      </h2>
+      <p class="mt-2 max-w-[60ch] leading-relaxed text-gray-700 dark:text-gray-300">
+        {rebrand.description}
+      </p>
+    </section>
   </div>
+
   <NewSletter {language} {data} />
 </MainLayout>

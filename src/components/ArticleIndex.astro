@@ -1,0 +1,46 @@
+---
+import PostRow from "@components/PostRow.astro";
+import { type AnyCollectionEntry } from "@utils/load-data.ts";
+
+// The archive: posts grouped under their year, newest year first. Expects
+// posts already sorted newest first (loadPublishedPosts).
+interface Props {
+  posts: AnyCollectionEntry[];
+  language: string;
+  data: SiteData;
+}
+
+const { posts, language, data } = Astro.props;
+
+const years = new Map<string, AnyCollectionEntry[]>();
+for (const post of posts) {
+  const year = post.data.created.slice(0, 4);
+  years.set(year, [...(years.get(year) ?? []), post]);
+}
+---
+
+{
+  [...years].map(([year, yearPosts]) => (
+    <section aria-labelledby={`year-${year}`} class="mt-10 max-w-3xl">
+      <h2
+        id={`year-${year}`}
+        class="flex items-baseline justify-between border-b border-gray-200 pb-2 text-sm font-bold uppercase tracking-wide text-gray-600 dark:border-gray-700 dark:text-gray-400"
+      >
+        {year}
+        <span class="font-medium normal-case tracking-normal">
+          {(yearPosts.length === 1 ? data.articles.postCountOne : data.articles.postCount).replace(
+            "__",
+            String(yearPosts.length),
+          )}
+        </span>
+      </h2>
+      <ol class="divide-y divide-gray-200 dark:divide-gray-800">
+        {yearPosts.map((post) => (
+          <li>
+            <PostRow {post} {language} dateStyle="short" showTags />
+          </li>
+        ))}
+      </ol>
+    </section>
+  ))
+}

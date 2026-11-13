@@ -13,13 +13,13 @@ comments: false
 show: false
 ---
 
-**Introduction:**
+## Introduction
 
 - Welcome to [Apinant.dev](/).
 - By accessing our blog, you agree to these terms and conditions. Please read
   them carefully.
 
-**Use License (Creative Commons Attribution-ShareAlike (CC BY-SA)):**
+## Use License (Creative Commons Attribution-ShareAlike, CC BY-SA)
 
 - This work by Apinant.dev is licensed under a Creative Commons
   Attribution-ShareAlike 4.0 International License.
@@ -34,13 +34,13 @@ show: false
 - No additional restrictions — You may not apply legal terms or technological
   measures that legally restrict others from doing anything the license permits.
 
-**User Responsibilities:**
+## User Responsibilities
 
 - You agree not to use the blog for any unlawful purpose or any purpose
   prohibited under this clause.
 - You agree to abide by all local laws and regulations.
 
-**Copyright and Content Policy:**
+## Copyright and Content Policy
 
 - All content provided on this blog is for informational purposes only.
 - The owner of this blog makes no representations as to the accuracy or
@@ -49,7 +49,7 @@ show: false
 - The owner will not be liable for any errors or omissions in this information
   nor for the availability of this information.
 
-**Limitation of Liability:**
+## Limitation of Liability
 
 - The blog and its components are offered for informational purposes only.
 - The owner of the blog shall not be responsible or liable for the accuracy,
@@ -57,7 +57,7 @@ show: false
   via the site, and shall not be responsible or liable for any error or
   omissions in that information.
 
-**Privacy Policy:**
+## Privacy Policy
 
 - The privacy of our visitors to [Apinant.dev](/) is important to us.
 - At [Apinant.dev](/), we recognize that privacy of your personal information is
@@ -70,19 +70,19 @@ show: false
 - By using our blog, you agree to the collection and use of information in
   accordance with our Privacy Policy.
 
-**Changes to Terms and Conditions:**
+## Changes to Terms and Conditions
 
 - We reserve the right to modify these terms at any time, so please review it
   frequently.
 - Changes and clarifications will take effect immediately upon their posting on
   the website.
 
-**Governing Law:**
+## Governing Law
 
 - Any claim related to the Blog shall be governed by the laws of Thailand
   without regards to its conflict of law provisions.
 
-**Contact Information:**
+## Contact Information
 
 - For any questions or concerns regarding the terms, please contact us at
   <me@apinant.dev>.

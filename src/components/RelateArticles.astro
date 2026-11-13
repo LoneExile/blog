@@ -1,7 +1,6 @@
 ---
-import { loadCollection } from "@utils/load-data.ts";
-import { getRelativeLocaleUrl } from "astro:i18n";
-import { Image } from "astro:assets";
+import PostRow from "@components/PostRow.astro";
+import { loadPublishedPosts } from "@utils/load-data.ts";
 
 interface Props {
   currentTags: string[];
@@ -10,63 +9,25 @@ interface Props {
   data: SiteData;
 }
 const { currentTags, language, currentSlug, data } = Astro.props;
-const posts = await loadCollection(language);
-const relatedPosts = posts.filter((post) => {
-  if (post.data.tags && post.id !== currentSlug) {
-    return post.data.tags.some((tag) => currentTags.includes(tag));
-  }
-  return false;
-}).slice(0, 4);
 
-const getPath = (slug: string) => {
-  return getRelativeLocaleUrl(language, "articles/" + slug);
-};
-
-function calculateReadingTime(text: string) {
-  const wordsPerMinute = 200;
-  const textLength = text.split(/\s+/).length;
-  const timeToRead = textLength / wordsPerMinute;
-  return Math.ceil(timeToRead);
-}
+const relatedPosts = (await loadPublishedPosts(language))
+  .filter((post) => post.id !== currentSlug && post.data.tags.some((tag) => currentTags.includes(tag)))
+  .slice(0, 3);
 ---
 
-{ relatedPosts.length > 0 &&
-<aside aria-label="Related articles" class="py-8 dark:bg-gray-900 lg:py-24">
-  <div class="mx-auto max-w-screen-xl px-4">
-    <h2 class="mb-8 text-2xl font-bold text-gray-900 dark:text-white">
-      { data.relateArticles.title }
-    </h2>
-    <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-      {
-        relatedPosts.map((post) => (
-          <article class="max-w-xs">
-            {post.data.thumbnail && (
-              <a href={getPath(post.id)}>
-                <Image
-                  src={post.data.thumbnail.src}
-                  class="mb-5 rounded-lg"
-                  alt={post.data.thumbnail?.alt || ""}
-                  width="260",
-                  height="150",
-                />
-              </a>
-            )}
-            <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
-              <a href={getPath(post.id)}>{post.data.title}</a>
-            </h2>
-            <p class="mb-4 text-gray-500 dark:text-gray-400">
-              {post.data.description}
-            </p>
-            <a
-              href="#"
-              class="inline-flex items-center font-medium text-primary-600 underline underline-offset-4 hover:no-underline dark:text-primary-500"
-            >
-              { data.relateArticles.readingTime.replace("__", calculateReadingTime(post.body.toString()).toString())}
-            </a>
-          </article>
-        ))
-      }
-    </div>
-  </div>
-</aside>
+{
+  relatedPosts.length > 0 && (
+    <section aria-labelledby="related-title" class="mt-16">
+      <h2 id="related-title" class="text-xl font-bold">
+        {data.relateArticles.title}
+      </h2>
+      <ol class="divide-y divide-gray-200 dark:divide-gray-800">
+        {relatedPosts.map((post) => (
+          <li>
+            <PostRow {post} {language} />
+          </li>
+        ))}
+      </ol>
+    </section>
+  )
 }

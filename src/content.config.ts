@@ -9,6 +9,8 @@ const blogSchema = ({ image }: SchemaContext) =>
     thumbnail: z.object({ src: image(), alt: z.string() }).optional(),
     language: z.enum(["en", "th"]),
     description: z.string(),
+    /** One sentence for post lists; falls back to description. */
+    summary: z.string().optional(),
     tags: z.array(z.string()),
     category: z.array(z.string()),
     created: z.string(),

@@ -1,6 +1,7 @@
 ---
 import Discord from "@icons/discord.astro";
 import Github from "@icons/github.astro";
+import Linkedin from "@icons/linkedin.astro";
 import Logo from "@icons/logo.astro";
 import Rss from "@icons/rss.astro";
 import Twitter from "@icons/twitter.astro";
@@ -8,134 +9,93 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 
 interface Props {
   language: string;
+  data: SiteData;
 }
-const { language } = Astro.props;
+const { language, data } = Astro.props;
+
+// The year comes from the build; the blog is rebuilt on every change.
+const year = new Date().getFullYear();
+const rssHref = getRelativeLocaleUrl(language, "rss.xml").replace(/\/$/, "");
+
+const textLinks = [
+  { label: data.footer.privacy, href: getRelativeLocaleUrl(language, "privacy-policy") },
+  { label: data.footer.terms, href: getRelativeLocaleUrl(language, "terms-and-conditions") },
+  { label: data.footer.source, href: "https://github.com/LoneExile/blog", external: true },
+];
+
+const iconClass =
+  "inline-flex h-10 w-10 items-center justify-center rounded-md text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white";
 ---
 
-<footer class="bg-white dark:bg-gray-900">
-  <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-    <div class="md:flex md:justify-between">
-      <div class="mb-6 md:mb-0">
-        <a href={getRelativeLocaleUrl(language, "")} class="flex items-center">
-          <Logo color="mr-3 dark:text-white" size="w-8 h-8" />
-
-          <span
-            class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white"
-            >Apinant.dev</span
-          >
-        </a>
-      </div>
-      <div class="grid grid-cols-2 gap-8 sm:grid-cols-3 sm:gap-6">
-        <div>
-          <h2
-            class="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white"
-          >
-            Resources
-          </h2>
-          <ul class="font-medium text-gray-500 dark:text-gray-400">
-            <li class="mb-4">
-              <a
-                target="_blank"
-                href="https://github.com/LoneExile/blog"
-                class="hover:underline">Source Code</a
-              >
-            </li>
-
-            <!-- <li class="mb-4"> -->
-            <!--   <a href="#" class="hover:underline">Changelog</a> -->
-            <!-- </li> -->
-          </ul>
-        </div>
-        <div>
-          <h2
-            class="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white"
-          >
-            Follow Me
-          </h2>
-          <ul class="font-medium text-gray-500 dark:text-gray-400">
-            <li class="mb-4">
-              <a
-                target="_blank"
-                href="https://github.com/LoneExile"
-                class="hover:underline">Github</a
-              >
-            </li>
-            <li>
-              <a
-                target="_blank"
-                href="https://www.linkedin.com/in/apinant-moo/"
-                class="hover:underline">Linkedin</a
-              >
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h2
-            class="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white"
-          >
-            Legal
-          </h2>
-          <ul class="font-medium text-gray-500 dark:text-gray-400">
-            <li class="mb-4">
-              <a
-                href={getRelativeLocaleUrl(language, "privacy-policy")}
-                class="hover:underline">Privacy Policy</a
-              >
-            </li>
-            <li>
-              <a
-                href={getRelativeLocaleUrl(language, "terms-and-conditions")}
-                class="hover:underline">Terms &amp; Conditions</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
+<footer class="border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+  <div
+    class="page-container flex flex-col gap-6 py-8 md:flex-row md:items-center md:justify-between"
+  >
+    <div class="flex flex-col gap-2">
+      <a
+        href={getRelativeLocaleUrl(language, "")}
+        class="flex w-fit items-center gap-3 font-bold"
+      >
+        <Logo color="text-gray-900 dark:text-white" size="w-6 h-6" />
+        {data.siteTitle}
+      </a>
+      <p class="text-sm text-gray-600 dark:text-gray-400">
+        {`© 2023–${year} ${data.author}. `}
+        <a
+          href={getRelativeLocaleUrl(language, "terms-and-conditions")}
+          class="underline underline-offset-2 hover:text-gray-900 dark:hover:text-white"
+          >{data.footer.license}</a
+        >
+      </p>
     </div>
-    <hr class="my-6 border-gray-200 dark:border-gray-700 sm:mx-auto lg:my-8" />
-    <div class="sm:flex sm:items-center sm:justify-between">
-      <span class="text-sm text-gray-500 dark:text-gray-400 sm:text-center"
-        >© 2023-2025 <a
-          href={getRelativeLocaleUrl(language, "")}
-          class="hover:underline">Apinant.dev</a
-        >. All Rights Reserved.
-      </span>
-      <div class="mt-4 flex sm:mt-0 sm:justify-center">
-        <a
-          target="_blank"
-          href="https://discord.gg/9rdch37uDe"
-          class="ms-5 text-gray-500 hover:text-gray-900 dark:hover:text-white"
-        >
-          <Discord color="fill-current" size="w-4 h-4" />
-          <span class="sr-only">Discord community</span>
+
+    <ul class="flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
+      {
+        textLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="inline-block py-2 text-gray-700 hover:text-primary-700 hover:underline dark:text-gray-300 dark:hover:text-primary-400"
+              {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <ul class="-ml-2.5 flex items-center gap-1 md:ml-0">
+      <li>
+        <a href="https://github.com/LoneExile" target="_blank" rel="noopener noreferrer" class={iconClass}>
+          <Github color="fill-current" size="w-5 h-5" />
+          <span class="sr-only">GitHub</span>
         </a>
-        <a
-          target="_blank"
-          href="https://twitter.com/L0neExile"
-          class="ms-5 text-gray-500 hover:text-gray-900 dark:hover:text-white"
-        >
-          <Twitter color="fill-current" size="w-4 h-4" />
-          <span class="sr-only">Twitter page</span>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/in/apinant-moo/" target="_blank" rel="noopener noreferrer" class={iconClass}>
+          <Linkedin color="fill-current" size="w-5 h-5" />
+          <span class="sr-only">LinkedIn</span>
         </a>
-        <a
-          target="_blank"
-          href="https://github.com/LoneExile"
-          class="ms-5 text-gray-500 hover:text-gray-900 dark:hover:text-white"
-        >
-          <Github color="fill-current" size="w-4 h-4" />
-          <span class="sr-only">GitHub account</span>
+      </li>
+      <li>
+        <a href="https://discord.gg/9rdch37uDe" target="_blank" rel="noopener noreferrer" class={iconClass}>
+          <Discord color="fill-current" size="w-5 h-5" />
+          <span class="sr-only">Discord</span>
         </a>
-        <a
-          target="_blank"
-          href={getRelativeLocaleUrl(language, "rss.xml").slice(-1) === "/"
-            ? getRelativeLocaleUrl(language, "rss.xml").slice(0, -1)
-            : getRelativeLocaleUrl(language, "rss.xml")}
-          class="ms-5 text-gray-500 hover:text-gray-900 dark:hover:text-white"
-        >
-          <Rss color="fill-current" size="w-4 h-4" />
-          <span class="sr-only">GitHub account</span>
+      </li>
+      <li>
+        <a href="https://twitter.com/L0neExile" target="_blank" rel="noopener noreferrer" class={iconClass}>
+          <Twitter color="fill-current" size="w-5 h-5" />
+          <span class="sr-only">Twitter</span>
         </a>
-      </div>
-    </div>
+      </li>
+      <li>
+        <a href={rssHref} class={iconClass}>
+          <Rss color="fill-current" size="w-5 h-5" />
+          <span class="sr-only">{data.footer.rss}</span>
+        </a>
+      </li>
+    </ul>
   </div>
 </footer>

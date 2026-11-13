@@ -1,40 +1,32 @@
 import { useEffect } from "preact/hooks";
-import { useStore } from "@nanostores/preact";
-import { settings, type SettingsValue } from "@utils/store";
 
-type Theme = Extract<SettingsValue["theme"], SettingsValue["theme"]>;
+type Theme = "dark" | "light";
 
 declare global {
   interface Window {
-    REMARK42: any;
-    remark_config: any;
+    REMARK42?: {
+      changeTheme(theme: Theme): void;
+      createInstance(config: unknown): void;
+    };
+    remark_config?: unknown;
   }
 }
 
-export function Comments() {
-  const theme: Theme = useStore(settings).theme;
+export function Comments({ title }: { title: string }) {
+  // Follow the blog's theme button (see ThemeSwitcher.astro).
+  useEffect(() => {
+    const onThemeChange = (event: Event) => {
+      window.REMARK42?.changeTheme((event as CustomEvent<Theme>).detail);
+    };
+    window.addEventListener("theme-change", onThemeChange);
+    return () => window.removeEventListener("theme-change", onThemeChange);
+  }, []);
 
   useEffect(() => {
-    if (!window || !window.REMARK42) {
-      return;
-    }
-
-    window.REMARK42.changeTheme(theme);
-  }, [theme]);
-
-  useEffect(() => {
-    if (!window) {
-      return;
-    }
-
     const { document } = window;
 
-    const insertScript = (
-      id: string,
-      parentElement: HTMLElement,
-      theme: string,
-    ) => {
-      const script = window.document.createElement("script");
+    const insertScript = (id: string, parentElement: HTMLElement, theme: Theme) => {
+      const script = document.createElement("script");
       script.type = "text/javascript";
       script.async = true;
       script.id = id;
@@ -58,28 +50,23 @@ export function Comments() {
       parentElement.appendChild(script);
     };
 
-    // insert new script with updated theme
     if (document.getElementById("remark42")) {
+      const theme = document.documentElement.classList.contains("dark") ? "dark" : "light";
       insertScript("comments-script", document.body, theme);
     }
-
-    // recreate Remark42 instance
     if (window.REMARK42 && window.remark_config) {
       window.REMARK42.createInstance(window.remark_config);
     }
   }, []);
 
-  // NOTE:
-  // components: ["counter", "embed"],
-  // <span class="remark42__counter"></span>
-
-  // TODO: Can I add loading component before Remark42 is loaded?
-
   return (
-    <>
-      <div class="pb-[5%]">
-        <div id="remark42"></div>
-      </div>
-    </>
+    <section aria-labelledby="comments-title" class="mt-16">
+      <h2 id="comments-title" class="mb-4 text-xl font-bold">
+        {title}
+      </h2>
+      {/* Reserve room for the comment box so it doesn't push the page down
+          when it loads. */}
+      <div id="remark42" class="min-h-60"></div>
+    </section>
   );
 }

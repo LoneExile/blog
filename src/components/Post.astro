@@ -1,79 +1,57 @@
 ---
-import { formattedDate } from "@utils/utils";
+import { formattedDate, isoDate } from "@utils/utils";
 import Profile from "@assets/profile.webp";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { Image } from "astro:assets";
 
-interface Post {
-  created: string;
-  updated: string;
-  draft: boolean;
-  tags: string[];
+interface Props {
   title: string;
-  description: string;
+  created: string;
   language: string;
-  comments: boolean;
+  data: SiteData;
+  /** Articles show the author byline; the legal pages show "Last updated". */
+  byline: boolean;
+  updated?: string;
 }
 
-const {
-  created,
-  updated,
-  draft,
-  tags,
-  title,
-  description,
-  language,
-  comments,
-} = Astro.props;
-
-const name = "Apinant U-suwantim";
+const { title, created, updated, language, data, byline } = Astro.props;
 ---
 
-<main
-  class="bg-white pb-16 pt-8 antialiased dark:bg-gray-900 lg:pb-24 lg:pt-16"
->
-  <div class="mx-auto flex max-w-screen-xl justify-between px-4">
-    <article
-      class="format format-sm format-rose mx-auto w-full max-w-2xl dark:format-invert sm:format-base lg:format-lg"
-    >
-      <header class="not-format mb-4 lg:mb-6">
-        {
-          (comments === undefined || comments === true) && (
-            <address class="mb-6 flex items-center not-italic">
-              <div class="mr-3 inline-flex items-center text-sm text-gray-900 dark:text-white">
-                <Image
-                  class="mr-4 h-16 w-16 rounded-full"
-                  src={Profile}
-                  alt={name}
-                />
-                <div>
-                  <a
-                    href={getRelativeLocaleUrl(language, "/about")}
-                    rel="author"
-                    class="text-xl font-bold text-gray-900 dark:text-white"
-                  >
-                    {name}
-                  </a>
-                  <p class="text-base text-gray-500 dark:text-gray-400">
-                    Software Engineer
-                  </p>
-                  <p class="text-base text-gray-500 dark:text-gray-400">
-                    <time datetime="2022-02-08" title="February 8th, 2022">
-                      {formattedDate(created)}
-                    </time>
-                  </p>
-                </div>
-              </div>
-            </address>
-          )
-        }
-        <h1
-          class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 dark:text-white lg:mb-6 lg:text-4xl"
-        >
-          {title}
-        </h1>
-      </header>
-      <div><slot /></div>
-    </article>
+<article class="reading-column">
+  <header class="mb-8">
+    {
+      byline && (
+        <address class="mb-6 flex items-center gap-4 not-italic">
+          <Image class="h-14 w-14 rounded-full" src={Profile} alt="" width={112} height={112} />
+          <div class="text-sm">
+            <a
+              href={getRelativeLocaleUrl(language, "about")}
+              rel="author"
+              class="text-base font-bold text-gray-900 hover:underline dark:text-white"
+            >
+              {data.author}
+            </a>
+            <p class="text-gray-600 dark:text-gray-400">
+              {data.about.aboutAuthor.role} ·{" "}
+              <time datetime={isoDate(created)}>{formattedDate(created)}</time>
+            </p>
+          </div>
+        </address>
+      )
+    }
+    <h1 class="text-3xl font-bold leading-tight text-gray-900 dark:text-white lg:text-4xl">
+      {title}
+    </h1>
+    {
+      !byline && updated && (
+        <p class="mt-3 text-sm text-gray-600 dark:text-gray-400">
+          {data.post.lastUpdated}{" "}
+          <time datetime={isoDate(updated)}>{formattedDate(updated)}</time>
+        </p>
+      )
+    }
+  </header>
+  <div class="format format-brand sm:format-base lg:format-lg max-w-none">
+    <slot />
   </div>
-</main>
+</article>

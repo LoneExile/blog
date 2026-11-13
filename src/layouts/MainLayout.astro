@@ -12,35 +12,75 @@ interface Props {
 }
 
 const { data, description, currentPath, language, title } = Astro.props;
+const lang = language || data.language;
+const pageTitle =
+  title === data.siteTitle ? title : `${title} · ${data.siteTitle}`;
+const rssUrl = new URL(lang === "en" ? "rss.xml" : `${lang}/rss.xml`, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" />
+    <script is:inline>
+      // Theme before first paint. A saved choice ("settings:theme") wins;
+      // otherwise follow the device setting without saving it.
+      (function () {
+        var saved = null;
+        try {
+          saved = localStorage.getItem("settings:theme");
+        } catch (e) {}
+        var dark =
+          saved === "dark" ||
+          (saved !== "light" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches);
+        var root = document.documentElement;
+        root.classList.toggle("dark", dark);
+        document
+          .querySelector('meta[name="theme-color"]')
+          .setAttribute("content", dark ? "#1c1717" : "#ffffff");
+      })();
+    </script>
+    <link
+      rel="preload"
+      href="/fonts/Inter-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#8c0d2d" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={data.siteTitle}
+      href={rssUrl}
+    />
     <meta name="msapplication-TileColor" content="#8c0d2d" />
-    <meta name="theme-color" content="#ffffff" />
-    <title>{title}</title>
-    <style></style></head
-  >
+    <title>{pageTitle}</title>
+    <slot name="head" />
+  </head>
 
-  <body class="dark:bg-gray-900 md:bg-white">
-    <div class="flex h-screen flex-col justify-between">
-      <Navbar {data} {currentPath} {language} />
-      <section class="container mx-auto mt-10 max-w-screen-xl px-8">
+  <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+    <a
+      href="#main"
+      class="sr-only rounded-md bg-white px-4 py-2 font-medium text-gray-900 focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 dark:bg-gray-800 dark:text-white"
+      >{data.skipLink}</a
+    >
+    <div class="flex min-h-screen flex-col">
+      <Navbar {data} {currentPath} language={lang} />
+      <main id="main" class="page-container flex-1 pb-16 pt-8 sm:pt-12">
         <slot />
-      </section>
-      <Footer {language} />
+      </main>
+      <Footer {data} language={lang} />
     </div>
-    <!-- <script type="text/partytown" src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script> -->
-    <script type="text/partytown" src="/scripts/flowbite.min.js"></script>
   </body>
 </html>

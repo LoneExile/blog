@@ -2,10 +2,8 @@ import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import node from "@astrojs/node";
 import preact from "@astrojs/preact";
-import partytown from "@astrojs/partytown";
 import tailwindcss from "@tailwindcss/vite";
 import { unified } from "@astrojs/markdown-remark";
-import clickDirective from "./directive/click-directive/register.js";
 import rehypeToc from "rehype-toc";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
@@ -29,14 +27,20 @@ const markdown = unified({
           listItem: "toc-list-item",
           link: "toc-link",
         },
-        // customizeTOC: (toc) => {
-        //   // Ensure the TOC has the nav element
-        //   if (toc.tagName !== 'nav') {
-        //     const nav = { type: 'element', tagName: 'nav', properties: { ...toc.properties }, children: [toc] }
-        //     return nav
-        //   }
-        //   return toc
-        // },
+        // Label the contents box, and leave it out when a post has no
+        // headings (rehype-toc would otherwise add an empty <nav>).
+        customizeTOC: (toc) => {
+          const list = toc.children?.[0];
+          if (!list?.children?.length) return false;
+          toc.properties = { ...toc.properties, "aria-label": "Contents" };
+          toc.children.unshift({
+            type: "element",
+            tagName: "p",
+            properties: { className: ["toc-title"] },
+            children: [{ type: "text", value: "Contents" }],
+          });
+          return toc;
+        },
       },
     ],
   ],
@@ -46,19 +50,23 @@ const markdown = unified({
 export default defineConfig({
   markdown: {
     processor: markdown,
+    // Code blocks: github-dark-default keeps comments readable (6.2:1 on its
+    // #0d1117 background; github-dark's comments were 3.0:1).
+    shikiConfig: { theme: "github-dark-default" },
+  },
+  // Responsive images: srcset and sizes for every image, Markdown included,
+  // so phones stop downloading the 2000px screenshots.
+  image: {
+    layout: "constrained",
+    responsiveStyles: true,
   },
   i18n: {
     defaultLocale: "en",
     locales: ["en", "th"],
-    // fallback: { th: "en" },
-    // routing: {
-    //   prefixDefaultLocale: false,
-    //   redirectToDefaultLocale: false
-    // },
   },
   prefetch: false,
   site: "https://blog.apinant.dev",
-  integrations: [sitemap(), preact(), partytown(), clickDirective()],
+  integrations: [sitemap(), preact()],
   vite: {
     plugins: [tailwindcss()],
   },
