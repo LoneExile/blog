@@ -19,7 +19,7 @@
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.4.2",
     "flowbite": "^4.0.2",
-    "preact": "^11.0.1",
+    "preact": "^11.2.0",
     "rehype": "^13.0.2",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-raw": "^7.0.0",
