@@ -13,13 +13,13 @@ comments: false
 show: false
 ---
 
-**Introduction:**
+## Introduction
 
 - Welcome to [Apinant.dev](/).
 - This policy outlines how we collect, use, protect, and handle your personal
   information on our blog.
 
-**Information Collection and Use:**
+## Information Collection and Use
 
 1. **Comments (Remark42):**
 
@@ -39,28 +39,28 @@ show: false
      blog. You can unsubscribe at any time by following the instructions in the
      newsletter.
 
-**Data Security:**
+## Data Security
 
 - We take the security of your personal information seriously.
 - We implement a variety of security measures to maintain the safety of your
   personal information when you enter, submit, or access your personal
   information.
 
-**Cookies:**
+## Cookies
 
 - Our blog may use cookies to enhance user experience. Users may choose to set
   their web browser to refuse cookies or to alert you when cookies are being
   sent. Note that some parts of the Site may not function properly without the
   use of cookies.
 
-**User Rights:**
+## User Rights
 
 - You have the right to access, edit, or delete your personal information at any
   time.
 - For any requests related to your personal data, please contact us at
   <me@apinant.dev>.
 
-**Third-party Disclosure:**
+## Third-party Disclosure
 
 - We do not sell, trade, or otherwise transfer your Personally Identifiable
   Information to outside parties.
@@ -68,13 +68,13 @@ show: false
   in operating our website, conducting our business, or serving our users, so
   long as those parties agree to keep this information confidential.
 
-**Changes to This Privacy Policy:**
+## Changes to This Privacy Policy
 
 - We may update our Privacy Policy from time to time. We will notify you of any
   changes by posting the new Privacy Policy on this page.
 - You are advised to review this Privacy Policy periodically for any changes.
 
-**Contact Information:**
+## Contact Information
 
 - If you have any questions about this Privacy Policy, please contact us at
   <me@apinant.dev>.

@@ -1,7 +1,8 @@
 ---
 title: "Any distro with WSL"
 description: "Learn how to use any Docker or container image as a Windows Subsystem for Linux (WSL) distro, including Arch Linux. This step-by-step guide covers installing WSL, setting up Docker, exporting Docker images, and configuring your WSL environment. Whether you're looking to run Arch Linux or any other Linux distribution on Windows, this tutorial provides all the necessary commands and tips to get you started, including GUI application setup and systemd configuration."
-thumbnail: { src: "../../../images/2024/2024-04-21-WSL-with-any-distro/21_Any_distro_with_WSL_image.png", alt: "LoneExile-nvim" }
+summary: "A step-by-step way to run Arch Linux, or any Docker image, as a WSL distro on Windows, including systemd and GUI apps."
+thumbnail: { src: "../../../images/2024/2024-04-21-WSL-with-any-distro/21_Any_distro_with_WSL_image.png", alt: "Neovim start screen running in the Arch Linux WSL terminal" }
 language: "en"
 created: 2024-04-21 19:24
 updated: 2023-08-20 12:43
@@ -22,13 +23,13 @@ I find this method cleaner than installing Docker Desktop. We can delete this WS
 
 Let's assume you have WSL installed and ensure it's the latest version by running `wsl --update`.
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/2_Any_distro_with_WSL_image.png)
+![Terminal running wsl --update, which says the latest WSL is installed, then wsl --version listing WSL version 2.1.5.0.](../../../images/2024/2024-04-21-WSL-with-any-distro/2_Any_distro_with_WSL_image.png)
 
 After that, install Ubuntu with the WSL command `wsl --install -d ubuntu` or another Ubuntu variant by listing available distros using the command `wsl --list --online`.
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/Any_distro_with_WSL_image.png)
+![Output of wsl --list --online, listing installable distros such as Ubuntu, Debian, kali-linux, Ubuntu-24.04, Oracle Linux and openSUSE.](../../../images/2024/2024-04-21-WSL-with-any-distro/Any_distro_with_WSL_image.png)
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/1_Any_distro_with_WSL_image.png)
+![wsl --install -d Ubuntu-24.04 finishing, with the prompt to create a UNIX user named demo and the Ubuntu 24.04 welcome banner.](../../../images/2024/2024-04-21-WSL-with-any-distro/1_Any_distro_with_WSL_image.png)
 
 After finishing installing Ubuntu, you will be prompted to register a username and password.
 
@@ -39,13 +40,13 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
 ```
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/3_Any_distro_with_WSL_image.png)
+![The Docker install script starting in Ubuntu: a notice that WSL was detected, then a sudo password prompt after curl and sh get-docker.sh.](../../../images/2024/2024-04-21-WSL-with-any-distro/3_Any_distro_with_WSL_image.png)
 
 After Docker is installed, run the post-install script so we can run Docker without typing `sudo`.
 
 [Docker Post-Install Documentation](https://docs.docker.com/engine/install/linux-postinstall/)
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/4_Any_distro_with_WSL_image.png)
+![Post-install steps (usermod -aG docker, newgrp docker), then docker run hello-world pulls the image and prints Hello from Docker!](../../../images/2024/2024-04-21-WSL-with-any-distro/4_Any_distro_with_WSL_image.png)
 
 Let's test by running the `hello-world` image. It should work like this picture:
 
@@ -56,15 +57,15 @@ docker run -it --name arch archlinux sh -c "exit"
 docker export arch > /tmp/arch.tar
 ```
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/5_Any_distro_with_WSL_image.png)
+![docker run pulls the archlinux image, then docker export arch > /tmp/arch.tar saves the container as a tar file.](../../../images/2024/2024-04-21-WSL-with-any-distro/5_Any_distro_with_WSL_image.png)
 
 Navigate to `\\wsl.localhost\Ubuntu-24.04\tmp` to see the `arch.tar` file we exported.
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/6_Any_distro_with_WSL_image.png)
+![File Explorer open on the tmp folder of Ubuntu-24.04 under wsl.localhost, showing the exported arch.tar file of about 435 MB.](../../../images/2024/2024-04-21-WSL-with-any-distro/6_Any_distro_with_WSL_image.png)
 
 Create a directory where you want to store WSL. Mine is `C:\Users\LoneExile\WSL`.
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/7_Any_distro_with_WSL_image.png)
+![PowerShell running mkdir arch-demo inside the WSL folder of the Windows user profile, which creates the new arch-demo directory.](../../../images/2024/2024-04-21-WSL-with-any-distro/7_Any_distro_with_WSL_image.png)
 
 Now we can import it.
 
@@ -72,7 +73,7 @@ Now we can import it.
 wsl --import arch-demo C:\Users\<YOUR_USER>\WSL\arch-demo\ \\wsl.localhost\Ubuntu-24.04\tmp\arch.tar
 ```
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/8_Any_distro_with_WSL_image.png)
+![wsl --import arch-demo with an install folder and the path to arch.tar, ending with the message that the operation completed successfully.](../../../images/2024/2024-04-21-WSL-with-any-distro/8_Any_distro_with_WSL_image.png)
 
 ```sh
 wsl --list
@@ -80,7 +81,7 @@ wsl --list
 
 You can see it in the list now 🎉
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/9_Any_distro_with_WSL_image.png)
+![wsl --list now showing Ubuntu (Default), Ubuntu-24.04, archlinux and the newly imported arch-demo distro.](../../../images/2024/2024-04-21-WSL-with-any-distro/9_Any_distro_with_WSL_image.png)
 
 Before we start using it, we need to initialize the pacman keyring.
 
@@ -94,7 +95,7 @@ The command `pacman-key --init` in Arch Linux is used to initialize the pacman k
 pacman-key --init
 ```
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/10_Any_distro_with_WSL_image.png)
+![wsl -d arch-demo opens a root shell, where pacman-key --init generates the pacman master key and updates the trust database.](../../../images/2024/2024-04-21-WSL-with-any-distro/10_Any_distro_with_WSL_image.png)
 
 Next, add the username and password that you want to use. Mine is `le`.
 
@@ -106,17 +107,17 @@ pacman -Syu sudo vim git curl # install packages
 EDITOR=vim visudo
 ```
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/11_Any_distro_with_WSL_image.png)
+![Creating the user le in the wheel group and setting its password, then pacman -Syyu starts a full upgrade of 83 packages.](../../../images/2024/2024-04-21-WSL-with-any-distro/11_Any_distro_with_WSL_image.png)
 
 Then uncomment this line `%wheel ALL=(ALL:ALL) ALL`.
 
 This line allows all users in the `wheel` group to execute any command as any user or group using `sudo`.
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/12_Any_distro_with_WSL_image.png)
+![The sudoers file open in vim, with the cursor on the commented line # %wheel ALL=(ALL:ALL) ALL that needs its comment mark removed.](../../../images/2024/2024-04-21-WSL-with-any-distro/12_Any_distro_with_WSL_image.png)
 
 Now we can exit and then log in to the user we created.
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/14_Any_distro_with_WSL_image.png)
+![Logging in as user le with wsl.exe -u le -d arch-demo, then sudo vim /etc/wsl.conf asking for the sudo password.](../../../images/2024/2024-04-21-WSL-with-any-distro/14_Any_distro_with_WSL_image.png)
 
 Now edit this file `/etc/wsl.conf`.
 
@@ -139,7 +140,7 @@ generateResolvConf = false
 default=<YOUR_USER>
 ```
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/13_Any_distro_with_WSL_image.png)
+![The /etc/wsl.conf file in vim with systemd=true, generateResolvConf = false and a user section with default=username.](../../../images/2024/2024-04-21-WSL-with-any-distro/13_Any_distro_with_WSL_image.png)
 
 Then shut down your WSL.
 
@@ -156,7 +157,7 @@ memory=32GB
 swap=8GB
 ```
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/15_Any_distro_with_WSL_image.png)
+![wsl --shutdown, then Notepad opening the .wslconfig file, which sets memory=32GB and swap=8GB under a wsl2 section.](../../../images/2024/2024-04-21-WSL-with-any-distro/15_Any_distro_with_WSL_image.png)
 
 Log back into the Arch Linux WSL with the command `wsl ~ -d archlinux -u le`.
 
@@ -169,7 +170,7 @@ sudo pacman -S archlinux-keyring
 sudo pacman -S neofetch
 ```
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/16_Any_distro_with_WSL_image.png)
+![Output of neofetch on Arch Linux running on Windows 10, with the Arch logo, the WSL2 kernel and 129 pacman packages.](../../../images/2024/2024-04-21-WSL-with-any-distro/16_Any_distro_with_WSL_image.png)
 
 What if we want a GUI application? Let's try!
 
@@ -177,7 +178,7 @@ What if we want a GUI application? Let's try!
 pacman -Syu gimp
 ```
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/17_Any_distro_with_WSL_image.png)
+![Running gimp in the Arch shell after installing it fails with Cannot open display, plus warnings about missing libraries.](../../../images/2024/2024-04-21-WSL-with-any-distro/17_Any_distro_with_WSL_image.png)
 
 If it doesn't work, here is the fix:
 
@@ -189,7 +190,7 @@ rmdir /tmp/.X11-unix && ln -s /mnt/wslg/.X11-unix /tmp/.X11-unix
 
 Then run it again.
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/18_Any_distro_with_WSL_image.png)
+![After the rmdir and ln -s fix for /tmp/.X11-unix, running gimp opens its window on the Windows desktop.](../../../images/2024/2024-04-21-WSL-with-any-distro/18_Any_distro_with_WSL_image.png)
 
 But you need to run that command every time WSL restarts. We can automate it with `systemd`.
 
@@ -211,7 +212,7 @@ ExecStart=ln -s /mnt/wslg/.X11-unix /tmp/
 WantedBy=sysinit.target
 ```
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/19_Any_distro_with_WSL_image.png)
+![The wslg.service systemd unit in vim, with Unit, Service and Install sections that recreate the /tmp/.X11-unix symlink on boot.](../../../images/2024/2024-04-21-WSL-with-any-distro/19_Any_distro_with_WSL_image.png)
 
 ```sh
 systemctl enable wslg
@@ -223,10 +224,10 @@ We can link Windows commands to launch applications in Arch Linux as well. Here,
 sudo ln -s "/mnt/c/Windows/explorer.exe" "/usr/local/bin/open"
 ```
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/20_Any_distro_with_WSL_image.png)
+![Linking explorer.exe to /usr/local/bin/open with ln -s, then open . launches Windows File Explorer in the Arch home folder of user le.](../../../images/2024/2024-04-21-WSL-with-any-distro/20_Any_distro_with_WSL_image.png)
 
 Finally, I can use my [Neovim](https://github.com/LoneExile/nvim) and start working now 🚀
 
-![](../../../images/2024/2024-04-21-WSL-with-any-distro/21_Any_distro_with_WSL_image.png)
+![Neovim start screen with an ASCII art face and a menu: Find file, New file, Recently used files, Configuration, Quit Neovim.](../../../images/2024/2024-04-21-WSL-with-any-distro/21_Any_distro_with_WSL_image.png)
 
 If you have any questions, please leave a comment below.
